@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-	<!-- Parent -->
+	<!-- JBoss Parent -->
 	<parent>
 		<groupId>org.jboss</groupId>
 		<artifactId>jboss-parent</artifactId>
 		<version>6-beta-2</version>
-		<relativePath/>
+		<relativePath />
 	</parent>
 
 	<!-- Model Version -->
@@ -15,7 +16,7 @@
 	<!-- Artifact Configuration -->
 	<groupId>org.jboss.arquillian.container</groupId>
 	<artifactId>arquillian-parent-mobicents-sip-servlets</artifactId>
-	<version>1.0.0.Final-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Arquillian Mobicents Container Parent Tomcat</name>
 	<description>Mobicents Tomcat Container for the Arquillian Project</description>
@@ -27,11 +28,12 @@
 	<properties>
 
 		<!-- Versioning -->
-		<version.arquillian_core>1.0.0.CR1</version.arquillian_core>
-		<version.shrinkwrap_tomcat>1.0.0-beta-1</version.shrinkwrap_tomcat>
+		<version.arquillian_core>1.0.0.CR5</version.arquillian_core>
+		<version.shrinkwrap_tomcat>1.0.0-beta-12</version.shrinkwrap_tomcat>
 
 		<version.jboss_spec>1.0.0.Final</version.jboss_spec>
 		<version.weld_servlet>1.1.2.Final</version.weld_servlet>
+		<version.ctf.core>1.0.0-SNAPSHOT</version.ctf.core>
 
 		<!-- override from parent -->
 		<version.release.plugin>2.1</version.release.plugin>
@@ -39,11 +41,24 @@
 		<maven.compiler.source>1.5</maven.compiler.source>
 
 		<!-- Mobicents -->
-		<version.org.mobicents.servlet.sip>1.6.0.FINAL</version.org.mobicents.servlet.sip>
+		<version.org.mobicents.servlet.sip>1.7.0-SNAPSHOT</version.org.mobicents.servlet.sip>
+
+		<!-- Jain SIP -->
+		<jain-sip-api.version>1.2</jain-sip-api.version>
+		<jain-sip-ri.version>1.2.X-SNAPSHOT</jain-sip-ri.version>
 	</properties>
 
 	<dependencyManagement>
 		<dependencies>
+
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>servlet-api</artifactId>
+				<version>2.5</version>
+				<scope>test</scope>
+			</dependency>
+
+			<!-- Arquiilian dependencies -->
 			<dependency>
 				<groupId>org.jboss.arquillian</groupId>
 				<artifactId>arquillian-bom</artifactId>
@@ -58,19 +73,79 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
-<!-- 
-			<dependency>
-				<groupId>org.jboss.shrinkwrap.container</groupId>
-				<artifactId>shrinkwrap-container-tomcat-60</artifactId>
-				<version>${version.shrinkwrap_tomcat}</version>
-			</dependency>
- -->
+
+			<!-- <dependency> <groupId>org.jboss.arquillian.container</groupId> <artifactId>arquillian-container-spi</artifactId> 
+				<version>1.0.0.CR5</version> </dependency> <dependency> <groupId>org.jboss.arquillian.container</groupId> 
+				<artifactId>arquillian-container-test-spi</artifactId> <version>1.0.0.CR5</version> 
+				</dependency> -->
+			<!-- <dependency> <groupId>org.jboss.shrinkwrap.container</groupId> <artifactId>shrinkwrap-container-tomcat-60</artifactId> 
+				<version>${version.shrinkwrap_tomcat}</version> </dependency> -->
 			<dependency>
 				<groupId>org.jboss.weld.servlet</groupId>
 				<artifactId>weld-servlet</artifactId>
 				<version>${version.weld_servlet}</version>
 				<scope>test</scope>
 			</dependency>
+<!-- 
+			<dependency>
+				<groupId>org.jboss.arquillian.protocol</groupId>
+				<artifactId>arquillian-protocol-servlet</artifactId>
+				<version>1.0.0.CR5</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.jboss.arquillian.testenricher</groupId>
+				<artifactId>arquillian-testenricher-cdi</artifactId>
+				<version>1.0.0.CR5</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.jboss.arquillian.testenricher</groupId>
+				<artifactId>arquillian-testenricher-resource</artifactId>
+				<version>1.0.0.CR5</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.jboss.arquillian.testenricher</groupId>
+				<artifactId>arquillian-testenricher-initialcontext</artifactId>
+				<version>1.0.0.CR5</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.jboss.arquillian.junit</groupId>
+				<artifactId>arquillian-junit-container</artifactId>
+				<version>1.0.0.CR5</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>4.8.1</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.jboss.shrinkwrap.resolver</groupId>
+				<artifactId>shrinkwrap-resolver-impl-maven</artifactId>
+				<version>1.0.0-beta-5</version>
+				<scope>test</scope>
+			</dependency>
+ -->
+			<dependency>
+				<groupId>org.mobicents.servlet.sip.ctf.core</groupId>
+				<artifactId>ctf-core</artifactId>
+				<scope>test</scope>
+				<version>${version.ctf.core}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.mobicents.servlet.sip.ctf.core</groupId>
+				<artifactId>ctf-core-extension</artifactId>
+				<scope>test</scope>
+				<version>${version.ctf.core}</version>
+			</dependency>
+
 			<dependency>
 				<groupId>org.jboss.spec.javax.servlet</groupId>
 				<artifactId>jboss-servlet-api_3.0_spec</artifactId>
@@ -102,12 +177,27 @@
 
 			<dependency>
 				<groupId>org.mobicents.servlet.sip</groupId>
+				<artifactId>sip-servlets-core-api</artifactId>
+				<version>${version.org.mobicents.servlet.sip}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.mobicents.servlet.sip</groupId>
+				<artifactId>sip-servlets-catalina</artifactId>
+				<version>${version.org.mobicents.servlet.sip}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.mobicents.servlet.sip</groupId>
 				<artifactId>sip-servlets-tomcat-jboss4</artifactId>
 				<version>${version.org.mobicents.servlet.sip}</version>
 				<scope>provided</scope>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+
 
 	<build>
 		<plugins>
@@ -119,19 +209,14 @@
 					<localCheckout>true</localCheckout>
 				</configuration>
 			</plugin>
-			<plugin>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<configuration>
-					<systemProperties>
-						<org.apache.maven.global-settings>${settings}</org.apache.maven.global-settings>
-					</systemProperties>
-				</configuration>
-			</plugin>
+			<!-- <plugin> <artifactId>maven-surefire-plugin</artifactId> <configuration> 
+				<systemProperties> <org.apache.maven.global-settings>${settings}</org.apache.maven.global-settings> 
+				</systemProperties> </configuration> </plugin> -->
 		</plugins>
 	</build>
 
 	<modules>
 		<module>mss-tomcat-embedded-6</module>
 		<module>mss-tomcat-embedded-7</module>
-  </modules>
+	</modules>
 </project>

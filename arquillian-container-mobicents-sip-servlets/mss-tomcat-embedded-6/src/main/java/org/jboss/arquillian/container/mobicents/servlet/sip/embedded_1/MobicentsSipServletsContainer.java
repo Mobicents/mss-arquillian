@@ -172,12 +172,22 @@ public class MobicentsSipServletsContainer implements DeployableContainer<Mobice
 	{
 		
 		  System.setProperty("javax.servlet.sip.ar.spi.SipApplicationRouterProvider", configuration.getSipApplicationRouterProviderClassName());
-		  if(MobicentsSipServletsConfiguration.MOBICENTS_DEFAULT_AR_CLASS_NAME.equals(configuration.getSipApplicationRouterProviderClassName())) {
-			  System.setProperty("javax.servlet.sip.dar", Thread.currentThread().getContextClassLoader().getResource("empty-dar.properties").toString());
-		  } else {
+		  System.setProperty("org.mobicents.testsuite.testhostaddr",bindAddress);
+//		  if(MobicentsSipServletsConfiguration.MOBICENTS_DEFAULT_AR_CLASS_NAME.equals(configuration.getSipApplicationRouterProviderClassName())) {
+//			  System.setProperty("javax.servlet.sip.dar", Thread.currentThread().getContextClassLoader().getResource("empty-dar.properties").toString());
+//		  } else {
+//			  System.setProperty("javax.servlet.sip.dar", Thread.currentThread().getContextClassLoader().getResource("test-dar.properties").toString());
+//		  }
+		  
+		  //Required in order to read the dar conf of each file
+		  //The Router in the arquillian.xml should be <property name="sipApplicationRouterProviderClassName">org.mobicents.servlet.sip.router.DefaultApplicationRouterProvider</property>
+		  String darConfiguration = Thread.currentThread().getContextClassLoader().getResource("test-dar.properties").toString();
+		  if (darConfiguration != null) {
 			  System.setProperty("javax.servlet.sip.dar", Thread.currentThread().getContextClassLoader().getResource("test-dar.properties").toString());
+		  } else {
+			  System.setProperty("javax.servlet.sip.dar", Thread.currentThread().getContextClassLoader().getResource("empty-dar.properties").toString());
 		  }
-	      // creating the tomcat embedded == service tag in server.xml
+		  // creating the tomcat embedded == service tag in server.xml
 		  MobicentsSipServletsEmbedded embedded= new MobicentsSipServletsEmbedded();
 		  this.embedded = embedded;
 	      SipStandardService sipStandardService = new SipStandardService();

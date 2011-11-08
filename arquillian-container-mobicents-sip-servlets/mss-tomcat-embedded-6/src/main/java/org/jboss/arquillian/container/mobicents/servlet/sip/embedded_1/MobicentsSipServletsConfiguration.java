@@ -38,14 +38,13 @@ public class MobicentsSipServletsConfiguration implements ContainerConfiguration
 
 	private String workDir = null;
 
-	private String serverName = "mss-tomcat6-embedded";
+	private String serverName = "mss-tomcat-embedded-6";
 
 	private boolean unpackArchive = false;
 
 	public static final String MOBICENTS_DEFAULT_AR_CLASS_NAME = "org.mobicents.servlet.sip.router.DefaultApplicationRouterProvider";
 	private String sipConnectors = ":5080";
 	private String sipApplicationRouterProviderClassName = MOBICENTS_DEFAULT_AR_CLASS_NAME;
-
 
 	/**
 	 * @param sipApplicationRouterProviderClassName the sipApplicationRouterProviderClassName to set

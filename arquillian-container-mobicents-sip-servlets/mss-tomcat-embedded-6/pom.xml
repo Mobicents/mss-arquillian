@@ -5,13 +5,14 @@
 	<parent>
 		<groupId>org.jboss.arquillian.container</groupId>
 		<artifactId>arquillian-parent-mobicents-sip-servlets</artifactId>
-		<version>1.0.0.Final-SNAPSHOT</version>
+		<version>1.0.0-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
 
 	<artifactId>mss-tomcat-embedded-6</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
 	<name>Arquillian Mobicents Container Tomcat Embedded 6.x</name>
 	<description>Mobicents Tomcat 6.x Embedded container integration for the Arquillian Project</description>
 
@@ -24,10 +25,7 @@
 	<dependencies>
 
 		<!-- org.jboss.arquillian -->
-		<dependency>
-			<groupId>org.jboss.arquillian.container</groupId>
-			<artifactId>arquillian-container-spi</artifactId>
-		</dependency>
+
 		<dependency>
 			<groupId>org.jboss.arquillian.container</groupId>
 			<artifactId>arquillian-container-test-spi</artifactId>
@@ -48,8 +46,7 @@
 			<groupId>org.jboss.arquillian.testenricher</groupId>
 			<artifactId>arquillian-testenricher-initialcontext</artifactId>
 		</dependency>
-		<!-- <dependency> <groupId>org.jboss.shrinkwrap.container</groupId> <artifactId>shrinkwrap-container-tomcat-60</artifactId> 
-			</dependency> -->
+		<!-- -->
 		<dependency>
 			<groupId>org.jboss.shrinkwrap.container</groupId>
 			<artifactId>shrinkwrap-container-mobicents-13</artifactId>
@@ -59,24 +56,83 @@
 		<!-- org.apache.tomcat -->
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
-			<artifactId>catalina</artifactId>
-			<version>${version.org.apache.tomcat}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tomcat</groupId>
 			<artifactId>coyote</artifactId>
 			<version>${version.org.apache.tomcat}</version>
 			<scope>provided</scope>
 		</dependency>
+
+		<!-- Mobicents -->
+		<dependency>
+			<groupId>org.mobicents.servlet.sip</groupId>
+			<artifactId>sip-servlets-catalina</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- testing -->
+
+		<dependency>
+			<groupId>org.jboss.arquillian.junit</groupId>
+			<artifactId>arquillian-junit-container</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.shrinkwrap.resolver</groupId>
+			<artifactId>shrinkwrap-resolver-impl-maven</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.weld.servlet</groupId>
+			<artifactId>weld-servlet</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mobicents.servlet.sip.ctf.core</groupId>
+			<artifactId>ctf-core</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.sip</groupId>
+			<artifactId>jain-sip-api</artifactId>
+			<version>1.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mobicents.servlet.sip</groupId>
+			<artifactId>sip-servlets-tomcat-jboss4</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.dnsjava</groupId>
+			<artifactId>dnsjava</artifactId>
+			<version>2.0.6</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>catalina</artifactId>
+			<version>${version.org.apache.tomcat}</version>
+			<scope>provided</scope>
+		</dependency>
+
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>jasper</artifactId>
 			<version>${version.org.apache.tomcat}</version>
 			<scope>provided</scope>
 		</dependency>
-
-		<!-- Mobicents -->
 
 		<dependency>
 			<groupId>org.mobicents.servlet.sip</groupId>
@@ -98,73 +154,26 @@
 
 		<dependency>
 			<groupId>org.mobicents.servlet.sip</groupId>
-			<artifactId>sip-servlets-tomcat-jboss4</artifactId>
+			<artifactId>sip-servlets-core-api</artifactId>
 			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mobicents.ha.javax.sip</groupId>
+			<artifactId>mobicents-jain-sip-jboss4</artifactId>
+			<version>1.2.0.FINAL</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.mobicents.javax.sip</groupId>
 			<artifactId>mobicents-jain-sip-ext</artifactId>
 			<version>1.0-SNAPSHOT</version>
-			<!--<scope>test</scope> -->
-		</dependency>
-
-		<!-- testing -->
-		<dependency>
-			<groupId>org.jboss.arquillian.junit</groupId>
-			<artifactId>arquillian-junit-container</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.shrinkwrap.resolver</groupId>
-			<artifactId>shrinkwrap-resolver-impl-maven</artifactId>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<scope>test</scope>
-		</dependency>
-
-		<!-- org.jboss.weld.resources.ManagerObjectFactory -->
-
-		<dependency>
-			<groupId>org.jboss.weld.servlet</groupId>
-			<artifactId>weld-servlet</artifactId>
-			<scope>test</scope>
-		</dependency>
-
-		<!-- <dependency> <groupId>org.mobicents.servlet.sip.weld</groupId> <artifactId>sip-servlets-weld</artifactId> 
-			<version>1.0.0.ALPHA1</version> <scope>test</scope> </dependency> -->
-
-		<dependency>
-			<groupId>org.mobicents.servlet.sip.ctf.core</groupId>
-			<artifactId>ctf-core</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
-			<scope>test</scope>
-		</dependency>
-<!--
-		<dependency>
-			<groupId>org.mobicents.servlet.sip.ctf.core</groupId>
-			<artifactId>ctf-core-extension</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
-		</dependency>
--->
-		<!-- Mobicents Sip Servlets libs required for testing -->
-
-		<dependency>
-			<groupId>javax.sip</groupId>
-			<artifactId>jain-sip-api</artifactId>
-			<version>1.2</version>
-			<scope>test</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>javax.sip</groupId>
 			<artifactId>jain-sip-ri</artifactId>
 			<version>1.2.163</version>
-			<scope>test</scope>
 		</dependency>
 
 		<dependency>
@@ -189,13 +198,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.mobicents.ha.javax.sip</groupId>
-			<artifactId>mobicents-jain-sip-jboss4</artifactId>
-			<version>1.2.0.FINAL</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
 			<groupId>javax.activation</groupId>
 			<artifactId>activation</artifactId>
 			<version>1.1.1</version>
@@ -209,12 +211,6 @@
 			<scope>test</scope>
 		</dependency>
 
-		<dependency>
-			<groupId>org.dnsjava</groupId>
-			<artifactId>dnsjava</artifactId>
-			<version>2.0.6</version>
-			<scope>test</scope>
-		</dependency>
 	</dependencies>
 
 	<build>
@@ -227,6 +223,20 @@
 					<useProjectReferences>false</useProjectReferences>
 				</configuration>
 			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.10</version>
+				<configuration>
+					<excludes>
+						<exclude>TestBean.java</exclude>
+						<exclude>TestServlet.java</exclude>
+						<exclude>TestSipServlet.java</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+
 		</plugins>
 	</build>
 
