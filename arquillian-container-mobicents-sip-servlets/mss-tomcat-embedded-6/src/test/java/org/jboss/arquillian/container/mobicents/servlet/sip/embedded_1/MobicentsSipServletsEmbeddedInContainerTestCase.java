@@ -22,8 +22,8 @@ import java.util.logging.Logger;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
-import javax.servlet.sip.SipFactory;
 
+//import org.jboss.arquillian.container.mss.extension.lifecycle.api.BeforeDeploy;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.GenericArchive;
@@ -95,7 +95,11 @@ public class MobicentsSipServletsEmbeddedInContainerTestCase
 	@Resource(name = "name") String name;
 
 	@Inject TestBean testBean;
-
+	
+//	@BeforeDeploy
+//	public static void runThis(){
+//		System.out.println("gvag1234");
+//	}
 	
 	/**
 	 * Ensures the {@link HelloWorldServlet} returns the expected response

@@ -210,7 +210,6 @@
 			<version>1.4</version>
 			<scope>test</scope>
 		</dependency>
-
 	</dependencies>
 
 	<build>

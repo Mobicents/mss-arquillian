@@ -30,6 +30,7 @@ import org.apache.catalina.Host;
 import org.apache.catalina.connector.Connector;
 import org.apache.catalina.core.StandardContext;
 import org.apache.catalina.core.StandardHost;
+import org.apache.catalina.deploy.ApplicationParameter;
 import org.apache.catalina.loader.WebappLoader;
 import org.apache.catalina.startup.ExpandWar;
 import org.jboss.arquillian.container.spi.client.container.DeployableContainer;
@@ -172,7 +173,12 @@ public class MobicentsSipServletsContainer implements DeployableContainer<Mobice
 	{
 		
 		  System.setProperty("javax.servlet.sip.ar.spi.SipApplicationRouterProvider", configuration.getSipApplicationRouterProviderClassName());
-		  System.setProperty("org.mobicents.testsuite.testhostaddr",bindAddress);
+		  if (bindAddress != null){
+			  System.setProperty("org.mobicents.testsuite.testhostaddr",bindAddress);
+		  } else {
+			  System.setProperty("org.mobicents.testsuite.testhostaddr","127.0.0.1");
+		  }
+		  
 //		  if(MobicentsSipServletsConfiguration.MOBICENTS_DEFAULT_AR_CLASS_NAME.equals(configuration.getSipApplicationRouterProviderClassName())) {
 //			  System.setProperty("javax.servlet.sip.dar", Thread.currentThread().getContextClassLoader().getResource("empty-dar.properties").toString());
 //		  } else {
@@ -391,6 +397,14 @@ public class MobicentsSipServletsContainer implements DeployableContainer<Mobice
 			sipStandardContext.setUnpackWAR(configuration.isUnpackArchive());
 			sipStandardContext.setJ2EEServer("Arquillian-" + UUID.randomUUID().toString());
 
+			//Lets check if we need to specify any ApplicationParameters
+			if (configuration.getContextParamName() != null){
+				ApplicationParameter applicationParameter = new ApplicationParameter();
+				applicationParameter.setName(configuration.getContextParamName());
+				applicationParameter.setValue(configuration.getContextParamValue());
+				sipStandardContext.addApplicationParameter(applicationParameter);
+			}
+			
 			// Need to tell TomCat to use TCCL as parent, else the WebContextClassloader will be looking in AppCL 
 			sipStandardContext.setParentClassLoader(Thread.currentThread().getContextClassLoader());
 

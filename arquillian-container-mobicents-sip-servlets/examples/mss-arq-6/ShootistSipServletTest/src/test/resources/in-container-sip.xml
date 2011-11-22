@@ -7,11 +7,13 @@
 	</app-name>
 	<display-name>Shootist Sip Servlet</display-name>
 	<description>Shootist Sip Servlet</description>
- 
+
+<!--  
 	<listener>
 		<listener-class>org.mobicents.servlet.sip.ctf.core.environment.servlet.SipServletsListener</listener-class>
 	</listener>
-	
+ -->
+ 	
 <!--  
 	<listener>
 		<listener-class>org.mobicents.servlet.sip.arq.testsuite.simple.ShootistSipServlet</listener-class>

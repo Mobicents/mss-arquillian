@@ -41,6 +41,10 @@ public class MobicentsSipServletsConfiguration implements ContainerConfiguration
 	private String serverName = "mss-tomcat-embedded-6";
 
 	private boolean unpackArchive = false;
+	
+	private String contextParamName = null;
+	
+	private String contextParamValue = null;
 
 	public static final String MOBICENTS_DEFAULT_AR_CLASS_NAME = "org.mobicents.servlet.sip.router.DefaultApplicationRouterProvider";
 	private String sipConnectors = ":5080";
@@ -176,5 +180,21 @@ public class MobicentsSipServletsConfiguration implements ContainerConfiguration
 	public void setUnpackArchive(boolean unpack)
 	{
 		this.unpackArchive = unpack;
+	}
+
+	public String getContextParamName() {
+		return contextParamName;
+	}
+
+	public void setContextParamName(String contextParamName) {
+		this.contextParamName = contextParamName;
+	}
+
+	public String getContextParamValue() {
+		return contextParamValue;
+	}
+
+	public void setContextParamValue(String contextParamValue) {
+		this.contextParamValue = contextParamValue;
 	}
 }

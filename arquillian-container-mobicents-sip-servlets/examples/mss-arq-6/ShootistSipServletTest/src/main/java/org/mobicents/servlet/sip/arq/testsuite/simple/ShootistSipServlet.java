@@ -187,22 +187,22 @@ public class ShootistSipServlet
 	@Override
 	protected void doRequest(SipServletRequest req) throws ServletException,
 			IOException {
-		ClassLoader cl = Thread.currentThread().getContextClassLoader();
-		if(!cl.getClass().getSimpleName().equals("WebappClassLoader")) {
-			logger.error("ClassLoader " + cl);
-			throw new IllegalArgumentException("Bad Context Classloader : " + cl);
-		}
+//		ClassLoader cl = Thread.currentThread().getContextClassLoader();
+//		if(!cl.getClass().getSimpleName().equals("WebappClassLoader")) {
+//			logger.error("ClassLoader " + cl);
+//			throw new IllegalArgumentException("Bad Context Classloader : " + cl);
+//		}
 		super.doRequest(req);
 	}
 	
 	@Override
 	protected void doResponse(SipServletResponse resp) throws ServletException,
 			IOException {
-		ClassLoader cl = Thread.currentThread().getContextClassLoader();
-		if(!cl.getClass().getSimpleName().equals("WebappClassLoader")) {
-			logger.error("ClassLoader " + cl);
-			throw new IllegalArgumentException("Bad Context Classloader : " + cl);
-		}
+//		ClassLoader cl = Thread.currentThread().getContextClassLoader();
+//		if(!cl.getClass().getSimpleName().equals("WebappClassLoader")) {
+//			logger.error("ClassLoader " + cl);
+//			throw new IllegalArgumentException("Bad Context Classloader : " + cl);
+//		}
 		super.doResponse(resp);
 	}
 	
@@ -535,11 +535,11 @@ public class ShootistSipServlet
 				return;
 			}
 			access();
-			ClassLoader cl = Thread.currentThread().getContextClassLoader();
-			if(!cl.getClass().getSimpleName().equals("WebappClassLoader")) {
-				logger.error("ClassLoader " + cl);
-				throw new IllegalArgumentException("Bad Context Classloader : " + cl);
-			}			
+//			ClassLoader cl = Thread.currentThread().getContextClassLoader();
+//			if(!cl.getClass().getSimpleName().equals("WebappClassLoader")) {
+//				logger.error("ClassLoader " + cl);
+//				throw new IllegalArgumentException("Bad Context Classloader : " + cl);
+//			}			
 			if(info instanceof SipConnector) {
 				String remoteAddress = (String) timer.getApplicationSession().getAttribute("keepAliveAddress");
 				int remotePort = (Integer) timer.getApplicationSession().getAttribute("keepAlivePort");

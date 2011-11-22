@@ -28,7 +28,8 @@
 	<properties>
 
 		<!-- Versioning -->
-		<version.arquillian_core>1.0.0.CR5</version.arquillian_core>
+		<!--<version.arquillian_core>1.0.0.CR5</version.arquillian_core>-->
+		<version.arquillian_core>1.0.0.Final-SNAPSHOT</version.arquillian_core>
 		<version.shrinkwrap_tomcat>1.0.0-beta-12</version.shrinkwrap_tomcat>
 
 		<version.jboss_spec>1.0.0.Final</version.jboss_spec>
@@ -86,52 +87,19 @@
 				<version>${version.weld_servlet}</version>
 				<scope>test</scope>
 			</dependency>
-<!-- 
-			<dependency>
-				<groupId>org.jboss.arquillian.protocol</groupId>
-				<artifactId>arquillian-protocol-servlet</artifactId>
-				<version>1.0.0.CR5</version>
-			</dependency>
-
-			<dependency>
-				<groupId>org.jboss.arquillian.testenricher</groupId>
-				<artifactId>arquillian-testenricher-cdi</artifactId>
-				<version>1.0.0.CR5</version>
-			</dependency>
-
-			<dependency>
-				<groupId>org.jboss.arquillian.testenricher</groupId>
-				<artifactId>arquillian-testenricher-resource</artifactId>
-				<version>1.0.0.CR5</version>
-			</dependency>
-
-			<dependency>
-				<groupId>org.jboss.arquillian.testenricher</groupId>
-				<artifactId>arquillian-testenricher-initialcontext</artifactId>
-				<version>1.0.0.CR5</version>
-			</dependency>
-
-			<dependency>
-				<groupId>org.jboss.arquillian.junit</groupId>
-				<artifactId>arquillian-junit-container</artifactId>
-				<version>1.0.0.CR5</version>
-				<scope>test</scope>
-			</dependency>
-
-			<dependency>
-				<groupId>junit</groupId>
-				<artifactId>junit</artifactId>
-				<version>4.8.1</version>
-				<scope>test</scope>
-			</dependency>
-
-			<dependency>
-				<groupId>org.jboss.shrinkwrap.resolver</groupId>
-				<artifactId>shrinkwrap-resolver-impl-maven</artifactId>
-				<version>1.0.0-beta-5</version>
-				<scope>test</scope>
-			</dependency>
- -->
+			<!-- <dependency> <groupId>org.jboss.arquillian.protocol</groupId> <artifactId>arquillian-protocol-servlet</artifactId> 
+				<version>1.0.0.CR5</version> </dependency> <dependency> <groupId>org.jboss.arquillian.testenricher</groupId> 
+				<artifactId>arquillian-testenricher-cdi</artifactId> <version>1.0.0.CR5</version> 
+				</dependency> <dependency> <groupId>org.jboss.arquillian.testenricher</groupId> 
+				<artifactId>arquillian-testenricher-resource</artifactId> <version>1.0.0.CR5</version> 
+				</dependency> <dependency> <groupId>org.jboss.arquillian.testenricher</groupId> 
+				<artifactId>arquillian-testenricher-initialcontext</artifactId> <version>1.0.0.CR5</version> 
+				</dependency> <dependency> <groupId>org.jboss.arquillian.junit</groupId> 
+				<artifactId>arquillian-junit-container</artifactId> <version>1.0.0.CR5</version> 
+				<scope>test</scope> </dependency> <dependency> <groupId>junit</groupId> <artifactId>junit</artifactId> 
+				<version>4.8.1</version> <scope>test</scope> </dependency> <dependency> <groupId>org.jboss.shrinkwrap.resolver</groupId> 
+				<artifactId>shrinkwrap-resolver-impl-maven</artifactId> <version>1.0.0-beta-5</version> 
+				<scope>test</scope> </dependency> -->
 			<dependency>
 				<groupId>org.mobicents.servlet.sip.ctf.core</groupId>
 				<artifactId>ctf-core</artifactId>
@@ -218,5 +186,6 @@
 	<modules>
 		<module>mss-tomcat-embedded-6</module>
 		<module>mss-tomcat-embedded-7</module>
+		<module>mss-arquillian-extension</module>
 	</modules>
 </project>

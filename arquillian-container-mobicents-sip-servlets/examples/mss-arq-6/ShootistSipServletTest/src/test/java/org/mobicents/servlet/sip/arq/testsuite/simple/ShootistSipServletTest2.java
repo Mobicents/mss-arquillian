@@ -3,24 +3,14 @@
  */
 package org.mobicents.servlet.sip.arq.testsuite.simple;
 
-import static org.cafesip.sipunit.SipAssert.assertRequestReceived;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-
 import java.util.logging.Logger;
 
 import javax.sip.message.Response;
 
 import org.cafesip.sipunit.SipCall;
-import org.cafesip.sipunit.SipPhone;
-import org.cafesip.sipunit.SipRequest;
-import org.cafesip.sipunit.SipResponse;
 import org.cafesip.sipunit.SipStack;
 import org.cafesip.sipunit.SipTestCase;
-import org.cafesip.sipunit.SipTransaction;
-import org.jboss.arquillian.container.mss.extension.SipStackTool;
 import org.jboss.arquillian.container.mss.extension.SipStackToolStatic;
-import org.jboss.arquillian.container.mss.extension.lifecycle.api.ContextParam;
 import org.jboss.arquillian.container.test.api.Deployer;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
@@ -39,19 +29,16 @@ import org.junit.runner.RunWith;
  */
 
 @RunWith(Arquillian.class)
-public class ShootistSipServletTest extends SipTestCase 
+public class ShootistSipServletTest2 extends SipTestCase 
 {	
 	@ArquillianResource
     private Deployer deployer;
-	
-	private SipStackTool receiver;
 
 	private SipCall sipCall;
-	private SipPhone sipPhone;
 
 	private final int timeout = 10000;	
 
-	private final Logger logger = Logger.getLogger(ShootistSipServletTest.class.getName());
+	private final Logger logger = Logger.getLogger(ShootistSipServletTest2.class.getName());
 
 	@Before
 	public void setUp() throws Exception
@@ -85,6 +72,23 @@ public class ShootistSipServletTest extends SipTestCase
 
 		return webArchive;
 	}	
+	
+	
+	@org.jboss.arquillian.container.mss.extension.lifecycle.api.BeforeDeploy
+	public static void runBeforeDeploy() throws Exception{
+		//Initialize SipStack and prepare SipCall before deployment
+		SipStackToolStatic.getInstance().initializeSipStack(5080, 5070);
+		SipStackToolStatic.getInstance().createSipPhone("127.0.0.1", SipStack.PROTOCOL_UDP, 5070, "sip:LittleGuy@there.com");
+		SipStackToolStatic.getInstance().prepareSipCall();
+	}
+
+
+//	@org.jboss.arquillian.container.mss.extension.api.AfterUnDeploy
+//	public static void runAfterUnDeploy() throws Exception{
+//		//Initialize SipStack and prepare SipCall before deployment
+//		SipStackToolStatic.getInstance().initializeSipStack(5080, 5070);
+//		SipStackToolStatic.getInstance().prepareSipCall();
+//	}
 
 	// -------------------------------------------------------------------------------------||
 	// -------------------------------------------------------------------------------------||
@@ -96,17 +100,11 @@ public class ShootistSipServletTest extends SipTestCase
 	@Test  
 	public void testShootist() throws Exception {
 		
-		//First create the sipCall and start listening for messages
-		receiver = new SipStackTool(5080, 5070);
-		
-		sipPhone = receiver.createSipPhone("127.0.0.1", SipStack.PROTOCOL_UDP, 5070, "sip:LittleGuy@there.com");
-		
-		sipCall = sipPhone.createSipCall();
-		sipCall.listenForIncomingCall();
-		
 		//Deploy the first test archive
 		deployer.deploy("simple");
 		
+		sipCall = SipStackToolStatic.getInstance().getSipCall();
+
 		assertTrue(sipCall.waitForIncomingCall(timeout));
 
 		assertTrue(sipCall.sendIncomingCallResponse(Response.TRYING,"Trying", timeout));
@@ -128,26 +126,17 @@ public class ShootistSipServletTest extends SipTestCase
 		Thread.sleep(500);
 		
 		deployer.undeploy("simple");
-		receiver.tearDown();
 		Thread.sleep(timeout);
 	}
 
 	
-	@Test @ContextParam(name="cancel",value="true")
+	@Test
 	public void testShootistCancel() throws Exception {
 
-		String testArchive = "simple";
-		
-		//First create the sipCall and start listening for messages
-		receiver = new SipStackTool(5080, 5070);
-		
-		sipPhone = receiver.createSipPhone("127.0.0.1", SipStack.PROTOCOL_UDP, 5070, "sip:LittleGuy@there.com");
-		
-		sipCall = sipPhone.createSipCall();
-		sipCall.listenForIncomingCall();
-		
 		//Deploy the second test archive
-		deployer.deploy(testArchive);
+		deployer.deploy("cancel");
+		
+		sipCall = SipStackToolStatic.getInstance().getSipCall();
 		
 		sipCall.waitForIncomingCall(500);
 
@@ -159,20 +148,22 @@ public class ShootistSipServletTest extends SipTestCase
 
 		assertTrue(sipCall.sendIncomingCallResponse(Response.OK, "OK", timeout));
 		Thread.sleep(100);
-		
-		sipCall.listenForCancel();
-		Thread.sleep(500);
-		
-		SipTransaction trans1 = sipCall.waitForCancel(5000);	
-        assertNotNull(trans1);
-        assertRequestReceived("CANCEL NOT RECEIVED", SipRequest.CANCEL, sipCall);
-        assertTrue(sipCall.respondToCancel(trans1, 200, "0K", -1));
-		
-		Thread.sleep(500);
 
-        // close the INVITE transaction on the called leg
-        assertTrue("487 NOT SENT", sipCall.sendIncomingCallResponse(
-                SipResponse.REQUEST_TERMINATED, "Request Terminated", 0));
+		assertTrue(sipCall.listenForCancel());
+		
+		Thread.sleep(500);
+		
+		sipCall.waitForCancel(timeout);
+		
+		sipCall.respondToCancel(null, 200, "200 OK", timeout);
+		
+		Thread.sleep(500);
+		
+		sipCall.listenForDisconnect();
+		assertTrue(sipCall.waitForDisconnect(timeout));
+		sipCall.respondToDisconnect();
+	
+		Thread.sleep(500);
 		
 //		ArrayList<SipRequest> allMessagesContent = new ArrayList<SipRequest>();
 //		//		allMessagesContent.addAll(sipCallA.getAllReceivedRequests());// .getAllMessagesContent();
@@ -182,8 +173,7 @@ public class ShootistSipServletTest extends SipTestCase
 //
 //		assertTrue(sizeA>=0);
 		Thread.sleep(500);
-		deployer.undeploy(testArchive);
-		receiver.tearDown();
+		deployer.undeploy("cancel");
 	}
 
 }
