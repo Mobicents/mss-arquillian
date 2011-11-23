@@ -30,6 +30,7 @@
   <classpathentry kind="var" path="M2_REPO/org/jboss/shrinkwrap/descriptors/shrinkwrap-descriptors-spi/1.1.0-beta-1/shrinkwrap-descriptors-spi-1.1.0-beta-1.jar" sourcepath="M2_REPO/org/jboss/shrinkwrap/descriptors/shrinkwrap-descriptors-spi/1.1.0-beta-1/shrinkwrap-descriptors-spi-1.1.0-beta-1-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/jboss/shrinkwrap/shrinkwrap-impl-base/1.0.0-cr-1/shrinkwrap-impl-base-1.0.0-cr-1.jar" sourcepath="M2_REPO/org/jboss/shrinkwrap/shrinkwrap-impl-base/1.0.0-cr-1/shrinkwrap-impl-base-1.0.0-cr-1-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/jboss/shrinkwrap/shrinkwrap-spi/1.0.0-cr-1/shrinkwrap-spi-1.0.0-cr-1.jar" sourcepath="M2_REPO/org/jboss/shrinkwrap/shrinkwrap-spi/1.0.0-cr-1/shrinkwrap-spi-1.0.0-cr-1-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/mobicents/servlet/sip/sip-servlets-annotations/1.7.0-SNAPSHOT/sip-servlets-annotations-1.7.0-SNAPSHOT.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/cafesip/sipunit/sipunit/1.0.0-SNAPSHOT/sipunit-1.0.0-SNAPSHOT.jar"/>
   <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 </classpath>

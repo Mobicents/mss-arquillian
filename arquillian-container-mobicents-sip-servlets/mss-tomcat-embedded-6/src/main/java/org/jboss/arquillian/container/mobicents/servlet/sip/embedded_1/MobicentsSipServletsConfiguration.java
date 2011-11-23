@@ -16,8 +16,11 @@
  */
 package org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1;
 
+import java.util.HashMap;
+
 import org.jboss.arquillian.container.spi.ConfigurationException;
 import org.jboss.arquillian.container.spi.client.container.ContainerConfiguration;
+import org.mobicents.servlet.sip.annotation.ConcurrencyControlMode;
 
 /**
  * Arquillian Tomcat Container Configuration
@@ -42,9 +45,13 @@ public class MobicentsSipServletsConfiguration implements ContainerConfiguration
 
 	private boolean unpackArchive = false;
 	
-	private String contextParamName = null;
+//	private HashMap<String, String> contextParam = new HashMap<String, String>();
 	
-	private String contextParamValue = null;
+	private String contextParam = null;
+	private String paramSeparator = null;
+	private String valueSeparator = null;
+	
+	private String concurrencyControl = null;
 
 	public static final String MOBICENTS_DEFAULT_AR_CLASS_NAME = "org.mobicents.servlet.sip.router.DefaultApplicationRouterProvider";
 	private String sipConnectors = ":5080";
@@ -182,19 +189,35 @@ public class MobicentsSipServletsConfiguration implements ContainerConfiguration
 		this.unpackArchive = unpack;
 	}
 
-	public String getContextParamName() {
-		return contextParamName;
+	public String getContextParam() {
+		return contextParam;
 	}
 
-	public void setContextParamName(String contextParamName) {
-		this.contextParamName = contextParamName;
+	public void setContextParam(String contextParam) {
+		this.contextParam = contextParam;
 	}
 
-	public String getContextParamValue() {
-		return contextParamValue;
+	public String getParamSeparator() {
+		return paramSeparator;
 	}
 
-	public void setContextParamValue(String contextParamValue) {
-		this.contextParamValue = contextParamValue;
+	public void setParamSeparator(String paramSeparator) {
+		this.paramSeparator = paramSeparator;
+	}
+
+	public String getValueSeparator() {
+		return valueSeparator;
+	}
+
+	public void setValueSeparator(String valueSeparator) {
+		this.valueSeparator = valueSeparator;
+	}
+
+	public String getConcurrencyControl() {
+		return concurrencyControl;
+	}
+
+	public void setConcurrencyControl(String concurrencyControl) {
+		this.concurrencyControl = concurrencyControl;
 	}
 }

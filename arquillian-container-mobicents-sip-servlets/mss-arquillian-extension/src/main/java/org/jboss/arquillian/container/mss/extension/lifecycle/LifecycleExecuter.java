@@ -18,36 +18,30 @@
 package org.jboss.arquillian.container.mss.extension.lifecycle;
 
 import java.lang.annotation.Annotation;
-import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.jboss.arquillian.config.descriptor.api.ArquillianDescriptor;
 import org.jboss.arquillian.config.descriptor.api.ContainerDef;
-import org.jboss.arquillian.container.impl.ContainerImpl;
+import org.jboss.arquillian.container.mss.extension.lifecycle.api.ConcurrencyControlMode;
 import org.jboss.arquillian.container.mss.extension.lifecycle.api.ContextParam;
-import org.jboss.arquillian.container.spi.Container;
-import org.jboss.arquillian.container.spi.client.container.DeployableContainer;
-import org.jboss.arquillian.container.spi.client.container.DeploymentException;
+import org.jboss.arquillian.container.mss.extension.lifecycle.api.ContextParamMap;
 import org.jboss.arquillian.container.spi.client.container.LifecycleException;
-import org.jboss.arquillian.container.spi.event.SetupContainer;
 import org.jboss.arquillian.container.spi.event.container.AfterDeploy;
 import org.jboss.arquillian.container.spi.event.container.AfterUnDeploy;
 import org.jboss.arquillian.container.spi.event.container.BeforeDeploy;
 import org.jboss.arquillian.container.spi.event.container.BeforeUnDeploy;
-import org.jboss.arquillian.container.test.api.Deployer;
+import org.jboss.arquillian.container.test.api.ContainerController;
 import org.jboss.arquillian.core.api.Instance;
 import org.jboss.arquillian.core.api.annotation.Inject;
 import org.jboss.arquillian.core.api.annotation.Observes;
-import org.jboss.arquillian.core.impl.ManagerImpl;
-import org.jboss.arquillian.core.spi.Manager;
-import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.arquillian.test.spi.TestClass;
+import org.jboss.arquillian.test.spi.event.suite.After;
 import org.jboss.arquillian.test.spi.event.suite.Before;
-import org.jboss.shrinkwrap.api.Archive;
-import org.jboss.shrinkwrap.api.Configuration;
-import org.jboss.shrinkwrap.descriptor.api.Descriptor;
 
 /**
  * LifecycleExecuter
@@ -58,8 +52,6 @@ import org.jboss.shrinkwrap.descriptor.api.Descriptor;
 public class LifecycleExecuter
 {
 
-	
-	
 	//Using these events, we can get access to the deployableContainer so we can start/stop, deploy/undeploy, 
 	//setup with a new configuration and also we have access to the deployment
 
@@ -92,38 +84,136 @@ public class LifecycleExecuter
 						org.jboss.arquillian.container.mss.extension.lifecycle.api.AfterUnDeploy.class));
 	}
 
+	/*
+	 * Remember that for the ContainerController to be able to control the container, the container have to be  
+	 * defined with mode="manual" at the arquillian.xml
+	 * 
+	 * <container qualifier="mss-tomcat-embedded-6" default="true" mode="manual">
+	 *	<configuration>
+	 *	.....
+	 *	</configuration>
+	 * 
+	 */
+
 	@Inject
 	private Instance<ArquillianDescriptor> descriptor;
-//	@Inject
-//	private Instance<DeployableContainer<?>> deployableContainer;
 	@Inject
-	private Instance<Manager> manager;
-	@Inject
-	private Instance<ContainerImpl> containerImpl;
-//	@ArquillianResource
-//	private Container container;
+	private Instance<ContainerController> containerController;
 
+	private Annotation contextParam; 
+	private Annotation contextParamMap; 
+	private Annotation concurencyControl;
 	
-	public void executeBeforeTest(@Observes Before event, TestClass testClass){
+	public void executeBeforeTest(@Observes Before event, TestClass testClass) throws InterruptedException{
 
-		String contextParamName = null;
-		String contextParamValue = null;
-		Annotation contextParam = event.getTestMethod().getAnnotation(org.jboss.arquillian.container.mss.extension.lifecycle.api.ContextParam.class);
-		if (contextParam != null){
-			contextParamName = ((ContextParam)contextParam).name();
-			contextParamValue = ((ContextParam)contextParam).value();
+		Map<String, String> parameters = new HashMap<String, String>();
+		List<ContainerDef> containerDefs = descriptor.get().getContainers();
+		Iterator<ContainerDef> iter = containerDefs.iterator();
+
+		if (checkForAnnotations(event))
+			parameters = getParameters(event);
 			
-			List containerDefs = descriptor.get().getContainers();
-			Iterator iter = containerDefs.iterator();
-			
-			while (iter.hasNext()){
-				ContainerDef containerDef = (ContainerDef) iter.next();
-				containerDef.property("contextParamName", contextParamName);
-				containerDef.property("contextParamValue", contextParamValue);
+		while (iter.hasNext()){
+			ContainerDef containerDef = (ContainerDef) iter.next();
+			String containerName = containerDef.getContainerName();
+			if (parameters.isEmpty()){
+				containerController.get().start(containerName);
+			} else {
+				containerController.get().start(containerName,parameters);
 			}
 		}
 	}
 
+	public void executeAfterTest(@Observes After event, TestClass testClass){
+		List<ContainerDef> containerDefs = descriptor.get().getContainers();
+		Iterator<ContainerDef> iter = containerDefs.iterator();
+
+		while (iter.hasNext()){
+			ContainerDef containerDef = (ContainerDef) iter.next();
+			String containerName = containerDef.getContainerName();
+			containerController.get().stop(containerName);
+		}
+	}
+
+	private boolean checkForAnnotations(Before event) {
+		Boolean result = false;
+		
+		contextParam = event.getTestMethod().getAnnotation(org.jboss.arquillian.container.mss.extension.lifecycle.api.ContextParam.class);
+		contextParamMap = event.getTestMethod().getAnnotation(org.jboss.arquillian.container.mss.extension.lifecycle.api.ContextParamMap.class);
+		concurencyControl = event.getTestMethod().getAnnotation(org.jboss.arquillian.container.mss.extension.lifecycle.api.ConcurrencyControlMode.class);
+		
+		if (contextParam != null || contextParamMap != null || concurencyControl != null)
+			result = true;
+		
+		return result;
+	}
+	
+	private Map<String, String> getParameters(Before event) {
+	
+		String contextParamName = null;
+		String contextParamValue = null;
+		
+		Map<String, String> parameters = new HashMap<String, String>();
+		String paramSeparator = "---";
+		String valueSeparator = "-%%-";		
+		parameters.put("paramSeparator",paramSeparator);
+		parameters.put("valueSeparator", valueSeparator);
+		
+		HashMap<String, String> paramMap = new HashMap<String, String>();
+
+		if (contextParamMap != null){
+			String mapName = ((ContextParamMap)contextParamMap).value();
+			Field[] fields = event.getTestClass().getJavaClass().getDeclaredFields(); 
+			for (Field field : fields) {
+				if (field.getAnnotation(org.jboss.arquillian.container.mss.extension.lifecycle.api.ContextParamMap.class) != null 
+						&& field.getAnnotation(org.jboss.arquillian.container.mss.extension.lifecycle.api.ContextParamMap.class).value().equals(mapName) ){
+					try {
+						Boolean flag = field.isAccessible();
+						field.setAccessible(true);
+						paramMap = (HashMap<String, String>) field.get(event.getTestInstance());
+						field.setAccessible(flag);
+					} catch (IllegalArgumentException e) {
+						e.printStackTrace();
+					} catch (IllegalAccessException e) {
+						e.printStackTrace();
+					}
+				} 
+			}
+		
+			//Throw exception if after scanning all the fields we don't find the map we are looking for.
+			if (paramMap.isEmpty())
+				throw new UnsupportedOperationException("There is no declared field in the class with annotation " +
+						"@ContextParamΜap(\""+mapName+"\") as in the test method: "+event.getTestMethod().getName());
+		}
+
+		StringBuffer values = new StringBuffer();
+		
+		if (contextParam != null){
+			contextParamName = ((ContextParam)contextParam).name();
+			contextParamValue = ((ContextParam)contextParam).value();
+			values.append(contextParamName+valueSeparator+contextParamValue+paramSeparator);
+		}
+		if (!paramMap.isEmpty()){
+			Iterator<String> iterator = paramMap.keySet().iterator();
+			
+			String firstKey = iterator.next();
+			values.append(firstKey+valueSeparator+paramMap.get(firstKey));
+			
+			while(iterator.hasNext()){
+				String key = iterator.next();
+				values.append(paramSeparator+key+valueSeparator+paramMap.get(key));
+			}
+		}
+		
+		parameters.put("contextParam", values.toString());
+		
+		if(concurencyControl != null){
+			parameters.put("concurrencyControl", ((ConcurrencyControlMode)concurencyControl).value().toString());
+		}
+		
+		return parameters;
+	}
+	
 	private void execute(Method[] methods)
 	{
 		if(methods == null)

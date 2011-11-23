@@ -37,6 +37,7 @@ import org.apache.catalina.LifecycleException;
 import org.apache.catalina.LifecycleListener;
 import org.apache.catalina.Loader;
 import org.apache.catalina.Realm;
+import org.apache.catalina.ServerFactory;
 import org.apache.catalina.Valve;
 import org.apache.catalina.connector.Connector;
 import org.apache.catalina.core.StandardContext;
@@ -830,6 +831,15 @@ public class MobicentsSipServletsEmbedded implements Lifecycle {
             if (engines[i] instanceof Lifecycle)
                 ((Lifecycle) engines[i]).stop();
         }
+        
+		if(service != null) {			
+			try {
+				service.stop();
+			} catch (LifecycleException e) {
+				log.error("service already stopped ", e);
+			}		
+			ServerFactory.getServer().removeService(service);
+		}
 
     }
 

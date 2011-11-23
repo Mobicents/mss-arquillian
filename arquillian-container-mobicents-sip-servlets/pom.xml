@@ -35,6 +35,7 @@
 		<version.jboss_spec>1.0.0.Final</version.jboss_spec>
 		<version.weld_servlet>1.1.2.Final</version.weld_servlet>
 		<version.ctf.core>1.0.0-SNAPSHOT</version.ctf.core>
+		<version.org.apache.tomcat>6.0.33</version.org.apache.tomcat>
 
 		<!-- override from parent -->
 		<version.release.plugin>2.1</version.release.plugin>
@@ -185,7 +186,7 @@
 
 	<modules>
 		<module>mss-tomcat-embedded-6</module>
-		<module>mss-tomcat-embedded-7</module>
+<!--		<module>mss-tomcat-embedded-7</module> -->
 		<module>mss-arquillian-extension</module>
 	</modules>
 </project>

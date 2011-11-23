@@ -7,6 +7,8 @@ import static org.cafesip.sipunit.SipAssert.assertRequestReceived;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Logger;
 
 import javax.sip.message.Response;
@@ -18,11 +20,16 @@ import org.cafesip.sipunit.SipResponse;
 import org.cafesip.sipunit.SipStack;
 import org.cafesip.sipunit.SipTestCase;
 import org.cafesip.sipunit.SipTransaction;
+import org.jboss.arquillian.container.mss.extension.ContextParamTool;
 import org.jboss.arquillian.container.mss.extension.SipStackTool;
 import org.jboss.arquillian.container.mss.extension.SipStackToolStatic;
+import org.jboss.arquillian.container.mss.extension.lifecycle.api.ConcurrencyControlMode;
 import org.jboss.arquillian.container.mss.extension.lifecycle.api.ContextParam;
+import org.jboss.arquillian.container.mss.extension.lifecycle.api.ContextParamMap;
+import org.jboss.arquillian.container.test.api.ContainerController;
 import org.jboss.arquillian.container.test.api.Deployer;
 import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.container.test.impl.client.container.ContainerRestarter;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -48,7 +55,7 @@ public class ShootistSipServletTest extends SipTestCase
 
 	private SipCall sipCall;
 	private SipPhone sipPhone;
-
+	
 	private final int timeout = 10000;	
 
 	private final Logger logger = Logger.getLogger(ShootistSipServletTest.class.getName());
@@ -56,7 +63,7 @@ public class ShootistSipServletTest extends SipTestCase
 	@Before
 	public void setUp() throws Exception
 	{
-		//Nothing to do here
+			//Nothing to do here
 	}
 
 	@After
@@ -131,11 +138,10 @@ public class ShootistSipServletTest extends SipTestCase
 		receiver.tearDown();
 		Thread.sleep(timeout);
 	}
-
 	
 	@Test @ContextParam(name="cancel",value="true")
 	public void testShootistCancel() throws Exception {
-
+		
 		String testArchive = "simple";
 		
 		//First create the sipCall and start listening for messages
@@ -186,4 +192,27 @@ public class ShootistSipServletTest extends SipTestCase
 		receiver.tearDown();
 	}
 
+	
+	//Annotate the field that represents the Map that contains the context parameters
+	@ContextParamMap("aContextMap")
+	private Map<String, String> params = new HashMap<String, String>();
+	{
+	params.put("auth-header", "Digest username=\"1001\", realm=\"172.16.0.37\", algorithm=MD5, uri=\"sip:66621@172.16.0.37;user=phone\", qop=auth, nc=00000001, cnonce=\"b70b470bedf75db7\", nonce=\"1276678944:394f0b0b049fbbda8c94ae28d08f2301\", response=\"561389d4ce5cb38020749b8a27798343\"");
+	params.put("headerToAdd", "Authorization");
+	}
+
+	//Annotate the field that represents the Map that contains the context parameters
+	@ContextParamMap("aContextMap2")
+	private Map<String, String> params2 = new ContextParamTool().put("testName", "testValue").put("testName2", "testValue2").getMap();
+	
+	@Test 
+	@ContextParamMap("aContextMap2")
+	@ContextParam(name="cancel",value="true") 
+	@ConcurrencyControlMode(org.mobicents.servlet.sip.annotation.ConcurrencyControlMode.SipApplicationSession)
+	public void testNothing() throws InterruptedException{
+		deployer.deploy("simple");
+		Thread.sleep(1000);
+		deployer.undeploy("simple");
+	}
+	
 }

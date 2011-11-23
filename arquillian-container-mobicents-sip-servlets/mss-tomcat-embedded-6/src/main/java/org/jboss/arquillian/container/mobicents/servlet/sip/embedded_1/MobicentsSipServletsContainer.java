@@ -20,7 +20,10 @@ import java.io.File;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.StringTokenizer;
 import java.util.UUID;
 import java.util.logging.Logger;
@@ -46,6 +49,7 @@ import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.descriptor.api.Descriptor;
 import org.jboss.shrinkwrap.mobicents.servlet.sip.api.ShrinkWrapSipStandardContext;
 import org.mobicents.servlet.sip.SipConnector;
+import org.mobicents.servlet.sip.annotation.ConcurrencyControlMode;
 import org.mobicents.servlet.sip.core.SipApplicationDispatcherImpl;
 import org.mobicents.servlet.sip.core.session.SipStandardManager;
 import org.mobicents.servlet.sip.startup.SipStandardContext;
@@ -397,12 +401,27 @@ public class MobicentsSipServletsContainer implements DeployableContainer<Mobice
 			sipStandardContext.setUnpackWAR(configuration.isUnpackArchive());
 			sipStandardContext.setJ2EEServer("Arquillian-" + UUID.randomUUID().toString());
 
-			//Lets check if we need to specify any ApplicationParameters
-			if (configuration.getContextParamName() != null){
-				ApplicationParameter applicationParameter = new ApplicationParameter();
-				applicationParameter.setName(configuration.getContextParamName());
-				applicationParameter.setValue(configuration.getContextParamValue());
-				sipStandardContext.addApplicationParameter(applicationParameter);
+			//Set Context parameters
+			if (configuration.getContextParam() != null){
+				log.info("Setting contextParameters from configuration");
+				String paramSeparator = configuration.getParamSeparator();
+				String valueSeparator = configuration.getValueSeparator();
+				String contextParams = configuration.getContextParam(); 
+				String[] params = contextParams.split(paramSeparator);
+				
+				for (String param : params) {
+					String name = param.split(valueSeparator)[0];
+					String value = param.split(valueSeparator)[1];
+					ApplicationParameter applicationParameter = new ApplicationParameter();
+					applicationParameter.setName(name);
+					applicationParameter.setValue(value);
+					sipStandardContext.addApplicationParameter(applicationParameter);
+				}
+			}
+			
+			//Set ConcurrencyControlMode
+			if (configuration.getConcurrencyControl() != null){
+				sipStandardContext.setConcurrencyControlMode(ConcurrencyControlMode.valueOf(configuration.getConcurrencyControl()));
 			}
 			
 			// Need to tell TomCat to use TCCL as parent, else the WebContextClassloader will be looking in AppCL 
