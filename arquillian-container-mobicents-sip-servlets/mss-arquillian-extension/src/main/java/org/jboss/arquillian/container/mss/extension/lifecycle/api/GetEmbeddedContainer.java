@@ -17,6 +17,6 @@ import java.lang.annotation.Target;
 @Documented
 @Retention(RUNTIME)
 @Target(ElementType.FIELD)
-public @interface EmbeddedContainer {
+public @interface GetEmbeddedContainer {
 
 }

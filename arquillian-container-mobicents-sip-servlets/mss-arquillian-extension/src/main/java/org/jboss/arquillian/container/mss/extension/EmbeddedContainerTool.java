@@ -8,7 +8,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.jboss.arquillian.container.SipServletsEmbeddedContainer;
-import org.jboss.arquillian.container.mss.extension.lifecycle.api.EmbeddedContainer;
+import org.jboss.arquillian.container.mss.extension.lifecycle.api.GetEmbeddedContainer;
 import org.jboss.arquillian.container.spi.client.container.DeployableContainer;
 import org.jboss.arquillian.test.spi.TestClass;
 

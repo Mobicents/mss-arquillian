@@ -33,7 +33,7 @@ import org.jboss.arquillian.container.mss.extension.EmbeddedContainerTool;
 import org.jboss.arquillian.container.mss.extension.lifecycle.api.ConcurrencyControlMode;
 import org.jboss.arquillian.container.mss.extension.lifecycle.api.ContextParam;
 import org.jboss.arquillian.container.mss.extension.lifecycle.api.ContextParamMap;
-import org.jboss.arquillian.container.mss.extension.lifecycle.api.EmbeddedContainer;
+import org.jboss.arquillian.container.mss.extension.lifecycle.api.GetEmbeddedContainer;
 import org.jboss.arquillian.container.spi.client.container.DeployableContainer;
 import org.jboss.arquillian.container.spi.event.container.AfterDeploy;
 import org.jboss.arquillian.container.spi.event.container.AfterSetup;
@@ -96,9 +96,9 @@ public class LifecycleExecuter
 			testClass = event.getTestClass();
 			Field[] fields = testClass.getJavaClass().getDeclaredFields();
 			for (Field field : fields) {
-				if (field.isAnnotationPresent(EmbeddedContainer.class)){
+				if (field.isAnnotationPresent(GetEmbeddedContainer.class)){
 					if (field.getType().isAssignableFrom(SipServletsEmbeddedContainer.class)){
-						isEmbeddedContainerAnnoPresent = true;
+						isGetEmbeddedContainerAnnoPresent = true;
 						embeddedContainerFields.add(field);
 					}
 				}
@@ -141,10 +141,12 @@ public class LifecycleExecuter
 	private Annotation contextParam; 
 	private Annotation contextParamMap; 
 	private Annotation concurencyControl;
-	private boolean isEmbeddedContainerAnnoPresent = false;
+	private boolean isGetEmbeddedContainerAnnoPresent = false;
 	private List<Field> embeddedContainerFields = new ArrayList<Field>();
+	
+	
 	private EmbeddedContainerTool embeddedContainerTool; 
-
+	
 	// #3
 	public void executeBeforeTest(@Observes Before event, TestClass testClass) throws IllegalArgumentException, IllegalAccessException{
 
@@ -167,11 +169,10 @@ public class LifecycleExecuter
 			}
 		}
 
-		if (isEmbeddedContainerAnnoPresent){
+		if (isGetEmbeddedContainerAnnoPresent){
 			embeddedContainerTool = new EmbeddedContainerTool();
 			embeddedContainerTool.setEmbedded(testInstance, deployableContainer, embeddedContainerFields);
 		}
-
 	}
 
 	public void executeAfterTest(@Observes After event, TestClass testClass) throws IllegalArgumentException, IllegalAccessException{
@@ -195,13 +196,6 @@ public class LifecycleExecuter
 		contextParam = event.getTestMethod().getAnnotation(org.jboss.arquillian.container.mss.extension.lifecycle.api.ContextParam.class);
 		contextParamMap = event.getTestMethod().getAnnotation(org.jboss.arquillian.container.mss.extension.lifecycle.api.ContextParamMap.class);
 		concurencyControl = event.getTestMethod().getAnnotation(org.jboss.arquillian.container.mss.extension.lifecycle.api.ConcurrencyControlMode.class);
-
-//		Field[] fields = event.getTestClass().getJavaClass().getDeclaredFields();
-//		for (Field field : fields) {
-//			if (field.isAnnotationPresent(EmbeddedContainer.class))
-//				isEmbeddedContainerAnnoPresent = true;
-//		}
-
 
 		if (contextParam != null || contextParamMap != null || concurencyControl != null)
 			result = true;
