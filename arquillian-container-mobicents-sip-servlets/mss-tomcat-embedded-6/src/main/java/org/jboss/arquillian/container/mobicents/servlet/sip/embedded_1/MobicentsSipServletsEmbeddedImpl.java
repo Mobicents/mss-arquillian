@@ -54,13 +54,16 @@ import org.apache.juli.logging.Log;
 import org.apache.juli.logging.LogFactory;
 import org.apache.tomcat.util.IntrospectionUtils;
 import org.apache.tomcat.util.log.SystemLogHandler;
+import org.jboss.arquillian.container.SipServletsEmbeddedContainer;
+import org.mobicents.servlet.sip.catalina.SipProtocolHandler;
+import org.mobicents.servlet.sip.catalina.SipStandardService;
 
 /**
  * @author jean.deruelle@gmail.com
  *
  */
-public class MobicentsSipServletsEmbedded implements Lifecycle {
-	private static Log log = LogFactory.getLog(MobicentsSipServletsEmbedded.class);
+public class MobicentsSipServletsEmbeddedImpl implements Lifecycle, SipServletsEmbeddedContainer {
+	private static Log log = LogFactory.getLog(MobicentsSipServletsEmbeddedImpl.class);
 
 	private StandardService service;
 	
@@ -70,7 +73,7 @@ public class MobicentsSipServletsEmbedded implements Lifecycle {
     /**
      * Construct a new instance of this class with default properties.
      */
-    public MobicentsSipServletsEmbedded() {       
+    public MobicentsSipServletsEmbeddedImpl() {       
     	service = new StandardService(); 
     }
 
@@ -81,7 +84,7 @@ public class MobicentsSipServletsEmbedded implements Lifecycle {
      * @param realm Realm implementation to be inherited by all components
      *  (unless overridden further down the container hierarchy)
      */
-    public MobicentsSipServletsEmbedded(Realm realm) {
+    public MobicentsSipServletsEmbeddedImpl(Realm realm) {
 
         setRealm(realm);
         setSecurityProtection();
@@ -158,27 +161,29 @@ public class MobicentsSipServletsEmbedded implements Lifecycle {
      * Use await.
      */
     protected boolean await = false;
+    
+    protected StandardContext context;
 
 
     // ------------------------------------------------------------- Properties
 
 
-    /**
-     * Return true if naming is enabled.
-     */
-    public boolean isUseNaming() {
+    /* (non-Javadoc)
+	 * @see org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1.MobicentsSipServletsEmbedded#isUseNaming()
+	 */
+    @Override
+	public boolean isUseNaming() {
 
         return (this.useNaming);
 
     }
 
 
-    /**
-     * Enables or disables naming support.
-     *
-     * @param useNaming The new use naming value
-     */
-    public void setUseNaming(boolean useNaming) {
+    /* (non-Javadoc)
+	 * @see org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1.MobicentsSipServletsEmbedded#setUseNaming(boolean)
+	 */
+    @Override
+	public void setUseNaming(boolean useNaming) {
 
         boolean oldUseNaming = this.useNaming;
         this.useNaming = useNaming;
@@ -188,22 +193,22 @@ public class MobicentsSipServletsEmbedded implements Lifecycle {
     }
 
 
-    /**
-     * Return true if redirection of standard streams is enabled.
-     */
-    public boolean isRedirectStreams() {
+    /* (non-Javadoc)
+	 * @see org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1.MobicentsSipServletsEmbedded#isRedirectStreams()
+	 */
+    @Override
+	public boolean isRedirectStreams() {
 
         return (this.redirectStreams);
 
     }
 
 
-    /**
-     * Enables or disables naming support.
-     *
-     * @param useNaming The new use naming value
-     */
-    public void setRedirectStreams(boolean redirectStreams) {
+    /* (non-Javadoc)
+	 * @see org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1.MobicentsSipServletsEmbedded#setRedirectStreams(boolean)
+	 */
+    @Override
+	public void setRedirectStreams(boolean redirectStreams) {
 
         boolean oldRedirectStreams = this.redirectStreams;
         this.redirectStreams = redirectStreams;
@@ -213,22 +218,22 @@ public class MobicentsSipServletsEmbedded implements Lifecycle {
     }
 
 
-    /**
-     * Return the default Realm for our Containers.
-     */
-    public Realm getRealm() {
+    /* (non-Javadoc)
+	 * @see org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1.MobicentsSipServletsEmbedded#getRealm()
+	 */
+    @Override
+	public Realm getRealm() {
 
         return (this.realm);
 
     }
 
 
-    /**
-     * Set the default Realm for our Containers.
-     *
-     * @param realm The new default realm
-     */
-    public void setRealm(Realm realm) {
+    /* (non-Javadoc)
+	 * @see org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1.MobicentsSipServletsEmbedded#setRealm(org.apache.catalina.Realm)
+	 */
+    @Override
+	public void setRealm(Realm realm) {
 
         Realm oldRealm = this.realm;
         this.realm = realm;
@@ -236,42 +241,62 @@ public class MobicentsSipServletsEmbedded implements Lifecycle {
 
     }
 
-    public void setAwait(boolean b) {
+    /* (non-Javadoc)
+	 * @see org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1.MobicentsSipServletsEmbedded#setAwait(boolean)
+	 */
+    @Override
+	public void setAwait(boolean b) {
         await = b;
     }
 
-    public boolean isAwait() {
+    /* (non-Javadoc)
+	 * @see org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1.MobicentsSipServletsEmbedded#isAwait()
+	 */
+    @Override
+	public boolean isAwait() {
         return await;
     }
 
-    public void setCatalinaHome( String s ) {
+    /* (non-Javadoc)
+	 * @see org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1.MobicentsSipServletsEmbedded#setCatalinaHome(java.lang.String)
+	 */
+    @Override
+	public void setCatalinaHome( String s ) {
         System.setProperty( "catalina.home", s);
     }
 
-    public void setCatalinaBase( String s ) {
+    /* (non-Javadoc)
+	 * @see org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1.MobicentsSipServletsEmbedded#setCatalinaBase(java.lang.String)
+	 */
+    @Override
+	public void setCatalinaBase( String s ) {
         System.setProperty( "catalina.base", s);
     }
 
-    public String getCatalinaHome() {
+    /* (non-Javadoc)
+	 * @see org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1.MobicentsSipServletsEmbedded#getCatalinaHome()
+	 */
+    @Override
+	public String getCatalinaHome() {
         return System.getProperty("catalina.home");
     }
 
-    public String getCatalinaBase() {
+    /* (non-Javadoc)
+	 * @see org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1.MobicentsSipServletsEmbedded#getCatalinaBase()
+	 */
+    @Override
+	public String getCatalinaBase() {
         return System.getProperty("catalina.base");
     }
 
 
     // --------------------------------------------------------- Public Methods
 
-    /**
-     * Add a new Connector to the set of defined Connectors.  The newly
-     * added Connector will be associated with the most recently added Engine.
-     *
-     * @param connector The connector to be added
-     *
-     * @exception IllegalStateException if no engines have been added yet
-     */
-    public synchronized void addConnector(Connector connector) {
+    /* (non-Javadoc)
+	 * @see org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1.MobicentsSipServletsEmbedded#addConnector(org.apache.catalina.connector.Connector)
+	 */
+    @Override
+	public synchronized void addConnector(Connector connector) {
 
         if( log.isDebugEnabled() ) {
             log.debug("Adding connector (" + connector.getInfo() + ")");
@@ -290,12 +315,11 @@ public class MobicentsSipServletsEmbedded implements Lifecycle {
     }
 
 
-    /**
-     * Add a new Engine to the set of defined Engines.
-     *
-     * @param engine The engine to be added
-     */
-    public synchronized void addEngine(Engine engine) {
+    /* (non-Javadoc)
+	 * @see org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1.MobicentsSipServletsEmbedded#addEngine(org.apache.catalina.Engine)
+	 */
+    @Override
+	public synchronized void addEngine(Engine engine) {
 
         if( log.isDebugEnabled() )
             log.debug("Adding engine (" + engine.getInfo() + ")");
@@ -320,23 +344,21 @@ public class MobicentsSipServletsEmbedded implements Lifecycle {
     }
 
 
-    /**
-     * Create, configure, and return a new TCP/IP socket connector
-     * based on the specified properties.
-     *
-     * @param address InetAddress to bind to, or <code>null</code> if the
-     * connector is supposed to bind to all addresses on this server
-     * @param port Port number to listen to
-     * @param secure true if the generated connector is supposed to be
-     * SSL-enabled, and false otherwise
-     */
-    public Connector createConnector(InetAddress address, int port,
+    /* (non-Javadoc)
+	 * @see org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1.MobicentsSipServletsEmbedded#createConnector(java.net.InetAddress, int, boolean)
+	 */
+    @Override
+	public Connector createConnector(InetAddress address, int port,
                                      boolean secure) {
 	return createConnector(address != null? address.toString() : null,
 			       port, secure);
     }
 
-    public Connector createConnector(String address, int port,
+    /* (non-Javadoc)
+	 * @see org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1.MobicentsSipServletsEmbedded#createConnector(java.lang.String, int, boolean)
+	 */
+    @Override
+	public Connector createConnector(String address, int port,
                                      boolean secure) {
         String protocol = "http";
         if (secure) {
@@ -347,13 +369,21 @@ public class MobicentsSipServletsEmbedded implements Lifecycle {
     }
 
 
-    public Connector createConnector(InetAddress address, int port,
+    /* (non-Javadoc)
+	 * @see org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1.MobicentsSipServletsEmbedded#createConnector(java.net.InetAddress, int, java.lang.String)
+	 */
+    @Override
+	public Connector createConnector(InetAddress address, int port,
                                      String protocol) {
 	return createConnector(address != null? address.toString() : null,
 			       port, protocol);
     }
 
-    public Connector createConnector(String address, int port,
+    /* (non-Javadoc)
+	 * @see org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1.MobicentsSipServletsEmbedded#createConnector(java.lang.String, int, java.lang.String)
+	 */
+    @Override
+	public Connector createConnector(String address, int port,
 				     String protocol) {
 
         Connector connector = null;
@@ -409,36 +439,17 @@ public class MobicentsSipServletsEmbedded implements Lifecycle {
 
     }
 
-    /**
-     * Create, configure, and return a Context that will process all
-     * HTTP requests received from one of the associated Connectors,
-     * and directed to the specified context path on the virtual host
-     * to which this Context is connected.
-     * <p>
-     * After you have customized the properties, listeners, and Valves
-     * for this Context, you must attach it to the corresponding Host
-     * by calling:
-     * <pre>
-     *   host.addChild(context);
-     * </pre>
-     * which will also cause the Context to be started if the Host has
-     * already been started.
-     *
-     * @param path Context path of this application ("" for the default
-     *  application for this host, must start with a slash otherwise)
-     * @param docBase Absolute pathname to the document base directory
-     *  for this web application
-     *
-     * @exception IllegalArgumentException if an invalid parameter
-     *  is specified
-     */
-    public Context createContext(String path, String docBase) {
+    /* (non-Javadoc)
+	 * @see org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1.MobicentsSipServletsEmbedded#createContext(java.lang.String, java.lang.String)
+	 */
+    @Override
+	public Context createContext(String path, String docBase) {
 
         if( log.isDebugEnabled() )
             log.debug("Creating context '" + path + "' with docBase '" +
                        docBase + "'");
 
-        StandardContext context = new StandardContext();
+        context = new StandardContext();
 
         context.setDocBase(docBase);
         context.setPath(path);
@@ -452,12 +463,11 @@ public class MobicentsSipServletsEmbedded implements Lifecycle {
     }
 
 
-    /**
-     * Create, configure, and return an Engine that will process all
-     * HTTP requests received from one of the associated Connectors,
-     * based on the specified properties.
-     */
-    public Engine createEngine() {
+    /* (non-Javadoc)
+	 * @see org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1.MobicentsSipServletsEmbedded#createEngine()
+	 */
+    @Override
+	public Engine createEngine() {
 
         if( log.isDebugEnabled() )
             log.debug("Creating engine");
@@ -472,33 +482,11 @@ public class MobicentsSipServletsEmbedded implements Lifecycle {
     }
 
 
-    /**
-     * Create, configure, and return a Host that will process all
-     * HTTP requests received from one of the associated Connectors,
-     * and directed to the specified virtual host.
-     * <p>
-     * After you have customized the properties, listeners, and Valves
-     * for this Host, you must attach it to the corresponding Engine
-     * by calling:
-     * <pre>
-     *   engine.addChild(host);
-     * </pre>
-     * which will also cause the Host to be started if the Engine has
-     * already been started.  If this is the default (or only) Host you
-     * will be defining, you may also tell the Engine to pass all requests
-     * not assigned to another virtual host to this one:
-     * <pre>
-     *   engine.setDefaultHost(host.getName());
-     * </pre>
-     *
-     * @param name Canonical name of this virtual host
-     * @param appBase Absolute pathname to the application base directory
-     *  for this virtual host
-     *
-     * @exception IllegalArgumentException if an invalid parameter
-     *  is specified
-     */
-    public Host createHost(String name, String appBase) {
+    /* (non-Javadoc)
+	 * @see org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1.MobicentsSipServletsEmbedded#createHost(java.lang.String, java.lang.String)
+	 */
+    @Override
+	public Host createHost(String name, String appBase) {
 
         if( log.isDebugEnabled() )
             log.debug("Creating host '" + name + "' with appBase '" +
@@ -514,14 +502,11 @@ public class MobicentsSipServletsEmbedded implements Lifecycle {
     }
 
 
-    /**
-     * Create and return a class loader manager that can be customized, and
-     * then attached to a Context, before it is started.
-     *
-     * @param parent ClassLoader that will be the parent of the one
-     *  created by this Loader
-     */
-    public Loader createLoader(ClassLoader parent) {
+    /* (non-Javadoc)
+	 * @see org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1.MobicentsSipServletsEmbedded#createLoader(java.lang.ClassLoader)
+	 */
+    @Override
+	public Loader createLoader(ClassLoader parent) {
 
         if( log.isDebugEnabled() )
             log.debug("Creating Loader with parent class loader '" +
@@ -533,26 +518,22 @@ public class MobicentsSipServletsEmbedded implements Lifecycle {
     }
 
 
-    /**
-     * Return descriptive information about this Server implementation and
-     * the corresponding version number, in the format
-     * <code>&lt;description&gt;/&lt;version&gt;</code>.
-     */
-    public String getInfo() {
+    /* (non-Javadoc)
+	 * @see org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1.MobicentsSipServletsEmbedded#getInfo()
+	 */
+    @Override
+	public String getInfo() {
 
         return (info);
 
     }
 
 
-    /**
-     * Remove the specified Context from the set of defined Contexts for its
-     * associated Host.  If this is the last Context for this Host, the Host
-     * will also be removed.
-     *
-     * @param context The Context to be removed
-     */
-    public synchronized void removeContext(Context context) {
+    /* (non-Javadoc)
+	 * @see org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1.MobicentsSipServletsEmbedded#removeContext(org.apache.catalina.Context)
+	 */
+    @Override
+	public synchronized void removeContext(Context context) {
 
         if( log.isDebugEnabled() )
             log.debug("Removing context[" + context.getPath() + "]");
@@ -586,14 +567,11 @@ public class MobicentsSipServletsEmbedded implements Lifecycle {
 	}
 
 
-    /**
-     * Remove the specified Engine from the set of defined Engines, along with
-     * all of its related Hosts and Contexts.  All associated Connectors are
-     * also removed.
-     *
-     * @param engine The Engine to be removed
-     */
-    public synchronized void removeEngine(Engine engine) {
+    /* (non-Javadoc)
+	 * @see org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1.MobicentsSipServletsEmbedded#removeEngine(org.apache.catalina.Engine)
+	 */
+    @Override
+	public synchronized void removeEngine(Engine engine) {
 
         if( log.isDebugEnabled() )
             log.debug("Removing engine (" + engine.getInfo() + ")");
@@ -651,14 +629,11 @@ public class MobicentsSipServletsEmbedded implements Lifecycle {
     }
 
 
-    /**
-     * Remove the specified Host, along with all of its related Contexts,
-     * from the set of defined Hosts for its associated Engine.  If this is
-     * the last Host for this Engine, the Engine will also be removed.
-     *
-     * @param host The Host to be removed
-     */
-    public synchronized void removeHost(Host host) {
+    /* (non-Javadoc)
+	 * @see org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1.MobicentsSipServletsEmbedded#removeHost(org.apache.catalina.Host)
+	 */
+    @Override
+	public synchronized void removeHost(Host host) {
 
         if( log.isDebugEnabled() )
             log.debug("Removing host[" + host.getName() + "]");
@@ -700,7 +675,11 @@ public class MobicentsSipServletsEmbedded implements Lifecycle {
      * @throws IllegalArgumentException if the specified authenticator does not
      * implement the org.apache.catalina.Valve interface
      */
-    public void addAuthenticator(Authenticator authenticator,
+    /* (non-Javadoc)
+	 * @see org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1.MobicentsSipServletsEmbedded#addAuthenticator(org.apache.catalina.Authenticator, java.lang.String)
+	 */
+    @Override
+	public void addAuthenticator(Authenticator authenticator,
                                  String loginMethod) {
         if (!(authenticator instanceof Valve)) {
             throw new IllegalArgumentException(
@@ -720,50 +699,44 @@ public class MobicentsSipServletsEmbedded implements Lifecycle {
     // ------------------------------------------------------ Lifecycle Methods
 
 
-    /**
-     * Add a lifecycle event listener to this component.
-     *
-     * @param listener The listener to add
-     */
-    public void addLifecycleListener(LifecycleListener listener) {
+    /* (non-Javadoc)
+	 * @see org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1.MobicentsSipServletsEmbedded#addLifecycleListener(org.apache.catalina.LifecycleListener)
+	 */
+    @Override
+	public void addLifecycleListener(LifecycleListener listener) {
 
         lifecycle.addLifecycleListener(listener);
 
     }
 
 
-    /**
-     * Get the lifecycle listeners associated with this lifecycle. If this 
-     * Lifecycle has no listeners registered, a zero-length array is returned.
-     */
-    public LifecycleListener[] findLifecycleListeners() {
+    /* (non-Javadoc)
+	 * @see org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1.MobicentsSipServletsEmbedded#findLifecycleListeners()
+	 */
+    @Override
+	public LifecycleListener[] findLifecycleListeners() {
 
         return lifecycle.findLifecycleListeners();
 
     }
 
 
-    /**
-     * Remove a lifecycle event listener from this component.
-     *
-     * @param listener The listener to remove
-     */
-    public void removeLifecycleListener(LifecycleListener listener) {
+    /* (non-Javadoc)
+	 * @see org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1.MobicentsSipServletsEmbedded#removeLifecycleListener(org.apache.catalina.LifecycleListener)
+	 */
+    @Override
+	public void removeLifecycleListener(LifecycleListener listener) {
 
         lifecycle.removeLifecycleListener(listener);
 
     }
 
 
-    /**
-     * Prepare for the beginning of active use of the public methods of this
-     * component.  This method should be called after <code>configure()</code>,
-     * and before any of the public methods of the component are utilized.
-     *
-     * @exception LifecycleException if this component detects a fatal error
-     *  that prevents this component from being used
-     */
-    public void start() throws LifecycleException {
+    /* (non-Javadoc)
+	 * @see org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1.MobicentsSipServletsEmbedded#start()
+	 */
+    @Override
+	public void start() throws LifecycleException {
 
         if( log.isInfoEnabled() )
             log.info("Starting tomcat server");
@@ -799,15 +772,11 @@ public class MobicentsSipServletsEmbedded implements Lifecycle {
     }
 
 
-    /**
-     * Gracefully terminate the active use of the public methods of this
-     * component.  This method should be the last one called on a given
-     * instance of this component.
-     *
-     * @exception LifecycleException if this component detects a fatal error
-     *  that needs to be reported
-     */
-    public void stop() throws LifecycleException {
+    /* (non-Javadoc)
+	 * @see org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1.MobicentsSipServletsEmbedded#stop()
+	 */
+    @Override
+	public void stop() throws LifecycleException {
 
         if( log.isDebugEnabled() )
             log.debug("Stopping embedded server");
@@ -831,6 +800,13 @@ public class MobicentsSipServletsEmbedded implements Lifecycle {
             if (engines[i] instanceof Lifecycle)
                 ((Lifecycle) engines[i]).stop();
         }
+
+        /*
+         * Service should be stopped and removed otherwise in between start/stop/start of the container,
+         * javax.management.InstanceAlreadyExistsException: mss-tomcat-embedded-6:type=SipApplicationDispatcher
+         * exception will occur, which is related to the JMX MBeanServer, when tomcat embedded tries to register the MBean, the 
+         * instance is already there.
+         */
         
 		if(service != null) {			
 			try {
@@ -969,18 +945,38 @@ public class MobicentsSipServletsEmbedded implements Lifecycle {
     }
 
 
-	/**
-	 * @param service the service to set
+	/* (non-Javadoc)
+	 * @see org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1.MobicentsSipServletsEmbedded#setService(org.apache.catalina.core.StandardService)
 	 */
+	@Override
 	public void setService(StandardService service) {
 		this.service = service;
 	}
 
 
-	/**
-	 * @return the service
+	/* (non-Javadoc)
+	 * @see org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1.MobicentsSipServletsEmbedded#getService()
 	 */
+	@Override
 	public StandardService getService() {
 		return service;
+	}
+
+
+	/* 
+	 * Add SipConnector
+	 */
+	@Override
+	public Connector addSipConnector(String connectorName, String ipAddress, int port, String transport) throws Exception {
+
+		Connector sipConnector = new Connector(SipProtocolHandler.class.getName());
+		SipProtocolHandler sipProtocolHandler = (SipProtocolHandler) sipConnector
+				.getProtocolHandler();
+		sipProtocolHandler.setPort(port);
+		sipProtocolHandler.setIpAddress(ipAddress);
+		sipProtocolHandler.setSignalingTransport(transport);		
+
+		((SipStandardService)service).addConnector(sipConnector);
+		return sipConnector;
 	}
 }

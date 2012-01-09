@@ -11,15 +11,15 @@ import java.util.HashMap;
  * @author gvagenas@gmail.com 
  * 
  */
-public class ContextParamTool {
+public class ContextParamMapConstructTool {
 	
 	private HashMap<String, String> contextMap;
 	
-	public ContextParamTool() {
+	public ContextParamMapConstructTool() {
 		contextMap = new HashMap<String, String>();
 	}
 	
-	public ContextParamTool put(String key, String value){
+	public ContextParamMapConstructTool put(String key, String value){
 		contextMap.put(key, value);
 		return this;
 	}

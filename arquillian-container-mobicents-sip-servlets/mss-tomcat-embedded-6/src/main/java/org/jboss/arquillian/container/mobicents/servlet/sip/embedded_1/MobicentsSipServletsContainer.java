@@ -20,10 +20,7 @@ import java.io.File;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map.Entry;
 import java.util.StringTokenizer;
 import java.util.UUID;
 import java.util.logging.Logger;
@@ -36,6 +33,7 @@ import org.apache.catalina.core.StandardHost;
 import org.apache.catalina.deploy.ApplicationParameter;
 import org.apache.catalina.loader.WebappLoader;
 import org.apache.catalina.startup.ExpandWar;
+import org.jboss.arquillian.container.SipServletsEmbeddedContainer;
 import org.jboss.arquillian.container.spi.client.container.DeployableContainer;
 import org.jboss.arquillian.container.spi.client.container.DeploymentException;
 import org.jboss.arquillian.container.spi.client.container.LifecycleException;
@@ -85,8 +83,9 @@ public class MobicentsSipServletsContainer implements DeployableContainer<Mobice
 	/**
 	 * Tomcat embedded
 	 */
-	private MobicentsSipServletsEmbedded embedded;
-
+//	private MobicentsSipServletsEmbeddedImpl embedded;
+	private SipServletsEmbeddedContainer embedded;
+	
 	/**
 	 * Engine contained within Tomcat embedded
 	 */
@@ -113,6 +112,9 @@ public class MobicentsSipServletsContainer implements DeployableContainer<Mobice
 	@Inject @DeploymentScoped 
 	private InstanceProducer<SipStandardContext> sipStandardContextProducer;
 
+	@Inject @DeploymentScoped 
+	private InstanceProducer<MobicentsSipServletsEmbeddedImpl> mobicentsSipServletsEmbeddedProducer;
+	
 	@Override
 	public Class<MobicentsSipServletsConfiguration> getConfigurationClass() {
 		return MobicentsSipServletsConfiguration.class;
@@ -198,7 +200,7 @@ public class MobicentsSipServletsContainer implements DeployableContainer<Mobice
 			  System.setProperty("javax.servlet.sip.dar", Thread.currentThread().getContextClassLoader().getResource("empty-dar.properties").toString());
 		  }
 		  // creating the tomcat embedded == service tag in server.xml
-		  MobicentsSipServletsEmbedded embedded= new MobicentsSipServletsEmbedded();
+		  MobicentsSipServletsEmbeddedImpl embedded= new MobicentsSipServletsEmbeddedImpl();
 		  this.embedded = embedded;
 	      SipStandardService sipStandardService = new SipStandardService();
 	      sipStandardService.setSipApplicationDispatcherClassName(SipApplicationDispatcherImpl.class.getCanonicalName());
@@ -278,6 +280,7 @@ public class MobicentsSipServletsContainer implements DeployableContainer<Mobice
 	      }
 	      
 	      wasStarted = true;
+	      mobicentsSipServletsEmbeddedProducer.set(embedded);
 //	      return embedded;
 		
 //		System.setProperty("javax.servlet.sip.ar.spi.SipApplicationRouterProvider", configuration.getSipApplicationRouterProviderClassName());

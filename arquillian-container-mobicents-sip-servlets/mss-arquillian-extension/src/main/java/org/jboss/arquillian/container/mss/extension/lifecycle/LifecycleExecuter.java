@@ -20,6 +20,7 @@ package org.jboss.arquillian.container.mss.extension.lifecycle;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -27,11 +28,15 @@ import java.util.Map;
 
 import org.jboss.arquillian.config.descriptor.api.ArquillianDescriptor;
 import org.jboss.arquillian.config.descriptor.api.ContainerDef;
+import org.jboss.arquillian.container.SipServletsEmbeddedContainer;
+import org.jboss.arquillian.container.mss.extension.EmbeddedContainerTool;
 import org.jboss.arquillian.container.mss.extension.lifecycle.api.ConcurrencyControlMode;
 import org.jboss.arquillian.container.mss.extension.lifecycle.api.ContextParam;
 import org.jboss.arquillian.container.mss.extension.lifecycle.api.ContextParamMap;
-import org.jboss.arquillian.container.spi.client.container.LifecycleException;
+import org.jboss.arquillian.container.mss.extension.lifecycle.api.EmbeddedContainer;
+import org.jboss.arquillian.container.spi.client.container.DeployableContainer;
 import org.jboss.arquillian.container.spi.event.container.AfterDeploy;
+import org.jboss.arquillian.container.spi.event.container.AfterSetup;
 import org.jboss.arquillian.container.spi.event.container.AfterUnDeploy;
 import org.jboss.arquillian.container.spi.event.container.BeforeDeploy;
 import org.jboss.arquillian.container.spi.event.container.BeforeUnDeploy;
@@ -42,6 +47,7 @@ import org.jboss.arquillian.core.api.annotation.Observes;
 import org.jboss.arquillian.test.spi.TestClass;
 import org.jboss.arquillian.test.spi.event.suite.After;
 import org.jboss.arquillian.test.spi.event.suite.Before;
+import org.jboss.arquillian.test.spi.event.suite.BeforeClass;
 
 /**
  * LifecycleExecuter
@@ -55,8 +61,7 @@ public class LifecycleExecuter
 	//Using these events, we can get access to the deployableContainer so we can start/stop, deploy/undeploy, 
 	//setup with a new configuration and also we have access to the deployment
 
-
-	public void executeBeforeDeploy(@Observes BeforeDeploy event, TestClass testClass) throws LifecycleException
+	public void executeBeforeDeploy(@Observes BeforeDeploy event, TestClass testClass)
 	{
 		execute(
 				testClass.getMethods(
@@ -84,6 +89,39 @@ public class LifecycleExecuter
 						org.jboss.arquillian.container.mss.extension.lifecycle.api.AfterUnDeploy.class));
 	}
 
+		/*
+		 * #2 Use @BeforeClass event in order to scan the class for annotation we might be interesting.
+		 */
+		public void BeforeThat(@Observes BeforeClass event, TestClass testClass){
+			testClass = event.getTestClass();
+			Field[] fields = testClass.getJavaClass().getDeclaredFields();
+			for (Field field : fields) {
+				if (field.isAnnotationPresent(EmbeddedContainer.class)){
+					if (field.getType().isAssignableFrom(SipServletsEmbeddedContainer.class)){
+						isEmbeddedContainerAnnoPresent = true;
+						embeddedContainerFields.add(field);
+					}
+				}
+			}
+		}
+
+	private DeployableContainer<?> deployableContainer;
+	private Object testInstance;
+
+	/*
+	 * #1 Observe Container's AfterSetup to get the DeployableContainer 
+	 */
+	public void executeAfterSetup(@Observes AfterSetup event){
+		deployableContainer = event.getDeployableContainer();
+	}
+
+
+//		public void beforeThis(@Observes AfterDeploy event, DeploymentDescription deployment){
+//			event.getDeployableContainer();
+//		}
+
+
+
 	/*
 	 * Remember that for the ContainerController to be able to control the container, the container have to be  
 	 * defined with mode="manual" at the arquillian.xml
@@ -103,16 +141,22 @@ public class LifecycleExecuter
 	private Annotation contextParam; 
 	private Annotation contextParamMap; 
 	private Annotation concurencyControl;
-	
-	public void executeBeforeTest(@Observes Before event, TestClass testClass) throws InterruptedException{
+	private boolean isEmbeddedContainerAnnoPresent = false;
+	private List<Field> embeddedContainerFields = new ArrayList<Field>();
+	private EmbeddedContainerTool embeddedContainerTool; 
+
+	// #3
+	public void executeBeforeTest(@Observes Before event, TestClass testClass) throws IllegalArgumentException, IllegalAccessException{
+
+		testInstance = event.getTestInstance();
 
 		Map<String, String> parameters = new HashMap<String, String>();
 		List<ContainerDef> containerDefs = descriptor.get().getContainers();
 		Iterator<ContainerDef> iter = containerDefs.iterator();
-
+		
 		if (checkForAnnotations(event))
 			parameters = getParameters(event);
-			
+
 		while (iter.hasNext()){
 			ContainerDef containerDef = (ContainerDef) iter.next();
 			String containerName = containerDef.getContainerName();
@@ -122,9 +166,16 @@ public class LifecycleExecuter
 				containerController.get().start(containerName,parameters);
 			}
 		}
+
+		if (isEmbeddedContainerAnnoPresent){
+			embeddedContainerTool = new EmbeddedContainerTool();
+			embeddedContainerTool.setEmbedded(testInstance, deployableContainer, embeddedContainerFields);
+		}
+
 	}
 
-	public void executeAfterTest(@Observes After event, TestClass testClass){
+	public void executeAfterTest(@Observes After event, TestClass testClass) throws IllegalArgumentException, IllegalAccessException{
+
 		List<ContainerDef> containerDefs = descriptor.get().getContainers();
 		Iterator<ContainerDef> iter = containerDefs.iterator();
 
@@ -133,32 +184,42 @@ public class LifecycleExecuter
 			String containerName = containerDef.getContainerName();
 			containerController.get().stop(containerName);
 		}
+		//		if (setEmbeddedContainer){
+		//			tool.setEmbedded(testInstance, testClass, deployableContainer);
+		//		}
 	}
 
 	private boolean checkForAnnotations(Before event) {
 		Boolean result = false;
-		
+
 		contextParam = event.getTestMethod().getAnnotation(org.jboss.arquillian.container.mss.extension.lifecycle.api.ContextParam.class);
 		contextParamMap = event.getTestMethod().getAnnotation(org.jboss.arquillian.container.mss.extension.lifecycle.api.ContextParamMap.class);
 		concurencyControl = event.getTestMethod().getAnnotation(org.jboss.arquillian.container.mss.extension.lifecycle.api.ConcurrencyControlMode.class);
-		
+
+//		Field[] fields = event.getTestClass().getJavaClass().getDeclaredFields();
+//		for (Field field : fields) {
+//			if (field.isAnnotationPresent(EmbeddedContainer.class))
+//				isEmbeddedContainerAnnoPresent = true;
+//		}
+
+
 		if (contextParam != null || contextParamMap != null || concurencyControl != null)
 			result = true;
-		
+
 		return result;
 	}
-	
+
 	private Map<String, String> getParameters(Before event) {
-	
+
 		String contextParamName = null;
 		String contextParamValue = null;
-		
+
 		Map<String, String> parameters = new HashMap<String, String>();
 		String paramSeparator = "---";
 		String valueSeparator = "-%%-";		
 		parameters.put("paramSeparator",paramSeparator);
 		parameters.put("valueSeparator", valueSeparator);
-		
+
 		HashMap<String, String> paramMap = new HashMap<String, String>();
 
 		if (contextParamMap != null){
@@ -179,7 +240,7 @@ public class LifecycleExecuter
 					}
 				} 
 			}
-		
+
 			//Throw exception if after scanning all the fields we don't find the map we are looking for.
 			if (paramMap.isEmpty())
 				throw new UnsupportedOperationException("There is no declared field in the class with annotation " +
@@ -187,7 +248,7 @@ public class LifecycleExecuter
 		}
 
 		StringBuffer values = new StringBuffer();
-		
+
 		if (contextParam != null){
 			contextParamName = ((ContextParam)contextParam).name();
 			contextParamValue = ((ContextParam)contextParam).value();
@@ -195,25 +256,25 @@ public class LifecycleExecuter
 		}
 		if (!paramMap.isEmpty()){
 			Iterator<String> iterator = paramMap.keySet().iterator();
-			
+
 			String firstKey = iterator.next();
 			values.append(firstKey+valueSeparator+paramMap.get(firstKey));
-			
+
 			while(iterator.hasNext()){
 				String key = iterator.next();
 				values.append(paramSeparator+key+valueSeparator+paramMap.get(key));
 			}
 		}
-		
+
 		parameters.put("contextParam", values.toString());
-		
+
 		if(concurencyControl != null){
 			parameters.put("concurrencyControl", ((ConcurrencyControlMode)concurencyControl).value().toString());
 		}
-		
+
 		return parameters;
 	}
-	
+
 	private void execute(Method[] methods)
 	{
 		if(methods == null)
