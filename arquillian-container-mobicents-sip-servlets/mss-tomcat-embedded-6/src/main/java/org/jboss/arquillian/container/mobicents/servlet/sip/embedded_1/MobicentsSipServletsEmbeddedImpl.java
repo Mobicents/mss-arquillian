@@ -25,7 +25,9 @@ import java.beans.PropertyChangeSupport;
 import java.io.File;
 import java.io.IOException;
 import java.net.InetAddress;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.catalina.Authenticator;
 import org.apache.catalina.Container;
@@ -54,7 +56,7 @@ import org.apache.juli.logging.Log;
 import org.apache.juli.logging.LogFactory;
 import org.apache.tomcat.util.IntrospectionUtils;
 import org.apache.tomcat.util.log.SystemLogHandler;
-import org.jboss.arquillian.container.SipServletsEmbeddedContainer;
+import org.jboss.arquillian.container.mobicents.api.SipServletsEmbeddedContainer;
 import org.mobicents.servlet.sip.catalina.SipProtocolHandler;
 import org.mobicents.servlet.sip.catalina.SipStandardService;
 
@@ -978,5 +980,30 @@ public class MobicentsSipServletsEmbeddedImpl implements Lifecycle, SipServletsE
 
 		((SipStandardService)service).addConnector(sipConnector);
 		return sipConnector;
+	}
+
+
+	//Return the SipConnectors
+	@Override
+	public List<Connector> getSipConnectors() {
+		List<Connector> connectors = new ArrayList<Connector>();
+		
+		Connector[] conns = service.findConnectors();
+		
+		for (Connector conn : conns) {
+			if (conn.getProtocolHandler() instanceof SipProtocolHandler){
+				connectors.add(conn);
+			}
+		}
+		
+		return connectors;
+	}
+
+
+	@Override
+	public void removeConnector(Connector connector) {
+
+		service.removeConnector(connector);
+		
 	}
 }

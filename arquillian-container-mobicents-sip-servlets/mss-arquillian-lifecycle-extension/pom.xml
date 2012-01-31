@@ -11,10 +11,9 @@
 	</parent>
 
 	<groupId>org.jboss.arquillian.container</groupId>
-	<artifactId>mss-arquillian-extension</artifactId>
+	<artifactId>mss-arquillian-lifecycle-extension</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
-	<name>mss-arquillian-extension</name>
-	<url>http://maven.apache.org</url>
+	<name>mss-arquillian-lifecycle-extension</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

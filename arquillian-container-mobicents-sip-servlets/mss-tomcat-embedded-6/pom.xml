@@ -30,11 +30,18 @@
 			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 
-		<!-- Mobicents Arquillian Container Extension -->
+		<!-- Mobicents Arquillian Lifecycle Extension -->
 
 		<dependency>
 			<groupId>org.jboss.arquillian.container</groupId>
-			<artifactId>mss-arquillian-extension</artifactId>
+			<artifactId>mss-arquillian-lifecycle-extension</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+
+		<!-- Mobicents Arquillian Container Extension -->
+		<dependency>
+			<groupId>org.jboss.arquillian.container</groupId>
+			<artifactId>mss-arquillian-container-extension</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 
@@ -52,12 +59,15 @@
 			<artifactId>arquillian-testenricher-initialcontext</artifactId> </dependency> 
 			<dependency> <groupId>org.jboss.shrinkwrap.resolver</groupId> <artifactId>shrinkwrap-resolver-impl-maven</artifactId> 
 			<scope>test</scope> </dependency> -->
+
 		<dependency>
 			<groupId>org.jboss.shrinkwrap.container</groupId>
-			<artifactId>shrinkwrap-container-mobicents-13</artifactId>
-			<version>1.0.0-beta-2-SNAPSHOT</version>
+			<artifactId>shrinkwrap-container-mobicents</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 
+		<!-- <dependency> <groupId>org.jboss.shrinkwrap.container</groupId> <artifactId>shrinkwrap-container-tomcat-60</artifactId> 
+			<version>1.0.0-beta-1</version> </dependency> -->
 		<!-- org.apache.tomcat -->
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>

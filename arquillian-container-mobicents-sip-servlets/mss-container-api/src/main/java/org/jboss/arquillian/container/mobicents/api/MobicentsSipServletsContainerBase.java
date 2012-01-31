@@ -1,6 +1,6 @@
-/*
+ /*
  * JBoss, Home of Professional Open Source
- * Copyright 2009, Red Hat Middleware LLC, and individual contributors
+ * Copyright 2010, Red Hat Middleware LLC, and individual contributors
  * by the @authors tag. See the copyright.txt in the distribution for a
  * full listing of individual contributors.
  *
@@ -14,24 +14,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1;
+package org.jboss.arquillian.container.mobicents.api;
 
-import org.jboss.arquillian.container.mobicents.api.MobicentsSipServletsConfigurationBase;
+import org.jboss.arquillian.container.spi.client.container.DeployableContainer;
 
 /**
- * Arquillian Tomcat Container Configuration
+ * @author gvagenas@gmail.com 
  * 
- * @author <a href="mailto:jean.deruelle@gmail.com">Jean Deruelle</a>
- * @author Dan Allen
- * @version $Revision: $
  */
-public class MobicentsSipServletsConfiguration extends MobicentsSipServletsConfigurationBase
+public abstract class MobicentsSipServletsContainerBase implements DeployableContainer<MobicentsSipServletsConfigurationBase>, MSSContainer 
 {
 
-	/*
-	 * Set mss-tomcat-embedded-6 specific options to the configuration
-	 */
-	public MobicentsSipServletsConfiguration() {
-		super.setServerName("mss-tomcat-embedded-6");
-	}
 }

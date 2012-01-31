@@ -20,6 +20,13 @@
 	<name>Arquillian Mobicents Container Parent Tomcat</name>
 	<description>Mobicents Tomcat Container for the Arquillian Project</description>
 
+	<developers>
+		<developer>
+			<name>George Vagenas</name>
+			<email>gvagenas@gmail.com</email>
+		</developer>
+	</developers>
+
 	<!-- <scm> <connection>scm:git:git://git@github.com:arquillian/arquillian-container-tomcat.git</connection> 
 		<developerConnection>scm:git:ssh://github.com/arquillian/arquillian-container-tomcat.git</developerConnection> 
 		<url>git://github.com/arquillian/arquillian-container-tomcat.git</url> </scm> -->
@@ -27,7 +34,7 @@
 	<properties>
 
 		<!-- Versioning -->
-		<!--<version.arquillian_core>1.0.0.CR5</version.arquillian_core>-->
+		<!-- <version.arquillian_core>1.0.0.CR7</version.arquillian_core>  -->
 		<version.arquillian_core>1.0.0.Final-SNAPSHOT</version.arquillian_core>
 		<version.shrinkwrap_tomcat>1.0.0-beta-12</version.shrinkwrap_tomcat>
 
@@ -188,5 +195,6 @@
 <!--		<module>mss-tomcat-embedded-7</module> -->
 		<module>mss-arquillian-extension</module>
     <module>mss-container-api</module>
+    <module>mss-arquillian-container-extension</module>
   </modules>
 </project>
