@@ -20,7 +20,6 @@ package org.jboss.arquillian.container.mss.extension.lifecycle;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -28,12 +27,9 @@ import java.util.Map;
 
 import org.jboss.arquillian.config.descriptor.api.ArquillianDescriptor;
 import org.jboss.arquillian.config.descriptor.api.ContainerDef;
-import org.jboss.arquillian.container.SipServletsEmbeddedContainer;
-import org.jboss.arquillian.container.mss.extension.EmbeddedContainerTool;
-import org.jboss.arquillian.container.mss.extension.lifecycle.api.ConcurrencyControlMode;
-import org.jboss.arquillian.container.mss.extension.lifecycle.api.ContextParam;
-import org.jboss.arquillian.container.mss.extension.lifecycle.api.ContextParamMap;
-import org.jboss.arquillian.container.mss.extension.lifecycle.api.GetEmbeddedContainer;
+import org.jboss.arquillian.container.mobicents.api.annotations.ConcurrencyControlMode;
+import org.jboss.arquillian.container.mobicents.api.annotations.ContextParam;
+import org.jboss.arquillian.container.mobicents.api.annotations.ContextParamMap;
 import org.jboss.arquillian.container.spi.client.container.DeployableContainer;
 import org.jboss.arquillian.container.spi.event.container.AfterDeploy;
 import org.jboss.arquillian.container.spi.event.container.AfterSetup;
@@ -47,10 +43,10 @@ import org.jboss.arquillian.core.api.annotation.Observes;
 import org.jboss.arquillian.test.spi.TestClass;
 import org.jboss.arquillian.test.spi.event.suite.After;
 import org.jboss.arquillian.test.spi.event.suite.Before;
-import org.jboss.arquillian.test.spi.event.suite.BeforeClass;
 
 /**
- * LifecycleExecuter
+ * LifecycleExecuter. Responsible to start/stop the container passing extra context parameters that could be present
+ * in the <code>@ContextParam</code>, <code>ContextParamMap</code> or <code>ConcurrencyControlMode</code> annotations
  *
  * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
  * @version $Revision: $
@@ -65,46 +61,30 @@ public class LifecycleExecuter
 	{
 		execute(
 				testClass.getMethods(
-						org.jboss.arquillian.container.mss.extension.lifecycle.api.BeforeDeploy.class));
+						org.jboss.arquillian.container.mobicents.api.annotations.BeforeDeploy.class));
 	}
 
-	public void executeAfterDeploy(@Observes AfterDeploy event, TestClass testClass)
+	public void executeAfterDeploy(@Observes AfterDeploy event, TestClass testClass) throws IllegalArgumentException, IllegalAccessException
 	{
 		execute(
 				testClass.getMethods(
-						org.jboss.arquillian.container.mss.extension.lifecycle.api.AfterDeploy.class));
+						org.jboss.arquillian.container.mobicents.api.annotations.AfterDeploy.class));
 	}
 
 	public void executeBeforeUnDeploy(@Observes BeforeUnDeploy event, TestClass testClass)
 	{
 		execute(
 				testClass.getMethods(
-						org.jboss.arquillian.container.mss.extension.lifecycle.api.BeforeUnDeploy.class));
+						org.jboss.arquillian.container.mobicents.api.annotations.BeforeUnDeploy.class));
 	}
 
-	public void executeAfterUnDeploy(@Observes AfterUnDeploy event, TestClass testClass)
+	public void executeAfterUnDeploy(@Observes AfterUnDeploy event, TestClass testClass) throws IllegalArgumentException, IllegalAccessException
 	{
 		execute(
 				testClass.getMethods(
-						org.jboss.arquillian.container.mss.extension.lifecycle.api.AfterUnDeploy.class));
+						org.jboss.arquillian.container.mobicents.api.annotations.AfterUnDeploy.class));
 	}
-
-		/*
-		 * #2 Use @BeforeClass event in order to scan the class for annotation we might be interesting.
-		 */
-		public void BeforeThat(@Observes BeforeClass event, TestClass testClass){
-			testClass = event.getTestClass();
-			Field[] fields = testClass.getJavaClass().getDeclaredFields();
-			for (Field field : fields) {
-				if (field.isAnnotationPresent(GetEmbeddedContainer.class)){
-					if (field.getType().isAssignableFrom(SipServletsEmbeddedContainer.class)){
-						isGetEmbeddedContainerAnnoPresent = true;
-						embeddedContainerFields.add(field);
-					}
-				}
-			}
-		}
-
+	
 	private DeployableContainer<?> deployableContainer;
 	private Object testInstance;
 
@@ -114,13 +94,6 @@ public class LifecycleExecuter
 	public void executeAfterSetup(@Observes AfterSetup event){
 		deployableContainer = event.getDeployableContainer();
 	}
-
-
-//		public void beforeThis(@Observes AfterDeploy event, DeploymentDescription deployment){
-//			event.getDeployableContainer();
-//		}
-
-
 
 	/*
 	 * Remember that for the ContainerController to be able to control the container, the container have to be  
@@ -141,38 +114,54 @@ public class LifecycleExecuter
 	private Annotation contextParam; 
 	private Annotation contextParamMap; 
 	private Annotation concurencyControl;
-	private boolean isGetEmbeddedContainerAnnoPresent = false;
-	private List<Field> embeddedContainerFields = new ArrayList<Field>();
-	
-	
-	private EmbeddedContainerTool embeddedContainerTool; 
-	
+
 	// #3
 	public void executeBeforeTest(@Observes Before event, TestClass testClass) throws IllegalArgumentException, IllegalAccessException{
 
 		testInstance = event.getTestInstance();
-
+		
 		Map<String, String> parameters = new HashMap<String, String>();
 		List<ContainerDef> containerDefs = descriptor.get().getContainers();
 		Iterator<ContainerDef> iter = containerDefs.iterator();
-		
+
 		if (checkForAnnotations(event))
 			parameters = getParameters(event);
+
+		//Workaround for https://community.jboss.org/thread/178021
+		if (parameters.isEmpty()){
+			parameters = resetParameters();
+		}
 
 		while (iter.hasNext()){
 			ContainerDef containerDef = (ContainerDef) iter.next();
 			String containerName = containerDef.getContainerName();
+			
+			//If the container is not in manual mode then we cannot pass any parameters and control it
+			if (!containerDef.getMode().equalsIgnoreCase("manual")){
+				return;
+				//throw new UnsupportedOperationException("Container not in manual mode");
+			}
+			
 			if (parameters.isEmpty()){
 				containerController.get().start(containerName);
 			} else {
 				containerController.get().start(containerName,parameters);
 			}
 		}
+	}
 
-		if (isGetEmbeddedContainerAnnoPresent){
-			embeddedContainerTool = new EmbeddedContainerTool();
-			embeddedContainerTool.setEmbedded(testInstance, deployableContainer, embeddedContainerFields);
-		}
+
+	private Map<String, String> resetParameters() {
+
+		Map<String, String> parameters = new HashMap<String, String>();
+		String paramSeparator = "---";
+		String valueSeparator = "-%%-";		
+		parameters.put("paramSeparator",paramSeparator);
+		parameters.put("valueSeparator", valueSeparator);
+
+		parameters.put("contextParam", "nothing-%%-nothing---");
+
+		return parameters;
 	}
 
 	public void executeAfterTest(@Observes After event, TestClass testClass) throws IllegalArgumentException, IllegalAccessException{
@@ -182,20 +171,24 @@ public class LifecycleExecuter
 
 		while (iter.hasNext()){
 			ContainerDef containerDef = (ContainerDef) iter.next();
+			
+			//If the container is not in manual mode then we cannot pass any parameters and control it
+			if (!containerDef.getMode().equalsIgnoreCase("manual")){
+				return;
+				//throw new UnsupportedOperationException("Container not in manual mode");
+			}
+			
 			String containerName = containerDef.getContainerName();
 			containerController.get().stop(containerName);
 		}
-		//		if (setEmbeddedContainer){
-		//			tool.setEmbedded(testInstance, testClass, deployableContainer);
-		//		}
 	}
 
 	private boolean checkForAnnotations(Before event) {
 		Boolean result = false;
 
-		contextParam = event.getTestMethod().getAnnotation(org.jboss.arquillian.container.mss.extension.lifecycle.api.ContextParam.class);
-		contextParamMap = event.getTestMethod().getAnnotation(org.jboss.arquillian.container.mss.extension.lifecycle.api.ContextParamMap.class);
-		concurencyControl = event.getTestMethod().getAnnotation(org.jboss.arquillian.container.mss.extension.lifecycle.api.ConcurrencyControlMode.class);
+		contextParam = event.getTestMethod().getAnnotation(org.jboss.arquillian.container.mobicents.api.annotations.ContextParam.class);
+		contextParamMap = event.getTestMethod().getAnnotation(org.jboss.arquillian.container.mobicents.api.annotations.ContextParamMap.class);
+		concurencyControl = event.getTestMethod().getAnnotation(org.jboss.arquillian.container.mobicents.api.annotations.ConcurrencyControlMode.class);
 
 		if (contextParam != null || contextParamMap != null || concurencyControl != null)
 			result = true;
@@ -220,8 +213,8 @@ public class LifecycleExecuter
 			String mapName = ((ContextParamMap)contextParamMap).value();
 			Field[] fields = event.getTestClass().getJavaClass().getDeclaredFields(); 
 			for (Field field : fields) {
-				if (field.getAnnotation(org.jboss.arquillian.container.mss.extension.lifecycle.api.ContextParamMap.class) != null 
-						&& field.getAnnotation(org.jboss.arquillian.container.mss.extension.lifecycle.api.ContextParamMap.class).value().equals(mapName) ){
+				if (field.getAnnotation(org.jboss.arquillian.container.mobicents.api.annotations.ContextParamMap.class) != null 
+						&& field.getAnnotation(org.jboss.arquillian.container.mobicents.api.annotations.ContextParamMap.class).value().equals(mapName) ){
 					try {
 						Boolean flag = field.isAccessible();
 						field.setAccessible(true);
