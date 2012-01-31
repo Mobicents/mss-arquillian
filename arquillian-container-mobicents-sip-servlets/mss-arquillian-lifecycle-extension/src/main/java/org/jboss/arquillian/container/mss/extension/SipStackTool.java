@@ -94,10 +94,9 @@ public class SipStackTool {
 		//Clear objects that might left from previous tests
 		if (sipStack!=null){
 //			tearDown();
-			sipStack.dispose();
+//			sipStack.dispose();
+			sipStack = null;
 		}
-		
-		sipStack = null;
 		
 		try
 		{
@@ -125,7 +124,8 @@ public class SipStackTool {
 	// Initialize SipStack using provided properties
 	public SipStack initializeSipStack(String transport, String myPort, Properties myProperties) throws Exception {
 		if (sipStack!=null){
-			tearDown();
+//			tearDown();
+			sipStack = null;
 		}
 
 		try

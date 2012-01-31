@@ -165,7 +165,7 @@ public class Click2CallBasicTest extends SipTestCase
 //		webArchive.addAsManifestResource("in-container-context.xml", "context.xml");
 		webArchive.addAsWebInfResource("in-container-web.xml", "web.xml");
 		webArchive.addAsWebInfResource("in-container-sip.xml", "sip.xml");
-		webArchive.addAsWebResource("index.html");
+//		webArchive.addAsWebResource("index.html");
 		return webArchive;
 	}
 
