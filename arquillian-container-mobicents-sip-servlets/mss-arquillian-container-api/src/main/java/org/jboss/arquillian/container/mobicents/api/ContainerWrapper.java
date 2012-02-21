@@ -11,6 +11,7 @@ import org.apache.catalina.Manager;
 import org.jboss.arquillian.container.spi.client.container.DeploymentException;
 import org.jboss.arquillian.container.spi.client.container.LifecycleException;
 import org.mobicents.servlet.sip.SipConnector;
+import org.mobicents.servlet.sip.catalina.SipStandardService;
 
 /**
  * Container wrapper interface to provide functionallity to the test client
@@ -51,6 +52,8 @@ public interface ContainerWrapper {
 	public void setSipStackProperties(Properties sipStackProperties);
 	
 	public Manager getSipStandardManager();
+	
+	public SipStandardService getSipStandardService();
 	
 	//Context related methods
 	public void reloadContext() throws DeploymentException;

@@ -11,10 +11,9 @@
 	</parent>
 
 	<groupId>org.jboss.arquillian.container</groupId>
-	<artifactId>mss-container-api</artifactId>
+	<artifactId>mss-arquillian-container-api</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
-	<name>mss-container-api</name>
-	<url>http://maven.apache.org</url>
+	<name>mss-arquillian-container-api</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
