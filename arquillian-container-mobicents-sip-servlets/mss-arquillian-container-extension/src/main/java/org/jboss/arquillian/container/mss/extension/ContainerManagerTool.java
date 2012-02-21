@@ -16,7 +16,6 @@ import org.jboss.arquillian.container.spi.client.container.LifecycleException;
 import org.jboss.shrinkwrap.api.Archive;
 import org.mobicents.servlet.sip.SipConnector;
 import org.mobicents.servlet.sip.catalina.SipStandardService;
-import org.mobicents.servlet.sip.core.SipService;
 
 /**
  * A wrapper to the Mobicents DeployableContainer providing access to the most common functionality for use in the test clients
@@ -119,6 +118,12 @@ public class ContainerManagerTool implements ContainerWrapper
 	public Manager getSipStandardManager()
 	{
 		return mssContainer.getSipStandardManager();
+	}
+	
+	@Override
+	public SipStandardService getSipStandardService()
+	{
+		return mssContainer.getSipStandardService();
 	}
 	
 	//Context related methods
