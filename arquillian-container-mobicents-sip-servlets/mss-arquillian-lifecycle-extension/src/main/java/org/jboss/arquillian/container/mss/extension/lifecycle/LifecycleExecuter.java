@@ -24,6 +24,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
+import java.util.UUID;
 
 import org.jboss.arquillian.config.descriptor.api.ArquillianDescriptor;
 import org.jboss.arquillian.config.descriptor.api.ContainerDef;
@@ -84,7 +86,7 @@ public class LifecycleExecuter
 				testClass.getMethods(
 						org.jboss.arquillian.container.mobicents.api.annotations.AfterUnDeploy.class));
 	}
-	
+
 	private DeployableContainer<?> deployableContainer;
 	private Object testInstance;
 
@@ -118,8 +120,9 @@ public class LifecycleExecuter
 	// #3
 	public void executeBeforeTest(@Observes Before event, TestClass testClass) throws IllegalArgumentException, IllegalAccessException{
 
+		boolean paramsEmpty = false;
 		testInstance = event.getTestInstance();
-		
+
 		Map<String, String> parameters = new HashMap<String, String>();
 		List<ContainerDef> containerDefs = descriptor.get().getContainers();
 		Iterator<ContainerDef> iter = containerDefs.iterator();
@@ -130,24 +133,31 @@ public class LifecycleExecuter
 		//Workaround for https://community.jboss.org/thread/178021
 		if (parameters.isEmpty()){
 			parameters = resetParameters();
+			paramsEmpty = true;
 		}
 
 		while (iter.hasNext()){
 			ContainerDef containerDef = (ContainerDef) iter.next();
 			String containerName = containerDef.getContainerName();
-			
+			boolean containerInManualMode = containerDef.getMode().equalsIgnoreCase("manual");
+
 			//If the container is not in manual mode then we cannot pass any parameters and control it
-			if (!containerDef.getMode().equalsIgnoreCase("manual")){
-				return;
-				//throw new UnsupportedOperationException("Container not in manual mode");
+			if (!containerInManualMode && !paramsEmpty){
+				//				return;
+				throw new UnsupportedOperationException("Container not in manual mode");
 			}
-			
-			if (parameters.isEmpty()){
-				containerController.get().start(containerName);
-			} else {
-				containerController.get().start(containerName,parameters);
+
+			if (containerInManualMode) {
+				if (paramsEmpty){
+					//Workaround for https://community.jboss.org/thread/178021
+					//Have to pass reseted parameters again, otherwise they are the same from the previous test
+					containerController.get().start(containerName,parameters);
+				} else {
+					containerController.get().start(containerName,parameters);
+				}
 			}
 		}
+
 	}
 
 
@@ -159,7 +169,10 @@ public class LifecycleExecuter
 		parameters.put("paramSeparator",paramSeparator);
 		parameters.put("valueSeparator", valueSeparator);
 
-		parameters.put("contextParam", "nothing-%%-nothing---");
+		String paramName = "ignore_"+UUID.randomUUID().toString();
+		String paramValue = "ignore_"+UUID.randomUUID().toString();
+		
+		parameters.put("contextParam", paramName+valueSeparator+paramValue);
 
 		return parameters;
 	}
@@ -171,13 +184,13 @@ public class LifecycleExecuter
 
 		while (iter.hasNext()){
 			ContainerDef containerDef = (ContainerDef) iter.next();
-			
+
 			//If the container is not in manual mode then we cannot pass any parameters and control it
 			if (!containerDef.getMode().equalsIgnoreCase("manual")){
 				return;
 				//throw new UnsupportedOperationException("Container not in manual mode");
 			}
-			
+
 			String containerName = containerDef.getContainerName();
 			containerController.get().stop(containerName);
 		}
@@ -253,7 +266,8 @@ public class LifecycleExecuter
 			}
 		}
 
-		parameters.put("contextParam", values.toString());
+		if (contextParam != null || !paramMap.isEmpty() )
+			parameters.put("contextParam", values.toString());
 
 		if(concurencyControl != null){
 			parameters.put("concurrencyControl", ((ConcurrencyControlMode)concurencyControl).value().toString());
