@@ -1,7 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-  <classpathentry kind="src" path="src/main/java" including="**/*.java"/>
-  <classpathentry kind="output" path="target/classes"/>
-  <classpathentry kind="var" path="M2_REPO/javax/sip/jain-sip-api/1.2/jain-sip-api-1.2.jar" sourcepath="M2_REPO/javax/sip/jain-sip-api/1.2/jain-sip-api-1.2-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/cafesip/sipunit/sipunit/1.0.0-SNAPSHOT/sipunit-1.0.0-SNAPSHOT.jar" sourcepath="M2_REPO/org/cafesip/sipunit/sipunit/1.0.0-SNAPSHOT/sipunit-1.0.0-SNAPSHOT-sources.jar"/>
-  <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry including="**/*.java" kind="src" path="src/main/java"/>
+	<classpathentry kind="var" path="M2_REPO/javax/sip/jain-sip-api/1.2/jain-sip-api-1.2.jar" sourcepath="M2_REPO/javax/sip/jain-sip-api/1.2/jain-sip-api-1.2-sources.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/sipunit"/>
+	<classpathentry kind="output" path="target/classes"/>
 </classpath>

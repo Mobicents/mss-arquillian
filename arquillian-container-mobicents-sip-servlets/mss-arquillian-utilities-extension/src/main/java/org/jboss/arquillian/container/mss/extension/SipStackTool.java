@@ -7,27 +7,28 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.logging.Logger;
 
-import org.cafesip.sipunit.SipCall;
-import org.cafesip.sipunit.SipPhone;
 import org.cafesip.sipunit.SipStack;
 
 
 /**
- * @author gvagenas@gmail.com
+ * Utility class to hide the complexity of creating a SipUnit sipStack.
+ * 
+ * @author <a href="mailto:gvagenas@gmail.com">George Vagenas</a>
  * 
  */
 public class SipStackTool {
-	
-	private Boolean initialized = false;
 
+	boolean initialized;
+	
+	private String sipStackName;
+	
 	private SipStack sipStack;
-	private SipPhone sipPhone;
-	private SipCall sipCall;
-
-	private final Logger logger = Logger.getLogger(SipStackTool.class.getName());
-//	private Properties properties = new Properties();
 	
-	public SipStackTool() {
+	private final Logger logger = Logger.getLogger(SipStackTool.class.getName());
+	
+	public SipStackTool(String sipStackName) 
+	{
+		this.setSipStackName(sipStackName);
 	}
 	
 	// Return SipStack
@@ -97,12 +98,12 @@ public class SipStackTool {
 	public SipStack initializeSipStack(String myTransport, String myHost, String myPort, String outboundProxy, Boolean myAutoDialog,
 			String threadPoolSize, String reentrantListener, Map<String, String> additionalProperties) throws Exception {
 		
-		//Clear objects that might left from previous tests
-		if (sipStack!=null){
-//			tearDown();
-//			sipStack.dispose();
-			sipStack = null;
-		}
+		/*
+		 * http://code.google.com/p/mobicents/issues/detail?id=3121
+		 * Reset sipStack when calling initializeSipStack method
+		 */
+		if (sipStack != null)
+			sipStack.dispose();
 		
 		try
 		{
@@ -129,14 +130,17 @@ public class SipStackTool {
 
 	// Initialize SipStack using provided properties
 	public SipStack initializeSipStack(String transport, String myPort, Properties myProperties) throws Exception {
-		if (sipStack!=null){
-//			tearDown();
-			sipStack = null;
-		}
 
+		/*
+		 * http://code.google.com/p/mobicents/issues/detail?id=3121
+		 * Reset sipStack when calling initializeSipStack method
+		 */
+		if (sipStack != null)
+			sipStack.dispose();
+		
 		try
 		{
-			sipStack = new SipStack(SipStack.PROTOCOL_UDP, Integer.valueOf(myPort), myProperties);
+			sipStack = new SipStack(transport, Integer.valueOf(myPort), myProperties);
 			logger.info("SipStack created!");
 
 			SipStack.setTraceEnabled(myProperties.getProperty("sipunit.trace")
@@ -155,63 +159,18 @@ public class SipStackTool {
 		return sipStack;
 	}
 	
-//	public SipPhone createSipPhone(String myURI) {
-//		return createSipPhone(null);
-//	}
-//
-//	// Create a SipPhone for proxy use
-//	public SipPhone createSipPhone(String proxyHost, String proxyProtocol, int proxyPort, String myURI) throws Exception{ 
-//
-//		try
-//		{
-//			sipPhone = sipStack.createSipPhone(proxyHost, proxyProtocol, proxyPort, myURI);
-//			logger.info("SipPhone created with address "+sipPhone.getAddress().toString());			
-//		}
-//		catch (Exception ex)
-//		{
-//			logger.info("Exception creating SipPhone: " + ex.getClass().getName()
-//					+ ": " + ex.getMessage());
-//			throw ex;
-//		}
-//
-//		return sipPhone;
-//	}
 
-	public void prepareSipCall() throws Exception{
-		if (sipPhone == null){
-			throw new Exception("SipPhone is not initialized");
-		}
-		
-		sipCall = sipPhone.createSipCall();
-		sipCall.listenForIncomingCall();
-	}
-	
-	public SipStack getSipStack() throws Exception{
-		if (!initialized){
-			throw new Exception("SipStack is null");
-		}
-		return sipStack;
+	public String getSipStackName() {
+		return sipStackName;
 	}
 
-	public SipPhone getSipPhone() throws Exception{
-		if (sipPhone==null){
-			throw new Exception("SipPhone is null");
-		}
-		return sipPhone;
+	public void setSipStackName(String sipStackName) {
+		this.sipStackName = sipStackName;
 	}
-	
-	public SipCall getSipCall() throws Exception{
-		if (sipCall==null){
-			throw new Exception("SipCall is null");
-		}
-		return sipCall;
-	}
+
 	
 	public void tearDown(){
-		if (sipCall!=null) sipCall.disposeNoBye();
-		if (sipPhone!=null) sipPhone.dispose();
 		if (sipStack!=null) sipStack.dispose();
 	}
-
 }
 

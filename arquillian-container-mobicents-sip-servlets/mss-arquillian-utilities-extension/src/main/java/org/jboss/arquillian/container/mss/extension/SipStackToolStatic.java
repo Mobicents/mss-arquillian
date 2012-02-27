@@ -24,7 +24,7 @@ public class SipStackToolStatic {
 
 	public static SipStackTool getInstance(){
 		if (instance == null){
-			instance = new SipStackTool();
+			instance = new SipStackTool("static");
 		} 
 		return instance;
 	}
