@@ -565,9 +565,7 @@ public class MobicentsSipServletsContainer implements DeployableContainer<Mobice
 		SipConnector sipConnector = new SipConnector();
 		sipConnector.setIpAddress(ipAddress);
 		sipConnector.setPort(port);
-		try {
-			sipConnector.setTransport(transport);
-		} catch (Exception e) {}
+		sipConnector.setTransport(transport);
 		
 		return sipConnector;	
 	}

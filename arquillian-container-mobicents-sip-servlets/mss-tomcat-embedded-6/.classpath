@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry including="**/*.java" kind="src" output="target/test-classes" path="src/test/java"/>
-	<classpathentry excluding="**/*.java" kind="src" output="target/test-classes" path="src/test/resources"/>
 	<classpathentry including="**/*.java" kind="src" path="src/main/java"/>
 	<classpathentry excluding="**/*.java" kind="src" path="src/main/resources"/>
 	<classpathentry kind="var" path="M2_REPO/javax/activation/activation/1.1.1/activation-1.1.1.jar" sourcepath="M2_REPO/javax/activation/activation/1.1.1/activation-1.1.1-sources.jar"/>
@@ -37,6 +35,7 @@
 	<classpathentry kind="var" path="M2_REPO/org/mobicents/javax/sip/mobicents-jain-sip-ext/1.0/mobicents-jain-sip-ext-1.0.jar" sourcepath="M2_REPO/org/mobicents/javax/sip/mobicents-jain-sip-ext/1.0/mobicents-jain-sip-ext-1.0-sources.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/mobicents/ha/javax/sip/mobicents-jain-sip-ha-core/1.2.0.FINAL/mobicents-jain-sip-ha-core-1.2.0.FINAL.jar" sourcepath="M2_REPO/org/mobicents/ha/javax/sip/mobicents-jain-sip-ha-core/1.2.0.FINAL/mobicents-jain-sip-ha-core-1.2.0.FINAL-sources.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/mobicents/ha/javax/sip/mobicents-jain-sip-jboss4/1.2.0.FINAL/mobicents-jain-sip-jboss4-1.2.0.FINAL.jar" sourcepath="M2_REPO/org/mobicents/ha/javax/sip/mobicents-jain-sip-jboss4/1.2.0.FINAL/mobicents-jain-sip-jboss4-1.2.0.FINAL-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/jboss/arquillian/container/mss-arquillian-container-api/1.0.0-SNAPSHOT/mss-arquillian-container-api-1.0.0-SNAPSHOT.jar" sourcepath="M2_REPO/org/jboss/arquillian/container/mss-arquillian-container-api/1.0.0-SNAPSHOT/mss-arquillian-container-api-1.0.0-SNAPSHOT-sources.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/jboss/arquillian/container/mss-arquillian-container-extension/1.0.0-SNAPSHOT/mss-arquillian-container-extension-1.0.0-SNAPSHOT.jar" sourcepath="M2_REPO/org/jboss/arquillian/container/mss-arquillian-container-extension/1.0.0-SNAPSHOT/mss-arquillian-container-extension-1.0.0-SNAPSHOT-sources.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/jboss/arquillian/container/mss-arquillian-lifecycle-extension/1.0.0-SNAPSHOT/mss-arquillian-lifecycle-extension-1.0.0-SNAPSHOT.jar" sourcepath="M2_REPO/org/jboss/arquillian/container/mss-arquillian-lifecycle-extension/1.0.0-SNAPSHOT/mss-arquillian-lifecycle-extension-1.0.0-SNAPSHOT-sources.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/apache/tomcat/servlet-api/6.0.33/servlet-api-6.0.33.jar"/>
@@ -54,8 +53,6 @@
 	<classpathentry kind="var" path="M2_REPO/org/mobicents/servlet/sip/sip-servlets-jruby/1.7.0-SNAPSHOT/sip-servlets-jruby-1.7.0-SNAPSHOT.jar" sourcepath="M2_REPO/org/mobicents/servlet/sip/sip-servlets-jruby/1.7.0-SNAPSHOT/sip-servlets-jruby-1.7.0-SNAPSHOT-sources.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/mobicents/servlet/sip/sip-servlets-spec/1.7.0-SNAPSHOT/sip-servlets-spec-1.7.0-SNAPSHOT.jar" sourcepath="M2_REPO/org/mobicents/servlet/sip/sip-servlets-spec/1.7.0-SNAPSHOT/sip-servlets-spec-1.7.0-SNAPSHOT-sources.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/mobicents/servlet/sip/sip-servlets-tomcat-jboss4/1.7.0-SNAPSHOT/sip-servlets-tomcat-jboss4-1.7.0-SNAPSHOT.jar" sourcepath="M2_REPO/org/mobicents/servlet/sip/sip-servlets-tomcat-jboss4/1.7.0-SNAPSHOT/sip-servlets-tomcat-jboss4-1.7.0-SNAPSHOT-sources.jar"/>
-	<classpathentry kind="var" path="M2_REPO/org/cafesip/sipunit/sipunit/1.0.0-SNAPSHOT/sipunit-1.0.0-SNAPSHOT.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/mss-arquillian-container-api"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

@@ -29,6 +29,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.sip.SipFactory;
+
 import org.apache.catalina.Authenticator;
 import org.apache.catalina.Container;
 import org.apache.catalina.Context;
@@ -793,8 +795,11 @@ public class MobicentsSipServletsEmbeddedImpl implements Lifecycle, SipServletsE
         // Stop our defined Connectors first
         Connector[] connectors = service.findConnectors();
         for (int i = 0; i < connectors.length; i++) {
-            if (connectors[i] instanceof Lifecycle)
-                ((Lifecycle) connectors[i]).stop();
+            if (connectors[i] instanceof Lifecycle){
+            	service.removeConnector(connectors[i]);
+            	((Lifecycle) connectors[i]).stop();
+            }
+                
         }
 
         // Stop our defined Engines second
@@ -817,6 +822,20 @@ public class MobicentsSipServletsEmbeddedImpl implements Lifecycle, SipServletsE
 				log.error("service already stopped ", e);
 			}		
 			ServerFactory.getServer().removeService(service);
+			/*
+			 * Issue: http://code.google.com/p/mobicents/issues/detail?id=3116
+			 * 
+			 * We need to force SipFactory to create a new SipStack each time it is asked. By default SipFactory will return the previously 
+			 * created SipStack if it exists. This will create a problem in a scenario like:
+			 * 
+			 * 1. container starts -> SipFactory creates sipStack
+			 * 2. System.setProperties such as as properties related to SSL
+			 * 3. container.restart -> SipFactory returns previously created SipStack that is not aware of the new System properties
+			 * 
+			 * Thats why the SipFactory needs to be reset in order to create a new SipStack every time the 
+			 * SipFactory.getInstance().createSipFactory (SipStandardService.initialize()) method is called.  
+			 */
+			SipFactory.getInstance().resetFactory();
 		}
 
     }
