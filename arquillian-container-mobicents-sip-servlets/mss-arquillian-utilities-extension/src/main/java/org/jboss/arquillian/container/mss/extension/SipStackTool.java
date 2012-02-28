@@ -102,15 +102,14 @@ public class SipStackTool {
 		 * http://code.google.com/p/mobicents/issues/detail?id=3121
 		 * Reset sipStack when calling initializeSipStack method
 		 */
-		if (sipStack != null)
-			sipStack.dispose();
+		tearDown();
 		
 		try
 		{
 			Properties myProperties = makeProperties(myTransport, myHost, myPort, outboundProxy, myAutoDialog, threadPoolSize, 
 					reentrantListener, additionalProperties);
 			sipStack = new SipStack(myTransport, Integer.valueOf(myPort), myProperties);
-			logger.info("SipStack created!");
+			logger.info("SipStack - "+sipStackName+" - created!");
 
 			SipStack.setTraceEnabled(myProperties.getProperty("sipunit.trace")
 					.equalsIgnoreCase("true")
@@ -135,13 +134,12 @@ public class SipStackTool {
 		 * http://code.google.com/p/mobicents/issues/detail?id=3121
 		 * Reset sipStack when calling initializeSipStack method
 		 */
-		if (sipStack != null)
-			sipStack.dispose();
+		tearDown();
 		
 		try
 		{
 			sipStack = new SipStack(transport, Integer.valueOf(myPort), myProperties);
-			logger.info("SipStack created!");
+			logger.info("SipStack - "+sipStackName+" - created!");
 
 			SipStack.setTraceEnabled(myProperties.getProperty("sipunit.trace")
 					.equalsIgnoreCase("true")
@@ -170,7 +168,8 @@ public class SipStackTool {
 
 	
 	public void tearDown(){
-		if (sipStack!=null) sipStack.dispose();
+		if (sipStack != null && sipStack.getSipProvider().getListeningPoints().length>0)
+			sipStack.dispose();
 	}
 }
 
