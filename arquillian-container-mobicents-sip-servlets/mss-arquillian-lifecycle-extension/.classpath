@@ -1,6 +1,4 @@
 <classpath>
-  <classpathentry kind="src" path="src/test/java" output="target/test-classes" including="**/*.java"/>
-  <classpathentry kind="src" path="src/test/resources" output="target/test-classes" excluding="**/*.java"/>
   <classpathentry kind="src" path="src/main/java" including="**/*.java"/>
   <classpathentry kind="src" path="src/main/resources" excluding="**/*.java"/>
   <classpathentry kind="output" path="target/classes"/>
@@ -24,7 +22,6 @@
   <classpathentry kind="var" path="M2_REPO/org/jboss/arquillian/test/arquillian-test-impl-base/1.0.0.Final-SNAPSHOT/arquillian-test-impl-base-1.0.0.Final-SNAPSHOT.jar" sourcepath="M2_REPO/org/jboss/arquillian/test/arquillian-test-impl-base/1.0.0.Final-SNAPSHOT/arquillian-test-impl-base-1.0.0.Final-SNAPSHOT-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/jboss/arquillian/test/arquillian-test-spi/1.0.0.Final-SNAPSHOT/arquillian-test-spi-1.0.0.Final-SNAPSHOT.jar" sourcepath="M2_REPO/org/jboss/arquillian/test/arquillian-test-spi/1.0.0.Final-SNAPSHOT/arquillian-test-spi-1.0.0.Final-SNAPSHOT-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/jboss/spec/javax/interceptor/jboss-interceptors-api_1.1_spec/1.0.0.Beta1/jboss-interceptors-api_1.1_spec-1.0.0.Beta1.jar" sourcepath="M2_REPO/org/jboss/spec/javax/interceptor/jboss-interceptors-api_1.1_spec/1.0.0.Beta1/jboss-interceptors-api_1.1_spec-1.0.0.Beta1-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/junit/junit/4.8.1/junit-4.8.1.jar" sourcepath="M2_REPO/junit/junit/4.8.1/junit-4.8.1-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/jboss/arquillian/container/mss-arquillian-container-api/1.0.0-SNAPSHOT/mss-arquillian-container-api-1.0.0-SNAPSHOT.jar" sourcepath="M2_REPO/org/jboss/arquillian/container/mss-arquillian-container-api/1.0.0-SNAPSHOT/mss-arquillian-container-api-1.0.0-SNAPSHOT-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/jboss/shrinkwrap/shrinkwrap-api/1.0.0-cr-1/shrinkwrap-api-1.0.0-cr-1.jar" sourcepath="M2_REPO/org/jboss/shrinkwrap/shrinkwrap-api/1.0.0-cr-1/shrinkwrap-api-1.0.0-cr-1-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/jboss/shrinkwrap/descriptors/shrinkwrap-descriptors-api/1.1.0-beta-1/shrinkwrap-descriptors-api-1.1.0-beta-1.jar" sourcepath="M2_REPO/org/jboss/shrinkwrap/descriptors/shrinkwrap-descriptors-api/1.1.0-beta-1/shrinkwrap-descriptors-api-1.1.0-beta-1-sources.jar"/>
@@ -32,6 +29,5 @@
   <classpathentry kind="var" path="M2_REPO/org/jboss/shrinkwrap/shrinkwrap-impl-base/1.0.0-cr-1/shrinkwrap-impl-base-1.0.0-cr-1.jar" sourcepath="M2_REPO/org/jboss/shrinkwrap/shrinkwrap-impl-base/1.0.0-cr-1/shrinkwrap-impl-base-1.0.0-cr-1-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/jboss/shrinkwrap/shrinkwrap-spi/1.0.0-cr-1/shrinkwrap-spi-1.0.0-cr-1.jar" sourcepath="M2_REPO/org/jboss/shrinkwrap/shrinkwrap-spi/1.0.0-cr-1/shrinkwrap-spi-1.0.0-cr-1-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/mobicents/servlet/sip/sip-servlets-annotations/1.7.0-SNAPSHOT/sip-servlets-annotations-1.7.0-SNAPSHOT.jar" sourcepath="M2_REPO/org/mobicents/servlet/sip/sip-servlets-annotations/1.7.0-SNAPSHOT/sip-servlets-annotations-1.7.0-SNAPSHOT-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/cafesip/sipunit/sipunit/1.0.0-SNAPSHOT/sipunit-1.0.0-SNAPSHOT.jar"/>
   <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 </classpath>
