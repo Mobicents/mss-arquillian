@@ -57,6 +57,7 @@ public class LifecycleTest {
 	@ArquillianResource
 	private Deployer deployer;
 
+	//SipUnit Elements
 	private SipStack receiver;
 	private SipCall sipCall;
 	private SipPhone sipPhone;
@@ -69,7 +70,7 @@ public class LifecycleTest {
 
 	@BeforeClass
 	public static void beforeClass(){
-		sipStackTool = new SipStackTool();
+		sipStackTool = new SipStackTool("receiver");
 	}
 
 	@Before
@@ -96,7 +97,7 @@ public class LifecycleTest {
 	 * Define the test archive here.
 	 * Pay attention to the properties of the Deployment annotation
 	 * --name: the arquillian Deployer, you can deploy/undeploy this archive by using the name here
-	 * --managed: the framework won't manage the lifecycle of this archive, the developer is responsible to deploy/undeploy
+	 * --managed: the framework WILL NOT manage the lifecycle of this archive, the developer is responsible to deploy/undeploy
 	 * --testable: as-client mode (https://docs.jboss.org/author/display/ARQ/Test+run+modes) 
 	 */
 	@Deployment(name="simple", managed=false, testable=false)

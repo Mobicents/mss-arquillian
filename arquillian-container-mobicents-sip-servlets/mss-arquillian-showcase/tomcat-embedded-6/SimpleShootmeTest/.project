@@ -1,7 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-  <name>CDITest</name>
-  <comment>NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
+  <name>SimpleShootmeTest</name>
+  <comment>Mobicents Tomcat Container for the Arquillian Project. NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
   <projects/>
   <buildSpec>
     <buildCommand>
