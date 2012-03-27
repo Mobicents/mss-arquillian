@@ -1,26 +1,77 @@
-<?xml version="1.0"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <artifactId>arquillian-parent-mobicents-sip-servlets</artifactId>
-    <groupId>org.jboss.arquillian.container</groupId>
-    <version>1.0.0-SNAPSHOT</version>
-  </parent>
-  <groupId>org.jboss.arquillian.container</groupId>
-  <artifactId>mss-arquillian-docs</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
-  <name>mss-arquillian-docs</name>
-  <url>http://maven.apache.org</url>
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+<!-- 	<parent> -->
+<!-- 		<artifactId>arquillian-parent-mobicents-sip-servlets</artifactId> -->
+<!-- 		<groupId>org.jboss.arquillian.container</groupId> -->
+<!-- 		<version>1.0.0-SNAPSHOT</version> -->
+<!-- 	</parent> -->
+
+	<groupId>org.jboss.arquillian.container.mobicents</groupId>
+	<artifactId>mss-arquillian-docs</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>mss-arquillian-docs</name>
+
+	<modules>
+		<module>sources</module>
+	</modules>
+
+	<profiles>
+		<profile>
+			<id>release</id>
+			<modules>
+				<module>sources-mobicents</module>
+				<module>sources-telescale</module>
+				<module>jdocbook-mobicents</module>
+				<module>jdocbook-telescale</module>
+			</modules>
+		</profile>
+		<profile>
+			<id>all</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<modules>
+				<module>sources-mobicents</module>
+				<module>sources-telescale</module>
+				<module>jdocbook-mobicents</module>
+				<module>jdocbook-telescale</module>
+			</modules>
+		</profile>
+		<profile>
+			<id>mobicents</id>
+			<modules>
+				<module>sources-mobicents</module>
+				<module>jdocbook-mobicents</module>
+			</modules>
+		</profile>
+		<profile>
+			<id>telescale</id>
+			<modules>
+				<module>sources-telescale</module>
+				<module>jdocbook-telescale</module>
+			</modules>
+		</profile>
+	</profiles>
+
+	<repositories>
+		<repository>
+			<id>jboss-public-repository-group</id>
+			<name>JBoss Public Maven Repository Group</name>
+			<url>https://repository.jboss.org/nexus/content/groups/public/</url>
+			<layout>default</layout>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+			</snapshots>
+		</repository>
+	</repositories>
+
 </project>

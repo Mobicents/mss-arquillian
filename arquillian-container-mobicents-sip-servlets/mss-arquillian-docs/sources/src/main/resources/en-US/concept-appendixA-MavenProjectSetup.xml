@@ -1,0 +1,186 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+<!ENTITY % BOOK_ENTITIES SYSTEM "MSS_Arquillian_Framework_User_Guide.ent">
+%BOOK_ENTITIES;
+]>
+
+<chapter id="MSS_Arquillian_Framework_AppendixA_Maven_Project_Setup">
+	<title>Appendix A - Maven project Setup</title>
+
+	<para>Mobicents Sip Servlets Testing framework maven depenendencies
+		are:
+	</para>
+
+	<itemizedlist>
+		<listitem>
+			<para>The MSS Arquillian Container based on Tomcat 6.x:</para>
+			<programlisting>
+		    <![CDATA[
+ 	<dependency>
+		<groupId>org.jboss.arquillian.container</groupId>
+		<artifactId>mss-tomcat-embedded-6</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</dependency>
+			]]>
+			</programlisting>
+		</listitem>
+		<listitem>
+			<para>The MSS Arquillian Container API </para>
+			<programlisting>
+		    <![CDATA[
+	<dependency>
+		<groupId>org.jboss.arquillian.container</groupId>
+		<artifactId>mss-arquillian-container-api</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</dependency>
+			]]>
+			</programlisting>
+		</listitem>
+		<listitem>
+			<para>The Utilities SipStackTool - ConstructContextMapTool </para>
+			<programlisting>
+		    <![CDATA[
+	<dependency>
+		<groupId>org.jboss.arquillian.container</groupId>
+		<artifactId>mss-arquillian-utilities-extension</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</dependency>
+			]]>
+			</programlisting>
+		</listitem>
+		<listitem>
+			<para>The sip client SipUnit </para>
+			<programlisting>
+		    <![CDATA[
+	<dependency>
+		<groupId>org.cafesip.sipunit</groupId>
+		<artifactId>sipunit</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+		<scope>test</scope>
+	</dependency>
+			]]>
+			</programlisting>
+		</listitem>
+	</itemizedlist>
+
+	<para>A complete list of dependencies:
+	</para>
+
+	<programlisting>
+		    <![CDATA[
+ 		<!-- org.apache.tomcat -->
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>coyote</artifactId>
+			<version>${version.org.apache.tomcat}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>jasper</artifactId>
+			<version>${version.org.apache.tomcat}</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>catalina</artifactId>
+			<version>${version.org.apache.tomcat}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- Mobicents -->
+		<dependency>
+			<groupId>org.mobicents.servlet.sip</groupId>
+			<artifactId>sip-servlets-catalina</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.mobicents.servlet.sip</groupId>
+			<artifactId>sip-servlets-application-router</artifactId>
+			<version>1.7.0-SNAPSHOT</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.mobicents.servlet.sip</groupId>
+			<artifactId>sip-servlets-tomcat-jboss4</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>javax.sip</groupId>
+			<artifactId>jain-sip-api</artifactId>
+			<version>1.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.sip</groupId>
+			<artifactId>jain-sip-ri</artifactId>
+			<version>1.2.X-SNAPSHOT</version>
+		</dependency>
+
+		<!-- testing -->
+
+		<dependency>
+			<groupId>org.jboss.arquillian.junit</groupId>
+			<artifactId>arquillian-junit-container</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+			<version>4.10</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.cafesip.sipunit</groupId>
+			<artifactId>sipunit</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.arquillian.container</groupId>
+			<artifactId>mss-tomcat-embedded-6</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.arquillian.container</groupId>
+			<artifactId>mss-arquillian-container-api</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.arquillian.container</groupId>
+			<artifactId>mss-arquillian-utilities-extension</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.dnsjava</groupId>
+			<artifactId>dnsjava</artifactId>
+			<version>2.0.6</version>
+			<scope>test</scope>
+		</dependency>
+
+
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.14</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4</version>
+			<scope>test</scope>
+		</dependency>
+			]]>
+			</programlisting>
+</chapter>

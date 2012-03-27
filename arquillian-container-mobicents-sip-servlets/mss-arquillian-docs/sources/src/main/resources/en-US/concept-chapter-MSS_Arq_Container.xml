@@ -1,0 +1,218 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+<!ENTITY % BOOK_ENTITIES SYSTEM "MSS_Arquillian_Framework_User_Guide.ent">
+%BOOK_ENTITIES;
+]>
+<chapter id="MSS-Arquillian-Container">
+	<title>Mobicents Sip Servlets Arquillian Container</title>
+
+	<para>Arquillian is a container-oriented test framework and the MSS
+		Arquillian Framework provides an Arquillian container suitable to
+		deploy Sip Servlets applications.
+	</para>
+	<para>The Mobicents Arquillian container is based on Mobicents Sip
+		Servlets 1.7 - Tomcat 6.x
+		platform.
+	</para>
+
+	<note id="Container_Should_Be_In_Classpath_2">
+		<title>How Arquillian controls the container</title>
+		<para>
+			In order for the Arquillian to pick up the container defined here
+			and
+			use it, start/deploy/test/undeploy/stop, the container have to
+			be in
+			the classpath of the test project (see
+			<xref linkend="MSS_Arquillian_Framework_AppendixA_Maven_Project_Setup">Appendix A - Maven project setup</xref>
+			)
+		</para>
+	</note>
+
+	<formalpara id="MSS_Arquillian_Framework_Container_Configuration">
+		<title>MSS Arquillian Container configuration</title>
+		<programlisting>
+		    <![CDATA[
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<arquillian xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://jboss.org/schema/arquillian"
+	xsi:schemaLocation="http://jboss.org/schema/arquillian http://jboss.org/schema/arquillian/arquillian_1_0.xsd">
+	
+       <container qualifier="mss-tomcat-embedded-6" default="true">
+           <configuration>
+               <property name="tomcatHome">target/mss-tomcat-embedded-6</property>
+               <property name="workDir">work</property>
+               <property name="bindHttpPort">8888</property>
+               <property name="unpackArchive">true</property>
+               <property name="sipConnectors">:5070</property>
+               <property name="sipApplicationRouterProviderClassName">org.mobicents.servlet.sip.router.DefaultApplicationRouterProvider</property>
+           </configuration>
+       </container>
+</arquillian>
+	]]>
+	</programlisting>
+		<para>The options that can be change in the configuration file are:
+		</para>
+		<itemizedlist>
+			<listitem>
+				<programlisting><![CDATA[ <container qualifier="mss-tomcat-embedded-6" default="true" mode="manual"> ]]></programlisting>
+				<para>Change
+					the container's mode to manual mode, that will instruct
+					Arquillian that user is responsible for the
+					start/stop of the
+					container.
+				</para>
+			</listitem>
+			<listitem>
+				<programlisting><![CDATA[ <property name="bindHttpPort">8888</property> ]]></programlisting>
+				<para>Change the HTTP bind address.
+				</para>
+			</listitem>
+			<listitem>
+				<programlisting><![CDATA[ <property name="sipConnectors">:5070</property> ]]></programlisting>
+				<para>Change the sip connectors. Here you can change the port and/or
+					provide more sip connectors.
+				</para>
+				<para>A sip connector can be defined as :PORT/TRANSPORT such as
+					:5070/TCP or :5070 (omitting transport means UDP). Multiple values
+					are separated using comma. Example:
+				</para>
+				<programlisting> <![CDATA[ <property name="sipConnectors">:5070,:5070/TCP</property> ]]></programlisting>
+			</listitem>
+		</itemizedlist>
+	</formalpara>
+
+	<formalpara id="MSS_Arquillian_Framework_Container_Manual_Mode">
+		<title>MSS Arquillian Container in MANUAL mode</title>
+
+		<para>The framework provides an extension to control the lifecycle of
+			the container when in manual mode. The extension is registered by
+			default, so when
+			the user configures the container in manual mode, the
+			lifecycle
+			extension makes sure to start and stop the container as
+			needed.
+		</para>
+
+		<para>One important feature of the framework is that when the
+			container is in manual mode, the user can pass context parameters to
+			the container.
+			The context parameters are valid only for the running
+			test method and so
+			a test case can use the container using different
+			context parameters
+			for each
+			of the test methods it contains.
+		</para>
+
+		<para>In order to pass context parameters to the container the
+			following annotations/tools can be used:
+		</para>
+		<itemizedlist>
+			<listitem>
+				<para>@ContextParam(name,value) for passing a single context
+					parameter. Example:
+				</para>
+				<programlisting>
+		<![CDATA[ 	
+		@Test @ContextParam(name="cancel",value="true")
+		public void testShootistCancel() throws Exception 
+		]]>
+				</programlisting>
+			</listitem>
+			<listitem>
+				<para>@ContextParamMap("nameOfTheContextParamMap") for passing a Map
+					of context parameters.
+				</para>
+				<para>In order to use this annotation you should have defined a Map
+					in the code and use the same annotation/name to annotate it.
+					For
+					this reason the framework already provides a tool to create Map of
+					context parameters.
+				</para>
+				<para>So you can use the ContextParamMapConstructTool to create a
+					new Map and annotate it with the same name as the one that will
+					be
+					used in the method. Example:
+				</para>
+				<programlisting>			
+	<![CDATA[ 	
+	@ContextParamMap("testShootistCancelServletTimerCancelConcurrency")
+	private Map<String, String> contextMap1 = new ContextParamMapConstructTool()
+	.put("cancel", "true")
+	.put("servletTimer", "500").getMap();
+
+	@Test @ContextParamMap("testShootistCancelServletTimerCancelConcurrency") 
+	@ConcurrencyControlMode(org.mobicents.servlet.sip.annotation.ConcurrencyControlMode.SipApplicationSession)
+	public void testShootistCancelServletTimerCancelConcurrency() throws Exception  ]]>
+				</programlisting>
+			</listitem>
+		</itemizedlist>
+
+		<para>Also, when the container is in manual mode, the developer can
+			control the concurrency control mode. To do this one should use the
+			@ConcurrencyControlMode(org.mobicents.servlet.sip.annotation.ConcurrencyControlMode)
+			annotation. Example:
+		</para>
+		<programlisting><![CDATA[ 	
+	@ContextParamMap("testShootistCancelServletTimerCancelConcurrency")
+	private Map<String, String> contextMap1 = new ContextParamMapConstructTool()
+	.put("cancel", "true")
+	.put("servletTimer", "500").getMap();
+
+	@Test @ContextParamMap("testShootistCancelServletTimerCancelConcurrency") 
+	@ConcurrencyControlMode(org.mobicents.servlet.sip.annotation.ConcurrencyControlMode.SipApplicationSession)
+	public void testShootistCancelServletTimerCancelConcurrency() throws Exception  ]]></programlisting>
+
+	</formalpara>
+	
+	<formalpara id="MSS_Arquillian_Framework_Container_Manager_Tool">
+		<title>MSS Arquillian Container Manager Tool</title>
+	
+	<para>There are times where during a test you need to changes the container in order to test behavior in edge situations. For
+	example, add/remove/change a sip connector, start/stop the container, change the SipStack properties and restart the container for them to
+	get effective, reload the context. </para>
+	
+	<para>For this you will need to the ContainerManagerTool from an extension of the framework. Again no need to register the extension yourself.</para>
+	
+	<para>For example: 
+	<programlisting><![CDATA[ 	
+	@RunWith(Arquillian.class)
+	public class ShootistSipServletTest extends SipTestCase{
+	...
+	@GetDeployableContainer
+	private ContainerManagerTool containerManager;
+	...
+	@Test
+	public void testShootistUserAgentHeader() throws Exception {
+	...
+	logger.info("Restart the container and pass new SipStack properties");
+	containerManager.restartContainer(sipStackProperties);
+	...
+	//Get the list of SipConnectors
+	List<SipConnector> sipConnectors = containerManager.getSipConnectors();
+
+	logger.info("Stop the SipConnectors");
+	for (SipConnector sipConnector : sipConnectors) {
+		containerManager.removeSipConnector(sipConnector);
+	}
+	logger.info("Add a new SipConnector");
+	containerManager.addSipConnector("127.0.0.1", 5070, ListeningPoint.UDP);
+	Thread.sleep(TIMEOUT);
+	logger.info("About to deploy the application");
+	deployer.deploy(testArchive);	
+	]]>
+	</programlisting>
+	</para>
+	
+	<warning id="Removing_SipConnectors">
+		<title>SipConnectors and container restart</title>
+		<para>
+		Remember that on startup the container is using the configuration to setup again, so that means that the 
+		SipConnectors will be created again. So if you removed any sip connector, then after restart of the container, you will need to remove them 
+		again and then add then one you wish.
+		</para>
+	</warning>
+	
+	</formalpara>	
+	
+</chapter>
