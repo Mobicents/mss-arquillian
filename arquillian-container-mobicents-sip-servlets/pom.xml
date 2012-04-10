@@ -49,7 +49,7 @@
 		<maven.compiler.source>1.5</maven.compiler.source>
 
 		<!-- Mobicents -->
-		<version.org.mobicents.servlet.sip>1.7.0-SNAPSHOT</version.org.mobicents.servlet.sip>
+		<version.org.mobicents.servlet.sip>1.7.0.FINAL</version.org.mobicents.servlet.sip>
 		<version.mobicents.jain.sip.ext>1.1-SNAPSHOT</version.mobicents.jain.sip.ext>
 		<version.mobicents.jain.sip.jboss4>1.2.0.FINAL</version.mobicents.jain.sip.jboss4>
 
@@ -160,14 +160,14 @@
 			</dependency>
 
 			<dependency>
-				<groupId>org.mobicents.servlet.sip</groupId>
+				<groupId>org.mobicents.servlet.sip.containers</groupId>
 				<artifactId>sip-servlets-catalina</artifactId>
 				<version>${version.org.mobicents.servlet.sip}</version>
 				<scope>provided</scope>
 			</dependency>
 
 			<dependency>
-				<groupId>org.mobicents.servlet.sip</groupId>
+				<groupId>org.mobicents.servlet.sip.containers</groupId>
 				<artifactId>sip-servlets-tomcat-jboss4</artifactId>
 				<version>${version.org.mobicents.servlet.sip}</version>
 				<scope>provided</scope>
