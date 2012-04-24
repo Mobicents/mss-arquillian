@@ -169,7 +169,7 @@ public class SipStackTool {
 	
 	public void tearDown(){
 		if (sipStack != null && sipStack.getSipProvider().getListeningPoints().length>0)
-			sipStack.dispose();
+			sipStack = null;
 	}
 }
 
