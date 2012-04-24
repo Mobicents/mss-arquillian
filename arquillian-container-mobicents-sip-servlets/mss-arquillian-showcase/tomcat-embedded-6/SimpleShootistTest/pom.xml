@@ -38,7 +38,7 @@
 
 		<!-- Mobicents -->
 		<dependency>
-			<groupId>org.mobicents.servlet.sip</groupId>
+			<groupId>org.mobicents.servlet.sip.containers</groupId>
 			<artifactId>sip-servlets-catalina</artifactId>
 			<scope>provided</scope>
 		</dependency>
@@ -72,7 +72,7 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.mobicents.servlet.sip</groupId>
+			<groupId>org.mobicents.servlet.sip.containers</groupId>
 			<artifactId>sip-servlets-tomcat-jboss4</artifactId>
 			<scope>provided</scope>
 		</dependency>
