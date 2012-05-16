@@ -1,30 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-  <classpathentry kind="src" path="src/main/java" including="**/*.java"/>
-  <classpathentry kind="src" path="src/main/resources" excluding="**/*.java"/>
-  <classpathentry kind="output" path="target/classes"/>
-  <classpathentry kind="var" path="M2_REPO/org/apache/tomcat/annotations-api/6.0.33/annotations-api-6.0.33.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/jboss/arquillian/config/arquillian-config-api/1.0.0.Final-SNAPSHOT/arquillian-config-api-1.0.0.Final-SNAPSHOT.jar" sourcepath="M2_REPO/org/jboss/arquillian/config/arquillian-config-api/1.0.0.Final-SNAPSHOT/arquillian-config-api-1.0.0.Final-SNAPSHOT-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/jboss/arquillian/config/arquillian-config-impl-base/1.0.0.Final-SNAPSHOT/arquillian-config-impl-base-1.0.0.Final-SNAPSHOT.jar" sourcepath="M2_REPO/org/jboss/arquillian/config/arquillian-config-impl-base/1.0.0.Final-SNAPSHOT/arquillian-config-impl-base-1.0.0.Final-SNAPSHOT-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/jboss/arquillian/container/arquillian-container-spi/1.0.0.Final-SNAPSHOT/arquillian-container-spi-1.0.0.Final-SNAPSHOT.jar" sourcepath="M2_REPO/org/jboss/arquillian/container/arquillian-container-spi/1.0.0.Final-SNAPSHOT/arquillian-container-spi-1.0.0.Final-SNAPSHOT-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/jboss/arquillian/container/arquillian-container-test-api/1.0.0.Final-SNAPSHOT/arquillian-container-test-api-1.0.0.Final-SNAPSHOT.jar" sourcepath="M2_REPO/org/jboss/arquillian/container/arquillian-container-test-api/1.0.0.Final-SNAPSHOT/arquillian-container-test-api-1.0.0.Final-SNAPSHOT-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/jboss/arquillian/container/arquillian-container-test-spi/1.0.0.Final-SNAPSHOT/arquillian-container-test-spi-1.0.0.Final-SNAPSHOT.jar" sourcepath="M2_REPO/org/jboss/arquillian/container/arquillian-container-test-spi/1.0.0.Final-SNAPSHOT/arquillian-container-test-spi-1.0.0.Final-SNAPSHOT-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/jboss/arquillian/core/arquillian-core-api/1.0.0.Final-SNAPSHOT/arquillian-core-api-1.0.0.Final-SNAPSHOT.jar" sourcepath="M2_REPO/org/jboss/arquillian/core/arquillian-core-api/1.0.0.Final-SNAPSHOT/arquillian-core-api-1.0.0.Final-SNAPSHOT-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/jboss/arquillian/core/arquillian-core-spi/1.0.0.Final-SNAPSHOT/arquillian-core-spi-1.0.0.Final-SNAPSHOT.jar" sourcepath="M2_REPO/org/jboss/arquillian/core/arquillian-core-spi/1.0.0.Final-SNAPSHOT/arquillian-core-spi-1.0.0.Final-SNAPSHOT-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/jboss/arquillian/test/arquillian-test-api/1.0.0.Final-SNAPSHOT/arquillian-test-api-1.0.0.Final-SNAPSHOT.jar" sourcepath="M2_REPO/org/jboss/arquillian/test/arquillian-test-api/1.0.0.Final-SNAPSHOT/arquillian-test-api-1.0.0.Final-SNAPSHOT-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/jboss/arquillian/test/arquillian-test-spi/1.0.0.Final-SNAPSHOT/arquillian-test-spi-1.0.0.Final-SNAPSHOT.jar" sourcepath="M2_REPO/org/jboss/arquillian/test/arquillian-test-spi/1.0.0.Final-SNAPSHOT/arquillian-test-spi-1.0.0.Final-SNAPSHOT-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/apache/tomcat/catalina/6.0.33/catalina-6.0.33.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/apache/tomcat/juli/6.0.33/juli-6.0.33.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/jboss/arquillian/container/mss-arquillian-container-api/1.0.0-SNAPSHOT/mss-arquillian-container-api-1.0.0-SNAPSHOT.jar" sourcepath="M2_REPO/org/jboss/arquillian/container/mss-arquillian-container-api/1.0.0-SNAPSHOT/mss-arquillian-container-api-1.0.0-SNAPSHOT-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/apache/tomcat/servlet-api/6.0.33/servlet-api-6.0.33.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/jboss/shrinkwrap/shrinkwrap-api/1.0.0-cr-1/shrinkwrap-api-1.0.0-cr-1.jar" sourcepath="M2_REPO/org/jboss/shrinkwrap/shrinkwrap-api/1.0.0-cr-1/shrinkwrap-api-1.0.0-cr-1-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/jboss/shrinkwrap/descriptors/shrinkwrap-descriptors-api/1.1.0-beta-1/shrinkwrap-descriptors-api-1.1.0-beta-1.jar" sourcepath="M2_REPO/org/jboss/shrinkwrap/descriptors/shrinkwrap-descriptors-api/1.1.0-beta-1/shrinkwrap-descriptors-api-1.1.0-beta-1-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/jboss/shrinkwrap/descriptors/shrinkwrap-descriptors-spi/1.1.0-beta-1/shrinkwrap-descriptors-spi-1.1.0-beta-1.jar" sourcepath="M2_REPO/org/jboss/shrinkwrap/descriptors/shrinkwrap-descriptors-spi/1.1.0-beta-1/shrinkwrap-descriptors-spi-1.1.0-beta-1-sources.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/mobicents/servlet/sip/sip-servlets-annotations/1.7.0-SNAPSHOT/sip-servlets-annotations-1.7.0-SNAPSHOT.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/mobicents/servlet/sip/sip-servlets-catalina/1.7.0-SNAPSHOT/sip-servlets-catalina-1.7.0-SNAPSHOT.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/mobicents/servlet/sip/sip-servlets-client/1.7.0-SNAPSHOT/sip-servlets-client-1.7.0-SNAPSHOT.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/mobicents/servlet/sip/sip-servlets-core-api/1.7.0-SNAPSHOT/sip-servlets-core-api-1.7.0-SNAPSHOT.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/mobicents/servlet/sip/sip-servlets-impl/1.7.0-SNAPSHOT/sip-servlets-impl-1.7.0-SNAPSHOT.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/mobicents/servlet/sip/sip-servlets-jruby/1.7.0-SNAPSHOT/sip-servlets-jruby-1.7.0-SNAPSHOT.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/mobicents/servlet/sip/sip-servlets-spec/1.7.0-SNAPSHOT/sip-servlets-spec-1.7.0-SNAPSHOT.jar"/>
-  <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry including="**/*.java" kind="src" path="src/main/java"/>
+	<classpathentry excluding="**/*.java" kind="src" path="src/main/resources"/>
+	<classpathentry kind="var" path="M2_REPO/org/apache/tomcat/annotations-api/6.0.33/annotations-api-6.0.33.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/jboss/arquillian/config/arquillian-config-api/1.0.0.Final-SNAPSHOT/arquillian-config-api-1.0.0.Final-SNAPSHOT.jar" sourcepath="M2_REPO/org/jboss/arquillian/config/arquillian-config-api/1.0.0.Final-SNAPSHOT/arquillian-config-api-1.0.0.Final-SNAPSHOT-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/jboss/arquillian/config/arquillian-config-impl-base/1.0.0.Final-SNAPSHOT/arquillian-config-impl-base-1.0.0.Final-SNAPSHOT.jar" sourcepath="M2_REPO/org/jboss/arquillian/config/arquillian-config-impl-base/1.0.0.Final-SNAPSHOT/arquillian-config-impl-base-1.0.0.Final-SNAPSHOT-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/jboss/arquillian/container/arquillian-container-spi/1.0.0.Final-SNAPSHOT/arquillian-container-spi-1.0.0.Final-SNAPSHOT.jar" sourcepath="M2_REPO/org/jboss/arquillian/container/arquillian-container-spi/1.0.0.Final-SNAPSHOT/arquillian-container-spi-1.0.0.Final-SNAPSHOT-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/jboss/arquillian/container/arquillian-container-test-api/1.0.0.Final-SNAPSHOT/arquillian-container-test-api-1.0.0.Final-SNAPSHOT.jar" sourcepath="M2_REPO/org/jboss/arquillian/container/arquillian-container-test-api/1.0.0.Final-SNAPSHOT/arquillian-container-test-api-1.0.0.Final-SNAPSHOT-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/jboss/arquillian/container/arquillian-container-test-spi/1.0.0.Final-SNAPSHOT/arquillian-container-test-spi-1.0.0.Final-SNAPSHOT.jar" sourcepath="M2_REPO/org/jboss/arquillian/container/arquillian-container-test-spi/1.0.0.Final-SNAPSHOT/arquillian-container-test-spi-1.0.0.Final-SNAPSHOT-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/jboss/arquillian/core/arquillian-core-api/1.0.0.Final-SNAPSHOT/arquillian-core-api-1.0.0.Final-SNAPSHOT.jar" sourcepath="M2_REPO/org/jboss/arquillian/core/arquillian-core-api/1.0.0.Final-SNAPSHOT/arquillian-core-api-1.0.0.Final-SNAPSHOT-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/jboss/arquillian/core/arquillian-core-spi/1.0.0.Final-SNAPSHOT/arquillian-core-spi-1.0.0.Final-SNAPSHOT.jar" sourcepath="M2_REPO/org/jboss/arquillian/core/arquillian-core-spi/1.0.0.Final-SNAPSHOT/arquillian-core-spi-1.0.0.Final-SNAPSHOT-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/jboss/arquillian/test/arquillian-test-api/1.0.0.Final-SNAPSHOT/arquillian-test-api-1.0.0.Final-SNAPSHOT.jar" sourcepath="M2_REPO/org/jboss/arquillian/test/arquillian-test-api/1.0.0.Final-SNAPSHOT/arquillian-test-api-1.0.0.Final-SNAPSHOT-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/jboss/arquillian/test/arquillian-test-spi/1.0.0.Final-SNAPSHOT/arquillian-test-spi-1.0.0.Final-SNAPSHOT.jar" sourcepath="M2_REPO/org/jboss/arquillian/test/arquillian-test-spi/1.0.0.Final-SNAPSHOT/arquillian-test-spi-1.0.0.Final-SNAPSHOT-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/apache/tomcat/catalina/6.0.33/catalina-6.0.33.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/apache/tomcat/juli/6.0.33/juli-6.0.33.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/apache/tomcat/servlet-api/6.0.33/servlet-api-6.0.33.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/jboss/shrinkwrap/shrinkwrap-api/1.0.0-cr-1/shrinkwrap-api-1.0.0-cr-1.jar" sourcepath="M2_REPO/org/jboss/shrinkwrap/shrinkwrap-api/1.0.0-cr-1/shrinkwrap-api-1.0.0-cr-1-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/jboss/shrinkwrap/descriptors/shrinkwrap-descriptors-api/1.1.0-beta-1/shrinkwrap-descriptors-api-1.1.0-beta-1.jar" sourcepath="M2_REPO/org/jboss/shrinkwrap/descriptors/shrinkwrap-descriptors-api/1.1.0-beta-1/shrinkwrap-descriptors-api-1.1.0-beta-1-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/jboss/shrinkwrap/descriptors/shrinkwrap-descriptors-spi/1.1.0-beta-1/shrinkwrap-descriptors-spi-1.1.0-beta-1.jar" sourcepath="M2_REPO/org/jboss/shrinkwrap/descriptors/shrinkwrap-descriptors-spi/1.1.0-beta-1/shrinkwrap-descriptors-spi-1.1.0-beta-1-sources.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/mobicents/servlet/sip/sip-servlets-annotations/1.7.0-SNAPSHOT/sip-servlets-annotations-1.7.0-SNAPSHOT.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/mobicents/servlet/sip/sip-servlets-catalina/1.7.0-SNAPSHOT/sip-servlets-catalina-1.7.0-SNAPSHOT.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/mobicents/servlet/sip/sip-servlets-client/1.7.0-SNAPSHOT/sip-servlets-client-1.7.0-SNAPSHOT.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/mobicents/servlet/sip/sip-servlets-core-api/1.7.0-SNAPSHOT/sip-servlets-core-api-1.7.0-SNAPSHOT.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/mobicents/servlet/sip/sip-servlets-impl/1.7.0-SNAPSHOT/sip-servlets-impl-1.7.0-SNAPSHOT.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/mobicents/servlet/sip/sip-servlets-jruby/1.7.0-SNAPSHOT/sip-servlets-jruby-1.7.0-SNAPSHOT.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/mobicents/servlet/sip/sip-servlets-spec/1.7.0-SNAPSHOT/sip-servlets-spec-1.7.0-SNAPSHOT.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/mss-arquillian-container-api"/>
+	<classpathentry kind="output" path="target/classes"/>
 </classpath>

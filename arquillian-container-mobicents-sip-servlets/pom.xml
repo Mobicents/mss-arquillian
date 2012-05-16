@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
 	<!-- JBoss Parent -->
 	<parent>
 		<groupId>org.jboss</groupId>
 		<artifactId>jboss-parent</artifactId>
 		<version>6-beta-2</version>
-		<relativePath/>
+		<relativePath />
 	</parent>
 
 	<!-- Model Version -->
@@ -35,7 +36,7 @@
 
 		<!-- Versioning -->
 		<version.arquillian_core>1.0.0.Final</version.arquillian_core>
-<!-- 		<version.arquillian_core>1.0.0.Final-SNAPSHOT</version.arquillian_core> -->
+		<!-- <version.arquillian_core>1.0.0.Final-SNAPSHOT</version.arquillian_core> -->
 		<version.shrinkwrap_tomcat>1.0.0</version.shrinkwrap_tomcat>
 
 		<version.jboss_spec>1.0.0.Final</version.jboss_spec>
@@ -160,6 +161,13 @@
 			</dependency>
 
 			<dependency>
+				<groupId>org.mobicents.servlet.sip</groupId>
+				<artifactId>sip-servlets-annotations</artifactId>
+				<version>${version.org.mobicents.servlet.sip}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
 				<groupId>org.mobicents.servlet.sip.containers</groupId>
 				<artifactId>sip-servlets-catalina</artifactId>
 				<version>${version.org.mobicents.servlet.sip}</version>
@@ -172,20 +180,20 @@
 				<version>${version.org.mobicents.servlet.sip}</version>
 				<scope>provided</scope>
 			</dependency>
-			
-					<dependency>
-			<groupId>org.mobicents.ha.javax.sip</groupId>
-			<artifactId>mobicents-jain-sip-jboss4</artifactId>
-			<version>${version.mobicents.jain.sip.jboss4}</version>
-		</dependency>
 
-		<dependency>
-			<groupId>org.mobicents.javax.sip</groupId>
-			<artifactId>mobicents-jain-sip-ext</artifactId>
-			<version>${version.mobicents.jain.sip.ext}</version>
-		</dependency>
-			
-			
+			<dependency>
+				<groupId>org.mobicents.ha.javax.sip</groupId>
+				<artifactId>mobicents-jain-sip-jboss4</artifactId>
+				<version>${version.mobicents.jain.sip.jboss4}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.mobicents.javax.sip</groupId>
+				<artifactId>mobicents-jain-sip-ext</artifactId>
+				<version>${version.mobicents.jain.sip.ext}</version>
+			</dependency>
+
+
 		</dependencies>
 	</dependencyManagement>
 
@@ -200,6 +208,23 @@
 					<localCheckout>true</localCheckout>
 				</configuration>
 			</plugin>
+
+			<plugin>
+				<artifactId>maven-clean-plugin</artifactId>
+				<version>2.4.1</version>
+				<configuration>
+					<filesets>
+						<fileset>
+							<directory>${basedir}</directory>
+							<includes>
+								<include>logs/</include>
+							</includes>
+							<followSymlinks>false</followSymlinks>
+						</fileset>
+					</filesets>
+				</configuration>
+			</plugin>
+
 			<!-- <plugin> <artifactId>maven-surefire-plugin</artifactId> <configuration> 
 				<systemProperties> <org.apache.maven.global-settings>${settings}</org.apache.maven.global-settings> 
 				</systemProperties> </configuration> </plugin> -->
@@ -212,10 +237,10 @@
 		<module>mss-arquillian-container-api</module>
 		<module>mss-arquillian-lifecycle-extension</module>
 		<module>mss-arquillian-container-extension</module>
-    <module>mss-arquillian-utilities-extension</module>
-    <!--<module>mss-arquillian-docs</module>-->
-    <!--<module>mss-arquillian-docs</module>-->
-  </modules>
+		<module>mss-arquillian-utilities-extension</module>
+		<!--<module>mss-arquillian-docs</module> -->
+		<!--<module>mss-arquillian-docs</module> -->
+	</modules>
 
 	<repositories>
 		<repository>
