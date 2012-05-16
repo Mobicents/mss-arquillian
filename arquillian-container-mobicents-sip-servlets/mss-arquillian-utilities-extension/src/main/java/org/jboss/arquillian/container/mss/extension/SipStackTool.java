@@ -45,8 +45,8 @@ public class SipStackTool {
 		properties.setProperty("javax.sip.AUTOMATIC_DIALOG_SUPPORT", (myAutoDialog ? "on" : "off"));
 		
 		properties.setProperty("gov.nist.javax.sip.TRACE_LEVEL", "32");
-		properties.setProperty("gov.nist.javax.sip.DEBUG_LOG", "logs/testAgent_debug"+myPort+".txt");
-		properties.setProperty("gov.nist.javax.sip.SERVER_LOG", "logs/testAgent_log"+myPort+".xml");
+		properties.setProperty("gov.nist.javax.sip.DEBUG_LOG", "logs/testAgent_debug_"+myPort+"_"+myTransport+".txt");
+		properties.setProperty("gov.nist.javax.sip.SERVER_LOG", "logs/testAgent_serverLog_"+myPort+"_"+myTransport+".xml");
 		properties.setProperty("gov.nist.javax.sip.READ_TIMEOUT", "1000");
 		properties.setProperty("gov.nist.javax.sip.CACHE_SERVER_CONNECTIONS", "false");
 		properties.setProperty("gov.nist.javax.sip.PASS_INVITE_NON_2XX_ACK_TO_LISTENER", "true");
@@ -168,8 +168,11 @@ public class SipStackTool {
 
 	
 	public void tearDown(){
-		if (sipStack != null && sipStack.getSipProvider().getListeningPoints().length>0)
+		if (sipStack != null && sipStack.getSipProvider().getListeningPoints().length>0){
+			//SipStack.dispose() will cause previously reserved port to be released
+			sipStack.dispose();
 			sipStack = null;
+		}
 	}
 }
 
