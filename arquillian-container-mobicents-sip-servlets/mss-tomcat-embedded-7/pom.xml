@@ -1,26 +1,210 @@
 <?xml version="1.0"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <artifactId>arquillian-parent-mobicents-sip-servlets</artifactId>
-    <groupId>org.jboss.arquillian.container</groupId>
-    <version>1.0.0-SNAPSHOT</version>
-  </parent>
-  <groupId>org.jboss.arquillian.container</groupId>
-  <artifactId>mss-tomcat7-embedded</artifactId>
-  <version>1.0.0.Final-SNAPSHOT</version>
-  <name>mss-tomcat7-embedded</name>
-  <url>http://maven.apache.org</url>
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<artifactId>arquillian-parent-mobicents-sip-servlets</artifactId>
+		<groupId>org.jboss.arquillian.container</groupId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+
+	<groupId>org.jboss.arquillian.container</groupId>
+	<artifactId>mss-tomcat-embedded-7</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<name>Arquillian Mobicents Container Tomcat Embedded 7.x</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies>
+
+		<!-- Mobicents Arquillian Container API -->
+
+		<dependency>
+			<groupId>org.jboss.arquillian.container</groupId>
+			<artifactId>mss-arquillian-container-api</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+
+		<!-- Mobicents Arquillian Lifecycle Extension -->
+
+		<dependency>
+			<groupId>org.jboss.arquillian.container</groupId>
+			<artifactId>mss-arquillian-lifecycle-extension</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+
+		<!-- Mobicents Arquillian Container Extension -->
+		<dependency>
+			<groupId>org.jboss.arquillian.container</groupId>
+			<artifactId>mss-arquillian-container-extension</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+
+		<!-- Mobicents Arquillian Utilities Extension -->
+		<dependency>
+			<groupId>org.jboss.arquillian.container</groupId>
+			<artifactId>mss-arquillian-utilities-extension</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+			<!-- org.jboss.arquillian -->
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.arquillian.container</groupId>
+			<artifactId>arquillian-container-test-spi</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.shrinkwrap.container</groupId>
+			<artifactId>shrinkwrap-container-mobicents-tomcat-7</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+
+		<!-- org.apache.tomcat -->
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-coyote</artifactId>
+			<version>${version.org.apache.tomcat-7}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-catalina</artifactId>
+			<version>${version.org.apache.tomcat-7}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-jasper</artifactId>
+			<version>${version.org.apache.tomcat-7}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-tribes</artifactId>
+			<version>${version.org.apache.tomcat-7}</version>
+		</dependency>
+
+		<!-- Mobicents -->
+		<dependency>
+			<groupId>org.mobicents.servlet.sip.containers</groupId>
+			<artifactId>sip-servlets-catalina-7</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.sip</groupId>
+			<artifactId>jain-sip-api</artifactId>
+			<version>1.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mobicents.servlet.sip.containers</groupId>
+			<artifactId>sip-servlets-tomcat-7</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.dnsjava</groupId>
+			<artifactId>dnsjava</artifactId>
+			<version>2.0.6</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mobicents.servlet.sip</groupId>
+			<artifactId>sip-servlets-impl</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mobicents.servlet.sip</groupId>
+			<artifactId>sip-servlets-client</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mobicents.servlet.sip</groupId>
+			<artifactId>sip-servlets-application-router</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mobicents.servlet.sip</groupId>
+			<artifactId>sip-servlets-core-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mobicents.ha.javax.sip</groupId>
+			<artifactId>mobicents-jain-sip-jboss4</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mobicents.javax.sip</groupId>
+			<artifactId>mobicents-jain-sip-ext</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.sip</groupId>
+			<artifactId>jain-sip-ri</artifactId>
+			<version>1.2.163</version>
+		</dependency>
+
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.14</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mobicents.tools</groupId>
+			<artifactId>sip-balancer-jar</artifactId>
+			<version>1.2.FINAL</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mobicents.ha.javax.sip</groupId>
+			<artifactId>mobicents-jain-sip-ha-core</artifactId>
+			<version>1.2.0.FINAL</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.activation</groupId>
+			<artifactId>activation</artifactId>
+			<version>1.1.1</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>2.8</version>
+				<configuration>
+					<useProjectReferences>false</useProjectReferences>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
 </project>

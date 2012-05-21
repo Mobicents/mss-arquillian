@@ -43,6 +43,7 @@
 		<version.weld_servlet>1.1.2.Final</version.weld_servlet>
 		<version.ctf.core>1.0.0-SNAPSHOT</version.ctf.core>
 		<version.org.apache.tomcat>6.0.33</version.org.apache.tomcat>
+		<version.org.apache.tomcat-7>7.0.27</version.org.apache.tomcat-7>
 
 		<!-- override from parent -->
 		<version.release.plugin>2.1</version.release.plugin>
@@ -176,6 +177,20 @@
 
 			<dependency>
 				<groupId>org.mobicents.servlet.sip.containers</groupId>
+				<artifactId>sip-servlets-catalina-7</artifactId>
+				<version>${version.org.mobicents.servlet.sip}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.mobicents.servlet.sip.containers</groupId>
+				<artifactId>sip-servlets-tomcat-7</artifactId>
+				<version>${version.org.mobicents.servlet.sip}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.mobicents.servlet.sip.containers</groupId>
 				<artifactId>sip-servlets-tomcat-jboss4</artifactId>
 				<version>${version.org.mobicents.servlet.sip}</version>
 				<scope>provided</scope>
@@ -233,7 +248,7 @@
 
 	<modules>
 		<module>mss-tomcat-embedded-6</module>
-		<!-- <module>mss-tomcat-embedded-7</module> -->
+		<module>mss-tomcat-embedded-7</module>
 		<module>mss-arquillian-container-api</module>
 		<module>mss-arquillian-lifecycle-extension</module>
 		<module>mss-arquillian-container-extension</module>
