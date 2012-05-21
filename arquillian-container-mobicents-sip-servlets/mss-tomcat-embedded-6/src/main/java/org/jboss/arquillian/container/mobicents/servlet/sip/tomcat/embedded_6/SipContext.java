@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1;
+package org.jboss.arquillian.container.mobicents.servlet.sip.tomcat.embedded_6;
 
 import org.jboss.arquillian.container.spi.client.protocol.metadata.HTTPContext;
 

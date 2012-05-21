@@ -19,7 +19,7 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-package org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1;
+package org.jboss.arquillian.container.mobicents.servlet.sip.tomcat.embedded_6;
 
 import java.beans.PropertyChangeSupport;
 import java.io.File;
@@ -82,18 +82,18 @@ public class MobicentsSipServletsEmbeddedImpl implements Lifecycle, SipServletsE
     }
 
 
-    /**
-     * Construct a new instance of this class with specified properties.
-     *
-     * @param realm Realm implementation to be inherited by all components
-     *  (unless overridden further down the container hierarchy)
-     */
-    public MobicentsSipServletsEmbeddedImpl(Realm realm) {
-
-        setRealm(realm);
-        setSecurityProtection();
-        
-    }
+//    /**
+//     * Construct a new instance of this class with specified properties.
+//     *
+//     * @param realm Realm implementation to be inherited by all components
+//     *  (unless overridden further down the container hierarchy)
+//     */
+//    public MobicentsSipServletsEmbeddedImpl(Realm realm) {
+//
+//        setRealm(realm);
+//        setSecurityProtection();
+//        
+//    }
 
 
     // ----------------------------------------------------- Instance Variables
@@ -172,95 +172,95 @@ public class MobicentsSipServletsEmbeddedImpl implements Lifecycle, SipServletsE
     // ------------------------------------------------------------- Properties
 
 
-    /* (non-Javadoc)
-	 * @see org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1.MobicentsSipServletsEmbedded#isUseNaming()
-	 */
-    @Override
-	public boolean isUseNaming() {
+//    /* (non-Javadoc)
+//	 * @see org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1.MobicentsSipServletsEmbedded#isUseNaming()
+//	 */
+//    @Override
+//	public boolean isUseNaming() {
+//
+//        return (this.useNaming);
+//
+//    }
+//
+//
+//    /* (non-Javadoc)
+//	 * @see org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1.MobicentsSipServletsEmbedded#setUseNaming(boolean)
+//	 */
+//    @Override
+//	public void setUseNaming(boolean useNaming) {
+//
+//        boolean oldUseNaming = this.useNaming;
+//        this.useNaming = useNaming;
+//        support.firePropertyChange("useNaming", new Boolean(oldUseNaming),
+//                                   new Boolean(this.useNaming));
+//
+//    }
 
-        return (this.useNaming);
-
-    }
-
-
-    /* (non-Javadoc)
-	 * @see org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1.MobicentsSipServletsEmbedded#setUseNaming(boolean)
-	 */
-    @Override
-	public void setUseNaming(boolean useNaming) {
-
-        boolean oldUseNaming = this.useNaming;
-        this.useNaming = useNaming;
-        support.firePropertyChange("useNaming", new Boolean(oldUseNaming),
-                                   new Boolean(this.useNaming));
-
-    }
-
-
-    /* (non-Javadoc)
-	 * @see org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1.MobicentsSipServletsEmbedded#isRedirectStreams()
-	 */
-    @Override
-	public boolean isRedirectStreams() {
-
-        return (this.redirectStreams);
-
-    }
-
-
-    /* (non-Javadoc)
-	 * @see org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1.MobicentsSipServletsEmbedded#setRedirectStreams(boolean)
-	 */
-    @Override
-	public void setRedirectStreams(boolean redirectStreams) {
-
-        boolean oldRedirectStreams = this.redirectStreams;
-        this.redirectStreams = redirectStreams;
-        support.firePropertyChange("redirectStreams", new Boolean(oldRedirectStreams),
-                                   new Boolean(this.redirectStreams));
-
-    }
-
-
-    /* (non-Javadoc)
-	 * @see org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1.MobicentsSipServletsEmbedded#getRealm()
-	 */
-    @Override
-	public Realm getRealm() {
-
-        return (this.realm);
-
-    }
+//
+//    /* (non-Javadoc)
+//	 * @see org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1.MobicentsSipServletsEmbedded#isRedirectStreams()
+//	 */
+//    @Override
+//	public boolean isRedirectStreams() {
+//
+//        return (this.redirectStreams);
+//
+//    }
+//
+//
+//    /* (non-Javadoc)
+//	 * @see org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1.MobicentsSipServletsEmbedded#setRedirectStreams(boolean)
+//	 */
+//    @Override
+//	public void setRedirectStreams(boolean redirectStreams) {
+//
+//        boolean oldRedirectStreams = this.redirectStreams;
+//        this.redirectStreams = redirectStreams;
+//        support.firePropertyChange("redirectStreams", new Boolean(oldRedirectStreams),
+//                                   new Boolean(this.redirectStreams));
+//
+//    }
 
 
-    /* (non-Javadoc)
-	 * @see org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1.MobicentsSipServletsEmbedded#setRealm(org.apache.catalina.Realm)
-	 */
-    @Override
-	public void setRealm(Realm realm) {
+//    /* (non-Javadoc)
+//	 * @see org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1.MobicentsSipServletsEmbedded#getRealm()
+//	 */
+//    @Override
+//	public Realm getRealm() {
+//
+//        return (this.realm);
+//
+//    }
+//
+//
+//    /* (non-Javadoc)
+//	 * @see org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1.MobicentsSipServletsEmbedded#setRealm(org.apache.catalina.Realm)
+//	 */
+//    @Override
+//	public void setRealm(Realm realm) {
+//
+//        Realm oldRealm = this.realm;
+//        this.realm = realm;
+//        support.firePropertyChange("realm", oldRealm, this.realm);
+//
+//    }
 
-        Realm oldRealm = this.realm;
-        this.realm = realm;
-        support.firePropertyChange("realm", oldRealm, this.realm);
-
-    }
-
-    /* (non-Javadoc)
-	 * @see org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1.MobicentsSipServletsEmbedded#setAwait(boolean)
-	 */
-    @Override
-	public void setAwait(boolean b) {
-        await = b;
-    }
-
-    /* (non-Javadoc)
-	 * @see org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1.MobicentsSipServletsEmbedded#isAwait()
-	 */
-    @Override
-	public boolean isAwait() {
-        return await;
-    }
-
+//    /* (non-Javadoc)
+//	 * @see org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1.MobicentsSipServletsEmbedded#setAwait(boolean)
+//	 */
+//    @Override
+//	public void setAwait(boolean b) {
+//        await = b;
+//    }
+//
+//    /* (non-Javadoc)
+//	 * @see org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1.MobicentsSipServletsEmbedded#isAwait()
+//	 */
+//    @Override
+//	public boolean isAwait() {
+//        return await;
+//    }
+//
     /* (non-Javadoc)
 	 * @see org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1.MobicentsSipServletsEmbedded#setCatalinaHome(java.lang.String)
 	 */
@@ -667,37 +667,37 @@ public class MobicentsSipServletsEmbeddedImpl implements Lifecycle, SipServletsE
     }
 
 
-    /*
-     * Maps the specified login method to the specified authenticator, allowing
-     * the mappings in org/apache/catalina/startup/Authenticators.properties
-     * to be overridden.
-     *
-     * @param authenticator Authenticator to handle authentication for the
-     * specified login method
-     * @param loginMethod Login method that maps to the specified authenticator
-     *
-     * @throws IllegalArgumentException if the specified authenticator does not
-     * implement the org.apache.catalina.Valve interface
-     */
-    /* (non-Javadoc)
-	 * @see org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1.MobicentsSipServletsEmbedded#addAuthenticator(org.apache.catalina.Authenticator, java.lang.String)
-	 */
-    @Override
-	public void addAuthenticator(Authenticator authenticator,
-                                 String loginMethod) {
-        if (!(authenticator instanceof Valve)) {
-            throw new IllegalArgumentException(
-                sm.getString("embedded.authenticatorNotInstanceOfValve"));
-        }
-        if (authenticators == null) {
-            synchronized (this) {
-                if (authenticators == null) {
-                    authenticators = new HashMap();
-                }
-            }
-        }
-        authenticators.put(loginMethod, authenticator);
-    }
+//    /*
+//     * Maps the specified login method to the specified authenticator, allowing
+//     * the mappings in org/apache/catalina/startup/Authenticators.properties
+//     * to be overridden.
+//     *
+//     * @param authenticator Authenticator to handle authentication for the
+//     * specified login method
+//     * @param loginMethod Login method that maps to the specified authenticator
+//     *
+//     * @throws IllegalArgumentException if the specified authenticator does not
+//     * implement the org.apache.catalina.Valve interface
+//     */
+//    /* (non-Javadoc)
+//	 * @see org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1.MobicentsSipServletsEmbedded#addAuthenticator(org.apache.catalina.Authenticator, java.lang.String)
+//	 */
+//    @Override
+//	public void addAuthenticator(Authenticator authenticator,
+//                                 String loginMethod) {
+//        if (!(authenticator instanceof Valve)) {
+//            throw new IllegalArgumentException(
+//                sm.getString("embedded.authenticatorNotInstanceOfValve"));
+//        }
+//        if (authenticators == null) {
+//            synchronized (this) {
+//                if (authenticators == null) {
+//                    authenticators = new HashMap();
+//                }
+//            }
+//        }
+//        authenticators.put(loginMethod, authenticator);
+//    }
 
 
     // ------------------------------------------------------ Lifecycle Methods

@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.arquillian.container.mobicents.servlet.sip.embedded_1.ar;
+package org.jboss.arquillian.container.mobicents.servlet.sip.tomcat.embedded_6.ar;
 
 import javax.servlet.sip.ar.SipApplicationRouter;
 import javax.servlet.sip.ar.spi.SipApplicationRouterProvider;

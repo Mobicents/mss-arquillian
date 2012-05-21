@@ -15,22 +15,22 @@
 	<name>ShrinkWrap Mobicents Sip Servles 1.x Integration Extension</name>
 	<description>ShrinkWrap integration extension for the Mobicents Sip Servles 1.x container</description>
 
-<distributionManagement>
-    <repository>
-      <id>jboss-releases-repository</id>
-      <name>JBoss Releases Repository</name>
-      <url>https://repository.jboss.org/nexus/service/local/staging/deploy/maven2/</url>
-    </repository>
-    <snapshotRepository>
-      <id>jboss-snapshots-repository</id>
-      <name>JBoss Snapshots Repository</name>
-      <url>https://repository.jboss.org/nexus/content/repositories/snapshots/</url>
-    </snapshotRepository>
-  </distributionManagement>
+	<distributionManagement>
+		<repository>
+			<id>jboss-releases-repository</id>
+			<name>JBoss Releases Repository</name>
+			<url>https://repository.jboss.org/nexus/service/local/staging/deploy/maven2/</url>
+		</repository>
+		<snapshotRepository>
+			<id>jboss-snapshots-repository</id>
+			<name>JBoss Snapshots Repository</name>
+			<url>https://repository.jboss.org/nexus/content/repositories/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
 
 	<properties>
 		<version.org.apache.tomcat_tomcat>6.0.35</version.org.apache.tomcat_tomcat>
-		<version.org.mobicents.servlet.sip>1.7.0-SNAPSHOT</version.org.mobicents.servlet.sip>
+		<version.org.mobicents.servlet.sip>1.7.0.FINAL</version.org.mobicents.servlet.sip>
 		<version.org.apache.httpcomponents_httpclient>4.0.1</version.org.apache.httpcomponents_httpclient>
 		<!-- <version.org.jboss.shrinkwrap>1.0.0-beta-1</version.org.jboss.shrinkwrap> -->
 		<version.org.jboss.shrinkwrap>1.0.0</version.org.jboss.shrinkwrap>
@@ -40,13 +40,10 @@
 	</properties>
 
 	<!-- SCM -->
-<!-- 
-	<scm>
-		<connection>scm:git:git://github.com/shrinkwrap/shrinkwrap-container-mobicents-13.git</connection>
-		<developerConnection>scm:git:git@github.com:shrinkwrap/shrinkwrap-container-mobicents-13.git</developerConnection>
-		<url>https://github.com/shrinkwrap/shrinkwrap-container-mobicents-13</url>
-	</scm>
- -->
+	<!-- <scm> <connection>scm:git:git://github.com/shrinkwrap/shrinkwrap-container-mobicents-13.git</connection> 
+		<developerConnection>scm:git:git@github.com:shrinkwrap/shrinkwrap-container-mobicents-13.git</developerConnection> 
+		<url>https://github.com/shrinkwrap/shrinkwrap-container-mobicents-13</url> 
+		</scm> -->
 	<scm>
 		<connection>scm:svn:https://mobicents.googlecode.com/svn/trunk/frameworks/testing/shrinkwrap-container-mobicents</connection>
 		<developerConnection>scm:svn:https://mobicents.googlecode.com/svn/trunk/frameworks/testing/shrinkwrap-container-mobicents</developerConnection>
@@ -117,14 +114,14 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.mobicents.servlet.sip</groupId>
+			<groupId>org.mobicents.servlet.sip.containers</groupId>
 			<artifactId>sip-servlets-tomcat-jboss4</artifactId>
 			<version>${version.org.mobicents.servlet.sip}</version>
 			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
-			<groupId>org.mobicents.servlet.sip</groupId>
+			<groupId>org.mobicents.servlet.sip.containers</groupId>
 			<artifactId>sip-servlets-catalina</artifactId>
 			<version>${version.org.mobicents.servlet.sip}</version>
 			<scope>provided</scope>

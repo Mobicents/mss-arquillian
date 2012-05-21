@@ -23,46 +23,46 @@ import org.apache.catalina.core.StandardService;
  */
 public interface SipServletsEmbeddedContainer {
 
-	/**
-	 * Return true if naming is enabled.
-	 */
-	public abstract boolean isUseNaming();
+//	/**
+//	 * Return true if naming is enabled.
+//	 */
+//	public abstract boolean isUseNaming();
+//
+//	/**
+//	 * Enables or disables naming support.
+//	 *
+//	 * @param useNaming The new use naming value
+//	 */
+//	public abstract void setUseNaming(boolean useNaming);
 
-	/**
-	 * Enables or disables naming support.
-	 *
-	 * @param useNaming The new use naming value
-	 */
-	public abstract void setUseNaming(boolean useNaming);
+//	/**
+//	 * Return true if redirection of standard streams is enabled.
+//	 */
+//	public abstract boolean isRedirectStreams();
+//
+//	/**
+//	 * Enables or disables naming support.
+//	 *
+//	 * @param useNaming The new use naming value
+//	 */
+//	public abstract void setRedirectStreams(boolean redirectStreams);
 
-	/**
-	 * Return true if redirection of standard streams is enabled.
-	 */
-	public abstract boolean isRedirectStreams();
-
-	/**
-	 * Enables or disables naming support.
-	 *
-	 * @param useNaming The new use naming value
-	 */
-	public abstract void setRedirectStreams(boolean redirectStreams);
-
-	/**
-	 * Return the default Realm for our Containers.
-	 */
-	public abstract Realm getRealm();
-
-	/**
-	 * Set the default Realm for our Containers.
-	 *
-	 * @param realm The new default realm
-	 */
-	public abstract void setRealm(Realm realm);
-
-	public abstract void setAwait(boolean b);
-
-	public abstract boolean isAwait();
-
+//	/**
+//	 * Return the default Realm for our Containers.
+//	 */
+//	public abstract Realm getRealm();
+//
+//	/**
+//	 * Set the default Realm for our Containers.
+//	 *
+//	 * @param realm The new default realm
+//	 */
+//	public abstract void setRealm(Realm realm);
+//
+//	public abstract void setAwait(boolean b);
+//
+//	public abstract boolean isAwait();
+//
 	public abstract void setCatalinaHome(String s);
 
 	public abstract void setCatalinaBase(String s);
@@ -220,40 +220,20 @@ public interface SipServletsEmbeddedContainer {
 	 */
 	public abstract void removeHost(Host host);
 
-	/*
-	 * Maps the specified login method to the specified authenticator, allowing
-	 * the mappings in org/apache/catalina/startup/Authenticators.properties
-	 * to be overridden.
-	 *
-	 * @param authenticator Authenticator to handle authentication for the
-	 * specified login method
-	 * @param loginMethod Login method that maps to the specified authenticator
-	 *
-	 * @throws IllegalArgumentException if the specified authenticator does not
-	 * implement the org.apache.catalina.Valve interface
-	 */
-	public abstract void addAuthenticator(Authenticator authenticator,
-			String loginMethod);
-
-	/**
-	 * Add a lifecycle event listener to this component.
-	 *
-	 * @param listener The listener to add
-	 */
-	public abstract void addLifecycleListener(LifecycleListener listener);
-
-	/**
-	 * Get the lifecycle listeners associated with this lifecycle. If this 
-	 * Lifecycle has no listeners registered, a zero-length array is returned.
-	 */
-	public abstract LifecycleListener[] findLifecycleListeners();
-
-	/**
-	 * Remove a lifecycle event listener from this component.
-	 *
-	 * @param listener The listener to remove
-	 */
-	public abstract void removeLifecycleListener(LifecycleListener listener);
+//	/*
+//	 * Maps the specified login method to the specified authenticator, allowing
+//	 * the mappings in org/apache/catalina/startup/Authenticators.properties
+//	 * to be overridden.
+//	 *
+//	 * @param authenticator Authenticator to handle authentication for the
+//	 * specified login method
+//	 * @param loginMethod Login method that maps to the specified authenticator
+//	 *
+//	 * @throws IllegalArgumentException if the specified authenticator does not
+//	 * implement the org.apache.catalina.Valve interface
+//	 */
+//	public abstract void addAuthenticator(Authenticator authenticator,
+//			String loginMethod);
 
 	/**
 	 * Prepare for the beginning of active use of the public methods of this
