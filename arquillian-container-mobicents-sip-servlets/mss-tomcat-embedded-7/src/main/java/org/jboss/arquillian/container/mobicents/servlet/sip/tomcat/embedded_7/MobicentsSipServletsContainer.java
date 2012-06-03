@@ -290,6 +290,8 @@ public class MobicentsSipServletsContainer implements DeployableContainer<Mobice
 		embedded.addConnector(connector);
 		embedded.setConnector(connector);
 
+        // Enable JNDI - it is disabled by default.
+        embedded.enableNaming();
 		//	      
 		// starts embedded Mobicents Sip Serlvets
 		embedded.start();
