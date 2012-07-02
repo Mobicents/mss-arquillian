@@ -15,19 +15,25 @@
 	<name>ShrinkWrap Mobicents Sip Servles 1.x Integration Extension</name>
 	<description>ShrinkWrap integration extension for the Mobicents Sip Servles 1.x container</description>
 
-<!-- 	<distributionManagement> -->
-<!-- 		<repository> -->
-<!-- 			<id>jboss-releases-repository</id> -->
-<!-- 			<name>JBoss Releases Repository</name> -->
-<!-- 			<url>https://repository.jboss.org/nexus/service/local/staging/deploy/maven2/</url> -->
-<!-- 		</repository> -->
-<!-- 		<snapshotRepository> -->
-<!-- 			<id>jboss-snapshots-repository</id> -->
-<!-- 			<name>JBoss Snapshots Repository</name> -->
-<!-- 			<url>https://repository.jboss.org/nexus/content/repositories/snapshots/</url> -->
-<!-- 		</snapshotRepository> -->
-<!-- 	</distributionManagement> -->
+	<scm>
+		<connection>scm:svn:https://code.google.com/p/commtesting.mss-arquillian/shrinkwrap-container-mobicents</connection>
+		<developerConnection>scm:svn:https://code.google.com/p/commtesting.mss-arquillian/shrinkwrap-container-mobicents</developerConnection>
+		<url>http://code.google.com/p/commtesting.mss-arquillian/shrinkwrap-container-mobicents</url>
+	</scm>
 
+	<distributionManagement>
+		<repository>
+			<id>mobicents-releases-repository</id>
+			<name>Mobicents Releases Repository</name>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+		</repository>
+		<snapshotRepository>
+			<id>mobicents-snapshots-repository</id>
+			<name>Mobicents Snapshots Repository</name>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
+	
 	<properties>
 		<version.org.apache.tomcat_tomcat>6.0.35</version.org.apache.tomcat_tomcat>
 		<version.org.mobicents.servlet.sip>1.7.0.FINAL</version.org.mobicents.servlet.sip>
@@ -38,12 +44,6 @@
 		<jain-sip-api.version>1.2</jain-sip-api.version>
 		<jain-sip-ri.version>1.2.167</jain-sip-ri.version>
 	</properties>
-
-	<scm>
-		<connection>scm:svn:https://code.google.com/p/commtesting.mss-arquillian/shrinkwrap-container-mobicents</connection>
-		<developerConnection>scm:svn:https://code.google.com/p/commtesting.mss-arquillian/shrinkwrap-container-mobicents</developerConnection>
-		<url>http://code.google.com/p/commtesting.mss-arquillian/shrinkwrap-container-mobicents</url>
-	</scm>
 
 	<!-- Licenses -->
 	<licenses>
