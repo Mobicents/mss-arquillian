@@ -1,16 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
   <name>shrinkwrap-container-mobicents</name>
   <comment>ShrinkWrap integration extension for the Mobicents Sip Servles 1.x container. NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
-  <projects>
-    <project>sip-servlets-annotations</project>
-    <project>sip-servlets-catalina</project>
-    <project>sip-servlets-client</project>
-    <project>sip-servlets-core-api</project>
-    <project>sip-servlets-impl</project>
-    <project>sip-servlets-jruby</project>
-    <project>sip-servlets-spec</project>
-    <project>sip-servlets-tomcat-jboss4</project>
-  </projects>
+  <projects/>
   <buildSpec>
     <buildCommand>
       <name>org.eclipse.jdt.core.javabuilder</name>
