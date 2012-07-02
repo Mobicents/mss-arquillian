@@ -10,14 +10,14 @@
 
 	<groupId>org.jboss.shrinkwrap.container</groupId>
 	<artifactId>shrinkwrap-container-mobicents</artifactId>
-	<version>1.0.0-ALPHA1</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<name>ShrinkWrap Mobicents Sip Servles 1.x Integration Extension</name>
 	<description>ShrinkWrap integration extension for the Mobicents Sip Servles 1.x container</description>
 
 	<scm>
-		<connection>scm:git:https://code.google.com/p/commtesting.mss-arquillian/shrinkwrap-container-mobicents/tags/shrinkwrap-container-mobicents-1.0.0-ALPHA1</connection>
-		<developerConnection>scm:git:https://code.google.com/p/commtesting.mss-arquillian/shrinkwrap-container-mobicents/tags/shrinkwrap-container-mobicents-1.0.0-ALPHA1</developerConnection>
-		<url>http://code.google.com/p/commtesting.mss-arquillian/shrinkwrap-container-mobicents/tags/shrinkwrap-container-mobicents-1.0.0-ALPHA1</url>
+		<connection>scm:git:https://code.google.com/p/commtesting.mss-arquillian/</connection>
+		<developerConnection>scm:git:https://code.google.com/p/commtesting.mss-arquillian/</developerConnection>
+		<url>http://code.google.com/p/commtesting.mss-arquillian/</url>
 	</scm>
 
 	<distributionManagement>
