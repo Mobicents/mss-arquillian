@@ -15,18 +15,18 @@
 	<name>ShrinkWrap Mobicents Sip Servles 1.x Integration Extension</name>
 	<description>ShrinkWrap integration extension for the Mobicents Sip Servles 1.x container</description>
 
-	<distributionManagement>
-		<repository>
-			<id>jboss-releases-repository</id>
-			<name>JBoss Releases Repository</name>
-			<url>https://repository.jboss.org/nexus/service/local/staging/deploy/maven2/</url>
-		</repository>
-		<snapshotRepository>
-			<id>jboss-snapshots-repository</id>
-			<name>JBoss Snapshots Repository</name>
-			<url>https://repository.jboss.org/nexus/content/repositories/snapshots/</url>
-		</snapshotRepository>
-	</distributionManagement>
+<!-- 	<distributionManagement> -->
+<!-- 		<repository> -->
+<!-- 			<id>jboss-releases-repository</id> -->
+<!-- 			<name>JBoss Releases Repository</name> -->
+<!-- 			<url>https://repository.jboss.org/nexus/service/local/staging/deploy/maven2/</url> -->
+<!-- 		</repository> -->
+<!-- 		<snapshotRepository> -->
+<!-- 			<id>jboss-snapshots-repository</id> -->
+<!-- 			<name>JBoss Snapshots Repository</name> -->
+<!-- 			<url>https://repository.jboss.org/nexus/content/repositories/snapshots/</url> -->
+<!-- 		</snapshotRepository> -->
+<!-- 	</distributionManagement> -->
 
 	<properties>
 		<version.org.apache.tomcat_tomcat>6.0.35</version.org.apache.tomcat_tomcat>
@@ -36,18 +36,13 @@
 		<version.org.jboss.shrinkwrap>1.0.0</version.org.jboss.shrinkwrap>
 		<version.junit_junit>4.8</version.junit_junit>
 		<jain-sip-api.version>1.2</jain-sip-api.version>
-		<jain-sip-ri.version>1.2.X-SNAPSHOT</jain-sip-ri.version>
+		<jain-sip-ri.version>1.2.167</jain-sip-ri.version>
 	</properties>
 
-	<!-- SCM -->
-	<!-- <scm> <connection>scm:git:git://github.com/shrinkwrap/shrinkwrap-container-mobicents-13.git</connection> 
-		<developerConnection>scm:git:git@github.com:shrinkwrap/shrinkwrap-container-mobicents-13.git</developerConnection> 
-		<url>https://github.com/shrinkwrap/shrinkwrap-container-mobicents-13</url> 
-		</scm> -->
 	<scm>
-		<connection>scm:svn:https://mobicents.googlecode.com/svn/trunk/frameworks/testing/shrinkwrap-container-mobicents</connection>
-		<developerConnection>scm:svn:https://mobicents.googlecode.com/svn/trunk/frameworks/testing/shrinkwrap-container-mobicents</developerConnection>
-		<url>http://code.google.com/p/mobicents/source/browse/trunk/frameworks/testing/shrinkwrap-container-mobicents</url>
+		<connection>scm:svn:https://code.google.com/p/commtesting.mss-arquillian/shrinkwrap-container-mobicents</connection>
+		<developerConnection>scm:svn:https://code.google.com/p/commtesting.mss-arquillian/shrinkwrap-container-mobicents</developerConnection>
+		<url>http://code.google.com/p/commtesting.mss-arquillian/shrinkwrap-container-mobicents</url>
 	</scm>
 
 	<!-- Licenses -->
@@ -73,11 +68,6 @@
 			<version>${version.org.jboss.shrinkwrap}</version>
 		</dependency>
 
-		<!-- No need to have these -->
-		<!-- <dependency> <groupId>org.jboss.shrinkwrap.sip</groupId> <artifactId>shrinkwrap-extension-sip-api</artifactId> 
-			<version>1.0.0-beta-1</version> </dependency> <dependency> <groupId>org.jboss.shrinkwrap.sip</groupId> 
-			<artifactId>shrinkwrap-extension-sip-impl</artifactId> <version>1.0.0-beta-1</version> 
-			</dependency> -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

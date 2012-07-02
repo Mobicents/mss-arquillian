@@ -60,7 +60,7 @@
 
 		<dependency>
 			<groupId>org.jboss.shrinkwrap.container</groupId>
-			<artifactId>shrinkwrap-container-mobicents-tomcat-7</artifactId>
+			<artifactId>shrinkwrap-container-mobicents</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 
