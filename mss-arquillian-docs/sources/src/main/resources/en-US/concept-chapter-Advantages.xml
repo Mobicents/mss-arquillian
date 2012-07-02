@@ -1,0 +1,22 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+<!ENTITY % BOOK_ENTITIES SYSTEM "MSS_Arquillian_Framework_User_Guide.ent">
+%BOOK_ENTITIES;
+]>
+<chapter id="Advantages_MSS_Arquillian_Framework">
+	<title>Advantages of the Mobicents Sip Servlets Arquillian Framework
+	</title>
+	<para>One of the most important advantage of the framework is the clear
+		and concise model the framework provides.</para>
+	<para>The framework's main two parts, are individual and can be
+		replaced by an equivalent module if needed, the sip client for example
+		can be replaced with a user provided sip client. Also, later there will
+		be containers for the framework based on Tomcat 7.x and JBoss AS 7
+		that could be used instead of the Tomcat 6.x container.</para>
+
+	<para>The fact that the framework is based on Arquillian is also a big
+		advantage of the solution. Users can make use of the Arquillian
+		extensions, or use Arquillian SPI to provide their own extension
+	</para>
+
+</chapter>

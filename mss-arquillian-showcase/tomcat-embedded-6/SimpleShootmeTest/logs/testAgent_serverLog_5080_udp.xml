@@ -1,0 +1,1916 @@
+<!-- Use the  Trace Viewer in src/tools/tracesviewer to view this  trace  
+Here are the stack configuration properties 
+javax.sip.IP_ADDRESS= null
+javax.sip.STACK_NAME= UAC_udp_5080
+javax.sip.ROUTER_PATH= null
+javax.sip.OUTBOUND_PROXY= 127.0.0.1:5070/udp
+-->
+<description
+ logDescription="UAC_udp_5080"
+ name="UAC_udp_5080"
+ auxInfo="null"/>
+ 
+<message
+from="127.0.0.1:5080" 
+to="127.0.0.1:5070" 
+time="1337626556232"
+isSender="true" 
+transactionId="z9hg4bk-353835-01c4df2b7d2417d8f263f310bc21d56e" 
+callId="8c66753f03125dcd935fea46710d3cbf@127.0.0.1" 
+firstLine="INVITE sip:receiver@sip-servlets.com SIP/2.0" 
+>
+<![CDATA[INVITE sip:receiver@sip-servlets.com SIP/2.0
+Call-ID: 8c66753f03125dcd935fea46710d3cbf@127.0.0.1
+CSeq: 1 INVITE
+From: <sip:sender@sip-servlets.com>;tag=276276780
+To: <sip:receiver@sip-servlets.com>
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-01c4df2b7d2417d8f263f310bc21d56e
+Max-Forwards: 70
+Contact: <sip:sender@127.0.0.1:5080;transport=udp;lr>
+Route: <sip:127.0.0.1:5070;lr;transport=udp>
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5070" 
+to="127.0.0.1:5080" 
+time="1337626556311"
+isSender="false" 
+transactionId="z9hg4bk-353835-01c4df2b7d2417d8f263f310bc21d56e" 
+callId="8c66753f03125dcd935fea46710d3cbf@127.0.0.1" 
+firstLine="SIP/2.0 100 Trying" 
+>
+<![CDATA[SIP/2.0 100 Trying
+To: <sip:receiver@sip-servlets.com>
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-01c4df2b7d2417d8f263f310bc21d56e
+CSeq: 1 INVITE
+Call-ID: 8c66753f03125dcd935fea46710d3cbf@127.0.0.1
+From: <sip:sender@sip-servlets.com>;tag=276276780
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5070" 
+to="127.0.0.1:5080" 
+time="1337626556333"
+isSender="false" 
+transactionId="z9hg4bk-353835-01c4df2b7d2417d8f263f310bc21d56e" 
+callId="8c66753f03125dcd935fea46710d3cbf@127.0.0.1" 
+firstLine="SIP/2.0 180 Ringing" 
+>
+<![CDATA[SIP/2.0 180 Ringing
+To: <sip:receiver@sip-servlets.com>;tag=87728920_149c3691_4420b86b-db55-4e5e-9769-5025d006b866
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-01c4df2b7d2417d8f263f310bc21d56e
+CSeq: 1 INVITE
+Call-ID: 8c66753f03125dcd935fea46710d3cbf@127.0.0.1
+From: <sip:sender@sip-servlets.com>;tag=276276780
+Contact: <sip:127.0.0.1:5070>
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5070" 
+to="127.0.0.1:5080" 
+time="1337626556349"
+isSender="false" 
+transactionId="z9hg4bk-353835-01c4df2b7d2417d8f263f310bc21d56e" 
+callId="8c66753f03125dcd935fea46710d3cbf@127.0.0.1" 
+firstLine="SIP/2.0 200 OK" 
+>
+<![CDATA[SIP/2.0 200 OK
+To: <sip:receiver@sip-servlets.com>;tag=87728920_149c3691_4420b86b-db55-4e5e-9769-5025d006b866
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-01c4df2b7d2417d8f263f310bc21d56e
+CSeq: 1 INVITE
+Call-ID: 8c66753f03125dcd935fea46710d3cbf@127.0.0.1
+From: <sip:sender@sip-servlets.com>;tag=276276780
+Contact: <sip:127.0.0.1:5070>
+TestNonExistingHeader: true
+TestNonExistingHeaderList: true,false,maybe
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5070" 
+to="127.0.0.1:5080" 
+time="1337626556857"
+isSender="false" 
+transactionId="z9hg4bk-353835-01c4df2b7d2417d8f263f310bc21d56e" 
+callId="8c66753f03125dcd935fea46710d3cbf@127.0.0.1" 
+firstLine="SIP/2.0 200 OK" 
+>
+<![CDATA[SIP/2.0 200 OK
+To: <sip:receiver@sip-servlets.com>;tag=87728920_149c3691_4420b86b-db55-4e5e-9769-5025d006b866
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-01c4df2b7d2417d8f263f310bc21d56e
+CSeq: 1 INVITE
+Call-ID: 8c66753f03125dcd935fea46710d3cbf@127.0.0.1
+From: <sip:sender@sip-servlets.com>;tag=276276780
+Contact: <sip:127.0.0.1:5070>
+TestNonExistingHeader: true
+TestNonExistingHeaderList: true,false,maybe
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5070" 
+to="127.0.0.1:5080" 
+time="1337626557855"
+isSender="false" 
+transactionId="z9hg4bk-353835-01c4df2b7d2417d8f263f310bc21d56e" 
+callId="8c66753f03125dcd935fea46710d3cbf@127.0.0.1" 
+firstLine="SIP/2.0 200 OK" 
+>
+<![CDATA[SIP/2.0 200 OK
+To: <sip:receiver@sip-servlets.com>;tag=87728920_149c3691_4420b86b-db55-4e5e-9769-5025d006b866
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-01c4df2b7d2417d8f263f310bc21d56e
+CSeq: 1 INVITE
+Call-ID: 8c66753f03125dcd935fea46710d3cbf@127.0.0.1
+From: <sip:sender@sip-servlets.com>;tag=276276780
+Contact: <sip:127.0.0.1:5070>
+TestNonExistingHeader: true
+TestNonExistingHeaderList: true,false,maybe
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5070" 
+to="127.0.0.1:5080" 
+time="1337626559858"
+isSender="false" 
+transactionId="z9hg4bk-353835-01c4df2b7d2417d8f263f310bc21d56e" 
+callId="8c66753f03125dcd935fea46710d3cbf@127.0.0.1" 
+firstLine="SIP/2.0 200 OK" 
+>
+<![CDATA[SIP/2.0 200 OK
+To: <sip:receiver@sip-servlets.com>;tag=87728920_149c3691_4420b86b-db55-4e5e-9769-5025d006b866
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-01c4df2b7d2417d8f263f310bc21d56e
+CSeq: 1 INVITE
+Call-ID: 8c66753f03125dcd935fea46710d3cbf@127.0.0.1
+From: <sip:sender@sip-servlets.com>;tag=276276780
+Contact: <sip:127.0.0.1:5070>
+TestNonExistingHeader: true
+TestNonExistingHeaderList: true,false,maybe
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5070" 
+to="127.0.0.1:5080" 
+time="1337626563856"
+isSender="false" 
+transactionId="z9hg4bk-353835-01c4df2b7d2417d8f263f310bc21d56e" 
+callId="8c66753f03125dcd935fea46710d3cbf@127.0.0.1" 
+firstLine="SIP/2.0 200 OK" 
+>
+<![CDATA[SIP/2.0 200 OK
+To: <sip:receiver@sip-servlets.com>;tag=87728920_149c3691_4420b86b-db55-4e5e-9769-5025d006b866
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-01c4df2b7d2417d8f263f310bc21d56e
+CSeq: 1 INVITE
+Call-ID: 8c66753f03125dcd935fea46710d3cbf@127.0.0.1
+From: <sip:sender@sip-servlets.com>;tag=276276780
+Contact: <sip:127.0.0.1:5070>
+TestNonExistingHeader: true
+TestNonExistingHeaderList: true,false,maybe
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5080" 
+to="127.0.0.1:5070" 
+time="1337626566352"
+isSender="true" 
+transactionId="z9hg4bk-353835-f1ad0ef81bb25ca58aa41a791aa0043a" 
+callId="8c66753f03125dcd935fea46710d3cbf@127.0.0.1" 
+firstLine="ACK sip:127.0.0.1:5070 SIP/2.0" 
+>
+<![CDATA[ACK sip:127.0.0.1:5070 SIP/2.0
+Call-ID: 8c66753f03125dcd935fea46710d3cbf@127.0.0.1
+CSeq: 1 ACK
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-f1ad0ef81bb25ca58aa41a791aa0043a
+From: <sip:sender@sip-servlets.com>;tag=276276780
+To: <sip:receiver@sip-servlets.com>;tag=87728920_149c3691_4420b86b-db55-4e5e-9769-5025d006b866
+Max-Forwards: 70
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5080" 
+to="127.0.0.1:5070" 
+time="1337626566377"
+isSender="true" 
+transactionId="z9hg4bk-353835-1c580892d5f573b1d3fbff43107bc734" 
+callId="8c66753f03125dcd935fea46710d3cbf@127.0.0.1" 
+firstLine="BYE sip:127.0.0.1:5070 SIP/2.0" 
+>
+<![CDATA[BYE sip:127.0.0.1:5070 SIP/2.0
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-1c580892d5f573b1d3fbff43107bc734
+CSeq: 2 BYE
+From: <sip:sender@sip-servlets.com>;tag=276276780
+To: <sip:receiver@sip-servlets.com>;tag=87728920_149c3691_4420b86b-db55-4e5e-9769-5025d006b866
+Call-ID: 8c66753f03125dcd935fea46710d3cbf@127.0.0.1
+Max-Forwards: 70
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5070" 
+to="127.0.0.1:5080" 
+time="1337626566427"
+isSender="false" 
+transactionId="z9hg4bk-353835-1c580892d5f573b1d3fbff43107bc734" 
+callId="8c66753f03125dcd935fea46710d3cbf@127.0.0.1" 
+firstLine="SIP/2.0 200 OK" 
+>
+<![CDATA[SIP/2.0 200 OK
+To: <sip:receiver@sip-servlets.com>;tag=87728920_149c3691_4420b86b-db55-4e5e-9769-5025d006b866
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-1c580892d5f573b1d3fbff43107bc734
+CSeq: 2 BYE
+Call-ID: 8c66753f03125dcd935fea46710d3cbf@127.0.0.1
+From: <sip:sender@sip-servlets.com>;tag=276276780
+Content-Length: 0
+
+]]>
+</message>
+
+<!-- Use the  Trace Viewer in src/tools/tracesviewer to view this  trace  
+Here are the stack configuration properties 
+javax.sip.IP_ADDRESS= null
+javax.sip.STACK_NAME= UAC_udp_5080
+javax.sip.ROUTER_PATH= null
+javax.sip.OUTBOUND_PROXY= 127.0.0.1:5070/udp
+-->
+<description
+ logDescription="UAC_udp_5080"
+ name="UAC_udp_5080"
+ auxInfo="null"/>
+ 
+<message
+from="127.0.0.1:5080" 
+to="127.0.0.1:5070" 
+time="1337626578436"
+isSender="true" 
+transactionId="z9hg4bk-353835-83a495aa5d8ef2d96db7ef5cc8b14791" 
+callId="78de963c3bf0906393353203d4ad6216@127.0.0.1" 
+firstLine="INVITE sip:receiver@127.0.0.1:5070;transport=udp SIP/2.0" 
+>
+<![CDATA[INVITE sip:receiver@127.0.0.1:5070;transport=udp SIP/2.0
+Call-ID: 78de963c3bf0906393353203d4ad6216@127.0.0.1
+CSeq: 1 INVITE
+From: <sip:SSsendBye@sip-servlets.com>;tag=1446949
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-83a495aa5d8ef2d96db7ef5cc8b14791
+Max-Forwards: 70
+Contact: <sip:SSsendBye@127.0.0.1:5080;transport=udp;lr>
+Route: <sip:127.0.0.1:5070;lr;transport=udp>
+REM: RRRREM
+To: <sip:receiver@sip-servlets.com>
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5070" 
+to="127.0.0.1:5080" 
+time="1337626578458"
+isSender="false" 
+transactionId="z9hg4bk-353835-83a495aa5d8ef2d96db7ef5cc8b14791" 
+callId="78de963c3bf0906393353203d4ad6216@127.0.0.1" 
+firstLine="SIP/2.0 100 Trying" 
+>
+<![CDATA[SIP/2.0 100 Trying
+To: <sip:receiver@sip-servlets.com>
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-83a495aa5d8ef2d96db7ef5cc8b14791
+CSeq: 1 INVITE
+Call-ID: 78de963c3bf0906393353203d4ad6216@127.0.0.1
+From: <sip:SSsendBye@sip-servlets.com>;tag=1446949
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5070" 
+to="127.0.0.1:5080" 
+time="1337626578485"
+isSender="false" 
+transactionId="z9hg4bk-353835-83a495aa5d8ef2d96db7ef5cc8b14791" 
+callId="78de963c3bf0906393353203d4ad6216@127.0.0.1" 
+firstLine="SIP/2.0 180 Ringing" 
+>
+<![CDATA[SIP/2.0 180 Ringing
+To: <sip:receiver@sip-servlets.com>;tag=33890166_149c3691_c080e015-c785-40d8-ae47-3fdd78d9cfb9
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-83a495aa5d8ef2d96db7ef5cc8b14791
+CSeq: 1 INVITE
+Call-ID: 78de963c3bf0906393353203d4ad6216@127.0.0.1
+From: <sip:SSsendBye@sip-servlets.com>;tag=1446949
+Contact: <sip:127.0.0.1:5070>
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5070" 
+to="127.0.0.1:5080" 
+time="1337626578509"
+isSender="false" 
+transactionId="z9hg4bk-353835-83a495aa5d8ef2d96db7ef5cc8b14791" 
+callId="78de963c3bf0906393353203d4ad6216@127.0.0.1" 
+firstLine="SIP/2.0 200 OK" 
+>
+<![CDATA[SIP/2.0 200 OK
+To: <sip:receiver@sip-servlets.com>;tag=33890166_149c3691_c080e015-c785-40d8-ae47-3fdd78d9cfb9
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-83a495aa5d8ef2d96db7ef5cc8b14791
+CSeq: 1 INVITE
+Call-ID: 78de963c3bf0906393353203d4ad6216@127.0.0.1
+From: <sip:SSsendBye@sip-servlets.com>;tag=1446949
+Contact: <sip:127.0.0.1:5070>
+TestNonExistingHeader: true
+TestNonExistingHeaderList: true,false,maybe
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5080" 
+to="127.0.0.1:5070" 
+time="1337626578628"
+isSender="true" 
+transactionId="z9hg4bk-353835-16918a2eb0611456e1b29a957449daba" 
+callId="78de963c3bf0906393353203d4ad6216@127.0.0.1" 
+firstLine="ACK sip:127.0.0.1:5070 SIP/2.0" 
+>
+<![CDATA[ACK sip:127.0.0.1:5070 SIP/2.0
+Call-ID: 78de963c3bf0906393353203d4ad6216@127.0.0.1
+CSeq: 1 ACK
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-16918a2eb0611456e1b29a957449daba
+From: <sip:SSsendBye@sip-servlets.com>;tag=1446949
+To: <sip:receiver@sip-servlets.com>;tag=33890166_149c3691_c080e015-c785-40d8-ae47-3fdd78d9cfb9
+Max-Forwards: 70
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5070" 
+to="127.0.0.1:5080" 
+time="1337626593667"
+isSender="false" 
+transactionId="z9hg4bkc080e015-c785-40d8-ae47-3fdd78d9cfb9_149c3691_14678729843602" 
+callId="78de963c3bf0906393353203d4ad6216@127.0.0.1" 
+firstLine="BYE sip:SSsendBye@127.0.0.1:5080;transport=udp;lr SIP/2.0" 
+>
+<![CDATA[BYE sip:SSsendBye@127.0.0.1:5080;transport=udp;lr SIP/2.0
+CSeq: 1 BYE
+From: <sip:receiver@sip-servlets.com>;tag=33890166_149c3691_c080e015-c785-40d8-ae47-3fdd78d9cfb9
+To: <sip:SSsendBye@sip-servlets.com>;tag=1446949
+Call-ID: 78de963c3bf0906393353203d4ad6216@127.0.0.1
+Max-Forwards: 70
+Via: SIP/2.0/UDP 127.0.0.1:5070;branch=z9hG4bKc080e015-c785-40d8-ae47-3fdd78d9cfb9_149c3691_14678729843602
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5080" 
+to="127.0.0.1:5070" 
+time="1337626593700"
+isSender="true" 
+transactionId="z9hg4bkc080e015-c785-40d8-ae47-3fdd78d9cfb9_149c3691_14678729843602" 
+callId="78de963c3bf0906393353203d4ad6216@127.0.0.1" 
+firstLine="SIP/2.0 200 ΟΚ" 
+>
+<![CDATA[SIP/2.0 200 ΟΚ
+Via: SIP/2.0/UDP 127.0.0.1:5070;branch=z9hG4bKc080e015-c785-40d8-ae47-3fdd78d9cfb9_149c3691_14678729843602
+CSeq: 1 BYE
+Call-ID: 78de963c3bf0906393353203d4ad6216@127.0.0.1
+From: <sip:receiver@sip-servlets.com>;tag=33890166_149c3691_c080e015-c785-40d8-ae47-3fdd78d9cfb9
+To: <sip:receiver@sip-servlets.com>
+Content-Length: 0
+
+]]>
+</message>
+
+<!-- Use the  Trace Viewer in src/tools/tracesviewer to view this  trace  
+Here are the stack configuration properties 
+javax.sip.IP_ADDRESS= null
+javax.sip.STACK_NAME= UAC_udp_5080
+javax.sip.ROUTER_PATH= null
+javax.sip.OUTBOUND_PROXY= 127.0.0.1:5070/udp
+-->
+<description
+ logDescription="UAC_udp_5080"
+ name="UAC_udp_5080"
+ auxInfo="null"/>
+ 
+<message
+from="127.0.0.1:5080" 
+to="127.0.0.1:5070" 
+time="1337626635752"
+isSender="true" 
+transactionId="z9hg4bk-353835-8ef9b818ebe0a8bcedd1b7b194a4f68c" 
+callId="4456319403722320511@sip-servlets.com" 
+firstLine="REGISTER sip:sender@127.0.0.1:5070;transport=udp SIP/2.0" 
+>
+<![CDATA[REGISTER sip:sender@127.0.0.1:5070;transport=udp SIP/2.0
+Call-ID: 4456319403722320511@sip-servlets.com
+CSeq: 1 REGISTER
+From: <sip:sender@sip-servlets.com>;tag=832671463
+To: <sip:sender@sip-servlets.com>
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-8ef9b818ebe0a8bcedd1b7b194a4f68c
+Max-Forwards: 70
+Contact: <sip:sender@127.0.0.1:5080;transport=udp;lr>;expires=10000
+Expires: 10000
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5070" 
+to="127.0.0.1:5080" 
+time="1337626635770"
+isSender="false" 
+transactionId="z9hg4bk-353835-8ef9b818ebe0a8bcedd1b7b194a4f68c" 
+callId="4456319403722320511@sip-servlets.com" 
+firstLine="SIP/2.0 200 OK" 
+>
+<![CDATA[SIP/2.0 200 OK
+To: <sip:sender@sip-servlets.com>;tag=35240898_149c3691_7c3ceded-0e83-47ea-8aa8-5670303aa67e
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-8ef9b818ebe0a8bcedd1b7b194a4f68c
+CSeq: 1 REGISTER
+Call-ID: 4456319403722320511@sip-servlets.com
+From: <sip:sender@sip-servlets.com>;tag=832671463
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5080" 
+to="127.0.0.1:5070" 
+time="1337626635783"
+isSender="true" 
+transactionId="z9hg4bk-353835-09f00be9e22bdab7d4b25485791306b0" 
+callId="4456319403722320511@sip-servlets.com" 
+firstLine="REGISTER sip:sender@127.0.0.1:5070;transport=udp SIP/2.0" 
+>
+<![CDATA[REGISTER sip:sender@127.0.0.1:5070;transport=udp SIP/2.0
+Call-ID: 4456319403722320511@sip-servlets.com
+From: <sip:sender@sip-servlets.com>;tag=832671463
+To: <sip:sender@sip-servlets.com>
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-09f00be9e22bdab7d4b25485791306b0
+Max-Forwards: 70
+Expires: 0
+CSeq: 2 REGISTER
+Contact: <sip:sender@127.0.0.1:5080;transport=udp;lr>
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5070" 
+to="127.0.0.1:5080" 
+time="1337626635801"
+isSender="false" 
+transactionId="z9hg4bk-353835-09f00be9e22bdab7d4b25485791306b0" 
+callId="4456319403722320511@sip-servlets.com" 
+firstLine="SIP/2.0 200 OK" 
+>
+<![CDATA[SIP/2.0 200 OK
+To: <sip:sender@sip-servlets.com>;tag=66892317_149c3691_66f803a4-aee4-49c9-9e1b-603ef2256451
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-09f00be9e22bdab7d4b25485791306b0
+CSeq: 2 REGISTER
+Call-ID: 4456319403722320511@sip-servlets.com
+From: <sip:sender@sip-servlets.com>;tag=832671463
+Content-Length: 0
+
+]]>
+</message>
+
+<!-- Use the  Trace Viewer in src/tools/tracesviewer to view this  trace  
+Here are the stack configuration properties 
+javax.sip.IP_ADDRESS= null
+javax.sip.STACK_NAME= UAC_udp_5080
+javax.sip.ROUTER_PATH= null
+javax.sip.OUTBOUND_PROXY= 127.0.0.1:5070/udp
+-->
+<description
+ logDescription="UAC_udp_5080"
+ name="UAC_udp_5080"
+ auxInfo="null"/>
+ 
+<message
+from="127.0.0.1:5080" 
+to="127.0.0.1:5070" 
+time="1337626638016"
+isSender="true" 
+transactionId="z9hg4bk-353835-30b0714ed254dca57299930a73859aec" 
+callId="76f4023fd30a60111e88344fb2421a79@127.0.0.1" 
+firstLine="INVITE sip:receiver@127.0.0.1:5070;transport=udp SIP/2.0" 
+>
+<![CDATA[INVITE sip:receiver@127.0.0.1:5070;transport=udp SIP/2.0
+Call-ID: 76f4023fd30a60111e88344fb2421a79@127.0.0.1
+CSeq: 1 INVITE
+From: <sip:cancel@sip-servlets.com>;tag=765281754
+To: <sip:receiver@127.0.0.1:5070;transport=udp>
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-30b0714ed254dca57299930a73859aec
+Max-Forwards: 70
+Contact: <sip:cancel@127.0.0.1:5080;transport=udp;lr>
+Route: <sip:127.0.0.1:5070;lr;transport=udp>
+REM: RRRREM
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5070" 
+to="127.0.0.1:5080" 
+time="1337626638038"
+isSender="false" 
+transactionId="z9hg4bk-353835-30b0714ed254dca57299930a73859aec" 
+callId="76f4023fd30a60111e88344fb2421a79@127.0.0.1" 
+firstLine="SIP/2.0 100 Trying" 
+>
+<![CDATA[SIP/2.0 100 Trying
+To: <sip:receiver@127.0.0.1:5070;transport=udp>
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-30b0714ed254dca57299930a73859aec
+CSeq: 1 INVITE
+Call-ID: 76f4023fd30a60111e88344fb2421a79@127.0.0.1
+From: <sip:cancel@sip-servlets.com>;tag=765281754
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5070" 
+to="127.0.0.1:5080" 
+time="1337626638058"
+isSender="false" 
+transactionId="z9hg4bk-353835-30b0714ed254dca57299930a73859aec" 
+callId="76f4023fd30a60111e88344fb2421a79@127.0.0.1" 
+firstLine="SIP/2.0 180 Ringing" 
+>
+<![CDATA[SIP/2.0 180 Ringing
+To: <sip:receiver@127.0.0.1:5070;transport=udp>;tag=15343617_149c3691_3ccc2b81-c8f2-4380-b2e2-c1ec09f7fdb5
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-30b0714ed254dca57299930a73859aec
+CSeq: 1 INVITE
+Call-ID: 76f4023fd30a60111e88344fb2421a79@127.0.0.1
+From: <sip:cancel@sip-servlets.com>;tag=765281754
+Contact: <sip:127.0.0.1:5070>
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5080" 
+to="127.0.0.1:5070" 
+time="1337626638078"
+isSender="true" 
+transactionId="z9hg4bk-353835-30b0714ed254dca57299930a73859aec:cancel" 
+callId="76f4023fd30a60111e88344fb2421a79@127.0.0.1" 
+firstLine="CANCEL sip:receiver@127.0.0.1:5070;transport=udp SIP/2.0" 
+>
+<![CDATA[CANCEL sip:receiver@127.0.0.1:5070;transport=udp SIP/2.0
+Call-ID: 76f4023fd30a60111e88344fb2421a79@127.0.0.1
+To: <sip:receiver@127.0.0.1:5070;transport=udp>
+CSeq: 1 CANCEL
+From: <sip:cancel@sip-servlets.com>;tag=765281754
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-30b0714ed254dca57299930a73859aec
+Max-Forwards: 70
+Route: <sip:127.0.0.1:5070;lr;transport=udp>
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5080" 
+to="127.0.0.1:5070" 
+time="1337626638579"
+isSender="true" 
+transactionId="z9hg4bk-353835-30b0714ed254dca57299930a73859aec:cancel" 
+callId="76f4023fd30a60111e88344fb2421a79@127.0.0.1" 
+firstLine="CANCEL sip:receiver@127.0.0.1:5070;transport=udp SIP/2.0" 
+>
+<![CDATA[CANCEL sip:receiver@127.0.0.1:5070;transport=udp SIP/2.0
+Call-ID: 76f4023fd30a60111e88344fb2421a79@127.0.0.1
+To: <sip:receiver@127.0.0.1:5070;transport=udp>
+CSeq: 1 CANCEL
+From: <sip:cancel@sip-servlets.com>;tag=765281754
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-30b0714ed254dca57299930a73859aec
+Max-Forwards: 70
+Route: <sip:127.0.0.1:5070;lr;transport=udp>
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5080" 
+to="127.0.0.1:5070" 
+time="1337626639579"
+isSender="true" 
+transactionId="z9hg4bk-353835-30b0714ed254dca57299930a73859aec:cancel" 
+callId="76f4023fd30a60111e88344fb2421a79@127.0.0.1" 
+firstLine="CANCEL sip:receiver@127.0.0.1:5070;transport=udp SIP/2.0" 
+>
+<![CDATA[CANCEL sip:receiver@127.0.0.1:5070;transport=udp SIP/2.0
+Call-ID: 76f4023fd30a60111e88344fb2421a79@127.0.0.1
+To: <sip:receiver@127.0.0.1:5070;transport=udp>
+CSeq: 1 CANCEL
+From: <sip:cancel@sip-servlets.com>;tag=765281754
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-30b0714ed254dca57299930a73859aec
+Max-Forwards: 70
+Route: <sip:127.0.0.1:5070;lr;transport=udp>
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5070" 
+to="127.0.0.1:5080" 
+time="1337626640079"
+isSender="false" 
+transactionId="z9hg4bk-353835-30b0714ed254dca57299930a73859aec:cancel" 
+callId="76f4023fd30a60111e88344fb2421a79@127.0.0.1" 
+firstLine="SIP/2.0 200 Canceling" 
+>
+<![CDATA[SIP/2.0 200 Canceling
+To: <sip:receiver@127.0.0.1:5070;transport=udp>;tag=8027061
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-30b0714ed254dca57299930a73859aec
+CSeq: 1 CANCEL
+Call-ID: 76f4023fd30a60111e88344fb2421a79@127.0.0.1
+From: <sip:cancel@sip-servlets.com>;tag=765281754
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5070" 
+to="127.0.0.1:5080" 
+time="1337626640107"
+isSender="false" 
+transactionId="z9hg4bk-353835-30b0714ed254dca57299930a73859aec:cancel" 
+callId="76f4023fd30a60111e88344fb2421a79@127.0.0.1" 
+firstLine="SIP/2.0 200 Canceling" 
+>
+<![CDATA[SIP/2.0 200 Canceling
+To: <sip:receiver@127.0.0.1:5070;transport=udp>;tag=8027061
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-30b0714ed254dca57299930a73859aec
+CSeq: 1 CANCEL
+Call-ID: 76f4023fd30a60111e88344fb2421a79@127.0.0.1
+From: <sip:cancel@sip-servlets.com>;tag=765281754
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5070" 
+to="127.0.0.1:5080" 
+time="1337626640114"
+isSender="false" 
+transactionId="z9hg4bk-353835-30b0714ed254dca57299930a73859aec" 
+callId="76f4023fd30a60111e88344fb2421a79@127.0.0.1" 
+firstLine="SIP/2.0 487 Request Terminated" 
+>
+<![CDATA[SIP/2.0 487 Request Terminated
+To: <sip:receiver@127.0.0.1:5070;transport=udp>;tag=15343617_149c3691_3ccc2b81-c8f2-4380-b2e2-c1ec09f7fdb5
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-30b0714ed254dca57299930a73859aec
+CSeq: 1 INVITE
+Call-ID: 76f4023fd30a60111e88344fb2421a79@127.0.0.1
+From: <sip:cancel@sip-servlets.com>;tag=765281754
+Contact: <sip:127.0.0.1:5070>
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5080" 
+to="127.0.0.1:5070" 
+time="1337626640119"
+isSender="true" 
+transactionId="z9hg4bk-353835-30b0714ed254dca57299930a73859aec" 
+callId="76f4023fd30a60111e88344fb2421a79@127.0.0.1" 
+firstLine="ACK sip:receiver@127.0.0.1:5070;transport=udp SIP/2.0" 
+>
+<![CDATA[ACK sip:receiver@127.0.0.1:5070;transport=udp SIP/2.0
+Call-ID: 76f4023fd30a60111e88344fb2421a79@127.0.0.1
+Max-Forwards: 70
+From: <sip:cancel@sip-servlets.com>;tag=765281754
+To: <sip:receiver@127.0.0.1:5070;transport=udp>;tag=15343617_149c3691_3ccc2b81-c8f2-4380-b2e2-c1ec09f7fdb5
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-30b0714ed254dca57299930a73859aec
+CSeq: 1 ACK
+Route: <sip:127.0.0.1:5070;lr;transport=udp>
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5070" 
+to="127.0.0.1:5080" 
+time="1337626640128"
+isSender="false" 
+transactionId="z9hg4bk-353835-30b0714ed254dca57299930a73859aec:cancel" 
+callId="76f4023fd30a60111e88344fb2421a79@127.0.0.1" 
+firstLine="SIP/2.0 200 Canceling" 
+>
+<![CDATA[SIP/2.0 200 Canceling
+To: <sip:receiver@127.0.0.1:5070;transport=udp>;tag=8027061
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-30b0714ed254dca57299930a73859aec
+CSeq: 1 CANCEL
+Call-ID: 76f4023fd30a60111e88344fb2421a79@127.0.0.1
+From: <sip:cancel@sip-servlets.com>;tag=765281754
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5070" 
+to="127.0.0.1:5080" 
+time="1337626640137"
+isSender="false" 
+transactionId="z9hg4bk46000111-2220-4f47-a4c9-44dbe9cba42e_149c3691_14725194155304" 
+callId="c0778fc847d6842f82701b8300d21df9@127.0.0.1" 
+firstLine="MESSAGE sip:receiver@127.0.0.1:5080 SIP/2.0" 
+>
+<![CDATA[MESSAGE sip:receiver@127.0.0.1:5080 SIP/2.0
+Call-ID: c0778fc847d6842f82701b8300d21df9@127.0.0.1
+CSeq: 1 MESSAGE
+From: <sip:sender@sip-servlets.com>;tag=86265900_149c3691_46000111-2220-4f47-a4c9-44dbe9cba42e
+To: <sip:receiver@sip-servlets.com>
+Max-Forwards: 70
+Content-Type: text/plain;charset=UTF-8
+Via: SIP/2.0/UDP 127.0.0.1:5070;branch=z9hG4bK46000111-2220-4f47-a4c9-44dbe9cba42e_149c3691_14725194155304
+Content-Length: 14
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5080" 
+to="127.0.0.1:5070" 
+time="1337626640149"
+isSender="true" 
+transactionId="z9hg4bk46000111-2220-4f47-a4c9-44dbe9cba42e_149c3691_14725194155304" 
+callId="c0778fc847d6842f82701b8300d21df9@127.0.0.1" 
+firstLine="SIP/2.0 200 OK" 
+>
+<![CDATA[SIP/2.0 200 OK
+To: <sip:receiver@sip-servlets.com>;tag=1169767807
+Via: SIP/2.0/UDP 127.0.0.1:5070;branch=z9hG4bK46000111-2220-4f47-a4c9-44dbe9cba42e_149c3691_14725194155304
+CSeq: 1 MESSAGE
+Call-ID: c0778fc847d6842f82701b8300d21df9@127.0.0.1
+From: <sip:sender@sip-servlets.com>;tag=86265900_149c3691_46000111-2220-4f47-a4c9-44dbe9cba42e
+Content-Length: 0
+
+]]>
+</message>
+
+<!-- Use the  Trace Viewer in src/tools/tracesviewer to view this  trace  
+Here are the stack configuration properties 
+javax.sip.IP_ADDRESS= null
+javax.sip.STACK_NAME= UAC_udp_5080
+javax.sip.ROUTER_PATH= null
+javax.sip.OUTBOUND_PROXY= 127.0.0.1:5070/udp
+-->
+<description
+ logDescription="UAC_udp_5080"
+ name="UAC_udp_5080"
+ auxInfo="null"/>
+ 
+<message
+from="127.0.0.1:5080" 
+to="127.0.0.1:5070" 
+time="1337626642208"
+isSender="true" 
+transactionId="z9hg4bk-353835-bcb977296597994318c3866d1510c523" 
+callId="cf686d2ed4210d93d24c4d6f8f10cbb2@127.0.0.1" 
+firstLine="INVITE sip:TestAllowHeader@127.0.0.1:5070;transport=udp SIP/2.0" 
+>
+<![CDATA[INVITE sip:TestAllowHeader@127.0.0.1:5070;transport=udp SIP/2.0
+Call-ID: cf686d2ed4210d93d24c4d6f8f10cbb2@127.0.0.1
+CSeq: 1 INVITE
+From: <sip:TestAllowHeader@sip-servlets.com>;tag=751667936
+To: <sip:TestAllowHeader@127.0.0.1:5070;transport=udp>
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-bcb977296597994318c3866d1510c523
+Max-Forwards: 70
+Contact: <sip:TestAllowHeader@127.0.0.1:5080;transport=udp;lr>
+Route: <sip:127.0.0.1:5070;lr;transport=udp>
+REM: RRRREM
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5070" 
+to="127.0.0.1:5080" 
+time="1337626642234"
+isSender="false" 
+transactionId="z9hg4bk-353835-bcb977296597994318c3866d1510c523" 
+callId="cf686d2ed4210d93d24c4d6f8f10cbb2@127.0.0.1" 
+firstLine="SIP/2.0 100 Trying" 
+>
+<![CDATA[SIP/2.0 100 Trying
+To: <sip:TestAllowHeader@127.0.0.1:5070;transport=udp>
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-bcb977296597994318c3866d1510c523
+CSeq: 1 INVITE
+Call-ID: cf686d2ed4210d93d24c4d6f8f10cbb2@127.0.0.1
+From: <sip:TestAllowHeader@sip-servlets.com>;tag=751667936
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5070" 
+to="127.0.0.1:5080" 
+time="1337626642245"
+isSender="false" 
+transactionId="z9hg4bk-353835-bcb977296597994318c3866d1510c523" 
+callId="cf686d2ed4210d93d24c4d6f8f10cbb2@127.0.0.1" 
+firstLine="SIP/2.0 405 Method not allowed" 
+>
+<![CDATA[SIP/2.0 405 Method not allowed
+To: <sip:TestAllowHeader@127.0.0.1:5070;transport=udp>;tag=03466571_149c3691_f0f9e02a-39b4-4dea-a08f-1c9cf14a6748
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-bcb977296597994318c3866d1510c523
+CSeq: 1 INVITE
+Call-ID: cf686d2ed4210d93d24c4d6f8f10cbb2@127.0.0.1
+From: <sip:TestAllowHeader@sip-servlets.com>;tag=751667936
+Contact: <sip:127.0.0.1:5070>
+Allow: INVITE,ACK,CANCEL,OPTIONS,BYE,SUBSCRIBE,NOTIFY,REFER
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5080" 
+to="127.0.0.1:5070" 
+time="1337626642247"
+isSender="true" 
+transactionId="z9hg4bk-353835-bcb977296597994318c3866d1510c523" 
+callId="cf686d2ed4210d93d24c4d6f8f10cbb2@127.0.0.1" 
+firstLine="ACK sip:TestAllowHeader@127.0.0.1:5070;transport=udp SIP/2.0" 
+>
+<![CDATA[ACK sip:TestAllowHeader@127.0.0.1:5070;transport=udp SIP/2.0
+Call-ID: cf686d2ed4210d93d24c4d6f8f10cbb2@127.0.0.1
+Max-Forwards: 70
+From: <sip:TestAllowHeader@sip-servlets.com>;tag=751667936
+To: <sip:TestAllowHeader@127.0.0.1:5070;transport=udp>;tag=03466571_149c3691_f0f9e02a-39b4-4dea-a08f-1c9cf14a6748
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-bcb977296597994318c3866d1510c523
+CSeq: 1 ACK
+Route: <sip:127.0.0.1:5070;lr;transport=udp>
+Content-Length: 0
+
+]]>
+</message>
+
+<!-- Use the  Trace Viewer in src/tools/tracesviewer to view this  trace  
+Here are the stack configuration properties 
+javax.sip.IP_ADDRESS= null
+javax.sip.STACK_NAME= UAC_udp_5080
+javax.sip.ROUTER_PATH= null
+javax.sip.OUTBOUND_PROXY= 127.0.0.1:5070/udp
+-->
+<description
+ logDescription="UAC_udp_5080"
+ name="UAC_udp_5080"
+ auxInfo="null"/>
+ 
+<message
+from="127.0.0.1:5080" 
+to="127.0.0.1:5070" 
+time="1337626644312"
+isSender="true" 
+transactionId="z9hg4bk-353835-91ef27c45e656c23f9effdf7b8bcb7d0" 
+callId="5b1cefbc37701cebb725efe963a11dc8@127.0.0.1" 
+firstLine="INVITE sip:TestAllowHeader@127.0.0.1:5070;transport=udp SIP/2.0" 
+>
+<![CDATA[INVITE sip:TestAllowHeader@127.0.0.1:5070;transport=udp SIP/2.0
+Call-ID: 5b1cefbc37701cebb725efe963a11dc8@127.0.0.1
+CSeq: 1 INVITE
+From: <sip:TestToTag@sip-servlets.com>;tag=1267328398
+To: <sip:TestAllowHeader@127.0.0.1:5070;transport=udp>
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-91ef27c45e656c23f9effdf7b8bcb7d0
+Max-Forwards: 70
+Contact: <sip:TestToTag@127.0.0.1:5080;transport=udp;lr>
+Route: <sip:127.0.0.1:5070;lr;transport=udp>
+REM: RRRREM
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5070" 
+to="127.0.0.1:5080" 
+time="1337626644336"
+isSender="false" 
+transactionId="z9hg4bk-353835-91ef27c45e656c23f9effdf7b8bcb7d0" 
+callId="5b1cefbc37701cebb725efe963a11dc8@127.0.0.1" 
+firstLine="SIP/2.0 100 Trying" 
+>
+<![CDATA[SIP/2.0 100 Trying
+To: <sip:TestAllowHeader@127.0.0.1:5070;transport=udp>
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-91ef27c45e656c23f9effdf7b8bcb7d0
+CSeq: 1 INVITE
+Call-ID: 5b1cefbc37701cebb725efe963a11dc8@127.0.0.1
+From: <sip:TestToTag@sip-servlets.com>;tag=1267328398
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5070" 
+to="127.0.0.1:5080" 
+time="1337626644365"
+isSender="false" 
+transactionId="z9hg4bk-353835-91ef27c45e656c23f9effdf7b8bcb7d0" 
+callId="5b1cefbc37701cebb725efe963a11dc8@127.0.0.1" 
+firstLine="SIP/2.0 180 Ringing" 
+>
+<![CDATA[SIP/2.0 180 Ringing
+To: <sip:TestAllowHeader@127.0.0.1:5070;transport=udp>;tag=16200436_149c3691_9d631b7a-e195-4d15-b942-8317ca0bc00d
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-91ef27c45e656c23f9effdf7b8bcb7d0
+CSeq: 1 INVITE
+Call-ID: 5b1cefbc37701cebb725efe963a11dc8@127.0.0.1
+From: <sip:TestToTag@sip-servlets.com>;tag=1267328398
+Contact: <sip:127.0.0.1:5070>
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5070" 
+to="127.0.0.1:5080" 
+time="1337626644381"
+isSender="false" 
+transactionId="z9hg4bk-353835-91ef27c45e656c23f9effdf7b8bcb7d0" 
+callId="5b1cefbc37701cebb725efe963a11dc8@127.0.0.1" 
+firstLine="SIP/2.0 200 OK" 
+>
+<![CDATA[SIP/2.0 200 OK
+To: <sip:TestAllowHeader@127.0.0.1:5070;transport=udp>;tag=16200436_149c3691_9d631b7a-e195-4d15-b942-8317ca0bc00d
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-91ef27c45e656c23f9effdf7b8bcb7d0
+CSeq: 1 INVITE
+Call-ID: 5b1cefbc37701cebb725efe963a11dc8@127.0.0.1
+From: <sip:TestToTag@sip-servlets.com>;tag=1267328398
+Contact: <sip:127.0.0.1:5070>
+TestNonExistingHeader: true
+TestNonExistingHeaderList: true,false,maybe
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5080" 
+to="127.0.0.1:5070" 
+time="1337626644506"
+isSender="true" 
+transactionId="z9hg4bk-353835-503b1cc19da852a18d36c6e8c1113302" 
+callId="5b1cefbc37701cebb725efe963a11dc8@127.0.0.1" 
+firstLine="ACK sip:127.0.0.1:5070 SIP/2.0" 
+>
+<![CDATA[ACK sip:127.0.0.1:5070 SIP/2.0
+Call-ID: 5b1cefbc37701cebb725efe963a11dc8@127.0.0.1
+CSeq: 1 ACK
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-503b1cc19da852a18d36c6e8c1113302
+From: <sip:TestToTag@sip-servlets.com>;tag=1267328398
+To: <sip:TestAllowHeader@127.0.0.1:5070;transport=udp>;tag=16200436_149c3691_9d631b7a-e195-4d15-b942-8317ca0bc00d
+Max-Forwards: 70
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5080" 
+to="127.0.0.1:5070" 
+time="1337626646519"
+isSender="true" 
+transactionId="z9hg4bk-353835-5b53565c7695f20f99182ab58682553b" 
+callId="5b1cefbc37701cebb725efe963a11dc8@127.0.0.1" 
+firstLine="BYE sip:127.0.0.1:5070 SIP/2.0" 
+>
+<![CDATA[BYE sip:127.0.0.1:5070 SIP/2.0
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-5b53565c7695f20f99182ab58682553b
+CSeq: 2 BYE
+From: <sip:TestToTag@sip-servlets.com>;tag=1267328398
+To: <sip:TestAllowHeader@127.0.0.1:5070;transport=udp>;tag=16200436_149c3691_9d631b7a-e195-4d15-b942-8317ca0bc00d
+Call-ID: 5b1cefbc37701cebb725efe963a11dc8@127.0.0.1
+Max-Forwards: 70
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5070" 
+to="127.0.0.1:5080" 
+time="1337626646535"
+isSender="false" 
+transactionId="z9hg4bk-353835-5b53565c7695f20f99182ab58682553b" 
+callId="5b1cefbc37701cebb725efe963a11dc8@127.0.0.1" 
+firstLine="SIP/2.0 200 OK" 
+>
+<![CDATA[SIP/2.0 200 OK
+To: <sip:TestAllowHeader@127.0.0.1:5070;transport=udp>;tag=16200436_149c3691_9d631b7a-e195-4d15-b942-8317ca0bc00d
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-5b53565c7695f20f99182ab58682553b
+CSeq: 2 BYE
+Call-ID: 5b1cefbc37701cebb725efe963a11dc8@127.0.0.1
+From: <sip:TestToTag@sip-servlets.com>;tag=1267328398
+Content-Length: 0
+
+]]>
+</message>
+
+<!-- Use the  Trace Viewer in src/tools/tracesviewer to view this  trace  
+Here are the stack configuration properties 
+javax.sip.IP_ADDRESS= null
+javax.sip.STACK_NAME= UAC_udp_5080
+javax.sip.ROUTER_PATH= null
+javax.sip.OUTBOUND_PROXY= 127.0.0.1:5070/udp
+-->
+<description
+ logDescription="UAC_udp_5080"
+ name="UAC_udp_5080"
+ auxInfo="null"/>
+ 
+<message
+from="127.0.0.1:5080" 
+to="127.0.0.1:5070" 
+time="1337626649575"
+isSender="true" 
+transactionId="z9hg4bk-353835-12d478152e3a7f20ce48a418e04bdb66" 
+callId="3eb5bcbd5b6d0c6c601e9f956bd2079e@127.0.0.1" 
+firstLine="INVITE sip:testSubscriberUri@127.0.0.1:5070;transport=udp SIP/2.0" 
+>
+<![CDATA[INVITE sip:testSubscriberUri@127.0.0.1:5070;transport=udp SIP/2.0
+Call-ID: 3eb5bcbd5b6d0c6c601e9f956bd2079e@127.0.0.1
+CSeq: 1 INVITE
+From: <sip:testSubscriberUri@sip-servlets.com>;tag=559517820
+To: <sip:testSubscriberUri@127.0.0.1:5070;transport=udp>
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-12d478152e3a7f20ce48a418e04bdb66
+Max-Forwards: 70
+Contact: <sip:testSubscriberUri@127.0.0.1:5080;transport=udp;lr>
+Route: <sip:127.0.0.1:5070;lr;transport=udp>
+REM: RRRREM
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5070" 
+to="127.0.0.1:5080" 
+time="1337626649594"
+isSender="false" 
+transactionId="z9hg4bk-353835-12d478152e3a7f20ce48a418e04bdb66" 
+callId="3eb5bcbd5b6d0c6c601e9f956bd2079e@127.0.0.1" 
+firstLine="SIP/2.0 100 Trying" 
+>
+<![CDATA[SIP/2.0 100 Trying
+To: <sip:testSubscriberUri@127.0.0.1:5070;transport=udp>
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-12d478152e3a7f20ce48a418e04bdb66
+CSeq: 1 INVITE
+Call-ID: 3eb5bcbd5b6d0c6c601e9f956bd2079e@127.0.0.1
+From: <sip:testSubscriberUri@sip-servlets.com>;tag=559517820
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5070" 
+to="127.0.0.1:5080" 
+time="1337626649616"
+isSender="false" 
+transactionId="z9hg4bk-353835-12d478152e3a7f20ce48a418e04bdb66" 
+callId="3eb5bcbd5b6d0c6c601e9f956bd2079e@127.0.0.1" 
+firstLine="SIP/2.0 180 Ringing" 
+>
+<![CDATA[SIP/2.0 180 Ringing
+To: <sip:testSubscriberUri@127.0.0.1:5070;transport=udp>;tag=67471294_149c3691_0d145899-5af7-452f-b5f4-dc6d354ee652
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-12d478152e3a7f20ce48a418e04bdb66
+CSeq: 1 INVITE
+Call-ID: 3eb5bcbd5b6d0c6c601e9f956bd2079e@127.0.0.1
+From: <sip:testSubscriberUri@sip-servlets.com>;tag=559517820
+Contact: <sip:127.0.0.1:5070>
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5070" 
+to="127.0.0.1:5080" 
+time="1337626649635"
+isSender="false" 
+transactionId="z9hg4bk-353835-12d478152e3a7f20ce48a418e04bdb66" 
+callId="3eb5bcbd5b6d0c6c601e9f956bd2079e@127.0.0.1" 
+firstLine="SIP/2.0 200 OK" 
+>
+<![CDATA[SIP/2.0 200 OK
+To: <sip:testSubscriberUri@127.0.0.1:5070;transport=udp>;tag=67471294_149c3691_0d145899-5af7-452f-b5f4-dc6d354ee652
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-12d478152e3a7f20ce48a418e04bdb66
+CSeq: 1 INVITE
+Call-ID: 3eb5bcbd5b6d0c6c601e9f956bd2079e@127.0.0.1
+From: <sip:testSubscriberUri@sip-servlets.com>;tag=559517820
+Contact: <sip:127.0.0.1:5070>
+TestNonExistingHeader: true
+TestNonExistingHeaderList: true,false,maybe
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5080" 
+to="127.0.0.1:5070" 
+time="1337626649763"
+isSender="true" 
+transactionId="z9hg4bk-353835-c69ddd36eba6af3060e7e674a19ba88a" 
+callId="3eb5bcbd5b6d0c6c601e9f956bd2079e@127.0.0.1" 
+firstLine="ACK sip:127.0.0.1:5070 SIP/2.0" 
+>
+<![CDATA[ACK sip:127.0.0.1:5070 SIP/2.0
+Call-ID: 3eb5bcbd5b6d0c6c601e9f956bd2079e@127.0.0.1
+CSeq: 1 ACK
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-c69ddd36eba6af3060e7e674a19ba88a
+From: <sip:testSubscriberUri@sip-servlets.com>;tag=559517820
+To: <sip:testSubscriberUri@127.0.0.1:5070;transport=udp>;tag=67471294_149c3691_0d145899-5af7-452f-b5f4-dc6d354ee652
+Max-Forwards: 70
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5080" 
+to="127.0.0.1:5070" 
+time="1337626651783"
+isSender="true" 
+transactionId="z9hg4bk-353835-df6357e029f883aeb798a242f429f931" 
+callId="3eb5bcbd5b6d0c6c601e9f956bd2079e@127.0.0.1" 
+firstLine="BYE sip:127.0.0.1:5070 SIP/2.0" 
+>
+<![CDATA[BYE sip:127.0.0.1:5070 SIP/2.0
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-df6357e029f883aeb798a242f429f931
+CSeq: 2 BYE
+From: <sip:testSubscriberUri@sip-servlets.com>;tag=559517820
+To: <sip:testSubscriberUri@127.0.0.1:5070;transport=udp>;tag=67471294_149c3691_0d145899-5af7-452f-b5f4-dc6d354ee652
+Call-ID: 3eb5bcbd5b6d0c6c601e9f956bd2079e@127.0.0.1
+Max-Forwards: 70
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5070" 
+to="127.0.0.1:5080" 
+time="1337626651801"
+isSender="false" 
+transactionId="z9hg4bk-353835-df6357e029f883aeb798a242f429f931" 
+callId="3eb5bcbd5b6d0c6c601e9f956bd2079e@127.0.0.1" 
+firstLine="SIP/2.0 200 OK" 
+>
+<![CDATA[SIP/2.0 200 OK
+To: <sip:testSubscriberUri@127.0.0.1:5070;transport=udp>;tag=67471294_149c3691_0d145899-5af7-452f-b5f4-dc6d354ee652
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-df6357e029f883aeb798a242f429f931
+CSeq: 2 BYE
+Call-ID: 3eb5bcbd5b6d0c6c601e9f956bd2079e@127.0.0.1
+From: <sip:testSubscriberUri@sip-servlets.com>;tag=559517820
+Content-Length: 0
+
+]]>
+</message>
+
+<!-- Use the  Trace Viewer in src/tools/tracesviewer to view this  trace  
+Here are the stack configuration properties 
+javax.sip.IP_ADDRESS= null
+javax.sip.STACK_NAME= UAC_udp_5080
+javax.sip.ROUTER_PATH= null
+javax.sip.OUTBOUND_PROXY= 127.0.0.1:5070/udp
+-->
+<description
+ logDescription="UAC_udp_5080"
+ name="UAC_udp_5080"
+ auxInfo="null"/>
+ 
+<message
+from="127.0.0.1:5080" 
+to="127.0.0.1:5070" 
+time="1337626654849"
+isSender="true" 
+transactionId="z9hg4bk-353835-a037c411adbff58185d1a01d65e20f9c" 
+callId="26c544b7c901ba2b2d6c8c963ec7c99c@127.0.0.1" 
+firstLine="INVITE sip:testFlagParameter@127.0.0.1:5070;transport=udp SIP/2.0" 
+>
+<![CDATA[INVITE sip:testFlagParameter@127.0.0.1:5070;transport=udp SIP/2.0
+Call-ID: 26c544b7c901ba2b2d6c8c963ec7c99c@127.0.0.1
+CSeq: 1 INVITE
+From: <sip:testFlagParameter@sip-servlets.com>;tag=2037372970
+To: <sip:testFlagParameter@127.0.0.1:5070;transport=udp>
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-a037c411adbff58185d1a01d65e20f9c
+Max-Forwards: 70
+Contact: <sip:testFlagParameter@127.0.0.1:5080;transport=udp;lr>
+Route: <sip:127.0.0.1:5070;lr;transport=udp>
+REM: RRRREM
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5070" 
+to="127.0.0.1:5080" 
+time="1337626654871"
+isSender="false" 
+transactionId="z9hg4bk-353835-a037c411adbff58185d1a01d65e20f9c" 
+callId="26c544b7c901ba2b2d6c8c963ec7c99c@127.0.0.1" 
+firstLine="SIP/2.0 100 Trying" 
+>
+<![CDATA[SIP/2.0 100 Trying
+To: <sip:testFlagParameter@127.0.0.1:5070;transport=udp>
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-a037c411adbff58185d1a01d65e20f9c
+CSeq: 1 INVITE
+Call-ID: 26c544b7c901ba2b2d6c8c963ec7c99c@127.0.0.1
+From: <sip:testFlagParameter@sip-servlets.com>;tag=2037372970
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5070" 
+to="127.0.0.1:5080" 
+time="1337626654887"
+isSender="false" 
+transactionId="z9hg4bk-353835-a037c411adbff58185d1a01d65e20f9c" 
+callId="26c544b7c901ba2b2d6c8c963ec7c99c@127.0.0.1" 
+firstLine="SIP/2.0 180 Ringing" 
+>
+<![CDATA[SIP/2.0 180 Ringing
+To: <sip:testFlagParameter@127.0.0.1:5070;transport=udp>;tag=44083908_149c3691_6f8183c7-f66d-46fe-9eac-8fda5017b45f
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-a037c411adbff58185d1a01d65e20f9c
+CSeq: 1 INVITE
+Call-ID: 26c544b7c901ba2b2d6c8c963ec7c99c@127.0.0.1
+From: <sip:testFlagParameter@sip-servlets.com>;tag=2037372970
+Contact: <sip:127.0.0.1:5070>
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5070" 
+to="127.0.0.1:5080" 
+time="1337626654907"
+isSender="false" 
+transactionId="z9hg4bk-353835-a037c411adbff58185d1a01d65e20f9c" 
+callId="26c544b7c901ba2b2d6c8c963ec7c99c@127.0.0.1" 
+firstLine="SIP/2.0 200 OK" 
+>
+<![CDATA[SIP/2.0 200 OK
+To: <sip:testFlagParameter@127.0.0.1:5070;transport=udp>;tag=44083908_149c3691_6f8183c7-f66d-46fe-9eac-8fda5017b45f
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-a037c411adbff58185d1a01d65e20f9c
+CSeq: 1 INVITE
+Call-ID: 26c544b7c901ba2b2d6c8c963ec7c99c@127.0.0.1
+From: <sip:testFlagParameter@sip-servlets.com>;tag=2037372970
+Contact: <sip:127.0.0.1:5070>
+TestNonExistingHeader: true
+TestNonExistingHeaderList: true,false,maybe
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5080" 
+to="127.0.0.1:5070" 
+time="1337626655030"
+isSender="true" 
+transactionId="z9hg4bk-353835-0fea3af597a3a616918ad4582e76fa77" 
+callId="26c544b7c901ba2b2d6c8c963ec7c99c@127.0.0.1" 
+firstLine="ACK sip:127.0.0.1:5070 SIP/2.0" 
+>
+<![CDATA[ACK sip:127.0.0.1:5070 SIP/2.0
+Call-ID: 26c544b7c901ba2b2d6c8c963ec7c99c@127.0.0.1
+CSeq: 1 ACK
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-0fea3af597a3a616918ad4582e76fa77
+From: <sip:testFlagParameter@sip-servlets.com>;tag=2037372970
+To: <sip:testFlagParameter@127.0.0.1:5070;transport=udp>;tag=44083908_149c3691_6f8183c7-f66d-46fe-9eac-8fda5017b45f
+Max-Forwards: 70
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5080" 
+to="127.0.0.1:5070" 
+time="1337626657051"
+isSender="true" 
+transactionId="z9hg4bk-353835-285cdc198e04d03001ece65bf6d1267e" 
+callId="26c544b7c901ba2b2d6c8c963ec7c99c@127.0.0.1" 
+firstLine="BYE sip:127.0.0.1:5070 SIP/2.0" 
+>
+<![CDATA[BYE sip:127.0.0.1:5070 SIP/2.0
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-285cdc198e04d03001ece65bf6d1267e
+CSeq: 2 BYE
+From: <sip:testFlagParameter@sip-servlets.com>;tag=2037372970
+To: <sip:testFlagParameter@127.0.0.1:5070;transport=udp>;tag=44083908_149c3691_6f8183c7-f66d-46fe-9eac-8fda5017b45f
+Call-ID: 26c544b7c901ba2b2d6c8c963ec7c99c@127.0.0.1
+Max-Forwards: 70
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5070" 
+to="127.0.0.1:5080" 
+time="1337626657069"
+isSender="false" 
+transactionId="z9hg4bk-353835-285cdc198e04d03001ece65bf6d1267e" 
+callId="26c544b7c901ba2b2d6c8c963ec7c99c@127.0.0.1" 
+firstLine="SIP/2.0 200 OK" 
+>
+<![CDATA[SIP/2.0 200 OK
+To: <sip:testFlagParameter@127.0.0.1:5070;transport=udp>;tag=44083908_149c3691_6f8183c7-f66d-46fe-9eac-8fda5017b45f
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-285cdc198e04d03001ece65bf6d1267e
+CSeq: 2 BYE
+Call-ID: 26c544b7c901ba2b2d6c8c963ec7c99c@127.0.0.1
+From: <sip:testFlagParameter@sip-servlets.com>;tag=2037372970
+Content-Length: 0
+
+]]>
+</message>
+
+<!-- Use the  Trace Viewer in src/tools/tracesviewer to view this  trace  
+Here are the stack configuration properties 
+javax.sip.IP_ADDRESS= null
+javax.sip.STACK_NAME= UAC_udp_5080
+javax.sip.ROUTER_PATH= null
+javax.sip.OUTBOUND_PROXY= 127.0.0.1:5070/udp
+-->
+<description
+ logDescription="UAC_udp_5080"
+ name="UAC_udp_5080"
+ auxInfo="null"/>
+ 
+<message
+from="127.0.0.1:5080" 
+to="127.0.0.1:5070" 
+time="1337626660109"
+isSender="true" 
+transactionId="z9hg4bk-353835-0268cb67491fb69f7385eb8288a22cf6" 
+callId="ffcc76097e52fdba4be3c601d6568cc5@127.0.0.1" 
+firstLine="INVITE sip:testSessionRetrieval@127.0.0.1:5070;transport=udp SIP/2.0" 
+>
+<![CDATA[INVITE sip:testSessionRetrieval@127.0.0.1:5070;transport=udp SIP/2.0
+Call-ID: ffcc76097e52fdba4be3c601d6568cc5@127.0.0.1
+CSeq: 1 INVITE
+From: <sip:testSessionRetrieval@sip-servlets.com>;tag=627455793
+To: <sip:testSessionRetrieval@127.0.0.1:5070;transport=udp>
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-0268cb67491fb69f7385eb8288a22cf6
+Max-Forwards: 70
+Contact: <sip:testSessionRetrieval@127.0.0.1:5080;transport=udp;lr>
+Route: <sip:127.0.0.1:5070;lr;transport=udp>
+REM: RRRREM
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5070" 
+to="127.0.0.1:5080" 
+time="1337626660125"
+isSender="false" 
+transactionId="z9hg4bk-353835-0268cb67491fb69f7385eb8288a22cf6" 
+callId="ffcc76097e52fdba4be3c601d6568cc5@127.0.0.1" 
+firstLine="SIP/2.0 100 Trying" 
+>
+<![CDATA[SIP/2.0 100 Trying
+To: <sip:testSessionRetrieval@127.0.0.1:5070;transport=udp>
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-0268cb67491fb69f7385eb8288a22cf6
+CSeq: 1 INVITE
+Call-ID: ffcc76097e52fdba4be3c601d6568cc5@127.0.0.1
+From: <sip:testSessionRetrieval@sip-servlets.com>;tag=627455793
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5070" 
+to="127.0.0.1:5080" 
+time="1337626660148"
+isSender="false" 
+transactionId="z9hg4bk-353835-0268cb67491fb69f7385eb8288a22cf6" 
+callId="ffcc76097e52fdba4be3c601d6568cc5@127.0.0.1" 
+firstLine="SIP/2.0 180 Ringing" 
+>
+<![CDATA[SIP/2.0 180 Ringing
+To: <sip:testSessionRetrieval@127.0.0.1:5070;transport=udp>;tag=02103400_149c3691_6d75b8d6-1258-4e71-9cae-a638914f715d
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-0268cb67491fb69f7385eb8288a22cf6
+CSeq: 1 INVITE
+Call-ID: ffcc76097e52fdba4be3c601d6568cc5@127.0.0.1
+From: <sip:testSessionRetrieval@sip-servlets.com>;tag=627455793
+Contact: <sip:127.0.0.1:5070>
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5070" 
+to="127.0.0.1:5080" 
+time="1337626660167"
+isSender="false" 
+transactionId="z9hg4bk-353835-0268cb67491fb69f7385eb8288a22cf6" 
+callId="ffcc76097e52fdba4be3c601d6568cc5@127.0.0.1" 
+firstLine="SIP/2.0 200 OK" 
+>
+<![CDATA[SIP/2.0 200 OK
+To: <sip:testSessionRetrieval@127.0.0.1:5070;transport=udp>;tag=02103400_149c3691_6d75b8d6-1258-4e71-9cae-a638914f715d
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-0268cb67491fb69f7385eb8288a22cf6
+CSeq: 1 INVITE
+Call-ID: ffcc76097e52fdba4be3c601d6568cc5@127.0.0.1
+From: <sip:testSessionRetrieval@sip-servlets.com>;tag=627455793
+Contact: <sip:127.0.0.1:5070>
+TestNonExistingHeader: true
+TestNonExistingHeaderList: true,false,maybe
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5080" 
+to="127.0.0.1:5070" 
+time="1337626660287"
+isSender="true" 
+transactionId="z9hg4bk-353835-57cb8e025d6faf873f7905c9055f3c9b" 
+callId="ffcc76097e52fdba4be3c601d6568cc5@127.0.0.1" 
+firstLine="ACK sip:127.0.0.1:5070 SIP/2.0" 
+>
+<![CDATA[ACK sip:127.0.0.1:5070 SIP/2.0
+Call-ID: ffcc76097e52fdba4be3c601d6568cc5@127.0.0.1
+CSeq: 1 ACK
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-57cb8e025d6faf873f7905c9055f3c9b
+From: <sip:testSessionRetrieval@sip-servlets.com>;tag=627455793
+To: <sip:testSessionRetrieval@127.0.0.1:5070;transport=udp>;tag=02103400_149c3691_6d75b8d6-1258-4e71-9cae-a638914f715d
+Max-Forwards: 70
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5080" 
+to="127.0.0.1:5070" 
+time="1337626662308"
+isSender="true" 
+transactionId="z9hg4bk-353835-4a0ed1068d219cf2db1e6b0ffb68d613" 
+callId="ffcc76097e52fdba4be3c601d6568cc5@127.0.0.1" 
+firstLine="BYE sip:127.0.0.1:5070 SIP/2.0" 
+>
+<![CDATA[BYE sip:127.0.0.1:5070 SIP/2.0
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-4a0ed1068d219cf2db1e6b0ffb68d613
+CSeq: 2 BYE
+From: <sip:testSessionRetrieval@sip-servlets.com>;tag=627455793
+To: <sip:testSessionRetrieval@127.0.0.1:5070;transport=udp>;tag=02103400_149c3691_6d75b8d6-1258-4e71-9cae-a638914f715d
+Call-ID: ffcc76097e52fdba4be3c601d6568cc5@127.0.0.1
+Max-Forwards: 70
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5070" 
+to="127.0.0.1:5080" 
+time="1337626662334"
+isSender="false" 
+transactionId="z9hg4bk-353835-4a0ed1068d219cf2db1e6b0ffb68d613" 
+callId="ffcc76097e52fdba4be3c601d6568cc5@127.0.0.1" 
+firstLine="SIP/2.0 200 OK" 
+>
+<![CDATA[SIP/2.0 200 OK
+To: <sip:testSessionRetrieval@127.0.0.1:5070;transport=udp>;tag=02103400_149c3691_6d75b8d6-1258-4e71-9cae-a638914f715d
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-4a0ed1068d219cf2db1e6b0ffb68d613
+CSeq: 2 BYE
+Call-ID: ffcc76097e52fdba4be3c601d6568cc5@127.0.0.1
+From: <sip:testSessionRetrieval@sip-servlets.com>;tag=627455793
+Content-Length: 0
+
+]]>
+</message>
+
+<!-- Use the  Trace Viewer in src/tools/tracesviewer to view this  trace  
+Here are the stack configuration properties 
+javax.sip.IP_ADDRESS= null
+javax.sip.STACK_NAME= UAC_udp_5080
+javax.sip.ROUTER_PATH= null
+javax.sip.OUTBOUND_PROXY= 127.0.0.1:5070/udp
+-->
+<description
+ logDescription="UAC_udp_5080"
+ name="UAC_udp_5080"
+ auxInfo="null"/>
+ 
+<message
+from="127.0.0.1:5080" 
+to="127.0.0.1:5070" 
+time="1337626665363"
+isSender="true" 
+transactionId="z9hg4bk-353835-0a9c18190fc4cdb0b44aa976c72d476e" 
+callId="2a927f28f95a6d8c0a1a862f2ec68939@127.0.0.1" 
+firstLine="INVITE sip:noAckReceived@127.0.0.1:5070;transport=udp SIP/2.0" 
+>
+<![CDATA[INVITE sip:noAckReceived@127.0.0.1:5070;transport=udp SIP/2.0
+Call-ID: 2a927f28f95a6d8c0a1a862f2ec68939@127.0.0.1
+CSeq: 1 INVITE
+From: <sip:noAckReceived@sip-servlets.com>;tag=1199390424
+To: <sip:noAckReceived@127.0.0.1:5070;transport=udp>
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-0a9c18190fc4cdb0b44aa976c72d476e
+Max-Forwards: 70
+Contact: <sip:noAckReceived@127.0.0.1:5080;transport=udp;lr>
+Route: <sip:127.0.0.1:5070;lr;transport=udp>
+REM: RRRREM
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5070" 
+to="127.0.0.1:5080" 
+time="1337626665390"
+isSender="false" 
+transactionId="z9hg4bk-353835-0a9c18190fc4cdb0b44aa976c72d476e" 
+callId="2a927f28f95a6d8c0a1a862f2ec68939@127.0.0.1" 
+firstLine="SIP/2.0 200 OK" 
+>
+<![CDATA[SIP/2.0 200 OK
+To: <sip:noAckReceived@127.0.0.1:5070;transport=udp>;tag=49054743_149c3691_dcd3d3d6-c63f-4825-b4fa-70d27dbb5268
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-0a9c18190fc4cdb0b44aa976c72d476e
+CSeq: 1 INVITE
+Call-ID: 2a927f28f95a6d8c0a1a862f2ec68939@127.0.0.1
+From: <sip:noAckReceived@sip-servlets.com>;tag=1199390424
+Contact: <sip:127.0.0.1:5070>
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5070" 
+to="127.0.0.1:5080" 
+time="1337626665895"
+isSender="false" 
+transactionId="z9hg4bk-353835-0a9c18190fc4cdb0b44aa976c72d476e" 
+callId="2a927f28f95a6d8c0a1a862f2ec68939@127.0.0.1" 
+firstLine="SIP/2.0 200 OK" 
+>
+<![CDATA[SIP/2.0 200 OK
+To: <sip:noAckReceived@127.0.0.1:5070;transport=udp>;tag=49054743_149c3691_dcd3d3d6-c63f-4825-b4fa-70d27dbb5268
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-0a9c18190fc4cdb0b44aa976c72d476e
+CSeq: 1 INVITE
+Call-ID: 2a927f28f95a6d8c0a1a862f2ec68939@127.0.0.1
+From: <sip:noAckReceived@sip-servlets.com>;tag=1199390424
+Contact: <sip:127.0.0.1:5070>
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5070" 
+to="127.0.0.1:5080" 
+time="1337626666898"
+isSender="false" 
+transactionId="z9hg4bk-353835-0a9c18190fc4cdb0b44aa976c72d476e" 
+callId="2a927f28f95a6d8c0a1a862f2ec68939@127.0.0.1" 
+firstLine="SIP/2.0 200 OK" 
+>
+<![CDATA[SIP/2.0 200 OK
+To: <sip:noAckReceived@127.0.0.1:5070;transport=udp>;tag=49054743_149c3691_dcd3d3d6-c63f-4825-b4fa-70d27dbb5268
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-0a9c18190fc4cdb0b44aa976c72d476e
+CSeq: 1 INVITE
+Call-ID: 2a927f28f95a6d8c0a1a862f2ec68939@127.0.0.1
+From: <sip:noAckReceived@sip-servlets.com>;tag=1199390424
+Contact: <sip:127.0.0.1:5070>
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5070" 
+to="127.0.0.1:5080" 
+time="1337626668897"
+isSender="false" 
+transactionId="z9hg4bk-353835-0a9c18190fc4cdb0b44aa976c72d476e" 
+callId="2a927f28f95a6d8c0a1a862f2ec68939@127.0.0.1" 
+firstLine="SIP/2.0 200 OK" 
+>
+<![CDATA[SIP/2.0 200 OK
+To: <sip:noAckReceived@127.0.0.1:5070;transport=udp>;tag=49054743_149c3691_dcd3d3d6-c63f-4825-b4fa-70d27dbb5268
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-0a9c18190fc4cdb0b44aa976c72d476e
+CSeq: 1 INVITE
+Call-ID: 2a927f28f95a6d8c0a1a862f2ec68939@127.0.0.1
+From: <sip:noAckReceived@sip-servlets.com>;tag=1199390424
+Contact: <sip:127.0.0.1:5070>
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5070" 
+to="127.0.0.1:5080" 
+time="1337626672899"
+isSender="false" 
+transactionId="z9hg4bk-353835-0a9c18190fc4cdb0b44aa976c72d476e" 
+callId="2a927f28f95a6d8c0a1a862f2ec68939@127.0.0.1" 
+firstLine="SIP/2.0 200 OK" 
+>
+<![CDATA[SIP/2.0 200 OK
+To: <sip:noAckReceived@127.0.0.1:5070;transport=udp>;tag=49054743_149c3691_dcd3d3d6-c63f-4825-b4fa-70d27dbb5268
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-0a9c18190fc4cdb0b44aa976c72d476e
+CSeq: 1 INVITE
+Call-ID: 2a927f28f95a6d8c0a1a862f2ec68939@127.0.0.1
+From: <sip:noAckReceived@sip-servlets.com>;tag=1199390424
+Contact: <sip:127.0.0.1:5070>
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5070" 
+to="127.0.0.1:5080" 
+time="1337626676904"
+isSender="false" 
+transactionId="z9hg4bk-353835-0a9c18190fc4cdb0b44aa976c72d476e" 
+callId="2a927f28f95a6d8c0a1a862f2ec68939@127.0.0.1" 
+firstLine="SIP/2.0 200 OK" 
+>
+<![CDATA[SIP/2.0 200 OK
+To: <sip:noAckReceived@127.0.0.1:5070;transport=udp>;tag=49054743_149c3691_dcd3d3d6-c63f-4825-b4fa-70d27dbb5268
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-0a9c18190fc4cdb0b44aa976c72d476e
+CSeq: 1 INVITE
+Call-ID: 2a927f28f95a6d8c0a1a862f2ec68939@127.0.0.1
+From: <sip:noAckReceived@sip-servlets.com>;tag=1199390424
+Contact: <sip:127.0.0.1:5070>
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5070" 
+to="127.0.0.1:5080" 
+time="1337626680903"
+isSender="false" 
+transactionId="z9hg4bk-353835-0a9c18190fc4cdb0b44aa976c72d476e" 
+callId="2a927f28f95a6d8c0a1a862f2ec68939@127.0.0.1" 
+firstLine="SIP/2.0 200 OK" 
+>
+<![CDATA[SIP/2.0 200 OK
+To: <sip:noAckReceived@127.0.0.1:5070;transport=udp>;tag=49054743_149c3691_dcd3d3d6-c63f-4825-b4fa-70d27dbb5268
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-0a9c18190fc4cdb0b44aa976c72d476e
+CSeq: 1 INVITE
+Call-ID: 2a927f28f95a6d8c0a1a862f2ec68939@127.0.0.1
+From: <sip:noAckReceived@sip-servlets.com>;tag=1199390424
+Contact: <sip:127.0.0.1:5070>
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5070" 
+to="127.0.0.1:5080" 
+time="1337626684904"
+isSender="false" 
+transactionId="z9hg4bk-353835-0a9c18190fc4cdb0b44aa976c72d476e" 
+callId="2a927f28f95a6d8c0a1a862f2ec68939@127.0.0.1" 
+firstLine="SIP/2.0 200 OK" 
+>
+<![CDATA[SIP/2.0 200 OK
+To: <sip:noAckReceived@127.0.0.1:5070;transport=udp>;tag=49054743_149c3691_dcd3d3d6-c63f-4825-b4fa-70d27dbb5268
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-0a9c18190fc4cdb0b44aa976c72d476e
+CSeq: 1 INVITE
+Call-ID: 2a927f28f95a6d8c0a1a862f2ec68939@127.0.0.1
+From: <sip:noAckReceived@sip-servlets.com>;tag=1199390424
+Contact: <sip:127.0.0.1:5070>
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5070" 
+to="127.0.0.1:5080" 
+time="1337626688906"
+isSender="false" 
+transactionId="z9hg4bk-353835-0a9c18190fc4cdb0b44aa976c72d476e" 
+callId="2a927f28f95a6d8c0a1a862f2ec68939@127.0.0.1" 
+firstLine="SIP/2.0 200 OK" 
+>
+<![CDATA[SIP/2.0 200 OK
+To: <sip:noAckReceived@127.0.0.1:5070;transport=udp>;tag=49054743_149c3691_dcd3d3d6-c63f-4825-b4fa-70d27dbb5268
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-0a9c18190fc4cdb0b44aa976c72d476e
+CSeq: 1 INVITE
+Call-ID: 2a927f28f95a6d8c0a1a862f2ec68939@127.0.0.1
+From: <sip:noAckReceived@sip-servlets.com>;tag=1199390424
+Contact: <sip:127.0.0.1:5070>
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5070" 
+to="127.0.0.1:5080" 
+time="1337626692906"
+isSender="false" 
+transactionId="z9hg4bk-353835-0a9c18190fc4cdb0b44aa976c72d476e" 
+callId="2a927f28f95a6d8c0a1a862f2ec68939@127.0.0.1" 
+firstLine="SIP/2.0 200 OK" 
+>
+<![CDATA[SIP/2.0 200 OK
+To: <sip:noAckReceived@127.0.0.1:5070;transport=udp>;tag=49054743_149c3691_dcd3d3d6-c63f-4825-b4fa-70d27dbb5268
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-0a9c18190fc4cdb0b44aa976c72d476e
+CSeq: 1 INVITE
+Call-ID: 2a927f28f95a6d8c0a1a862f2ec68939@127.0.0.1
+From: <sip:noAckReceived@sip-servlets.com>;tag=1199390424
+Contact: <sip:127.0.0.1:5070>
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5070" 
+to="127.0.0.1:5080" 
+time="1337626696908"
+isSender="false" 
+transactionId="z9hg4bk-353835-0a9c18190fc4cdb0b44aa976c72d476e" 
+callId="2a927f28f95a6d8c0a1a862f2ec68939@127.0.0.1" 
+firstLine="SIP/2.0 200 OK" 
+>
+<![CDATA[SIP/2.0 200 OK
+To: <sip:noAckReceived@127.0.0.1:5070;transport=udp>;tag=49054743_149c3691_dcd3d3d6-c63f-4825-b4fa-70d27dbb5268
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-0a9c18190fc4cdb0b44aa976c72d476e
+CSeq: 1 INVITE
+Call-ID: 2a927f28f95a6d8c0a1a862f2ec68939@127.0.0.1
+From: <sip:noAckReceived@sip-servlets.com>;tag=1199390424
+Contact: <sip:127.0.0.1:5070>
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5070" 
+to="127.0.0.1:5080" 
+time="1337626697928"
+isSender="false" 
+transactionId="z9hg4bkdcd3d3d6-c63f-4825-b4fa-70d27dbb5268_149c3691_14782989202562" 
+callId="fb40574c0cce765a0a1f3e15ef95a033@127.0.0.1" 
+firstLine="MESSAGE sip:receiver@127.0.0.1:5080 SIP/2.0" 
+>
+<![CDATA[MESSAGE sip:receiver@127.0.0.1:5080 SIP/2.0
+Call-ID: fb40574c0cce765a0a1f3e15ef95a033@127.0.0.1
+CSeq: 1 MESSAGE
+From: <sip:sender@sip-servlets.com>;tag=83167076_149c3691_dcd3d3d6-c63f-4825-b4fa-70d27dbb5268
+To: <sip:receiver@sip-servlets.com>
+Max-Forwards: 70
+Ext: Test 1, 2 ,3
+Content-Type: text/plain;charset=UTF-8
+Via: SIP/2.0/UDP 127.0.0.1:5070;branch=z9hG4bKdcd3d3d6-c63f-4825-b4fa-70d27dbb5268_149c3691_14782989202562
+Content-Length: 13
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5080" 
+to="127.0.0.1:5070" 
+time="1337626697944"
+isSender="true" 
+transactionId="z9hg4bkdcd3d3d6-c63f-4825-b4fa-70d27dbb5268_149c3691_14782989202562" 
+callId="fb40574c0cce765a0a1f3e15ef95a033@127.0.0.1" 
+firstLine="SIP/2.0 200 OK" 
+>
+<![CDATA[SIP/2.0 200 OK
+To: <sip:receiver@sip-servlets.com>;tag=1537804249
+Via: SIP/2.0/UDP 127.0.0.1:5070;branch=z9hG4bKdcd3d3d6-c63f-4825-b4fa-70d27dbb5268_149c3691_14782989202562
+CSeq: 1 MESSAGE
+Call-ID: fb40574c0cce765a0a1f3e15ef95a033@127.0.0.1
+From: <sip:sender@sip-servlets.com>;tag=83167076_149c3691_dcd3d3d6-c63f-4825-b4fa-70d27dbb5268
+Content-Length: 0
+
+]]>
+</message>
+
+<!-- Use the  Trace Viewer in src/tools/tracesviewer to view this  trace  
+Here are the stack configuration properties 
+javax.sip.IP_ADDRESS= null
+javax.sip.STACK_NAME= UAC_udp_5080
+javax.sip.ROUTER_PATH= null
+javax.sip.OUTBOUND_PROXY= 127.0.0.1:5070/udp
+-->
+<description
+ logDescription="UAC_udp_5080"
+ name="UAC_udp_5080"
+ auxInfo="null"/>
+ 
+<message
+from="127.0.0.1:5080" 
+to="127.0.0.1:5070" 
+time="1337626699979"
+isSender="true" 
+transactionId="z9hg4bk-353835-5116b6802e80c606f5537735d276a945" 
+callId="0a5e9a9b9b1199780df037864e731df6@127.0.0.1" 
+firstLine="REGISTER sip:receiver@127.0.0.1:5070;transport=udp SIP/2.0" 
+>
+<![CDATA[REGISTER sip:receiver@127.0.0.1:5070;transport=udp SIP/2.0
+Call-ID: 0a5e9a9b9b1199780df037864e731df6@127.0.0.1
+CSeq: 1 REGISTER
+From: <sip:authenticationInfoHeader@sip-servlets.com>;tag=1847082316
+To: <sip:receiver@sip-servlets.com>
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-5116b6802e80c606f5537735d276a945
+Max-Forwards: 5
+REM: RRRREM
+Contact: <sip:authenticationInfoHeader@127.0.0.1:5080;transport=udp;lr>
+Route: <sip:127.0.0.1:5070;lr;transport=udp>
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:5070" 
+to="127.0.0.1:5080" 
+time="1337626700004"
+isSender="false" 
+transactionId="z9hg4bk-353835-5116b6802e80c606f5537735d276a945" 
+callId="0a5e9a9b9b1199780df037864e731df6@127.0.0.1" 
+firstLine="SIP/2.0 401 Unauthorized" 
+>
+<![CDATA[SIP/2.0 401 Unauthorized
+To: <sip:receiver@sip-servlets.com>;tag=67572871_149c3691_70f1c585-78e2-4c86-9bf9-d36700118205
+Via: SIP/2.0/UDP 127.0.0.1:5080;branch=z9hG4bK-353835-5116b6802e80c606f5537735d276a945
+CSeq: 1 REGISTER
+Call-ID: 0a5e9a9b9b1199780df037864e731df6@127.0.0.1
+From: <sip:authenticationInfoHeader@sip-servlets.com>;tag=1847082316
+Authentication-Info: NTLM rspauth="01000000000000005CD422F0C750C7C6",srand="0B9D33A2",snum="1",opaque="BCDC0C9D",qop="auth",targetname="server.contoso.com",realm="SIP Communications Service"
+Content-Length: 0
+
+]]>
+</message>
+
