@@ -5,11 +5,11 @@
 	<parent>
 		<artifactId>arquillian-parent-mobicents-sip-servlets</artifactId>
 		<groupId>org.mobicents.arquillian.container</groupId>
-		<version>1.0.0-SNAPSHOT</version>
+		<version>1.0.0-ALPHA1</version>
 	</parent>
 
 	<artifactId>mss-arquillian-lifecycle-extension</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.0-ALPHA1</version>
 	<name>mss-arquillian-lifecycle-extension</name>
 
 	<properties>
@@ -23,7 +23,7 @@
 		<dependency>
 			<groupId>org.mobicents.arquillian.container</groupId>
 			<artifactId>mss-arquillian-container-api</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
+			<version>1.0.0-ALPHA1</version>
 		</dependency>
 		
 		<dependency>
