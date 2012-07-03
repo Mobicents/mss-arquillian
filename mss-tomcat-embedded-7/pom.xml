@@ -5,11 +5,11 @@
 	<parent>
 		<artifactId>arquillian-parent-mobicents-sip-servlets</artifactId>
 		<groupId>org.mobicents.arquillian.container</groupId>
-		<version>1.0.0-ALPHA2-SNAPSHOT</version>
+		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>mss-tomcat-embedded-7</artifactId>
-	<version>1.0.0-ALPHA2-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<name>Arquillian Mobicents Container Tomcat Embedded 7.x</name>
 	<url>http://code.google.com/p/commtesting/</url>	
 
@@ -24,7 +24,7 @@
 		<dependency>
 			<groupId>org.mobicents.arquillian.container</groupId>
 			<artifactId>mss-arquillian-container-api</artifactId>
-			<version>1.0.0-ALPHA2-SNAPSHOT</version>
+			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 
 		<!-- Mobicents Arquillian Lifecycle Extension -->
@@ -32,21 +32,21 @@
 		<dependency>
 			<groupId>org.mobicents.arquillian.container</groupId>
 			<artifactId>mss-arquillian-lifecycle-extension</artifactId>
-			<version>1.0.0-ALPHA2-SNAPSHOT</version>
+			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 
 		<!-- Mobicents Arquillian Container Extension -->
 		<dependency>
 			<groupId>org.mobicents.arquillian.container</groupId>
 			<artifactId>mss-arquillian-container-extension</artifactId>
-			<version>1.0.0-ALPHA2-SNAPSHOT</version>
+			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 
 		<!-- Mobicents Arquillian Utilities Extension -->
 		<dependency>
 			<groupId>org.mobicents.arquillian.container</groupId>
 			<artifactId>mss-arquillian-utilities-extension</artifactId>
-			<version>1.0.0-ALPHA2-SNAPSHOT</version>
+			<version>1.0.0-SNAPSHOT</version>
 			<!-- org.jboss.arquillian -->
 		</dependency>
 
