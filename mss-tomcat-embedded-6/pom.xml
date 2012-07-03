@@ -4,20 +4,49 @@
 	<parent>
 		<groupId>org.mobicents.arquillian.container</groupId>
 		<artifactId>arquillian-parent-mobicents-sip-servlets</artifactId>
-		<version>1.0.0-ALPHA2-SNAPSHOT</version>
+		<version>1.0.0-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
 
 	<artifactId>mss-tomcat-embedded-6</artifactId>
-	<version>1.0.0-ALPHA2-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<name>Arquillian Mobicents Container Tomcat Embedded 6.x</name>
 	<description>Mobicents Tomcat 6.x Embedded container integration for the Arquillian Project</description>
 	<url>http://code.google.com/p/commtesting/</url>
 	
 	<properties>
 	</properties>
+
+	<profiles>
+		<profile>
+			<id>release-sign-artifacts</id>
+			<activation>
+				<property>
+					<name>performRelease</name>
+					<value>true</value>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>install</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 
 	<dependencies>
 
@@ -26,7 +55,7 @@
 		<dependency>
 			<groupId>org.mobicents.arquillian.container</groupId>
 			<artifactId>mss-arquillian-container-api</artifactId>
-			<version>1.0.0-ALPHA2-SNAPSHOT</version>
+			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 
 		<!-- Mobicents Arquillian Lifecycle Extension -->
@@ -34,21 +63,21 @@
 		<dependency>
 			<groupId>org.mobicents.arquillian.container</groupId>
 			<artifactId>mss-arquillian-lifecycle-extension</artifactId>
-			<version>1.0.0-ALPHA2-SNAPSHOT</version>
+			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 
 		<!-- Mobicents Arquillian Container Extension -->
 		<dependency>
 			<groupId>org.mobicents.arquillian.container</groupId>
 			<artifactId>mss-arquillian-container-extension</artifactId>
-			<version>1.0.0-ALPHA2-SNAPSHOT</version>
+			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 
 		<!-- Mobicents Arquillian Utilities Extension -->
 		<dependency>
 			<groupId>org.mobicents.arquillian.container</groupId>
 			<artifactId>mss-arquillian-utilities-extension</artifactId>
-			<version>1.0.0-ALPHA2-SNAPSHOT</version>
+			<version>1.0.0-SNAPSHOT</version>
 			<!-- org.jboss.arquillian -->
 		</dependency>
 
