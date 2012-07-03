@@ -6,11 +6,10 @@
 
 	<parent>
 		<artifactId>arquillian-parent-mobicents-sip-servlets</artifactId>
-		<groupId>org.jboss.arquillian.container</groupId>
+		<groupId>org.mobicents.arquillian.container</groupId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 
-	<groupId>org.jboss.arquillian.container</groupId>
 	<artifactId>mss-arquillian-container-api</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<name>mss-arquillian-container-api</name>

@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
 	<parent>
-		<groupId>org.jboss.arquillian.container</groupId>
+		<groupId>org.mobicents.arquillian.container</groupId>
 		<artifactId>arquillian-parent-mobicents-sip-servlets</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
@@ -15,9 +15,9 @@
 	<version>1.0.0-SNAPSHOT</version>
 	<name>Arquillian Mobicents Container Tomcat Embedded 6.x</name>
 	<description>Mobicents Tomcat 6.x Embedded container integration for the Arquillian Project</description>
-
+	<url>http://code.google.com/p/commtesting/</url>
+	
 	<properties>
-
 	</properties>
 
 	<dependencies>
@@ -25,7 +25,7 @@
 		<!-- Mobicents Arquillian Container API -->
 
 		<dependency>
-			<groupId>org.jboss.arquillian.container</groupId>
+			<groupId>org.mobicents.arquillian.container</groupId>
 			<artifactId>mss-arquillian-container-api</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
@@ -33,21 +33,21 @@
 		<!-- Mobicents Arquillian Lifecycle Extension -->
 
 		<dependency>
-			<groupId>org.jboss.arquillian.container</groupId>
+			<groupId>org.mobicents.arquillian.container</groupId>
 			<artifactId>mss-arquillian-lifecycle-extension</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 
 		<!-- Mobicents Arquillian Container Extension -->
 		<dependency>
-			<groupId>org.jboss.arquillian.container</groupId>
+			<groupId>org.mobicents.arquillian.container</groupId>
 			<artifactId>mss-arquillian-container-extension</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 
 		<!-- Mobicents Arquillian Utilities Extension -->
 		<dependency>
-			<groupId>org.jboss.arquillian.container</groupId>
+			<groupId>org.mobicents.arquillian.container</groupId>
 			<artifactId>mss-arquillian-utilities-extension</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
 			<!-- org.jboss.arquillian -->
@@ -59,9 +59,8 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.jboss.shrinkwrap.container</groupId>
+			<groupId>org.mobicents.shrinkwrap.container</groupId>
 			<artifactId>shrinkwrap-container-mobicents</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 
 		<!-- org.apache.tomcat -->

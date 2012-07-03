@@ -9,7 +9,7 @@
 <!-- 		<version>1.0.0-SNAPSHOT</version> -->
 <!-- 	</parent> -->
 
-	<groupId>org.jboss.arquillian.container.mobicents</groupId>
+	<groupId>org.mobicents.arquillian.container.mobicents</groupId>
 	<artifactId>mss-arquillian-docs</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>

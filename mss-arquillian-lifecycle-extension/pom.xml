@@ -6,11 +6,10 @@
 
 	<parent>
 		<artifactId>arquillian-parent-mobicents-sip-servlets</artifactId>
-		<groupId>org.jboss.arquillian.container</groupId>
+		<groupId>org.mobicents.arquillian.container</groupId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 
-	<groupId>org.jboss.arquillian.container</groupId>
 	<artifactId>mss-arquillian-lifecycle-extension</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<name>mss-arquillian-lifecycle-extension</name>
@@ -24,7 +23,7 @@
 		<!-- Mobicents Arquillian Container API -->
 
 		<dependency>
-			<groupId>org.jboss.arquillian.container</groupId>
+			<groupId>org.mobicents.arquillian.container</groupId>
 			<artifactId>mss-arquillian-container-api</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
@@ -32,14 +31,12 @@
 		<dependency>
 			<groupId>javax.sip</groupId>
 			<artifactId>jain-sip-api</artifactId>
-			<version>1.2</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.mobicents.servlet.sip</groupId>
 			<artifactId>sip-servlets-annotations</artifactId>
 			<scope>provided</scope>
-<!-- 			<version>1.7.0-SNAPSHOT</version> -->
 		</dependency>
 
 		<dependency>

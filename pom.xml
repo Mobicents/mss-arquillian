@@ -14,24 +14,31 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<!-- Artifact Configuration -->
-	<groupId>org.jboss.arquillian.container</groupId>
+	<groupId>org.mobicents.arquillian.container</groupId>
 	<artifactId>arquillian-parent-mobicents-sip-servlets</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Arquillian Mobicents Container Parent Tomcat</name>
 	<description>Mobicents Tomcat Container for the Arquillian Project</description>
+	<url>http://code.google.com/p/commtesting/</url>
 
 	<developers>
 		<developer>
+			<id>george.vagenas</id>
 			<name>George Vagenas</name>
-			<email>gvagenas@gmail.com</email>
+			<email>george.vagenas@telestax.com</email>
+			<organization>TeleStax, Inc</organization>
+			<organizationUrl>http://www.telestax.com/</organizationUrl>
+			<roles>
+				<role>SIP Testing Project Lead</role>
+			</roles>
 		</developer>
 	</developers>
 
 	<scm>
-		<connection>scm:svn:https://code.google.com/p/commtesting.mss-arquillian/source/browse/arquillian-container-mobicents-sip-servlets</connection>
-		<developerConnection>scm:svn:https://code.google.com/p/commtesting.mss-arquillian/source/browse/arquillian-container-mobicents-sip-servlets</developerConnection>
-		<url>http://code.google.com/p/commtesting.mss-arquillian/source/browse/arquillian-container-mobicents-sip-servlets</url>
+		<connection>scm:svn:https://code.google.com/p/commtesting.mss-arquillian/</connection>
+		<developerConnection>scm:svn:https://code.google.com/p/commtesting.mss-arquillian/</developerConnection>
+		<url>http://code.google.com/p/commtesting.mss-arquillian/</url>
 	</scm>
 
 	<distributionManagement>
@@ -51,8 +58,11 @@
 	<properties>
 
 		<!-- Versioning -->
-		<version.arquillian_core>1.0.0.Final</version.arquillian_core>
+		<version.arquillian_core>1.0.1.Final</version.arquillian_core>
 		<version.shrinkwrap_tomcat>1.0.0</version.shrinkwrap_tomcat>
+		<version.shrinkwrap_mobicents>1.0.0-ALPHA1</version.shrinkwrap_mobicents>
+
+		<version.sipunit>2.0.0</version.sipunit>
 
 		<version.jboss_spec>1.0.0.Final</version.jboss_spec>
 		<version.weld_servlet>1.1.2.Final</version.weld_servlet>
@@ -101,10 +111,16 @@
 				<scope>import</scope>
 			</dependency>
 
-			<!-- <dependency> <groupId>org.jboss.arquillian.container</groupId> <artifactId>arquillian-container-spi</artifactId> 
-				<version>1.0.0.CR5</version> </dependency> <dependency> <groupId>org.jboss.arquillian.container</groupId> 
-				<artifactId>arquillian-container-test-spi</artifactId> <version>1.0.0.CR5</version> 
-				</dependency> -->
+<!-- 			<dependency> -->
+<!-- 				<groupId>org.jboss.arquillian.container</groupId> -->
+<!-- 				<artifactId>arquillian-container-spi</artifactId> -->
+<!-- 				<version>${version.arquillian_core}</version> -->
+<!-- 			</dependency> -->
+<!-- 			<dependency> -->
+<!-- 				<groupId>org.jboss.arquillian.container</groupId> -->
+<!-- 				<artifactId>arquillian-container-test-spi</artifactId> -->
+<!-- 				<version>${version.arquillian_core}</version> -->
+<!-- 			</dependency> -->
 			<!-- <dependency> <groupId>org.jboss.shrinkwrap.container</groupId> <artifactId>shrinkwrap-container-tomcat-60</artifactId> 
 				<version>${version.shrinkwrap_tomcat}</version> </dependency> -->
 			<dependency>
@@ -113,19 +129,6 @@
 				<version>${version.weld_servlet}</version>
 				<scope>test</scope>
 			</dependency>
-			<!-- <dependency> <groupId>org.jboss.arquillian.protocol</groupId> <artifactId>arquillian-protocol-servlet</artifactId> 
-				<version>1.0.0.CR5</version> </dependency> <dependency> <groupId>org.jboss.arquillian.testenricher</groupId> 
-				<artifactId>arquillian-testenricher-cdi</artifactId> <version>1.0.0.CR5</version> 
-				</dependency> <dependency> <groupId>org.jboss.arquillian.testenricher</groupId> 
-				<artifactId>arquillian-testenricher-resource</artifactId> <version>1.0.0.CR5</version> 
-				</dependency> <dependency> <groupId>org.jboss.arquillian.testenricher</groupId> 
-				<artifactId>arquillian-testenricher-initialcontext</artifactId> <version>1.0.0.CR5</version> 
-				</dependency> <dependency> <groupId>org.jboss.arquillian.junit</groupId> 
-				<artifactId>arquillian-junit-container</artifactId> <version>1.0.0.CR5</version> 
-				<scope>test</scope> </dependency> <dependency> <groupId>junit</groupId> <artifactId>junit</artifactId> 
-				<version>4.8.1</version> <scope>test</scope> </dependency> <dependency> <groupId>org.jboss.shrinkwrap.resolver</groupId> 
-				<artifactId>shrinkwrap-resolver-impl-maven</artifactId> <version>1.0.0-beta-5</version> 
-				<scope>test</scope> </dependency> -->
 
 			<!--CTF Dependencies -->
 			<!-- <dependency> -->
@@ -225,6 +228,23 @@
 				<version>${version.mobicents.jain.sip.ext}</version>
 			</dependency>
 
+			<dependency>
+				<groupId>org.mobicents.shrinkwrap.container</groupId>
+				<artifactId>shrinkwrap-container-mobicents</artifactId>
+				<version>${version.shrinkwrap_mobicents}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.cafesip.sipunit</groupId>
+				<artifactId>sipunit</artifactId>
+				<version>${version.sipunit}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>javax.sip</groupId>
+				<artifactId>jain-sip-api</artifactId>
+				<version>${jain-sip-api.version}</version>
+			</dependency>
 
 		</dependencies>
 	</dependencyManagement>

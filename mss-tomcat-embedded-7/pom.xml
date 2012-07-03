@@ -6,15 +6,14 @@
 
 	<parent>
 		<artifactId>arquillian-parent-mobicents-sip-servlets</artifactId>
-		<groupId>org.jboss.arquillian.container</groupId>
+		<groupId>org.mobicents.arquillian.container</groupId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 
-	<groupId>org.jboss.arquillian.container</groupId>
 	<artifactId>mss-tomcat-embedded-7</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<name>Arquillian Mobicents Container Tomcat Embedded 7.x</name>
-	<url>http://maven.apache.org</url>
+	<url>http://code.google.com/p/commtesting/</url>	
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -25,7 +24,7 @@
 		<!-- Mobicents Arquillian Container API -->
 
 		<dependency>
-			<groupId>org.jboss.arquillian.container</groupId>
+			<groupId>org.mobicents.arquillian.container</groupId>
 			<artifactId>mss-arquillian-container-api</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
@@ -33,21 +32,21 @@
 		<!-- Mobicents Arquillian Lifecycle Extension -->
 
 		<dependency>
-			<groupId>org.jboss.arquillian.container</groupId>
+			<groupId>org.mobicents.arquillian.container</groupId>
 			<artifactId>mss-arquillian-lifecycle-extension</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 
 		<!-- Mobicents Arquillian Container Extension -->
 		<dependency>
-			<groupId>org.jboss.arquillian.container</groupId>
+			<groupId>org.mobicents.arquillian.container</groupId>
 			<artifactId>mss-arquillian-container-extension</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 
 		<!-- Mobicents Arquillian Utilities Extension -->
 		<dependency>
-			<groupId>org.jboss.arquillian.container</groupId>
+			<groupId>org.mobicents.arquillian.container</groupId>
 			<artifactId>mss-arquillian-utilities-extension</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
 			<!-- org.jboss.arquillian -->
@@ -59,9 +58,8 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.jboss.shrinkwrap.container</groupId>
+			<groupId>org.mobicents.shrinkwrap.container</groupId>
 			<artifactId>shrinkwrap-container-mobicents</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 
 		<!-- org.apache.tomcat -->
