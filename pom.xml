@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
 	<!-- JBoss Parent -->
 	<parent>
@@ -38,8 +39,8 @@
 		<connection>scm:git:https://code.google.com/p/commtesting.mss-arquillian/</connection>
 		<developerConnection>scm:git:https://code.google.com/p/commtesting.mss-arquillian/</developerConnection>
 		<url>http://code.google.com/p/commtesting/</url>
-	  <tag>HEAD</tag>
-  </scm>
+		<tag>HEAD</tag>
+	</scm>
 
 	<distributionManagement>
 		<repository>
@@ -320,7 +321,7 @@
 		<module>mss-arquillian-lifecycle-extension</module>
 		<module>mss-arquillian-container-extension</module>
 		<module>mss-arquillian-utilities-extension</module>
-		<!--<module>mss-arquillian-docs</module> -->
+		<module>mss-arquillian-showcase</module>
 		<!--<module>mss-arquillian-docs</module> -->
 	</modules>
 
@@ -335,6 +336,18 @@
 			<id>jboss-snapshots-repository</id>
 			<name>JBoss Snapshots repository</name>
 			<url>https://repository.jboss.org/nexus/content/repositories/snapshots/</url>
+		</repository>
+
+		<repository>
+			<id>mobicents-releases-repository</id>
+			<name>Mobicents Releases Repository</name>
+			<url>https://oss.sonatype.org/content/repositories/releases/</url>
+		</repository>
+
+		<repository>
+			<id>mobicents-snapshots-repository</id>
+			<name>Mobicents Releases Repository</name>
+			<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
 		</repository>
 	</repositories>
 </project>

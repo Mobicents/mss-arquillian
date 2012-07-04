@@ -4,7 +4,7 @@
 %BOOK_ENTITIES;
 ]>
 <chapter id="Introduction_to_the_MSS_Arquillian_Framework">
-	<title>Introduction to the Mobicents Sip Servlets Arquillian Framework
+	<title>Introduction to the Mobicents Arquillian Sip Servlets Extension
 	</title>
 	<!-- Introduction to Arquillian -->
 	<para>
