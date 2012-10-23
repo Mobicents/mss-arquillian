@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
 	<!-- JBoss Parent -->
 	<parent>
 		<groupId>org.jboss</groupId>
 		<artifactId>jboss-parent</artifactId>
 		<version>9</version>
-		<relativePath />
+		<relativePath/>
 	</parent>
 
 	<!-- Model Version -->
@@ -116,6 +115,9 @@
 		<version.org.mobicents.servlet.sip>1.7.0.FINAL</version.org.mobicents.servlet.sip>
 		<version.mobicents.jain.sip.ext>1.1</version.mobicents.jain.sip.ext>
 		<version.mobicents.jain.sip.jboss4>1.2.0.FINAL</version.mobicents.jain.sip.jboss4>
+
+		<!-- Mediaserver -->
+		<version.mediaserver>3.0.0.CR1</version.mediaserver>
 
 		<!-- Jain SIP -->
 		<jain-sip-api.version>1.2</jain-sip-api.version>
@@ -329,7 +331,9 @@
 		<module>mss-arquillian-utilities-extension</module>
 		<!-- <module>mss-arquillian-showcase</module> -->
 		<!--<module>mss-arquillian-docs</module> -->
-	</modules>
+    <module>mss-arquillian-mediaserver-api</module>
+    <module>mss-arquillian-mediaserver-extension</module>
+  </modules>
 
 	<repositories>
 		<repository>
