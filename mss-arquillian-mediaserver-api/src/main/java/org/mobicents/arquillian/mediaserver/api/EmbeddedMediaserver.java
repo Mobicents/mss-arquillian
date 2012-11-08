@@ -19,4 +19,8 @@ public interface EmbeddedMediaserver {
 	Collection<Endpoint> getEndpoints();
 	void installEndpoint(EndpointType type, int count);
 	void removeAllEndpoints();
+	boolean isStarted();
+	String getStatus();
+	void setId(String id);
+	String getId();
 }
