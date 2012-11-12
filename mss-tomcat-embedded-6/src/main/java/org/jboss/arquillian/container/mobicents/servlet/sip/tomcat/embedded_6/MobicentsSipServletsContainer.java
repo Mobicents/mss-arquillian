@@ -24,6 +24,7 @@ import java.util.List;
 import java.util.Properties;
 import java.util.StringTokenizer;
 import java.util.UUID;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.apache.catalina.Engine;
@@ -523,6 +524,13 @@ public class MobicentsSipServletsContainer implements DeployableContainer<Mobice
 	      if (sipStandardContext != null)
 	      {
 	         standardHost.removeChild(sipStandardContext);
+	         try{
+	        	 sipStandardContext.stop();
+	        	 sipStandardContext.destroy();
+	         } catch (Exception e){
+	        	 log.log(Level.WARNING, "Problem to undeploy archive "+sipStandardContext.getApplicationName(), e);
+	        	 
+	         }
 	         if (sipStandardContext.getUnpackWAR())
 	         {
 	            deleteUnpackedWAR(sipStandardContext);
