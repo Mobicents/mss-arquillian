@@ -55,7 +55,7 @@
 		<dependency>
 			<groupId>org.mobicents.arquillian.container</groupId>
 			<artifactId>mss-arquillian-container-api</artifactId>
-			<version>1.0.0-ALPHA2-SNAPSHOT</version>
+			<version>${project.version}</version>
 		</dependency>
 
 		<!-- Mobicents Arquillian Lifecycle Extension -->
@@ -63,22 +63,21 @@
 		<dependency>
 			<groupId>org.mobicents.arquillian.container</groupId>
 			<artifactId>mss-arquillian-lifecycle-extension</artifactId>
-			<version>1.0.0-ALPHA2-SNAPSHOT</version>
+			<version>${project.version}</version>
 		</dependency>
 
 		<!-- Mobicents Arquillian Container Extension -->
 		<dependency>
 			<groupId>org.mobicents.arquillian.container</groupId>
 			<artifactId>mss-arquillian-container-extension</artifactId>
-			<version>1.0.0-ALPHA2-SNAPSHOT</version>
+			<version>${project.version}</version>
 		</dependency>
 
 		<!-- Mobicents Arquillian Utilities Extension -->
 		<dependency>
 			<groupId>org.mobicents.arquillian.container</groupId>
 			<artifactId>mss-arquillian-utilities-extension</artifactId>
-			<version>1.0.0-ALPHA2-SNAPSHOT</version>
-			<!-- org.jboss.arquillian -->
+			<version>${project.version}</version>
 		</dependency>
 
 		<dependency>
