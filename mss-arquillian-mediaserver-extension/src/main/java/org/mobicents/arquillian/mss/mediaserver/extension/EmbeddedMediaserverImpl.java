@@ -9,6 +9,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.mobicents.arquillian.mediaserver.api.EmbeddedMediaserver;
 import org.mobicents.arquillian.mediaserver.api.EndpointType;
+import org.mobicents.arquillian.mediaserver.api.MediaserverStatus;
 import org.mobicents.media.core.ResourcesPool;
 import org.mobicents.media.core.Server;
 import org.mobicents.media.core.endpoints.impl.ConferenceEndpoint;
@@ -24,6 +25,9 @@ import org.mobicents.media.server.scheduler.Scheduler;
 import org.mobicents.media.server.spi.Endpoint;
 
 /**
+ * EmbeddedMediaserver can be used either with @Mediaserver annotation in an Arquillian test or 
+ * outside simply by instantiating a new instance
+ * 
  * @author <a href="mailto:gvagenas@gmail.com">George Vagenas</a>
  */
 
@@ -40,10 +44,7 @@ public class EmbeddedMediaserverImpl implements EmbeddedMediaserver {
 	protected DspFactoryImpl dspFactory = new DspFactoryImpl();
 
 	private Controller controller;
-	private ResourcesPool resourcesPool;
-
-	//	//user and ivr endpoint
-	//	private IvrEndpoint user, ivr;    
+	private ResourcesPool resourcesPool;   
 
 	private List<Endpoint> endpoints;
 
@@ -59,6 +60,10 @@ public class EmbeddedMediaserverImpl implements EmbeddedMediaserver {
 	private int confCounter;
 
 	private int relayCounter;
+	
+	private MediaserverStatus status;
+	
+	private String id;
 
 	public EmbeddedMediaserverImpl() {
 		endpoints = Collections.synchronizedList(new ArrayList<Endpoint>());
@@ -115,6 +120,7 @@ public class EmbeddedMediaserverImpl implements EmbeddedMediaserver {
 
 		controller.start();
 		isServerStarted = true;
+		status = MediaserverStatus.STARTED;
           
 	}
 
@@ -137,12 +143,15 @@ public class EmbeddedMediaserverImpl implements EmbeddedMediaserver {
 //				}
 //			}
 		}
+		isServerStarted = false;
+		status = MediaserverStatus.STOPPED;
 	}
 
 	@Override
 	public synchronized void installEndpoint(Endpoint endpoint) {
 		server.install(endpoint);
 		endpoints.add(endpoint);
+		status = MediaserverStatus.CONFIGURED;
 	}
 
 	@Override
@@ -172,6 +181,7 @@ public class EmbeddedMediaserverImpl implements EmbeddedMediaserver {
 		default:
 			break;
 		}
+		status = MediaserverStatus.CONFIGURED;
 
 	}
 
@@ -195,6 +205,7 @@ public class EmbeddedMediaserverImpl implements EmbeddedMediaserver {
 			Endpoint endpoint = iterator.next();
 			removeEndpoint(endpoint);
 		}
+		status = MediaserverStatus.UNCONFIGURED;
 	}
 
 	public Server getServer() {
@@ -215,6 +226,26 @@ public class EmbeddedMediaserverImpl implements EmbeddedMediaserver {
 		if(isServerStarted)
 			throw new RuntimeException("Server already started");
 		this.controllerPort = controllerPort;
+	}
+	
+	@Override
+	public boolean isStarted() {
+		return isServerStarted;
+	}
+
+	@Override
+	public String getStatus() {
+		return status.name();
+	}
+
+	@Override
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	@Override
+	public String getId() {
+		return id;
 	}
 
 }
