@@ -17,7 +17,6 @@ import org.mobicents.media.server.spi.Connection;
 import org.mobicents.media.server.spi.ConnectionMode;
 import org.mobicents.media.server.spi.ConnectionType;
 import org.mobicents.media.server.spi.MediaType;
-import org.mobicents.media.server.spi.dtmf.DtmfDetector;
 import org.mobicents.media.server.spi.dtmf.DtmfDetectorListener;
 import org.mobicents.media.server.spi.dtmf.DtmfEvent;
 import org.mobicents.media.server.spi.player.Player;
@@ -52,7 +51,6 @@ public class RecordingTest implements DtmfDetectorListener {
 
 	@Test
 	public void testRecording() throws Exception {
-		long s = System.nanoTime();
 
 		//create user connection
 		Connection userConnection = user.createConnection(ConnectionType.RTP,false);        
