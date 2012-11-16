@@ -14,4 +14,6 @@ import org.junit.runners.Suite.SuiteClasses;
 })
 public class Testsuite {
 
+	//Issue 4: http://code.google.com/p/commtesting/issues/detail?id=4
+	//Issue 10: http://code.google.com/p/commtesting/issues/detail?id=10
 }

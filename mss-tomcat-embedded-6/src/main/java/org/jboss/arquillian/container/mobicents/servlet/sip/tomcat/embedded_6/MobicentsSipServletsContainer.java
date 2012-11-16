@@ -17,7 +17,9 @@
 package org.jboss.arquillian.container.mobicents.servlet.sip.tomcat.embedded_6;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.InetAddress;
+import java.net.URL;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +38,7 @@ import org.apache.catalina.core.StandardHost;
 import org.apache.catalina.deploy.ApplicationParameter;
 import org.apache.catalina.loader.WebappLoader;
 import org.apache.catalina.startup.ExpandWar;
+import org.apache.commons.io.FileUtils;
 import org.jboss.arquillian.container.mobicents.api.MSSContainer;
 import org.jboss.arquillian.container.mobicents.api.SipServletsEmbeddedContainer;
 import org.jboss.arquillian.container.spi.client.container.DeployableContainer;
@@ -69,6 +72,7 @@ import org.mobicents.servlet.sip.startup.SipStandardService;
  * name (bindAddress) cannot have a trailing slash for the same
  * reason.</p>
  * 
+ * @author gvagenas@gmail.com
  * @author <a href="mailto:jean.deruelle@gmail.com">Jean Deruelle</a>
  * @author Dan Allen
  * @version $Revision: $
@@ -89,12 +93,12 @@ public class MobicentsSipServletsContainer implements DeployableContainer<Mobice
 	 * Tomcat embedded
 	 */
 	private SipServletsEmbeddedContainer embedded;
-	
+
 	/**
 	 * StandardContext
 	 */
 	private SipStandardContext context;
-	
+
 	/**
 	 * Engine contained within Tomcat embedded
 	 */
@@ -109,7 +113,7 @@ public class MobicentsSipServletsContainer implements DeployableContainer<Mobice
 	 * Tomcat container configuration
 	 */
 	private MobicentsSipServletsConfiguration configuration;
-	
+
 	private SipStandardService sipStandardService;
 
 	private String serverName;
@@ -122,11 +126,11 @@ public class MobicentsSipServletsContainer implements DeployableContainer<Mobice
 
 	@Inject @DeploymentScoped 
 	private InstanceProducer<SipStandardContext> sipStandardContextProducer;
-	
+
 	private Archive<?> archive;
 
 	private Manager sipStandardManager;
-	
+
 	@Override
 	public Class<MobicentsSipServletsConfiguration> getConfigurationClass() 
 	{
@@ -179,7 +183,7 @@ public class MobicentsSipServletsContainer implements DeployableContainer<Mobice
 			}
 
 			SipConnector sipConnector = createSipConnector(bindSipAddress, bindSipPort, bindSipTransport);
-			
+
 			connectors.add(sipConnector);
 		} 
 
@@ -192,200 +196,212 @@ public class MobicentsSipServletsContainer implements DeployableContainer<Mobice
 	{
 		startTomcatEmbedded(null);
 	}
-	
+
 	@Override
 	public void startTomcatEmbedded(Properties sipStackProperties) throws UnknownHostException, org.apache.catalina.LifecycleException, LifecycleException
 	{
+
+		System.setProperty("javax.servlet.sip.ar.spi.SipApplicationRouterProvider", configuration.getSipApplicationRouterProviderClassName());
+		if (bindAddress != null){
+			System.setProperty("org.mobicents.testsuite.testhostaddr",bindAddress);
+		} else {
+			System.setProperty("org.mobicents.testsuite.testhostaddr","127.0.0.1");
+		}
+
+		//		  if(MobicentsSipServletsConfiguration.MOBICENTS_DEFAULT_AR_CLASS_NAME.equals(configuration.getSipApplicationRouterProviderClassName())) {
+		//			  System.setProperty("javax.servlet.sip.dar", Thread.currentThread().getContextClassLoader().getResource("empty-dar.properties").toString());
+		//		  } else {
+		//			  System.setProperty("javax.servlet.sip.dar", Thread.currentThread().getContextClassLoader().getResource("test-dar.properties").toString());
+		//		  }
+
+		//Required in order to read the dar conf of each file
+		//The Router in the arquillian.xml should be <property name="sipApplicationRouterProviderClassName">org.mobicents.servlet.sip.router.DefaultApplicationRouterProvider</property>
+		String darConfiguration = Thread.currentThread().getContextClassLoader().getResource("test-dar.properties").toString();
+		if (darConfiguration != null) {
+			System.setProperty("javax.servlet.sip.dar", Thread.currentThread().getContextClassLoader().getResource("test-dar.properties").toString());
+		} else {
+			System.setProperty("javax.servlet.sip.dar", Thread.currentThread().getContextClassLoader().getResource("empty-dar.properties").toString());
+		}
+		// creating the tomcat embedded == service tag in server.xml
+		MobicentsSipServletsEmbeddedImpl embedded= new MobicentsSipServletsEmbeddedImpl();
+		this.embedded = embedded;
+		sipStandardService = new SipStandardService();
+		sipStandardService.setSipApplicationDispatcherClassName(SipApplicationDispatcherImpl.class.getCanonicalName());
+		sipStandardService.setCongestionControlCheckingInterval(-1);
+		sipStandardService.setAdditionalParameterableHeaders("additionalParameterableHeader");
+		sipStandardService.setUsePrettyEncoding(true);      
+		sipStandardService.setName(serverName);
+		if (sipStackProperties != null)
+			sipStandardService.setSipStackProperties(sipStackProperties);
+		embedded.setService(sipStandardService);
+		// TODO this needs to be a lot more robust
+		String tomcatHome = configuration.getTomcatHome();
+		File tomcatHomeFile = null;
+		if (tomcatHome != null)
+		{
+			if (tomcatHome.startsWith(ENV_VAR))
+			{
+				String sysVar = tomcatHome.substring(ENV_VAR.length(), tomcatHome.length() - 1);
+				tomcatHome = System.getProperty(sysVar);
+				if (tomcatHome != null && tomcatHome.length() > 0 && new File(tomcatHome).isAbsolute())
+				{
+					tomcatHomeFile = new File(tomcatHome);
+					log.info("Using tomcat home from environment variable: " + tomcatHome);
+				}
+			}
+			else
+			{
+				tomcatHomeFile = new File(tomcatHome);
+			}
+		}
+
+		if (tomcatHomeFile == null)
+		{
+			tomcatHomeFile = new File(System.getProperty(TMPDIR_SYS_PROP), "mss-tomcat-embedded-6");
+		}
+
+		tomcatHomeFile.mkdirs();
+		embedded.setCatalinaBase(tomcatHomeFile.getAbsolutePath());
+		embedded.setCatalinaHome(tomcatHomeFile.getAbsolutePath());
+
+		// creates the engine, i.e., <engine> element in server.xml
+		Engine engine = embedded.createEngine();
+		this.engine = engine;
+		engine.setName(serverName);
+		engine.setDefaultHost(bindAddress);
+		engine.setService(sipStandardService);
+		sipStandardService.setContainer(engine);
+		embedded.addEngine(engine);
+
+		// creates the host, i.e., <host> element in server.xml
+		File appBaseFile = new File(tomcatHomeFile, configuration.getAppBase());
+		appBaseFile.mkdirs();
 		
-		  System.setProperty("javax.servlet.sip.ar.spi.SipApplicationRouterProvider", configuration.getSipApplicationRouterProviderClassName());
-		  if (bindAddress != null){
-			  System.setProperty("org.mobicents.testsuite.testhostaddr",bindAddress);
-		  } else {
-			  System.setProperty("org.mobicents.testsuite.testhostaddr","127.0.0.1");
-		  }
-		  
-//		  if(MobicentsSipServletsConfiguration.MOBICENTS_DEFAULT_AR_CLASS_NAME.equals(configuration.getSipApplicationRouterProviderClassName())) {
-//			  System.setProperty("javax.servlet.sip.dar", Thread.currentThread().getContextClassLoader().getResource("empty-dar.properties").toString());
-//		  } else {
-//			  System.setProperty("javax.servlet.sip.dar", Thread.currentThread().getContextClassLoader().getResource("test-dar.properties").toString());
-//		  }
-		  
-		  //Required in order to read the dar conf of each file
-		  //The Router in the arquillian.xml should be <property name="sipApplicationRouterProviderClassName">org.mobicents.servlet.sip.router.DefaultApplicationRouterProvider</property>
-		  String darConfiguration = Thread.currentThread().getContextClassLoader().getResource("test-dar.properties").toString();
-		  if (darConfiguration != null) {
-			  System.setProperty("javax.servlet.sip.dar", Thread.currentThread().getContextClassLoader().getResource("test-dar.properties").toString());
-		  } else {
-			  System.setProperty("javax.servlet.sip.dar", Thread.currentThread().getContextClassLoader().getResource("empty-dar.properties").toString());
-		  }
-		  // creating the tomcat embedded == service tag in server.xml
-		  MobicentsSipServletsEmbeddedImpl embedded= new MobicentsSipServletsEmbeddedImpl();
-		  this.embedded = embedded;
-	      sipStandardService = new SipStandardService();
-	      sipStandardService.setSipApplicationDispatcherClassName(SipApplicationDispatcherImpl.class.getCanonicalName());
-	      sipStandardService.setCongestionControlCheckingInterval(-1);
-	      sipStandardService.setAdditionalParameterableHeaders("additionalParameterableHeader");
-	      sipStandardService.setUsePrettyEncoding(true);      
-	      sipStandardService.setName(serverName);
-	      if (sipStackProperties != null)
-	    	  sipStandardService.setSipStackProperties(sipStackProperties);
-	      embedded.setService(sipStandardService);
-	      // TODO this needs to be a lot more robust
-	      String tomcatHome = configuration.getTomcatHome();
-	      File tomcatHomeFile = null;
-	      if (tomcatHome != null)
-	      {
-	         if (tomcatHome.startsWith(ENV_VAR))
-	         {
-	            String sysVar = tomcatHome.substring(ENV_VAR.length(), tomcatHome.length() - 1);
-	            tomcatHome = System.getProperty(sysVar);
-	            if (tomcatHome != null && tomcatHome.length() > 0 && new File(tomcatHome).isAbsolute())
-	            {
-	               tomcatHomeFile = new File(tomcatHome);
-	               log.info("Using tomcat home from environment variable: " + tomcatHome);
-	            }
-	         }
-	         else
-	         {
-	            tomcatHomeFile = new File(tomcatHome);
-	         }
-	      }
+		//Issue 10: http://code.google.com/p/commtesting/issues/detail?id=10
+		//Set the default WEB.XML location. This way the DEFAULT servlets (with mapping to "/") will be added
+		URL defaultWebXmlURL = Thread.currentThread().getContextClassLoader().getResource("tomcat-6.0.35-web.xml");
+		File confBaseFile = new File(tomcatHomeFile, configuration.getConfBase());
+		confBaseFile.mkdirs();
+		try {
+			FileUtils.copyURLToFile(defaultWebXmlURL, new File(confBaseFile.getPath()+"/web.xml"));
+		} catch (IOException e) {
+			log.warning("Problem to copy the default web.xml "+e);
+		}
+		
+		StandardHost host = (StandardHost) embedded.createHost(bindAddress, appBaseFile.getAbsolutePath());
+		this.standardHost = host;
+		if (configuration.getTomcatWorkDir() != null)
+		{
+			host.setWorkDir(configuration.getTomcatWorkDir());
+		}
+		host.setUnpackWARs(configuration.isUnpackArchive());
+		engine.addChild(host);
 
-	      if (tomcatHomeFile == null)
-	      {
-	         tomcatHomeFile = new File(System.getProperty(TMPDIR_SYS_PROP), "mss-tomcat-embedded-6");
-	      }
+		// creates an http connector, i.e., <connector> element in server.xml
+		Connector connector = embedded.createConnector(InetAddress.getByName(bindAddress), bindPort, false);
+		embedded.addConnector(connector);
+		connector.setContainer(engine);
 
-	      tomcatHomeFile.mkdirs();
-	      embedded.setCatalinaBase(tomcatHomeFile.getAbsolutePath());
-	      embedded.setCatalinaHome(tomcatHomeFile.getAbsolutePath());
-	     
-	      // creates the engine, i.e., <engine> element in server.xml
-	      Engine engine = embedded.createEngine();
-	      this.engine = engine;
-	      engine.setName(serverName);
-	      engine.setDefaultHost(bindAddress);
-	      engine.setService(sipStandardService);
-	      sipStandardService.setContainer(engine);
-	      embedded.addEngine(engine);
-	      
-	      // creates the host, i.e., <host> element in server.xml
-	      File appBaseFile = new File(tomcatHomeFile, configuration.getAppBase());
-	      appBaseFile.mkdirs();
-	      StandardHost host = (StandardHost) embedded.createHost(bindAddress, appBaseFile.getAbsolutePath());
-	      this.standardHost = host;
-	      if (configuration.getTomcatWorkDir() != null)
-	      {
-	         host.setWorkDir(configuration.getTomcatWorkDir());
-	      }
-	      host.setUnpackWARs(configuration.isUnpackArchive());
-	      engine.addChild(host);
-	      
-	      // creates an http connector, i.e., <connector> element in server.xml
-	      Connector connector = embedded.createConnector(InetAddress.getByName(bindAddress), bindPort, false);
-	      embedded.addConnector(connector);
-	      connector.setContainer(engine);
-	      
-	      // starts embedded Mobicents Sip Serlvets
-	      embedded.start();
-	      embedded.getService().start();
-	      
-	   // creates an sip connector, i.e., <connector> element in server.xml
-	      for (SipConnector sipConnector : sipConnectors) {
-	    	  addSipConnector(sipConnector);
-	      }
-	      
-	      wasStarted = true;
+		// starts embedded Mobicents Sip Serlvets
+		embedded.start();
+		embedded.getService().start();
 
-//		System.setProperty("javax.servlet.sip.ar.spi.SipApplicationRouterProvider", configuration.getSipApplicationRouterProviderClassName());
-//		if(MobicentsSipServletsConfiguration.MOBICENTS_DEFAULT_AR_CLASS_NAME.equals(configuration.getSipApplicationRouterProviderClassName())) {
-//			System.setProperty("javax.servlet.sip.dar", Thread.currentThread().getContextClassLoader().getResource("empty-dar.properties").toString());
-//		}
-//		// creating the tomcat embedded == service tag in server.xml
-//		MobicentsSipServletsEmbedded embedded= new MobicentsSipServletsEmbedded();
-//		this.embedded = embedded;
-//
-//		SipStandardService sipStandardService = new SipStandardService();
-//		sipStandardService.setSipApplicationDispatcherClassName(SipApplicationDispatcherImpl.class.getCanonicalName());
-//		sipStandardService.setCongestionControlCheckingInterval(-1);
-//		sipStandardService.setAdditionalParameterableHeaders("additionalParameterableHeader");
-//		sipStandardService.setUsePrettyEncoding(true);      
-//		sipStandardService.setName(serverName);
-//
-//		//      embedded.setService(sipStandardService);
-//
-//		// TODO this needs to be a lot more robust
-//		String tomcatHome = configuration.getTomcatHome();
-//		File tomcatHomeFile = null;
-//		if (tomcatHome != null)
-//		{
-//			if (tomcatHome.startsWith(ENV_VAR))
-//			{
-//				String sysVar = tomcatHome.substring(ENV_VAR.length(), tomcatHome.length() - 1);
-//				tomcatHome = System.getProperty(sysVar);
-//				if (tomcatHome != null && tomcatHome.length() > 0 && new File(tomcatHome).isAbsolute())
-//				{
-//					tomcatHomeFile = new File(tomcatHome);
-//					log.info("Using tomcat home from environment variable: " + tomcatHome);
-//				}
-//			}
-//			else
-//			{
-//				tomcatHomeFile = new File(tomcatHome);
-//			}
-//		}
-//
-//		if (tomcatHomeFile == null)
-//		{
-//			tomcatHomeFile = new File(System.getProperty(TMPDIR_SYS_PROP), "tomcat-embedded-6");
-//		}
-//
-//		tomcatHomeFile.mkdirs();
-//		embedded.setCatalinaBase(tomcatHomeFile.getAbsolutePath());
-//		embedded.setCatalinaHome(tomcatHomeFile.getAbsolutePath());
-//
-//		// creates the engine, i.e., <engine> element in server.xml
-//		Engine engine = embedded.createEngine();
-//		this.engine = engine;
-//		engine.setName(serverName);
-//		engine.setDefaultHost(bindAddress);
-//		engine.setService(sipStandardService);
-//		sipStandardService.setContainer(engine);
-//		embedded.addEngine(engine);
-//
-//		// creates the host, i.e., <host> element in server.xml
-//		File appBaseFile = new File(tomcatHomeFile, configuration.getAppBase());
-//		appBaseFile.mkdirs();
-//		StandardHost host = (StandardHost) embedded.createHost(bindAddress, appBaseFile.getAbsolutePath());
-//		this.standardHost = host;
-//		if (configuration.getTomcatWorkDir() != null)
-//		{
-//			host.setWorkDir(configuration.getTomcatWorkDir());
-//		}
-//		host.setUnpackWARs(configuration.isUnpackArchive());
-//		engine.addChild(host);
-//
-//		// creates an http connector, i.e., <connector> element in server.xml
-//		Connector connector = embedded.createConnector(InetAddress.getByName(bindAddress), bindPort, false);
-//		embedded.addConnector(connector);
-//		connector.setContainer(engine);
-//
-//		// starts embedded Mobicents Sip Serlvets
-//		embedded.start();
-//		//      embedded.getService().start();
-//
-//		// creates an sip connector, i.e., <connector> element in server.xml
-//		for (SipConnector sipConnector : sipConnectors) {
-//			try {
-//				(sipStandardService).addSipConnector(sipConnector);
-//				//    			Connector sipConnector = addSipConnector(serverName, bindAddress, bindSipPort, "UDP", null);
-//			} catch (Exception e) {
-//				throw new org.apache.catalina.LifecycleException("Couldn't create the sip connector " + sipConnector, e);
-//			}
-//		}
-//
-//		wasStarted = true;
-//		//      return embedded;
+		// creates an sip connector, i.e., <connector> element in server.xml
+		for (SipConnector sipConnector : sipConnectors) {
+			addSipConnector(sipConnector);
+		}
+
+		wasStarted = true;
+
+		//		System.setProperty("javax.servlet.sip.ar.spi.SipApplicationRouterProvider", configuration.getSipApplicationRouterProviderClassName());
+		//		if(MobicentsSipServletsConfiguration.MOBICENTS_DEFAULT_AR_CLASS_NAME.equals(configuration.getSipApplicationRouterProviderClassName())) {
+		//			System.setProperty("javax.servlet.sip.dar", Thread.currentThread().getContextClassLoader().getResource("empty-dar.properties").toString());
+		//		}
+		//		// creating the tomcat embedded == service tag in server.xml
+		//		MobicentsSipServletsEmbedded embedded= new MobicentsSipServletsEmbedded();
+		//		this.embedded = embedded;
+		//
+		//		SipStandardService sipStandardService = new SipStandardService();
+		//		sipStandardService.setSipApplicationDispatcherClassName(SipApplicationDispatcherImpl.class.getCanonicalName());
+		//		sipStandardService.setCongestionControlCheckingInterval(-1);
+		//		sipStandardService.setAdditionalParameterableHeaders("additionalParameterableHeader");
+		//		sipStandardService.setUsePrettyEncoding(true);      
+		//		sipStandardService.setName(serverName);
+		//
+		//		//      embedded.setService(sipStandardService);
+		//
+		//		// TODO this needs to be a lot more robust
+		//		String tomcatHome = configuration.getTomcatHome();
+		//		File tomcatHomeFile = null;
+		//		if (tomcatHome != null)
+		//		{
+		//			if (tomcatHome.startsWith(ENV_VAR))
+		//			{
+		//				String sysVar = tomcatHome.substring(ENV_VAR.length(), tomcatHome.length() - 1);
+		//				tomcatHome = System.getProperty(sysVar);
+		//				if (tomcatHome != null && tomcatHome.length() > 0 && new File(tomcatHome).isAbsolute())
+		//				{
+		//					tomcatHomeFile = new File(tomcatHome);
+		//					log.info("Using tomcat home from environment variable: " + tomcatHome);
+		//				}
+		//			}
+		//			else
+		//			{
+		//				tomcatHomeFile = new File(tomcatHome);
+		//			}
+		//		}
+		//
+		//		if (tomcatHomeFile == null)
+		//		{
+		//			tomcatHomeFile = new File(System.getProperty(TMPDIR_SYS_PROP), "tomcat-embedded-6");
+		//		}
+		//
+		//		tomcatHomeFile.mkdirs();
+		//		embedded.setCatalinaBase(tomcatHomeFile.getAbsolutePath());
+		//		embedded.setCatalinaHome(tomcatHomeFile.getAbsolutePath());
+		//
+		//		// creates the engine, i.e., <engine> element in server.xml
+		//		Engine engine = embedded.createEngine();
+		//		this.engine = engine;
+		//		engine.setName(serverName);
+		//		engine.setDefaultHost(bindAddress);
+		//		engine.setService(sipStandardService);
+		//		sipStandardService.setContainer(engine);
+		//		embedded.addEngine(engine);
+		//
+		//		// creates the host, i.e., <host> element in server.xml
+		//		File appBaseFile = new File(tomcatHomeFile, configuration.getAppBase());
+		//		appBaseFile.mkdirs();
+		//		StandardHost host = (StandardHost) embedded.createHost(bindAddress, appBaseFile.getAbsolutePath());
+		//		this.standardHost = host;
+		//		if (configuration.getTomcatWorkDir() != null)
+		//		{
+		//			host.setWorkDir(configuration.getTomcatWorkDir());
+		//		}
+		//		host.setUnpackWARs(configuration.isUnpackArchive());
+		//		engine.addChild(host);
+		//
+		//		// creates an http connector, i.e., <connector> element in server.xml
+		//		Connector connector = embedded.createConnector(InetAddress.getByName(bindAddress), bindPort, false);
+		//		embedded.addConnector(connector);
+		//		connector.setContainer(engine);
+		//
+		//		// starts embedded Mobicents Sip Serlvets
+		//		embedded.start();
+		//		//      embedded.getService().start();
+		//
+		//		// creates an sip connector, i.e., <connector> element in server.xml
+		//		for (SipConnector sipConnector : sipConnectors) {
+		//			try {
+		//				(sipStandardService).addSipConnector(sipConnector);
+		//				//    			Connector sipConnector = addSipConnector(serverName, bindAddress, bindSipPort, "UDP", null);
+		//			} catch (Exception e) {
+		//				throw new org.apache.catalina.LifecycleException("Couldn't create the sip connector " + sipConnector, e);
+		//			}
+		//		}
+		//
+		//		wasStarted = true;
+		//		//      return embedded;
 	}
 
 	@Override
@@ -421,7 +437,7 @@ public class MobicentsSipServletsContainer implements DeployableContainer<Mobice
 			sipStandardContext.setManager(getSipStandardManager());
 			sipStandardContext.addLifecycleListener(new EmbeddedContextConfig());
 			sipStandardContext.setUnpackWAR(configuration.isUnpackArchive());
-			sipStandardContext.setJ2EEServer("Arquillian-" + UUID.randomUUID().toString());
+			sipStandardContext.setJ2EEServer("MSS-Arquillian-" + UUID.randomUUID().toString());
 
 			//Set Context parameters
 			if (configuration.getContextParam() != null){
@@ -430,7 +446,7 @@ public class MobicentsSipServletsContainer implements DeployableContainer<Mobice
 				String valueSeparator = configuration.getValueSeparator();
 				String contextParams = configuration.getContextParam(); 
 				String[] params = contextParams.split(paramSeparator);
-				
+
 				for (String param : params) {
 					String name = param.split(valueSeparator)[0];
 					String value = param.split(valueSeparator)[1];
@@ -440,12 +456,12 @@ public class MobicentsSipServletsContainer implements DeployableContainer<Mobice
 					sipStandardContext.addApplicationParameter(applicationParameter);
 				}
 			}
-			
+
 			//Set ConcurrencyControlMode
 			if (configuration.getConcurrencyControl() != null){
 				sipStandardContext.setConcurrencyControlMode(ConcurrencyControlMode.valueOf(configuration.getConcurrencyControl()));
 			}
-			
+
 			// Need to tell TomCat to use TCCL as parent, else the WebContextClassloader will be looking in AppCL 
 			sipStandardContext.setParentClassLoader(Thread.currentThread().getContextClassLoader());
 
@@ -499,7 +515,7 @@ public class MobicentsSipServletsContainer implements DeployableContainer<Mobice
 	public void stop() throws LifecycleException {
 		try
 		{
-//			removeFailedUnDeployments();
+			//			removeFailedUnDeployments();
 		}
 		catch (Exception e)
 		{
@@ -520,22 +536,22 @@ public class MobicentsSipServletsContainer implements DeployableContainer<Mobice
 
 	@Override
 	public void undeploy(Archive<?> archive) throws DeploymentException {
-	      SipStandardContext sipStandardContext = sipStandardContextProducer.get();
-	      if (sipStandardContext != null)
-	      {
-	         standardHost.removeChild(sipStandardContext);
-	         try{
-	        	 sipStandardContext.stop();
-	        	 sipStandardContext.destroy();
-	         } catch (Exception e){
-	        	 log.log(Level.WARNING, "Problem to undeploy archive "+sipStandardContext.getApplicationName(), e);
-	        	 
-	         }
-	         if (sipStandardContext.getUnpackWAR())
-	         {
-	            deleteUnpackedWAR(sipStandardContext);
-	         }
-	      }
+		SipStandardContext sipStandardContext = sipStandardContextProducer.get();
+		if (sipStandardContext != null)
+		{
+			standardHost.removeChild(sipStandardContext);
+			try{
+				sipStandardContext.stop();
+				sipStandardContext.destroy();
+			} catch (Exception e){
+				log.log(Level.WARNING, "Problem to undeploy archive "+sipStandardContext.getApplicationName(), e);
+
+			}
+			if (sipStandardContext.getUnpackWAR())
+			{
+				deleteUnpackedWAR(sipStandardContext);
+			}
+		}
 	}
 
 	@Override
@@ -561,10 +577,10 @@ public class MobicentsSipServletsContainer implements DeployableContainer<Mobice
 	@Override
 	public void addSipConnector(SipConnector sipConnector) throws LifecycleException {
 		try {
-  		  (sipStandardService).addSipConnector(sipConnector);
-  		} catch (Exception e) {
-  			throw new LifecycleException("Couldn't create the sip connector " + sipConnector, e);
-  		}
+			(sipStandardService).addSipConnector(sipConnector);
+		} catch (Exception e) {
+			throw new LifecycleException("Couldn't create the sip connector " + sipConnector, e);
+		}
 	}
 
 	@Override
@@ -574,17 +590,17 @@ public class MobicentsSipServletsContainer implements DeployableContainer<Mobice
 		sipConnector.setIpAddress(ipAddress);
 		sipConnector.setPort(port);
 		sipConnector.setTransport(transport);
-		
+
 		return sipConnector;	
 	}
 
 	@Override
 	public void removeSipConnector(String ipAddress, int port, String transport) throws LifecycleException {
 		try {
-	  		  (sipStandardService).removeSipConnector(ipAddress, port, transport);
-	  		} catch (Exception e) {
-	  			throw new LifecycleException("Couldn't remove the sip connector " + ipAddress+":"+port+"/"+transport, e);
-	  		}
+			(sipStandardService).removeSipConnector(ipAddress, port, transport);
+		} catch (Exception e) {
+			throw new LifecycleException("Couldn't remove the sip connector " + ipAddress+":"+port+"/"+transport, e);
+		}
 	}
 
 	@Override
@@ -602,7 +618,7 @@ public class MobicentsSipServletsContainer implements DeployableContainer<Mobice
 	public Manager getSipStandardManager() {
 		return sipStandardManager;
 	}
-	
+
 	@Override
 	public void setSipStandardManager(Manager sipStandardManager) {
 		this.sipStandardManager = sipStandardManager;

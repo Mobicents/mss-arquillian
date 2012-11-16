@@ -92,6 +92,10 @@ public class MyTest2 {
 		archive.addClass(EchoServlet.class);
 		archive.addAsWebInfResource("web.xml");
 		archive.addAsWebInfResource("sip.xml");
+		
+		//Issue 10: http://code.google.com/p/commtesting/issues/detail?id=10
+		archive.addAsWebResource("testWebResource.txt", "myWebResources/testWebResource.txt");
+		
 		return archive;
 	}
 
@@ -111,6 +115,17 @@ public class MyTest2 {
 
 		Assert.assertEquals("Verify that the servlet was deployed and returns expected result", "hello", body);
 
+	}
+	
+	//Issue 10: http://code.google.com/p/commtesting/issues/detail?id=10
+	@Test
+	public void testWebResources() throws MalformedURLException, IOException, Exception{
+		String requestUrl = deploymentUrl + "myWebResources/testWebResource.txt";
+		String body = StreamReaderUtil.readAllAndClose(new URL(requestUrl).openStream());
+
+		logger.info("Message from the static file: "+body);
+		
+		Assert.assertEquals("Verify that the servlet was deployed and returns expected result", "It Works!", body);
 	}
 
 }

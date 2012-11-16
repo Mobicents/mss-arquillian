@@ -20,6 +20,8 @@ public abstract class MobicentsSipServletsConfigurationBase implements Container
 	private String tomcatHome = null;
 
 	private String appBase = "webapps";
+	
+	private String confBase = "conf";
 
 	private String workDir = null;
 
@@ -122,6 +124,17 @@ public abstract class MobicentsSipServletsConfigurationBase implements Container
 		return appBase;
 	}
 
+	/**
+	 * @param confBase the directory where the conf is stored within the Tomcat installation
+	 */
+	public void setConfBase(String confBase) {
+		this.confBase = confBase;
+	}
+	
+	public String getConfBase() {
+		return confBase;
+	}
+	
 	/**
 	 * @param workDir the directory where the compiled JSP files and session serialization data is stored
 	 */

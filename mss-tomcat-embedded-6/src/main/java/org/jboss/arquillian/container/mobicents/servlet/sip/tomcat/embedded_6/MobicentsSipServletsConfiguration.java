@@ -21,13 +21,13 @@ import org.jboss.arquillian.container.mobicents.api.MobicentsSipServletsConfigur
 /**
  * Arquillian Tomcat Container Configuration
  * 
+ * @author gvagenas@gmail.com
  * @author <a href="mailto:jean.deruelle@gmail.com">Jean Deruelle</a>
  * @author Dan Allen
  * @version $Revision: $
  */
 public class MobicentsSipServletsConfiguration extends MobicentsSipServletsConfigurationBase
 {
-
 	/*
 	 * Set mss-tomcat-embedded-6 specific options to the configuration
 	 */
