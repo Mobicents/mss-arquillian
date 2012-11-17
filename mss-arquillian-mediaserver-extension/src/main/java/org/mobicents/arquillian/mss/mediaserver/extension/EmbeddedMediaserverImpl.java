@@ -1,5 +1,6 @@
 package org.mobicents.arquillian.mss.mediaserver.extension;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -41,7 +42,7 @@ public class EmbeddedMediaserverImpl implements EmbeddedMediaserver {
 	protected ChannelsManager channelsManager;
 
 	protected UdpManager udpManager;
-	protected DspFactoryImpl dspFactory = new DspFactoryImpl();
+	protected DspFactoryImpl dspFactory;
 
 	private Controller controller;
 	private ResourcesPool resourcesPool;   
@@ -60,20 +61,65 @@ public class EmbeddedMediaserverImpl implements EmbeddedMediaserver {
 	private int confCounter;
 
 	private int relayCounter;
-	
+
 	private MediaserverStatus status;
-	
+
 	private String id;
 
 	public EmbeddedMediaserverImpl() {
+		this.status = MediaserverStatus.CREATED;
+	}
+
+	public void init() throws IOException{
+		if(this.status != MediaserverStatus.CREATED)
+			destroy();
+		//use default clock
+		clock = new DefaultClock();
 		endpoints = Collections.synchronizedList(new ArrayList<Endpoint>());
+		dspFactory = new DspFactoryImpl();
+		//create single thread scheduler
+		scheduler = new Scheduler();
+		udpManager = new UdpManager(scheduler);
+		channelsManager = new ChannelsManager(udpManager);
+		resourcesPool = new ResourcesPool(scheduler, channelsManager, dspFactory);
+		server = new Server();
+		controller = new Controller();
+		this.status = MediaserverStatus.INITIALIZED;
+
+	}
+
+	public void destroy() {
+		clock = null;
+
+		if(!endpoints.isEmpty()) {
+			for(Endpoint endpoint: endpoints){
+//				server.uninstalls(endpoint.getLocalName());
+				endpoint.stop();
+			}
+		}
+		endpoints = null;
+		dspFactory = null;
+		scheduler.stop(); 
+		scheduler = null;
+		udpManager.stop();
+		udpManager = null;
+		channelsManager = null;
+		resourcesPool = null;
+
+		controller.stop();
+		controller = null;
+		server.stop();
+
+		server = null;
+		this.status = MediaserverStatus.STOPPED;
 	}
 
 	@Override
 	public void startServer() throws Exception {
 		logger.info("Starting server");
-		//use default clock
-		clock = new DefaultClock();
+
+		if(this.status != MediaserverStatus.INITIALIZED)
+			init();
 
 		dspFactory.addCodec("org.mobicents.media.server.impl.dsp.audio.g711.ulaw.Encoder");
 		dspFactory.addCodec("org.mobicents.media.server.impl.dsp.audio.g711.ulaw.Decoder");
@@ -81,69 +127,36 @@ public class EmbeddedMediaserverImpl implements EmbeddedMediaserver {
 		dspFactory.addCodec("org.mobicents.media.server.impl.dsp.audio.g711.alaw.Encoder");
 		dspFactory.addCodec("org.mobicents.media.server.impl.dsp.audio.g711.alaw.Decoder");
 
-		//create single thread scheduler
-		scheduler = new Scheduler();
 		scheduler.setClock(clock);
 		scheduler.start();
 
-		udpManager = new UdpManager(scheduler);
 		udpManager.setBindAddress(bindAddress);
 		udpManager.start();
 
-		channelsManager = new ChannelsManager(udpManager);
 		channelsManager.setScheduler(scheduler);
 
 		resourcesPool=new ResourcesPool(scheduler, channelsManager, dspFactory);
-//		resourcesPool.setDefaultDtmfDetectors(10);
-//		resourcesPool.setDefaultDtmfGenerators(10);
-//		resourcesPool.setDefaultLocalConnections(10);
-//		resourcesPool.setDefaultPlayers(10);
-//		resourcesPool.setDefaultRecorders(10);
-//		resourcesPool.setDefaultRemoteConnections(10);
-//		resourcesPool.setDefaultSignalDetectors(10);
-//		resourcesPool.setDefaultSignalGenerators(10);
-//		resourcesPool.start();
-
-		server=new Server();
+		
 		server.setClock(clock);
 		server.setScheduler(scheduler);
 		server.setUdpManager(udpManager);
 		server.setResourcesPool(resourcesPool);        
 
-		controller=new Controller();
 		controller.setUdpInterface(udpManager);
 		controller.setPort(controllerPort);
 		controller.setScheduler(scheduler); 
 		controller.setServer(server);        
 		controller.setConfigurationByURL(this.getClass().getResource("/mgcp-conf.xml"));
-//		controller.setPoolSize(15);
 
 		controller.start();
 		isServerStarted = true;
 		status = MediaserverStatus.STARTED;
-          
 	}
 
 	@Override
 	public void stopServer() {
 		logger.info("Stopping server");
-		controller.stop();
-		server.stop();                 
-
-		if(!endpoints.isEmpty()) {
-			for(Endpoint endpoint: endpoints){
-				endpoint.stop();
-			}
-//			Iterator<Endpoint> iterator = endpoints.iterator();
-//			while(iterator.hasNext()){
-//				Endpoint endpoint = iterator.next();
-//				if (endpoint != null){
-//					endpoint.stop();
-//					endpoints.remove(endpoint);
-//				}
-//			}
-		}
-		isServerStarted = false;
+		destroy();
 		status = MediaserverStatus.STOPPED;
 	}
 
@@ -201,7 +214,7 @@ public class EmbeddedMediaserverImpl implements EmbeddedMediaserver {
 	public synchronized void removeAllEndpoints(){
 		Iterator<Endpoint> iterator = endpoints.listIterator();
 		while(iterator.hasNext()){
-//			iterator.remove();
+			//			iterator.remove();
 			Endpoint endpoint = iterator.next();
 			removeEndpoint(endpoint);
 		}
@@ -227,7 +240,7 @@ public class EmbeddedMediaserverImpl implements EmbeddedMediaserver {
 			throw new RuntimeException("Server already started");
 		this.controllerPort = controllerPort;
 	}
-	
+
 	@Override
 	public boolean isStarted() {
 		return isServerStarted;

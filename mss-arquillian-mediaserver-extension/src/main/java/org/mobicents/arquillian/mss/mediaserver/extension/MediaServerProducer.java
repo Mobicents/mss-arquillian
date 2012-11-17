@@ -69,6 +69,9 @@ public class MediaServerProducer {
 	public void executeBeforeClass(@Observes BeforeClass event, TestClass testClass) throws Exception{
 		testClass = event.getTestClass();
 
+		if(embeddedMediaserver==null)
+			embeddedMediaserver = new EmbeddedMediaserverImpl();
+		
 		if(!embeddedMediaserver.isStarted()) {
 
 			//1. Check whether the annotation is present at the class level
@@ -118,6 +121,9 @@ public class MediaServerProducer {
 		//we leave the user to take control of the server (start/stop/configure etc)
 		//Otherwise we have to start/stop/configure the server accordingly
 
+		if(embeddedMediaserver==null)
+			embeddedMediaserver = new EmbeddedMediaserverImpl();
+		
 		if (!embeddedMediaserver.isStarted()) {
 			testInstance = event.getTestInstance();
 			if (isMediaserverAnnotationPresentField) {
@@ -145,6 +151,7 @@ public class MediaServerProducer {
 		if (embeddedMediaserver.isStarted()){
 			if (isMediaserverAnnotationPresentClass) {
 				embeddedMediaserver.stopServer();
+				embeddedMediaserver = null;
 			} 
 		}
 	}
@@ -157,6 +164,7 @@ public class MediaServerProducer {
 		if (embeddedMediaserver.isStarted()){
 			if (isMediaserverAnnotationPresentMethod) {
 				embeddedMediaserver.stopServer();
+				embeddedMediaserver = null;
 			}
 		}
 	}
@@ -198,6 +206,9 @@ public class MediaServerProducer {
 				throw new EmbeddedMediaserverException("Mediaserver in MANUAL mode is allowed only in Feild level annotation!");
 			}
 		}
+		
+		if (embeddedMediaserver==null)
+			embeddedMediaserver = new EmbeddedMediaserverImpl();
 
 		//Start and configure server when annotation is defined at the Class or Method level
 		if (!isMediaserverAnnotationPresentField) {

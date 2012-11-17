@@ -36,56 +36,26 @@
 			<groupId>org.mobicents.media</groupId>
 			<artifactId>core</artifactId>
 			<version>${version.mediaserver}</version>
-			<exclusions>
-				<exclusion>
-					<groupId>org.mobicents.media</groupId>
-					<artifactId>spi</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 
 		<dependency>
 			<groupId>org.mobicents.media</groupId>
 			<artifactId>components</artifactId>
 			<version>${version.mediaserver}</version>
-			<exclusions>
-				<exclusion>
-					<groupId>org.mobicents.media</groupId>
-					<artifactId>spi</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 
 		<dependency>
 			<groupId>org.mobicents.media.io</groupId>
 			<artifactId>rtp</artifactId>
 			<version>${version.mediaserver}</version>
-			<exclusions>
-				<exclusion>
-					<groupId>org.mobicents.media</groupId>
-					<artifactId>spi</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 
 		<dependency>
 			<groupId>org.mobicents.media.controls</groupId>
 			<artifactId>mgcp</artifactId>
 			<version>${version.mediaserver}</version>
-			<exclusions>
-				<exclusion>
-					<groupId>org.mobicents.media</groupId>
-					<artifactId>spi</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
-
-		<dependency>
-			<groupId>org.mobicents.media</groupId>
-			<artifactId>spi</artifactId>
-			<version>${version.mediaserver}</version>
-		</dependency>
-
+		
 		<dependency>
 			<groupId>org.jboss.arquillian.core</groupId>
 			<artifactId>arquillian-core-spi</artifactId>
