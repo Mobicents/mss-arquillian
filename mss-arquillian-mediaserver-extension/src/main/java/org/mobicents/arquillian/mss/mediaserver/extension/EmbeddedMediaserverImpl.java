@@ -1,11 +1,10 @@
 package org.mobicents.arquillian.mss.mediaserver.extension;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.apache.log4j.Logger;
 import org.mobicents.arquillian.mediaserver.api.EmbeddedMediaserver;
@@ -27,7 +26,11 @@ import org.mobicents.media.server.spi.Endpoint;
 
 /**
  * EmbeddedMediaserver can be used either with @Mediaserver annotation in an Arquillian test or 
- * outside simply by instantiating a new instance
+ * outside simply by instantiating a new instance.
+ * 
+ * Based on
+ * Media Server Embedded Example: 
+ * http://code.google.com/p/mediaserver/source/browse/bootstrap/src/test/java/org/mobicents/media/server/test/RecordingTest.java
  * 
  * @author <a href="mailto:gvagenas@gmail.com">George Vagenas</a>
  */
@@ -75,7 +78,8 @@ public class EmbeddedMediaserverImpl implements EmbeddedMediaserver {
 			destroy();
 		//use default clock
 		clock = new DefaultClock();
-		endpoints = Collections.synchronizedList(new ArrayList<Endpoint>());
+		endpoints = new CopyOnWriteArrayList<Endpoint>(); 
+//				Collections.synchronizedList(new ArrayList<Endpoint>());
 		dspFactory = new DspFactoryImpl();
 		//create single thread scheduler
 		scheduler = new Scheduler();
@@ -162,7 +166,7 @@ public class EmbeddedMediaserverImpl implements EmbeddedMediaserver {
 
 	@Override
 	public synchronized void installEndpoint(Endpoint endpoint) {
-		server.install(endpoint);
+		server.install(endpoint,null);
 		endpoints.add(endpoint);
 		status = MediaserverStatus.CONFIGURED;
 	}
