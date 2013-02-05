@@ -10,6 +10,9 @@ import org.apache.log4j.Logger;
 import org.mobicents.arquillian.mediaserver.api.EmbeddedMediaserver;
 import org.mobicents.arquillian.mediaserver.api.EndpointType;
 import org.mobicents.arquillian.mediaserver.api.MediaserverStatus;
+import org.mobicents.arquillian.mediaserver.api.MgcpEventListener;
+import org.mobicents.arquillian.mss.mediaserver.extension.mgcp.controller.ext.MgcpControllerExt;
+import org.mobicents.arquillian.mss.mediaserver.extension.mgcp.controller.ext.MgcpProviderExt;
 import org.mobicents.media.core.ResourcesPool;
 import org.mobicents.media.core.Server;
 import org.mobicents.media.core.endpoints.impl.ConferenceEndpoint;
@@ -23,6 +26,7 @@ import org.mobicents.media.server.scheduler.Clock;
 import org.mobicents.media.server.scheduler.DefaultClock;
 import org.mobicents.media.server.scheduler.Scheduler;
 import org.mobicents.media.server.spi.Endpoint;
+import org.mobicents.media.server.spi.listener.TooManyListenersException;
 
 /**
  * EmbeddedMediaserver can be used either with @Mediaserver annotation in an Arquillian test or 
@@ -51,6 +55,7 @@ public class EmbeddedMediaserverImpl implements EmbeddedMediaserver {
 	private ResourcesPool resourcesPool;   
 
 	private List<Endpoint> endpoints;
+	private List<MgcpEventListener> mgcpEventListeners;
 
 	private Server server;
 
@@ -78,8 +83,8 @@ public class EmbeddedMediaserverImpl implements EmbeddedMediaserver {
 			destroy();
 		//use default clock
 		clock = new DefaultClock();
-		endpoints = new CopyOnWriteArrayList<Endpoint>(); 
-//				Collections.synchronizedList(new ArrayList<Endpoint>());
+		endpoints = new CopyOnWriteArrayList<Endpoint>();
+		mgcpEventListeners = new CopyOnWriteArrayList<MgcpEventListener>();
 		dspFactory = new DspFactoryImpl();
 		//create single thread scheduler
 		scheduler = new Scheduler();
@@ -87,7 +92,8 @@ public class EmbeddedMediaserverImpl implements EmbeddedMediaserver {
 		channelsManager = new ChannelsManager(udpManager);
 		resourcesPool = new ResourcesPool(scheduler, channelsManager, dspFactory);
 		server = new Server();
-		controller = new Controller();
+		controller = new MgcpControllerExt();
+
 		this.status = MediaserverStatus.INITIALIZED;
 
 	}
@@ -97,10 +103,16 @@ public class EmbeddedMediaserverImpl implements EmbeddedMediaserver {
 
 		if(!endpoints.isEmpty()) {
 			for(Endpoint endpoint: endpoints){
-//				server.uninstalls(endpoint.getLocalName());
 				endpoint.stop();
 			}
 		}
+		
+		if(!mgcpEventListeners.isEmpty()){
+			for(MgcpEventListener listener: mgcpEventListeners){
+				unregisterListener(listener);
+			}
+		}
+		
 		endpoints = null;
 		dspFactory = null;
 		scheduler.stop(); 
@@ -140,7 +152,7 @@ public class EmbeddedMediaserverImpl implements EmbeddedMediaserver {
 		channelsManager.setScheduler(scheduler);
 
 		resourcesPool=new ResourcesPool(scheduler, channelsManager, dspFactory);
-		
+
 		server.setClock(clock);
 		server.setScheduler(scheduler);
 		server.setUdpManager(udpManager);
@@ -155,8 +167,41 @@ public class EmbeddedMediaserverImpl implements EmbeddedMediaserver {
 		controller.start();
 		isServerStarted = true;
 		status = MediaserverStatus.STARTED;
+
 	}
 
+	@Override
+	public void registerListener(MgcpEventListener listener) {
+		
+		MgcpProviderExt provider = ((MgcpControllerExt) controller).getProvider();
+
+		try {
+			provider.addMgcpEventListener(listener);
+			((MgcpControllerExt) controller).addMgcpEventListener(listener);
+			mgcpEventListeners.add(listener);
+		} catch (TooManyListenersException e) {
+			logger.debug(e);
+			stopServer();
+			status = MediaserverStatus.FAILED;
+		}
+	}
+
+	@Override
+	public void unregisterListener(MgcpEventListener listener) {
+
+		MgcpProviderExt provider = ((MgcpControllerExt) controller).getProvider();
+
+		try {
+			provider.removeMgcpEventListener(listener);
+			((MgcpControllerExt) controller).removeMgcpEventListener(listener);
+			mgcpEventListeners.remove(listener);
+		} catch (Exception e) {
+			logger.debug(e);
+			stopServer();
+			status = MediaserverStatus.FAILED;
+		}
+	}
+	
 	@Override
 	public void stopServer() {
 		logger.info("Stopping server");
@@ -168,7 +213,6 @@ public class EmbeddedMediaserverImpl implements EmbeddedMediaserver {
 	public synchronized void installEndpoint(Endpoint endpoint) {
 		server.install(endpoint,null);
 		endpoints.add(endpoint);
-		status = MediaserverStatus.CONFIGURED;
 	}
 
 	@Override
@@ -180,6 +224,7 @@ public class EmbeddedMediaserverImpl implements EmbeddedMediaserver {
 				IvrEndpoint ivr = new IvrEndpoint("mobicents/ivr/"+ivrCounter);
 				installEndpoint(ivr);
 			}
+			status = MediaserverStatus.CONFIGURED;
 			break;
 		case CONFERENCE:
 			for (int i = 0; i < count; i++) {
@@ -187,6 +232,7 @@ public class EmbeddedMediaserverImpl implements EmbeddedMediaserver {
 				ConferenceEndpoint conf = new ConferenceEndpoint("mobicents/cnf/"+confCounter);
 				installEndpoint(conf);
 			}
+			status = MediaserverStatus.CONFIGURED;
 			break;
 		case PACKETRELAY:
 			for (int i = 0; i < count; i++) {
@@ -194,12 +240,11 @@ public class EmbeddedMediaserverImpl implements EmbeddedMediaserver {
 				PacketRelayEndpoint relay = new PacketRelayEndpoint("mobicents/relay/"+relayCounter);
 				installEndpoint(relay);
 			}
+			status = MediaserverStatus.CONFIGURED;
 			break;
 		default:
 			break;
 		}
-		status = MediaserverStatus.CONFIGURED;
-
 	}
 
 	@Override

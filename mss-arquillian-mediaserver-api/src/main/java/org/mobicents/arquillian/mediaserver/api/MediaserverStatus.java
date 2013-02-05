@@ -5,5 +5,5 @@ package org.mobicents.arquillian.mediaserver.api;
  */
 
 public enum MediaserverStatus {
-STARTED, CONFIGURED, UNCONFIGURED, STOPPED, INITIALIZED, CREATED
+STARTED, CONFIGURED, UNCONFIGURED, STOPPED, INITIALIZED, CREATED, FAILED
 }

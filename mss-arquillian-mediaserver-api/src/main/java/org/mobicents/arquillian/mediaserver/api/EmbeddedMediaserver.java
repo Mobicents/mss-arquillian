@@ -23,4 +23,6 @@ public interface EmbeddedMediaserver {
 	String getStatus();
 	void setId(String id);
 	String getId();
+	void registerListener(MgcpEventListener listener);
+	void unregisterListener(MgcpEventListener listener);
 }
