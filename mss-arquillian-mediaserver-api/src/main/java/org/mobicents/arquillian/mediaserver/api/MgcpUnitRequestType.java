@@ -5,5 +5,5 @@ package org.mobicents.arquillian.mediaserver.api;
  */
 
 public enum MgcpUnitRequestType {
-	PlayAnnouncementRequestType
+	PlayAnnouncementRequestType, NotifyRequestType
 }

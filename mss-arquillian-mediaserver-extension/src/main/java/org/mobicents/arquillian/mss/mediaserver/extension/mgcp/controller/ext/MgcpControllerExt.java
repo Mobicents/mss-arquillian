@@ -1,10 +1,12 @@
 package org.mobicents.arquillian.mss.mediaserver.extension.mgcp.controller.ext;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.mobicents.arquillian.mediaserver.api.MgcpEventListener;
 import org.mobicents.media.server.mgcp.MgcpEvent;
 import org.mobicents.media.server.mgcp.controller.Controller;
 import org.mobicents.media.server.mgcp.tx.GlobalTransactionManager;
-import org.mobicents.media.server.spi.listener.Listeners;
 import org.mobicents.media.server.spi.listener.TooManyListenersException;
 
 /**
@@ -13,7 +15,7 @@ import org.mobicents.media.server.spi.listener.TooManyListenersException;
 
 public class MgcpControllerExt extends Controller{
 
-	Listeners<MgcpEventListener> mgcpEventListeners = new Listeners<MgcpEventListener>();
+	List<MgcpEventListener> mgcpEventListeners = new ArrayList<MgcpEventListener>();
 
 	public void addMgcpEventListener(MgcpEventListener listener) throws TooManyListenersException{
 		mgcpEventListeners.add(listener);
@@ -38,7 +40,9 @@ public class MgcpControllerExt extends Controller{
 	@Override
 	public void process(MgcpEvent event) {
 		super.process(event);
-		mgcpEventListeners.dispatch(event);
+		for (MgcpEventListener listener : mgcpEventListeners) {
+			listener.process(event);
+		}
 	}
 
 	public MgcpProviderExt getProvider() {
