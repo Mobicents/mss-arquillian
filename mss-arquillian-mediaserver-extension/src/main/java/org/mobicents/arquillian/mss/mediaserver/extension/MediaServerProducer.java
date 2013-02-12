@@ -55,13 +55,16 @@ public class MediaServerProducer {
 	private Object testInstance;
 	//This instance will be used for Class and Method level annotations
 	private EmbeddedMediaserver embeddedMediaserver;
-	//This list will be used when annotation is present at the Field level
-	private List<EmbeddedMediaserver> embeddedMediaserverList = new ArrayList<EmbeddedMediaserver>();
 
 	public MediaServerProducer() {
-		embeddedMediaserver = new EmbeddedMediaserverImpl();
 	}
 
+	private EmbeddedMediaserver getServer(){
+		if(embeddedMediaserver == null)
+			embeddedMediaserver = new EmbeddedMediaserverImpl();
+
+		return embeddedMediaserver;
+	}
 	/*
 	 * Use @BeforeClass event in order to scan the test class for annotation we might be interesting.
 	 * Event fired Before the Class execution.
@@ -69,48 +72,42 @@ public class MediaServerProducer {
 	public void executeBeforeClass(@Observes BeforeClass event, TestClass testClass) throws Exception{
 		testClass = event.getTestClass();
 
-		if(embeddedMediaserver==null)
-			embeddedMediaserver = new EmbeddedMediaserverImpl();
-		
-		if(!embeddedMediaserver.isStarted()) {
-
-			//1. Check whether the annotation is present at the class level
-			if (testClass.isAnnotationPresent(Mediaserver.class)) {
-				isMediaserverAnnotationPresentClass = true;
-			}
-
-			//2. Check whether the annotation is present at one of the fields
-			Field[] fields = testClass.getJavaClass().getDeclaredFields();
-			for (Field field : fields) {
-				if (field.isAnnotationPresent(Mediaserver.class)){
-					if (field.getType().isAssignableFrom(EmbeddedMediaserver.class)){
-						isMediaserverAnnotationPresentField = true;
-						deployableServerFields.add(field);
-					}
-				}
-			}
-			//3. Check whether the annotation is present at the test method level
-			Method[] methods = testClass.getMethods(Mediaserver.class); 
-			//					((Object)testClass).getClass().getMethods();
-			for (Method method : methods) {
-				if (method.isAnnotationPresent(Mediaserver.class)){
-					isMediaserverAnnotationPresentMethod = true;
-					deployableServerMethods.add(method);
-				}
-			}
-
-			//Mediaserver annotation must be defined in only one place
-			if (isMediaserverAnnotationPresentField && (isMediaserverAnnotationPresentClass || isMediaserverAnnotationPresentMethod)
-					|| (isMediaserverAnnotationPresentClass && isMediaserverAnnotationPresentMethod)){
-				throw new EmbeddedMediaserverException("MediaServer annotation specified many times!");
-			}
-
-			//If the annotation is defined in the Class level, the start the server
-			if (isMediaserverAnnotationPresentClass)
-				startAndConfigureServer(testClass.getAnnotation(Mediaserver.class));
-
+		//1. Check whether the annotation is present at the class level
+		if (testClass.isAnnotationPresent(Mediaserver.class)) {
+			isMediaserverAnnotationPresentClass = true;
 		}
 
+		//2. Check whether the annotation is present at one of the fields
+		Field[] fields = testClass.getJavaClass().getDeclaredFields();
+		for (Field field : fields) {
+			if (field.isAnnotationPresent(Mediaserver.class)){
+				if (field.getType().isAssignableFrom(EmbeddedMediaserver.class)){
+					isMediaserverAnnotationPresentField = true;
+					deployableServerFields.add(field);
+				}
+			}
+		}
+		//3. Check whether the annotation is present at the test method level
+		Method[] methods = testClass.getMethods(Mediaserver.class); 
+		for (Method method : methods) {
+			if (method.isAnnotationPresent(Mediaserver.class)){
+				isMediaserverAnnotationPresentMethod = true;
+				deployableServerMethods.add(method);
+			}
+		}
+
+		if(deployableServerFields.size()>1)
+			throw new EmbeddedMediaserverException("MediaServer annotation specified many times!");
+
+		//Mediaserver annotation must be defined in only one place
+		if (isMediaserverAnnotationPresentField && (isMediaserverAnnotationPresentClass || isMediaserverAnnotationPresentMethod)
+				|| (isMediaserverAnnotationPresentClass && isMediaserverAnnotationPresentMethod)){
+			throw new EmbeddedMediaserverException("MediaServer annotation specified many times!");
+		}
+
+		//If the annotation is defined in the Class level, the start the server
+		if (isMediaserverAnnotationPresentClass)
+			startAndConfigureServer(testClass.getAnnotation(Mediaserver.class));
 
 	}
 
@@ -121,10 +118,8 @@ public class MediaServerProducer {
 		//we leave the user to take control of the server (start/stop/configure etc)
 		//Otherwise we have to start/stop/configure the server accordingly
 
-		if(embeddedMediaserver==null)
-			embeddedMediaserver = new EmbeddedMediaserverImpl();
-		
-		if (!embeddedMediaserver.isStarted()) {
+
+		if (!getServer().isStarted()) {
 			testInstance = event.getTestInstance();
 			if (isMediaserverAnnotationPresentField) {
 				setMediaserver(testInstance, deployableServerFields);
@@ -148,12 +143,13 @@ public class MediaServerProducer {
 		//When we have the annotation at the Class level, we need to stop the server
 		//at the event @Observes AfterClass
 
-		if (embeddedMediaserver.isStarted()){
+		if (getServer().isStarted()){
 			if (isMediaserverAnnotationPresentClass) {
 				embeddedMediaserver.stopServer();
 				embeddedMediaserver = null;
 			} 
 		}
+		deployableServerFields.clear();
 	}
 
 	public void executeAfterTestMethod(@Observes After event, TestClass testClass) {
@@ -161,27 +157,28 @@ public class MediaServerProducer {
 		//When we have the annotation at the Test Method level, we need to stop the server
 		//at the event @Observes After (when the test method finish)
 
-		if (embeddedMediaserver.isStarted()){
-			if (isMediaserverAnnotationPresentMethod) {
+		if (getServer().isStarted()){
+			if (isMediaserverAnnotationPresentMethod || isMediaserverAnnotationPresentField) {
 				embeddedMediaserver.stopServer();
 				embeddedMediaserver = null;
 			}
-		}
+		}			
 	}
 
 	private void setMediaserver(Object testInstance, List<Field> fields) throws IllegalArgumentException, IllegalAccessException
 	{
 		for (Field field : fields) {
-			EmbeddedMediaserver embeddedMediaserver = new EmbeddedMediaserverImpl();
-			embeddedMediaserver.setId("Embedded Mediaserver for Field "+field.getName());
-			embeddedMediaserverList.add(embeddedMediaserver);
+			//			EmbeddedMediaserver embeddedMediaserver = new EmbeddedMediaserverImpl();
+			//			embeddedMediaserver.setId("Embedded Mediaserver for Field "+field.getName());
+			//			embeddedMediaserverList = new ArrayList<EmbeddedMediaserver>();
+			//			embeddedMediaserverList.add(embeddedMediaserver);
 			Boolean flag = field.isAccessible();
 			field.setAccessible(true);
 			//Throws IllegalArgumentException cause we don't have access to the TestClass instance
 			EmbeddedMediaserver fieldValue = (EmbeddedMediaserver) field.get(testInstance);
 			if (fieldValue == null){
 				// If value is null then set it to the appropriate Embedded Container. 
-				field.set(testInstance, embeddedMediaserver);
+				field.set(testInstance, getServer());
 			} else {
 				//if value is not null then set it to NULL. 
 				field.set(testInstance, null);
@@ -206,32 +203,21 @@ public class MediaServerProducer {
 				throw new EmbeddedMediaserverException("Mediaserver in MANUAL mode is allowed only in Feild level annotation!");
 			}
 		}
-		
-		if (embeddedMediaserver==null)
-			embeddedMediaserver = new EmbeddedMediaserverImpl();
 
 		//Start and configure server when annotation is defined at the Class or Method level
-		if (!isMediaserverAnnotationPresentField) {
-			embeddedMediaserver.startServer();
+		EmbeddedMediaserver mediaserver = getServer();
 
-			embeddedMediaserver.setId(anno.ID());
-			embeddedMediaserver.installEndpoint(EndpointType.IVR, anno.IVR());
-			embeddedMediaserver.installEndpoint(EndpointType.CONFERENCE, anno.CONF());
-			embeddedMediaserver.installEndpoint(EndpointType.PACKETRELAY, anno.RELAY());
+		mediaserver.startServer();
+
+		mediaserver.installEndpoint(EndpointType.IVR, anno.IVR());
+		mediaserver.installEndpoint(EndpointType.CONFERENCE, anno.CONF());
+		mediaserver.installEndpoint(EndpointType.PACKETRELAY, anno.RELAY());
+		
+		if(anno.ID() != null){
+			mediaserver.setId(anno.ID());
+		} else {
+			mediaserver.setId(mediaserver.toString());
 		}
-		//Start and configure server when annotation is defined at the Field level
-		else {
-			for(EmbeddedMediaserver embeddedMediaserver: embeddedMediaserverList) {
-				embeddedMediaserver.startServer();
-
-				embeddedMediaserver.setId(embeddedMediaserver.getId()+"_"+anno.ID());
-				embeddedMediaserver.installEndpoint(EndpointType.IVR, anno.IVR());
-				embeddedMediaserver.installEndpoint(EndpointType.CONFERENCE, anno.CONF());
-				embeddedMediaserver.installEndpoint(EndpointType.PACKETRELAY, anno.RELAY());
-
-			}
-		}
-
 
 	}
 

@@ -83,7 +83,6 @@ public class EmbeddedMediaserverImpl implements EmbeddedMediaserver {
 			destroy();
 		//use default clock
 		clock = new DefaultClock();
-		endpoints = new CopyOnWriteArrayList<Endpoint>();
 		mgcpEventListeners = new CopyOnWriteArrayList<MgcpEventListener>();
 		dspFactory = new DspFactoryImpl();
 		//create single thread scheduler
@@ -101,10 +100,11 @@ public class EmbeddedMediaserverImpl implements EmbeddedMediaserver {
 	public void destroy() {
 		clock = null;
 
-		if(!endpoints.isEmpty()) {
+		if(endpoints != null && !endpoints.isEmpty()) {
 			for(Endpoint endpoint: endpoints){
 				endpoint.stop();
 			}
+			endpoints = null;
 		}
 		
 		if(!mgcpEventListeners.isEmpty()){
@@ -136,7 +136,9 @@ public class EmbeddedMediaserverImpl implements EmbeddedMediaserver {
 
 		if(this.status != MediaserverStatus.INITIALIZED)
 			init();
-
+		
+		endpoints = new CopyOnWriteArrayList<Endpoint>();
+		
 		dspFactory.addCodec("org.mobicents.media.server.impl.dsp.audio.g711.ulaw.Encoder");
 		dspFactory.addCodec("org.mobicents.media.server.impl.dsp.audio.g711.ulaw.Decoder");
 
