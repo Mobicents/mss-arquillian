@@ -6,7 +6,7 @@
 		<groupId>org.jboss</groupId>
 		<artifactId>jboss-parent</artifactId>
 		<version>9</version>
-		<relativePath />
+		<relativePath/>
 	</parent>
 
 	<!-- Model Version -->
@@ -15,7 +15,7 @@
 	<!-- Artifact Configuration -->
 	<groupId>org.mobicents.arquillian.container</groupId>
 	<artifactId>arquillian-parent-mobicents-sip-servlets</artifactId>
-	<version>1.0.0-CR1-SNAPSHOT</version>
+	<version>1.0.0-ALPHA2-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Arquillian Mobicents Container Parent Tomcat</name>
 	<description>Mobicents Tomcat Container for the Arquillian Project</description>
@@ -270,7 +270,7 @@
 			<dependency>
 				<groupId>org.mobicents.shrinkwrap.container</groupId>
 				<artifactId>shrinkwrap-container-mobicents</artifactId>
-				<version>1.0.0-ALPHA2</version>
+				<version>${version.shrinkwrap_mobicents}</version>
 			</dependency>
 
 			<dependency>
