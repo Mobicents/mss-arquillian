@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
 	<!-- JBoss Parent -->
 	<parent>
 		<groupId>org.jboss</groupId>
 		<artifactId>jboss-parent</artifactId>
 		<version>9</version>
-		<relativePath/>
+		<relativePath />
 	</parent>
 
 	<!-- Model Version -->
@@ -45,7 +46,8 @@
 		<repository>
 			<id>mobicents-releases-repository</id>
 			<name>Mobicents Releases Repository</name>
-			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2
+			</url>
 		</repository>
 		<snapshotRepository>
 			<id>mobicents-snapshots-repository</id>
@@ -96,7 +98,8 @@
 		<!-- Versioning -->
 		<version.arquillian_core>1.0.3.Final</version.arquillian_core>
 		<version.shrinkwrap_tomcat>1.0.0</version.shrinkwrap_tomcat>
-		<version.shrinkwrap_mobicents>${project.version}</version.shrinkwrap_mobicents>
+		<version.shrinkwrap_mobicents>${project.version}
+		</version.shrinkwrap_mobicents>
 
 		<version.sipunit>2.0.0</version.sipunit>
 
@@ -112,9 +115,11 @@
 		<maven.compiler.source>1.5</maven.compiler.source>
 
 		<!-- Mobicents -->
-		<version.org.mobicents.servlet.sip>1.7.0.FINAL</version.org.mobicents.servlet.sip>
+		<version.org.mobicents.servlet.sip>1.7.0.FINAL
+		</version.org.mobicents.servlet.sip>
 		<version.mobicents.jain.sip.ext>1.1</version.mobicents.jain.sip.ext>
-		<version.mobicents.jain.sip.jboss4>1.2.0.FINAL</version.mobicents.jain.sip.jboss4>
+		<version.mobicents.jain.sip.jboss4>1.2.0.FINAL
+		</version.mobicents.jain.sip.jboss4>
 
 		<!-- Mediaserver -->
 		<version.mediaserver>3.0.0.CR2</version.mediaserver>
@@ -319,6 +324,12 @@
 					</filesets>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.13</version>
+			</plugin>
+
 		</plugins>
 	</build>
 
@@ -331,21 +342,23 @@
 		<module>mss-arquillian-utilities-extension</module>
 		<!-- <module>mss-arquillian-showcase</module> -->
 		<!--<module>mss-arquillian-docs</module> -->
-    <module>mss-arquillian-mediaserver-api</module>
-    <module>mss-arquillian-mediaserver-extension</module>
-  </modules>
+		<module>mss-arquillian-mediaserver-api</module>
+		<module>mss-arquillian-mediaserver-extension</module>
+	</modules>
 
 	<repositories>
 		<repository>
 			<id>jboss-public-repository</id>
 			<name>JBoss Public Repository</name>
-			<url>https://repository.jboss.org/nexus/content/groups/public-jboss/</url>
+			<url>https://repository.jboss.org/nexus/content/groups/public-jboss/
+			</url>
 		</repository>
 
 		<repository>
 			<id>jboss-snapshots-repository</id>
 			<name>JBoss Snapshots repository</name>
-			<url>https://repository.jboss.org/nexus/content/repositories/snapshots/</url>
+			<url>https://repository.jboss.org/nexus/content/repositories/snapshots/
+			</url>
 		</repository>
 
 		<repository>
