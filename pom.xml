@@ -98,7 +98,7 @@
 		<!-- Versioning -->
 		<version.arquillian_core>1.0.3.Final</version.arquillian_core>
 		<version.shrinkwrap_tomcat>1.0.0</version.shrinkwrap_tomcat>
-		<version.shrinkwrap_mobicents>${project.version}
+		<version.shrinkwrap_mobicents>1.0.0-ALPHA2
 		</version.shrinkwrap_mobicents>
 
 		<version.sipunit>2.0.0</version.sipunit>
