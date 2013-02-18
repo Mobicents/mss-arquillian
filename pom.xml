@@ -117,7 +117,7 @@
 		<version.mobicents.jain.sip.jboss4>1.2.0.FINAL</version.mobicents.jain.sip.jboss4>
 
 		<!-- Mediaserver -->
-		<version.mediaserver>3.0.0.FINAL-SNAPSHOT</version.mediaserver>
+		<version.mediaserver>3.0.0.CR2</version.mediaserver>
 
 		<!-- Jain SIP -->
 		<jain-sip-api.version>1.2</jain-sip-api.version>
