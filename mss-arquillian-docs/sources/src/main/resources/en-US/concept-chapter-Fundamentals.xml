@@ -5,27 +5,24 @@
 ]>
 <!-- chapter id nickname: ittsss -->
 <chapter id="Fundamentals_MSS_Arquillian_Framework">
-	<title>Fundamentals of the MSS Arquillian Framework</title>
-	<para>As we already said, the framework consists of two parts, the
-		container and the sip client.
-	</para>
+	<title>Fundamentals</title>
+
+<section>
+<title>Test Suite Elements</title>
 	<para>The test suite will define the following elements</para>
 	<itemizedlist id="MSS_Arquillian_Framework_TestSuite_Elements">
-		<title>Test Suite Elements</title>
 		<listitem>
-			<para>The embedded container that the application will run on, along
-				with the configuration and resources needed for the container and
-				the Sip Servlets application.
+			<para>The embedded container along
+				with the configuration and resources needed.
 			</para>
 		</listitem>
 		<listitem>
-			<para>A test archive that will be deployed automatically (or manually
-				as we will see later) to the container. Actually the test archive
-				will contain the Sip Servlets application under test
+			<para>The test archive that will be deployed automatically (or manually
+				as we will see later) to the container. The test archive is the Sip Servlet application we wish to test.
 			</para>
 		</listitem>
 		<listitem>
-			<para>One or more test methods that using the sip client, will
+			<para>The test classes that contain one or more test methods. The sip client will
 				interact with the deployed application in order to perform the tests
 				and provide the results.
 			</para>
@@ -42,15 +39,17 @@
 			</imageobject>
 		</mediaobject>
 	</figure>
+</section>
 
-
-	<formalpara id="MSS_Arquillian_Framework_Test_Resources">
-		<title>Container, test resources and configuration</title>
-		<para>Lets start with the required test resources and configuration.
-			So a Sip Servlets
-			test project will require the following test
-			resources:
+<section>
+<title>Container, test resources and configuration</title>
+	<!-- <formalpara id="MSS_Arquillian_Framework_Test_Resources"> -->
+		<formalpara><title>Resources and configuration files</title></formalpara>
+		<para>
+		The required configuration files and resources to our testsuite will be places in the /src/test/resources/ folder.
+		That includes, the Arquillian container and the Sip Servlet application configuration files.
 		</para>
+
 		<itemizedlist>
 			<listitem>
 				<para>
@@ -63,19 +62,19 @@
 			<listitem>
 				<para>
 					<emphasis>web.xml</emphasis>
-					- The required by your application, web.xml
+					- The required by the Sip Servlet application, web.xml
 				</para>
 			</listitem>
 			<listitem>
 				<para>
 					<emphasis>sip.xml</emphasis>
-					- The required by your application, sip.xml
+					- The required by the Sip Servlet application, sip.xml
 				</para>
 			</listitem>
 			<listitem>
 				<para>
 					<emphasis>test-dar.properties</emphasis>
-					- Application Router properties.
+					- Application Router properties for the Sip Servlet Application.
 				</para>
 			</listitem>
 		</itemizedlist>
@@ -155,8 +154,10 @@
 				)
 			</para>
 		</note>
-	</formalpara>
+	<!-- </formalpara> -->
+</section>
 
+<section>
 	<formalpara id="MSS_Arquillian_Framework_Test_Class">
 		<title>The test class</title>
 
@@ -206,7 +207,8 @@
 		</para>
 
 	</formalpara>
-
+</section>
+<section>
 	<formalpara id="MSS_Arquillian_Framework_Test_Methods">
 		<title>Test Methods</title>
 		<para>
@@ -301,7 +303,7 @@
 			, provides an overview of SipUnit project.
 		</para>
 	</formalpara>
-
+</section>
 
 	<formalpara id="MSS_Arquillian_Framework_Test_Summary">
 		<title>Summary</title>

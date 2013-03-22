@@ -7,7 +7,8 @@
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="Book_Info.xml"/>
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="Preface.xml"/>
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="concept-chapter-Introduction.xml"/>
-  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="concept-chapter-Advantages.xml"/>
+  <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="concept-chapter-Getting_Started.xml"/>
+  <!--<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="concept-chapter-Advantages.xml"/> -->
 <!--   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="concept-chapter-SimpleTestProject.xml"/> -->
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="concept-chapter-Fundamentals.xml"/>
   <xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="concept-chapter-MSS_Arq_Container.xml"/>

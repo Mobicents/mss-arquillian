@@ -1,64 +1,235 @@
-﻿<?xml version='1.0' encoding='UTF-8'?>
-<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
-<!ENTITY % BOOK_ENTITIES SYSTEM "MSS_Arquillian_Framework_User_Guide.ent">
-%BOOK_ENTITIES;
-]>
+<?xml version='1.0'?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
 <chapter id="Introduction_to_the_MSS_Arquillian_Framework">
-	<title>Introduction to the Mobicents Arquillian Sip Servlets Extension
-	</title>
+	<title>Introduction</title>
 	<!-- Introduction to Arquillian -->
+
+<para>
+Mobicents Sip Servlets testing framework is based on the Arquillian framework. 
+The framework extends Arquillian by providing sip servlet enabled containers, extensions, 
+and tools, required for the Sip Servlet applications testing. 
+</para>
+<para>
+Mobicents Sip Servlets testing framework together with SipUnit and MgcpUnit, provides a clean and makes integration testing a straight forward task.  
+</para>
+
+<section>
+<title>Requirements</title>
 	<para>
-		Arquillian is a container-oriented test framework. It picks up where
-		unit tests leave off, targeting the integration of application code
-		inside a real runtime environment. Just as Java EE 5 simplified the
-		server programming model by providing declarative services for POJOs,
-		Arquillian equips tests with container lifecycle management and
-		enrichment. You can learn more on Arquillian here
-		<ulink url="http://arquillian.org/">Arquillian Home</ulink>
+		A SIP servlet is a Java-based application component which is
+		managed by
+		a SIP servlet container
+		and which performs SIP signaling.
+		Servlets interact with (SIP) clients by
+		exchanging request and response
+		messages through the servlet container.
 	</para>
 
-	<para>With the Mobicents Sip Servlets Arquillian framework Mobicents
-		team brings the power and benefits of the Arquillian framework to the
-		Sip Servlets world.
-	</para>
-	<para>Integration testing for Sip Servlets now becomes as much simple
-		or as much complicated as you wish. No need to extend and use complex
-		classes and structures anymore in order to test your Sip Servlets
-		application. But on the other hand, you can go ahead and do it if you
-		need.
-	</para>
-	<para>With the Mobicents Arquillian testing framework, you have the
-		choice to work with a standard environment that will fit most of the
-		cases, or go ahead and parameterize the testing environment as much as
-		you wish in order to meet your needs.
-	</para>
+	<para>
+		In that regard, in order to test a Sip Servlet application the
+		following requirements have to be met:
 
-	<formalpara id="MSS_Arquillian_Framework_Container_Support">
-		<title>Container Support</title>
-		<para>Mobicents
-			Arquillian testing framework now supports &PLATFORM_NAME;
-			Sip Servlets 1.7 - Tomcat 6.x
-		</para>
-	</formalpara>
-	<formalpara id="MSS_Arquillian_Framework_Parts">
-		<title>MSS Arquillian Framework Parts</title>
-		<para>The Mobicents Arquillian testing framework consists of the
-			following parts
-		</para>
 		<itemizedlist>
 			<listitem>
-				<para>The embedded Mobicents Sip Servlets container that the
-					application will run.
-				</para>
+				A Sip Servlet enabled container where we will deploy the SIP Servlet
+				application to test
 			</listitem>
 			<listitem>
-				<para>A sip client to interact with your application. For this we
-					are using SipUnit but you are free to use any sip client fits
-					your needs. We are collaborating with CafeSip developers on the SipUnit
-					project in
-					order to provide new features, fix bugs etc.
-				</para>
+				Integration with a testing framework such as JUnit or TestNG
+			</listitem>
+			<listitem>
+				A Sip client to interact with the application and being able to
+				assert SIP signalling
+			</listitem>
+			<listitem>
+				For some cases, a media gateway such as Mobicents Media Server, that
+				the
+				SIP Servlet application will interact.
+			</listitem>
+			<listitem>
+				A client to assert mgcp operations
 			</listitem>
 		</itemizedlist>
-	</formalpara>
+	</para>
+	<para>
+		So lets discuss a bit further each of the above requirements.
+		<orderedlist>
+			<listitem>
+				Sip Servlet container. We need a managed Sip Servlet container that
+				we will be able to control and deploy the application.
+				Mobicents Sip
+				Servlet enabled Arquillian containers will satisfy
+				this requirement.
+				Also the tools that Arquillian and Shrinkwrap
+				ecosystem provides,
+				will
+				help us to create,
+				manage and enhance the test
+				archive, the
+				Sip
+				Servlet application
+				to test.
+			</listitem>
+			<listitem>
+				The Mobicents Sip Servlet enabled Arquillian containers will also
+				provide
+				out of the box integration with JUnit or TestNG. So our
+				testsuite will be able for example to setup and tear down
+				the
+				required resources before the execution of a test method and to use
+				the assertion methods provided by each test framework.
+			</listitem>
+			<listitem>
+				SipUnit will be the SIP client that will interact with the
+				application and will provide the assert methods for SIP Signalling.
+			</listitem>
+			<listitem>
+				Embedded MediaServer extension, provides an embedded version of the
+				Mobicents Media Server so the application will be able to interact
+				with a managed media gateway over MGCP.
+			</listitem>
+			<listitem>
+				The embedded MediaServer extension, provides a hook for listeners to
+				register and
+				receive all the MGCP requests and responses, and
+				MgcpUnit is
+				the project that will hook to this listener and help us
+				to assert all mgcp operations.
+			</listitem>
+		</orderedlist>
+		<para>
+			This document will cover the Mobicents SipServlet enabled
+			Arquillian container and the Embedded MediaServer extension.
+		</para>
+		<note>
+			SipUnit and MgcpUnit documentation project can be found here:
+			<itemizedlist>
+				<listitem>
+					SipUnit:
+				</listitem>
+				<listitem>
+					MgcpUnit:
+				</listitem>
+			</itemizedlist>
+		</note>
+	</para>
+	</section>
+	<section>
+
+		<title>Few words for the Arquillian framework</title>
+
+		<para>
+
+			Arquillian brings the test to the runtime so you don’t have to
+			manage
+			the runtime from the test (or the build). Arquillian
+			eliminates this
+			burden by covering all aspects of test execution,
+			which entails:
+			<itemizedlist>
+				<listitem>
+					Managing the lifecycle of the container (or containers)
+				</listitem>
+				<listitem>
+					Bundling the test case, dependent classes and resources into a
+					ShrinkWrap archive (or archives)
+				</listitem>
+				<listitem>
+					Deploying the archive (or archives) to the container (or
+					containers)
+				</listitem>
+				<listitem>
+					Enriching the test case by providing dependency injection and other
+					declarative services
+				</listitem>
+				<listitem>
+					Executing the tests inside (or against) the container
+				</listitem>
+				<listitem>
+					Capturing the results and returning them to the test runner for
+					reporting
+				</listitem>
+			</itemizedlist>
+		</para>
+		<para>
+			To avoid introducing unnecessary complexity into the developer’s
+			build
+			environment, Arquillian integrates seamlessly with familiar
+			testing
+			frameworks (e.g., JUnit 4, TestNG 5), allowing tests to be
+			launched
+			using existing IDE, Ant and Maven test plugins — without any
+			add-ons.
+		</para>
+
+		<para>
+			Arquillian is a container-oriented test framework. It picks up
+			where
+			unit tests leave off, targeting the integration of application
+			code
+			inside a real runtime environment. Just as Java EE 5 simplified
+			the
+			server programming model by providing declarative services for
+			POJOs,
+			Arquillian equips tests with container lifecycle management and
+			enrichment. 
+			</para>
+			<para>
+			You can learn more on Arquillian here
+			<ulink url="http://arquillian.org/">Arquillian Home</ulink>
+		</para>
+		<para>
+			With the Mobicents Sip Servlets testing framework we bring the
+			benefits of the Arquillian framework to the
+			Sip Servlets world.
+		</para>
+		<para>
+			Integration testing for Sip Servlets applications now becomes much more simple.
+			No need to extend and use complex
+			classes and structures anymore in
+			order to test your Sip Servlets
+			application.
+		</para>
+		<para>
+			With the Mobicents Sip Servlets testing framework, you have the
+			choice to
+			work with a standard environment that will fit most of the
+			cases, or
+			go ahead and parameterize the testing environment as much
+			as
+			you wish
+			in order to meet your needs.
+		</para>
+	
+</section>
+<section>
+<title>Benefits</title>
+		<para>One of the most important benefit of the framework is the
+			clear
+			and concise model that the framework provides.
+		</para>
+		<para>The framework's parts, are individual and can be
+			replaced by equivalent modules if needed. For example, a developer might provide his own sip client 
+			instead of SipUnit.
+		</para>
+
+		<para>Extensibility is a major advantage also. Since the framework is
+			based on Arquillian users can take advantages of other extensions already provided by the Arquillian ecosystem,
+			 or use Arquillian SPI to provide their own extension.
+		</para>
+</section>
+<section>
+<title>Supported containers</title>
+	<para>Mobicents Sip Servlet extension to Arquillian currently supports
+		the following containers:
+	</para>
+	<itemizedlist>
+		<listitem>
+			Embedded Tomcat 6 container
+		</listitem>
+		<listitem>
+			Embedded Tomcat 7 container
+		</listitem>
+	</itemizedlist>
+</section>
 </chapter>

@@ -4,8 +4,8 @@
 %BOOK_ENTITIES;
 ]><!-- chapter id nickname: sssug -->
 <bookinfo id="MSS_Arquillian_Framework_User_Guide">
-	<title>Mobicents Arquillian SIP Servlets Extension</title>
-	<subtitle>The Guide to the Mobicents Arquillian SIP Servlets Extension</subtitle>
+	<title>Mobicents Sip Servlet Testing framework</title>
+	<subtitle>The Guide to the Mobicents Arquillian SIP Servlets and Embedded MediaServer extensions</subtitle>
   	<productname>Mobicents Platform</productname>
 	<productnumber>1.0.0</productnumber>
 	<edition>1.0</edition>
