@@ -7,90 +7,134 @@
 <chapter id="Fundamentals_MSS_Arquillian_Framework">
 	<title>Fundamentals</title>
 
-<section>
-<title>Test Suite Elements</title>
-	<para>The test suite will define the following elements</para>
-	<itemizedlist id="MSS_Arquillian_Framework_TestSuite_Elements">
-		<listitem>
-			<para>The embedded container along
-				with the configuration and resources needed.
-			</para>
-		</listitem>
-		<listitem>
-			<para>The test archive that will be deployed automatically (or manually
-				as we will see later) to the container. The test archive is the Sip Servlet application we wish to test.
-			</para>
-		</listitem>
-		<listitem>
-			<para>The test classes that contain one or more test methods. The sip client will
-				interact with the deployed application in order to perform the tests
-				and provide the results.
-			</para>
-		</listitem>
-	</itemizedlist>
-
-	<para>A typical project will have the following structure:</para>
-	<figure>
-		<title>Test project structure</title>
-		<mediaobject id="CDI_Telco_Framework_Extension">
-			<imageobject>
-				<imagedata width="550" align="center"
-					fileref="images/TestProjectStructure.png" format="PNG" />
-			</imageobject>
-		</mediaobject>
-	</figure>
-</section>
-
-<section>
-<title>Container, test resources and configuration</title>
-	<!-- <formalpara id="MSS_Arquillian_Framework_Test_Resources"> -->
-		<formalpara><title>Resources and configuration files</title></formalpara>
-		<para>
-		The required configuration files and resources to our testsuite will be places in the /src/test/resources/ folder.
-		That includes, the Arquillian container and the Sip Servlet application configuration files.
+	<section>
+		<title>Test Suite Elements</title>
+		<para>The project we created in the previous chapter contains the
+			following elements:
 		</para>
-
-		<itemizedlist>
+		<itemizedlist id="MSS_Arquillian_Framework_TestSuite_Elements">
 			<listitem>
-				<para>
-					<emphasis>arquillian.xml</emphasis>
-					- Arquillian configuration file. This is where we will define the
-					container
-					and its parameters.
+				<para>Defines the embedded container along
+					with the configuration and
+					resources it needs.
 				</para>
 			</listitem>
 			<listitem>
-				<para>
-					<emphasis>web.xml</emphasis>
-					- The required by the Sip Servlet application, web.xml
+				<para>Creates the test archive that will be deployed automatically
+					(or manually
+					as we will see later) to the container. The test
+					archive is the Sip
+					Servlet application we wish to test.
 				</para>
 			</listitem>
 			<listitem>
-				<para>
-					<emphasis>sip.xml</emphasis>
-					- The required by the Sip Servlet application, sip.xml
+				<para>Defines the SIP client, SipUnit, that will be used later to
+					interact with the deployed Sip Servlet application in order
+					to
+					provide the results of the test.
 				</para>
 			</listitem>
 			<listitem>
-				<para>
-					<emphasis>test-dar.properties</emphasis>
-					- Application Router properties for the Sip Servlet Application.
+				<para>The test classes that contain one or more test methods that
+					will be run in order to verify our Sip Servlet application.
 				</para>
 			</listitem>
 		</itemizedlist>
 
-		<para>We wont take time to discuss the web.xml and sip.xml files over
-			here, as they should be already familiar.
+		<para>The project's directory structure looks like this:</para>
+		<figure>
+			<title>Test project structure</title>
+			<mediaobject id="CDI_Telco_Framework_Extension">
+				<imageobject>
+					<imagedata width="550" align="center"
+						fileref="images/TestProjectStructure.png" format="PNG" />
+				</imageobject>
+			</mediaobject>
+		</figure>
+
+		<para>
+			<itemizedlist>
+				<listitem>
+					Folder
+					<command>/src/test/java</command>
+					contains the test classes
+				</listitem>
+				<listitem>
+					Folder
+					<command>/src/test/resources</command>
+					contains the resources needed for the test
+				</listitem>
+				<listitem>
+					Folder
+					<command>/src/main/java</command>
+					contains the Sip Servlet application classes
+				</listitem>
+			</itemizedlist>
 		</para>
-		<para>Container's configuration file, arquillian.xml, is where we will
-			define the container that the test case will work with, and also the
-			parameters for this container.
+
+	</section>
+
+	<section>
+		<title>Resources and configuration for the container and the test
+		</title>
+		<para>
+			The required configuration and resources files for the tests
+			suite, will
+			be places in the /src/test/resources/ folder.
+			That
+			includes, the Arquillian container and the Sip Servlet application
+			configuration files. But also anything that you might want to include
+			in the test archive should be placed in this folder.
 		</para>
-		<para>A typical configuration file for the MSS Arquillian container
+
+		<para>
+			Here is a description of the configuration and resources files
+			included in the project we created previously:
+			<itemizedlist>
+				<listitem>
+					<para>
+						<command>arquillian.xml</command>
+						- Arquillian configuration file. This is where we will define the
+						container
+						and its parameters.
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						<command>log4j.xml</command>
+						- The Log4J configuration file
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						<command>sip.xml</command>
+						- The required for the Sip Servlet application, sip.xml
+					</para>
+				</listitem>
+				<listitem>
+					<para>
+						<command>test-dar.properties</command>
+						- Application Router properties for the Sip Servlet Application.
+					</para>
+				</listitem>
+			</itemizedlist>
+		</para>
+
+		<para>
+			Container's configuration file,
+			<command>arquillian.xml</command>
+			, is where we will
+			define the properties for the container that our
+			test case will work
+			with.
+		</para>
+		<para>
+			A typical configuration file for the MSS Arquillian container
 			looks
 			like this:
 		</para>
-		<programlisting>
+		<para>
+			<programlisting>
 		    <![CDATA[
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <arquillian xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -110,95 +154,198 @@
 </arquillian>
 	]]>
 	</programlisting>
-
-		<!-- <para>As you can see, here we define the following: </para> -->
-		<!-- <itemizedlist> -->
-		<!-- <listitem> -->
-		<!-- <para>the container, mss-tomcat-embedded-6</para> -->
-		<!-- </listitem> -->
-		<!-- <listitem> -->
-		<!-- <para>the tomcat home directory, "target/mss-tomcat-embedded-6" -->
-		<!-- </para> -->
-		<!-- </listitem> -->
-		<!-- <listitem> -->
-		<!-- <para>the work directory, "work"</para> -->
-		<!-- </listitem> -->
-		<!-- <listitem> -->
-		<!-- <para>the bind HTTP port, which in our case will be 8888</para> -->
-		<!-- </listitem> -->
-		<!-- <listitem> -->
-		<!-- <para>we set to true the "unpackArchive" option</para> -->
-		<!-- </listitem> -->
-		<!-- <listitem> -->
-		<!-- <para>the sip connectors, we define here only one - UDP/5070</para> -->
-		<!-- </listitem> -->
-		<!-- <listitem> -->
-		<!-- <para>the default application router</para> -->
-		<!-- </listitem> -->
-		<!-- </itemizedlist> -->
-
-		<para>
-			See
-			<xref linkend="MSS-Arquillian-Container">Mobicents Sip Servlets Arquillian Container</xref>
-			for further details on the configuration of the container
 		</para>
+
+		<note>
+			<para>
+				See
+				<xref linkend="MSS-Arquillian-Container">Mobicents Sip Servlets Arquillian Container
+				</xref>
+				for further details on the configuration of the container
+			</para>
+		</note>
 
 		<note id="Container_Should_Be_In_Classpath">
 			<title>How Arquillian controls the container</title>
 			<para>
 				In order for the Arquillian to pick up the container defined here
-				and use it, the container have to
-				be in the classpath of the project
+				and use it, the container artifact have to
+				be in the classpath of the
+				project
 				(see
 				<xref linkend="MSS_Arquillian_Framework_AppendixA_Maven_Project_Setup">Appendix A - Maven project setup</xref>
 				)
 			</para>
 		</note>
-	<!-- </formalpara> -->
-</section>
 
-<section>
-	<formalpara id="MSS_Arquillian_Framework_Test_Class">
+		<para>
+			The
+			<command>test-dar.properties</command>
+			file will be picked up by the container in order to configure the
+			application router. So, for
+			example, the Sip Servlet application of our project, have to receive the
+			INVITE messages, so the file will contain:
+			<para>
+				<programlisting>
+				INVITE: ("SimpleSipServletApplication", "DAR:From", "ORIGINATING", "", "NO_ROUTE", "0");
+				</programlisting>
+			</para>
+		</para>
+
+	</section>
+
+	<section>
 		<title>The test class</title>
 
 		<para>
-			For the test class to run with Arquillian, have to be annotated
+			In order for the test class to run with Arquillian, have to be
+			annotated
 			with
-			@RunWith(Arquillian.class)
+			<command>
+				@RunWith(Arquillian.class)
+			</command>
 		</para>
-	</formalpara>
-	<formalpara id="MSS_Arquillian_Framework_Test_Archive">
+
+		<para>
+			With this annotation in the test class, Arquillian will first
+			start the container, will create and deploy the test archive, will
+			execute the test and last will provide the results.
+		</para>
+
+		<para>
+			We can now initialise the required components needed and write
+			our test methods.
+		</para>
+	</section>
+
+	<section>
+		<title>SipUnit</title>
+		<para>
+			We will need to initialise SipUnit in order to use later in the test
+			methods.
+		</para>
+		<para>
+			SipUnit have three basic components:
+			<itemizedlist>
+				<listitem>
+					SipStack
+				</listitem>
+				<listitem>
+					SipPhone
+				</listitem>
+				<listitem>
+					SipCall
+				</listitem>
+			</itemizedlist>
+			Also, Mobicents testing framework provides a helper tool that can be
+			used to easily initialise the SipUnit SipStack and avoid all the
+			boiller
+			plate code.
+			<itemizedlist>
+				<listitem>
+					SipStackTool
+				</listitem>
+			</itemizedlist>
+		</para>
+
+		<para>
+			The follow code snipet show what it needs to initialise the SipUnit
+		</para>
+		<para>
+			<programlisting>
+	//SipUnit related components
+	private SipStack sipUnitStack;
+	private SipCall sipUnitCall;
+	private SipPhone sipUnitPhone;
+	private static SipStackTool sipStackTool;
+	
+	private static String toUri = "sip:sipservletapp@127.0.0.1:5070";
+	
+	@BeforeClass
+	public static void beforeClass(){
+		sipStackTool = new SipStackTool("receiver");
+	}
+
+	@Before
+	public void setUp() throws Exception
+	{	
+		logger.info("Setting up SipUnit");
+		//Create the sipCall and start listening for messages
+		
+		//.SipStackTool.initializeSipStack(String myTransport, String myHost, String myPort, String outboundProxy)
+		sipUnitStack = sipStackTool.initializeSipStack(SipStack.PROTOCOL_UDP, "127.0.0.1", "5080", "127.0.0.1:5070");
+		
+		//SipStack.createSipPhone(String proxyHost, String proxyProto, int proxyPort, String myURI)
+		sipUnitPhone = sipUnitStack.createSipPhone("127.0.0.1", SipStack.PROTOCOL_UDP, 5070, "sip:sipunit@here.com");
+		
+		sipUnitCall = sipUnitPhone.createSipCall();
+		sipUnitCall.listenForIncomingCall();
+	}
+
+	@After
+	public void tearDown() throws Exception
+	{
+		logger.info("Tear down SipUnit");
+		if(sipUnitCall != null)	sipUnitCall.disposeNoBye();
+		if(sipUnitPhone != null) sipUnitPhone.dispose();
+		if(sipUnitStack != null) sipUnitStack.dispose();
+	}
+		</programlisting>
+		</para>
+
+		<note>
+			<para>
+				<ulink
+					url="https://mobicents.ci.cloudbees.com/job/SipUnit/lastSuccessfulBuild/artifact/sipunit/docs/jdocbook-mobicents/target/docbook/publish/en-US/html_single/index.html">
+					SipUnit documentation can be found here
+				</ulink>
+			</para>
+		</note>
+
+	</section>
+
+	<section>
 		<title>The test archive</title>
 		<para>
 			Arquillian uses
 			<ulink url="http://www.jboss.org/shrinkwrap">Shrinkwrap</ulink>
 			project to assist developers in the creation of a test archive that
-			will be ready to get deployed to a container. In the case of the MSS
-			Arquillian container, we will be using
-			org.jboss.shrinkwrap.api.spec.WebArchive type to create an archive
-			suitable for deployement in our Mobicents Sip Servlets container.
+			will be ready to get deployed to a container.
 		</para>
 
-		<para>The test archive can be created like this:</para>
+		<para>The test archive in our project is defined using this method:
+		</para>
 		<programlisting>
        <![CDATA[
-	@Deployment
-	public static WebArchive createTestArchive(name="simple", managed="false", testable="false"){
-		WebArchive webArchive = ShrinkWrap.create(WebArchive.class, "click2call.war");
-		webArchive.addClasses(Click2DialSipServlet.class, SimpleWebServlet.class);
-		webArchive.addAsWebInfResource("in-container-web.xml", "web.xml");
+	/*
+	 * Define the test archive here.
+	 * Pay attention to the properties of the Deployment annotation
+	 * --name: the arquillian Deployer, you can deploy/undeploy this archive by using the name here
+	 * --managed: if this is FALSE then the framework WILL NOT manage the lifecycle of this archive, the developer is responsible to deploy/undeploy
+	 * --testable: as-client mode (https://docs.jboss.org/author/display/ARQ/Test+run+modes) 
+	 */
+	@Deployment(name="simple", managed=true, testable=false)
+	public static WebArchive createTestArchive()
+	{
+		//Create a test archive named: simplesipservlet.war
+		WebArchive webArchive = ShrinkWrap.create(WebArchive.class, "simplesipservlet.war");
+		//Include the SimpleSipServlet.class from /src/main/java
+		webArchive.addClasses(SimpleSipServlet.class);
+		//Include as WEB-INF resource sip.xml the in-container-sip.xml from src/test/resources
 		webArchive.addAsWebInfResource("in-container-sip.xml", "sip.xml");
 		return webArchive;
 	}
 ]]>
 </programlisting>
 
-		<para>Note the clear and concise way to express a test web archive. We
-			first give a name to the archive, "click2call.war", then we add the
-			application itself - SimpleWebServlet.class - and last we add the
-			WEB-INF resources, in our case sip.xml and web.xml, that should exist
-			in the src/test/resources directory as in-container-sip.xml and
-			in-container-web.xml.
+		<para>Note the clear and concise way to express a test web archive.
+			We
+			first give a name to the archive, "simplesipservlet.war", then we add the
+			Sip Servlet class itself - SimpleWebServlet.class - and last we add
+			the
+			WEB-INF resources, in our case sip.xml, that should
+			exist
+			in the src/test/resources directory as in-container-sip.xml.
 		</para>
 
 		<para>Arquillian after starting the container, will call the
@@ -206,106 +353,54 @@
 			and deploy it in the container
 		</para>
 
-	</formalpara>
-</section>
-<section>
-	<formalpara id="MSS_Arquillian_Framework_Test_Methods">
-		<title>Test Methods</title>
-		<para>
-			The test methods should be annotated with @Test, since we are
-			working
-			with JUnit 4.
-		</para>
+	</section>
 
-		<para>
-			In order for a test method to interact with the deployed application,
-			it will need to make use of a sip client.
-			For this we are using
-			<ulink url="http://www.cafesip.org/projects/sipunit/index.html">SipUnit</ulink>
-			.
-			We are collaborating with CafeSip developers on the SipUnit project
-			in
-			order to provide new features, fix bugs etc in the project.
-		</para>
-		<para>See below a snippet of a test method:</para>
-		<programlisting>
+	<section>
+			<title>Test Method</title>
+			<para>
+				The test methods should be annotated with @Test, since we are
+				working with JUnit 4.
+			</para>
+
+			<para>
+				In order for a test method to interact with the deployed
+				application,
+				it will need to make use of a sip client.
+				For this we are using SipUnit.
+			</para>
+			<para>See below a snippet of a test method:</para>
+			<programlisting>
 			<![CDATA[
 	@Test
-	public void testClickToCallNoConvergedSession() throws Exception {
-
-		SipCall sipCallA = ua.createSipCall();
-		SipCall sipCallB = ub.createSipCall();
-
-		sipCallA.listenForIncomingCall();
-		sipCallB.listenForIncomingCall();
+	public void testInitiateCall() {
 		
-		log.info("Trying to reach url : " + CLICK2DIAL_URL
-				+ CLICK2DIAL_PARAMS);
-
-		URL url = new URL(CLICK2DIAL_URL + CLICK2DIAL_PARAMS);
-		InputStream in = url.openConnection().getInputStream();
-
-		byte[] buffer = new byte[10000];
-		int len = in.read(buffer);
-		String httpResponse = "";
-		for (int q = 0; q < len; q++)
-			httpResponse += (char) buffer[q];
-		log.info("Received the following HTTP response: " + httpResponse);
-
-		assertTrue(sipCallA.waitForIncomingCall(timeout));
-
-		assertTrue(sipCallA.sendIncomingCallResponse(Response.RINGING,
-				"Ringing", 0));
-		assertTrue(sipCallA.sendIncomingCallResponse(Response.OK, "OK",
-				0));
-
-		assertTrue(sipCallB.waitForIncomingCall(timeout));
-
-		assertTrue(sipCallB.sendIncomingCallResponse(Response.RINGING,
-				"Ringing", 0));
-		assertTrue(sipCallB.sendIncomingCallResponse(Response.OK, "OK",
-				0));
-
-		assertTrue(sipCallB.waitForAck(timeout));
-		assertTrue(sipCallA.waitForAck(timeout));
-
-		assertTrue(sipCallA.disconnect());
-		assertTrue(sipCallB.waitForDisconnect(timeout));
-		assertTrue(sipCallB.respondToDisconnect());
+		//Initiate a new call
+		assertTrue(sipUnitCall.initiateOutgoingCall("sip:sipservletapp@127.0.0.1:5070", null));
+		
+		//Wait for answer
+		assertTrue(sipUnitCall.waitForAnswer(5000));
+		assertEquals(SipServletResponse.SC_OK, sipUnitCall.getLastReceivedResponse().getStatusCode());
+		
+		//Send ACK to 200 OK
+		assertTrue(sipUnitCall.sendInviteOkAck());
+		
+		//Disconnect call and wait for 200 ok to BYE
+		assertTrue(sipUnitCall.disconnect());
+		assertEquals(SipServletResponse.SC_OK,sipUnitCall.getLastReceivedResponse().getStatusCode());	
 	}
 			]]>
 		</programlisting>
 
-		<!-- <note id="Run_With_Arquillian_Annotation"> -->
-		<!-- <title>Test class have to be annotated with -->
-		<!-- @RunWith(Arquillian.class) -->
-		<!-- </title> -->
-		<!-- <para> -->
-		<!-- For the test class to run with Arquillian, have to be annotated -->
-		<!-- with @RunWith(Arquillian.class) -->
-		<!-- </para> -->
-		<!-- </note> -->
+		<note>
+			<para>
+				See
+				<xref linkend="MSS_Arquillian_Framework_AppendixB_SipUnit_Overview">Appendix B - SipUnit overview</xref>
+				, provides an overview of SipUnit project.
+			</para>
+		</note>
+	</section>
 
-		<!-- <note id="JUnit_Methods"> -->
-		<!-- <title>Make use of JUnit methods</title> -->
-		<!-- <para> -->
-		<!-- Since we are working with JUnit 4, we can provide methods in -->
-		<!-- our -->
-		<!-- test class to be run @Before or @After our test methods, and -->
-		<!-- @BeforeClass or @AfterClass to be run before and after the test -->
-		<!-- class instantiation. -->
-		<!-- </para> -->
-		<!-- </note> -->
-
-		<para>
-			See
-			<xref linkend="MSS_Arquillian_Framework_AppendixB_SipUnit_Overview">Appendix B - SipUnit overview</xref>
-			, provides an overview of SipUnit project.
-		</para>
-	</formalpara>
-</section>
-
-	<formalpara id="MSS_Arquillian_Framework_Test_Summary">
+	<section>
 		<title>Summary</title>
 
 		<para>Let's summarize now what is needed to create a test project
@@ -313,13 +408,13 @@
 		<itemizedlist>
 			<listitem>
 				<para>
-					Create your maven project with all the required dependencies-
-					<xref linkend="MSS_Arquillian_Framework_AppendixA_Maven_Project_Setup">Appendix A - Maven project setup</xref>
+					Create your maven project using the provided maven archetypes-
+					<xref linkend="Getting_Started">Getting Started</xref>
 				</para>
 			</listitem>
 			<listitem>
 				<para>
-					Place the application classes in the src/main/java.
+					Place your application classes in the src/main/java.
 				</para>
 			</listitem>
 			<listitem>
@@ -339,186 +434,121 @@
 				</para>
 			</listitem>
 		</itemizedlist>
-	</formalpara>
 
-	<formalpara id="MSS_Arquillian_Framework_Test_Example">
-		<title>Test Case example</title>
-
-		<para>See below a complete test class.</para>
+		<para>Below you can see the complete test class.</para>
 		<programlisting>
        <![CDATA[
+package com.mycompany.app;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+import javax.servlet.sip.SipServletResponse;
+
+import org.apache.log4j.Logger;
+import org.cafesip.sipunit.SipCall;
+import org.cafesip.sipunit.SipPhone;
+import org.cafesip.sipunit.SipStack;
+import org.jboss.arquillian.container.mss.extension.SipStackTool;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
 /**
- * Tests that SIP Servlets deployments into the  Mobicents Sip Servlets server work through the
- * Arquillian lifecycle
- * 
- * @author gvagenas@gmail.com
- * @author Jean Deruelle
- * @version $Revision: $
+ * @author <a href="mailto:gvagenas@gmail.com">gvagenas</a>
  */
+
 @RunWith(Arquillian.class)
-public class Click2CallBasicTest extends SipTestCase
-{	
+public class SimpleSipServletTest {
 
-	private SipStack sipStackA;
-	private SipStack sipStackB;
-
-	private SipPhone ua;
-	private SipPhone ub;
-
-	private String myPortA="5057";
-	private String myPortB="5056";
-	private String proxyPort="5070";
-
-	@GetDeployableContainer
-	private ContainerManagerTool containerManager;
-    
-	@ArquillianResource
-    URL deploymentUrl;
-
-	private static final int timeout = 10000;
-
-	String CLICK2DIAL_URL = "http://127.0.0.1:8888/click2call/call";
-	String RESOURCE_LEAK_URL = "http://127.0.0.1:8888/click2call/index.html";
-	String EXPIRATION_TIME_PARAMS = "?expirationTime";
-	String CLICK2DIAL_PARAMS = "?from=sip:from@127.0.0.1:5056&to=sip:to@127.0.0.1:5057";
+	private static Logger logger = Logger.getLogger(SimpleSipServletTest.class);
 	
-	private static SipStackTool sipStackToolA;
-	private static SipStackTool sipStackToolB;
-
+	//SipUnit related components
+	private SipStack sipUnitStack;
+	private SipCall sipUnitCall;
+	private SipPhone sipUnitPhone;
+	private static SipStackTool sipStackTool;
+	
 	@BeforeClass
 	public static void beforeClass(){
-		sipStackToolA = new SipStackTool("sipStackA");
-		sipStackToolB = new SipStackTool("sipStackB");
+		sipStackTool = new SipStackTool("receiver");
 	}
-
 
 	@Before
 	public void setUp() throws Exception
-	{
-		log.info("Creating sipStackA");
-		sipStackA = sipStackToolA.initializeSipStack(SipStack.PROTOCOL_UDP, "127.0.0.1", myPortA, "127.0.0.1:"+proxyPort);
-		log.info("Creating sipStackB");
-		sipStackB = sipStackToolB.initializeSipStack(SipStack.PROTOCOL_UDP, "127.0.0.1", myPortB, "127.0.0.1:"+proxyPort);
+	{	
+		logger.info("Setting up SipUnit");
+		//Create the sipCall and start listening for messages
 		
-		log.info("About to start creating sipPhones");
-		ua = sipStackA.createSipPhone("localhost",SipStack.PROTOCOL_UDP,Integer.valueOf(proxyPort), "sip:to@127.0.0.1");
-		log.info("SipPhone A created!");
-		ub = sipStackB.createSipPhone("localhost",SipStack.PROTOCOL_UDP,Integer.valueOf(proxyPort), "sip:from@127.0.0.1");
-		log.info("SipPhone B created!");
+		//.SipStackTool.initializeSipStack(String myTransport, String myHost, String myPort, String outboundProxy)
+		sipUnitStack = sipStackTool.initializeSipStack(SipStack.PROTOCOL_UDP, "127.0.0.1", "5080", "127.0.0.1:5070");
+		//SipStack.createSipPhone(String proxyHost, String proxyProto, int proxyPort, String myURI)
+		sipUnitPhone = sipUnitStack.createSipPhone("127.0.0.1", SipStack.PROTOCOL_UDP, 5070, "sip:sipunit@here.com");
+		sipUnitCall = sipUnitPhone.createSipCall();
+		sipUnitCall.listenForIncomingCall();
 	}
 
 	@After
 	public void tearDown() throws Exception
 	{
-		ua.dispose();
-		sipStackA.dispose();
-		ub.dispose();
-		sipStackB.dispose();
-	}
-
-	/**
-	 * Logger
-	 */
-	private static final Logger log = Logger.getLogger(Click2CallBasicTest.class.getName());
-
-
-	/**
-	 * Define the deployment
-	 */
-	@Deployment (testable=false)
-	public static WebArchive createTestArchive()
-	{
-		WebArchive webArchive = ShrinkWrap.create(WebArchive.class, "click2call.war");
-		webArchive.addClasses(Click2DialSipServlet.class, SimpleWebServlet.class);
-		webArchive.addAsWebInfResource("in-container-web.xml", "web.xml");
-		webArchive.addAsWebInfResource("in-container-sip.xml", "sip.xml");
-		return webArchive;
-	}
-
-
-	@Test
-	public void testClickToCallNoConvergedSession() throws Exception {
-
-		SipCall sipCallA = ua.createSipCall();
-		SipCall sipCallB = ub.createSipCall();
-
-		sipCallA.listenForIncomingCall();
-		sipCallB.listenForIncomingCall();
-		
-		log.info("Trying to reach url : " + CLICK2DIAL_URL
-				+ CLICK2DIAL_PARAMS);
-
-		URL url = new URL(CLICK2DIAL_URL + CLICK2DIAL_PARAMS);
-		InputStream in = url.openConnection().getInputStream();
-
-		byte[] buffer = new byte[10000];
-		int len = in.read(buffer);
-		String httpResponse = "";
-		for (int q = 0; q < len; q++)
-			httpResponse += (char) buffer[q];
-		log.info("Received the following HTTP response: " + httpResponse);
-
-		assertTrue(sipCallA.waitForIncomingCall(timeout));
-
-		assertTrue(sipCallA.sendIncomingCallResponse(Response.RINGING,
-				"Ringing", 0));
-		assertTrue(sipCallA.sendIncomingCallResponse(Response.OK, "OK",
-				0));
-
-		assertTrue(sipCallB.waitForIncomingCall(timeout));
-
-		assertTrue(sipCallB.sendIncomingCallResponse(Response.RINGING,
-				"Ringing", 0));
-		assertTrue(sipCallB.sendIncomingCallResponse(Response.OK, "OK",
-				0));
-
-		assertTrue(sipCallB.waitForAck(timeout));
-		assertTrue(sipCallA.waitForAck(timeout));
-
-		assertTrue(sipCallA.disconnect());
-		assertTrue(sipCallB.waitForDisconnect(timeout));
-		assertTrue(sipCallB.respondToDisconnect());
+		logger.info("Tear down SipUnit");
+		if(sipUnitCall != null)	sipUnitCall.disposeNoBye();
+		if(sipUnitPhone != null) sipUnitPhone.dispose();
+		if(sipUnitStack != null) sipUnitStack.dispose();
 	}
 	
-	@Test @Ignore //TODO Arquillian Issue see: https://community.jboss.org/thread/178117
-	public void testClickToCallHttpSessionLeak() throws Exception {
-		
-		final int sessionsNumber = containerManager.getSipStandardManager().getActiveSessions();
-		
-		log.info("Trying to reach url : " + RESOURCE_LEAK_URL);
-		
-		URL url = new URL(RESOURCE_LEAK_URL);
-		URLConnection uc = url.openConnection();
-		InputStream in = uc.getInputStream();
-		
-		byte[] buffer = new byte[10000];
-		int len = in.read(buffer);
-		String httpResponse = "";
-		for (int q = 0; q < len; q++)
-			httpResponse += (char) buffer[q];
-		log.info("Received the follwing HTTP response: " + httpResponse);
-		
-		assertEquals(sessionsNumber, containerManager.getSipStandardManager().getActiveSessions());
-	}
+	/*
+	 * Define the test archive here.
+	 * Pay attention to the properties of the Deployment annotation
+	 * --name: the arquillian Deployer, you can deploy/undeploy this archive by using the name here
+	 * --managed: if this is FALSE then the framework WILL NOT manage the lifecycle of this archive, the developer is responsible to deploy/undeploy
+	 * --testable: as-client mode (https://docs.jboss.org/author/display/ARQ/Test+run+modes) 
+	 */
+	@Deployment(name="simple", managed=true, testable=false)
+	public static WebArchive createTestArchive()
+	{
+		//Create a test archive named: simplesipservlet.war
+		WebArchive webArchive = ShrinkWrap.create(WebArchive.class, "simplesipservlet.war");
+		//Include the SimpleSipServlet.class from /src/main/java
+		webArchive.addClasses(SimpleSipServlet.class);
+		//Include as WEB-INF resource sip.xml the in-container-sip.xml from src/test/resources
+		webArchive.addAsWebInfResource("in-container-sip.xml", "sip.xml");
 
-	@Test
-	public void testClickToCallExpirationTime() throws Exception {				
-		
-		log.info("Trying to reach url : " + CLICK2DIAL_URL + EXPIRATION_TIME_PARAMS);
-		
-		URL url = new URL(CLICK2DIAL_URL + EXPIRATION_TIME_PARAMS);
-		InputStream in = url.openConnection().getInputStream();
-		
-		byte[] buffer = new byte[10000];
-		int len = in.read(buffer);
-		String httpResponse = "";
-		for (int q = 0; q < len; q++)
-			httpResponse += (char) buffer[q];
-		log.info("Received the follwing HTTP response: " + httpResponse);
-		
-		assertFalse("0".equals(httpResponse.trim()));
+		return webArchive;
 	}
+	
+	/*
+	 *****************************
+	 *Tests 
+	 *****************************
+	 **/
+	
+	@Test
+	public void testInitiateCall() {
+		
+		//Initiate a new call
+		assertTrue(sipUnitCall.initiateOutgoingCall("sip:sipservletapp@127.0.0.1:5070", null));
+		
+		//Wait for answer
+		assertTrue(sipUnitCall.waitForAnswer(5000));
+		assertEquals(SipServletResponse.SC_OK, sipUnitCall.getLastReceivedResponse().getStatusCode());
+		
+		//Send ACK to 200 OK
+		assertTrue(sipUnitCall.sendInviteOkAck());
+		
+		//Disconnect call and wait for 200 ok to BYE
+		assertTrue(sipUnitCall.disconnect());
+		assertEquals(SipServletResponse.SC_OK,sipUnitCall.getLastReceivedResponse().getStatusCode());	
+	}
+	
+}
 ]]>
 </programlisting>
-	</formalpara>
+	</section>
 </chapter>
