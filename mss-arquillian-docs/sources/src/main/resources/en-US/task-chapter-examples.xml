@@ -18,13 +18,13 @@
 	<formalpara id="MSS_Arquillian_SimpleShootistTest">
 		<title>SimpleShootistTest</title>
 
-		<para>The important thing about this test is that when the application
-			gets deployed the servletInitialized() method will be called, so the
-			sip client should be ready to respond to any request. That means that we have to
-			place the test archive in manual mode and control the
-			deployment/undeployment
-			ourselves. Also since we need to pass context parameters in some of the test
-			methods, we have to place the container in manual mode also.
+		<para>This example demonstrates to work with manually managed test archive and the use
+		of Arquillian Deployer tool. Also you will see how to work with manualy mode container and how to pass context parameters in some of the test
+			methods.
+		</para>
+		
+		<para>
+		The example is available for Tomcat 7 container also.
 		</para>
 
 	</formalpara>
@@ -32,9 +32,13 @@
 	<formalpara id="MSS_Arquillian_SimpleShootmeTest">
 		<title>SimpleShootmeTest</title>
 
-		<para>Here the test methods will initiate any request, so the framework can manage the 
+		<para>For this example the framework will manage the 
 		test archive and decide when to deploy/undeploy. Also the container can be left to auto mode, since we don't need
 		to manually control it (to pass context parameters or change any of the container's configuration for example).
+		</para>
+
+		<para>
+		The example is available for Tomcat 7 container also.
 		</para>
 
 	</formalpara>
@@ -42,7 +46,7 @@
 		<formalpara id="MSS_Arquillian_LifecycleTest">
 		<title>LifecycleTest</title>
 
-		<para>In this test we demonstrate on of the extensions that the framework provides, the lifecycle extension. Using
+		<para>This example demonstrates the use of the Lifecycle extension that the framework provides. Using
 		this extension you can execute a method in the following events:
 		</para>
 		<itemizedlist>

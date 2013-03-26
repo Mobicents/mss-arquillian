@@ -12,7 +12,7 @@
 	</para>
 	<para>
 		Mobicents Sip Servlets testing framework together with SipUnit and MgcpUnit,
-		provides a clean and makes integration testing a straight forward
+		provides a complete testing solutions and makes integration testing a straight forward
 		task.
 	</para>
 
@@ -99,7 +99,7 @@
 					register and
 					receive all the MGCP requests and responses, and
 					MgcpUnit is
-					the project that will hook to this listener and help us
+					the project that will register as a listener and will help us
 					to assert all mgcp operations.
 				</listitem>
 			</orderedlist>

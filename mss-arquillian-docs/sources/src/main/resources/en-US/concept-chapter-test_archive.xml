@@ -7,27 +7,26 @@
 	<title>Controlling the test archive</title>
 
 	<para>By default, the lifecycle for a test case is like this:</para>
-	<para>Start the container -> Deploy the test archive -> Run the test
+	<para>Container starts -> Deploy the test archive -> Run the test
 		methods and get the results
 	</para>
 
-	<para>When the application you wish to test implements the
-		SipServletListener it has to implement the
-		servletInitialized(SipServletContextEvent ce) method.
-		When the servlet
-		initialized this method will run, but then no test method
-		is running,
-		and as a result no sip client exists in order to interact
-		with the
-		application.
+	<para>
+	There are cases that we need to be able to control when the test archive will be deployed. For example, consider the case where a 
+	Sip Servlet during the servletInitialized(SipServletContextEvent ce) method, initiates a call. At this point there will be no sip client to 
+	receive this call since the sip client will run and accept calls when the test method will run.  
+	</para>
+
+	<para>
+	
 	</para>
 
 	<para>For this reason the developer should state that the test archive
 		is manually managed and provide a name for it, so later he can deploy
-		or undeploy manually.
+		or undeploy manually using the Arquillian Deployer resource.
 	</para>
 	<para>
-		An example of a test archive in manually managed mode is:
+		See below an example of a manually managed mode test archive:
 		<programlisting>
 		<![CDATA[ 	
 	@Deployment(name="simple", managed=false, testable=false)
@@ -37,10 +36,7 @@
 	</para>
 
 	<para>
-		The developer is now able to deploy/undeploy the test archive as he
-		wish. To do that he need to use the
-		Arquillian resource, Deployer. For
-		example:
+		The developer is now able to deploy/undeploy the test archive as needed. 
 	<programlisting>
 	<![CDATA[ 	
 	@RunWith(Arquillian.class)
@@ -65,49 +61,4 @@
   ]]>
   </programlisting>
 	</para>
-
-<!-- 	<table id="tab-CTF_Injectable_Element" frame='all'> -->
-<!-- 		<title>CTF Injectable SIP elements</title> -->
-<!-- 		<tgroup cols='2' align='left' colsep='1' rowsep='1'> -->
-<!-- 			<colspec colname='c1' /> -->
-<!-- 			<colspec colname='c2' /> -->
-<!-- 			<thead> -->
-<!-- 				<row> -->
-<!-- 					<entry align="center">SIP Element</entry> -->
-<!-- 					<entry align="center">Injection</entry> -->
-<!-- 				</row> -->
-<!-- 			</thead> -->
-<!-- 			<tbody> -->
-<!-- 				<row> -->
-<!-- 					<entry>ServletContext</entry> -->
-<!-- 					<entry>@Inject ServletContext servletContext;</entry> -->
-<!-- 				</row> -->
-<!-- 				<row> -->
-<!-- 					<entry>SipFactory</entry> -->
-<!-- 					<entry>@Inject SipFactory sipFactory;</entry> -->
-<!-- 				</row> -->
-<!-- 				<row> -->
-<!-- 					<entry>TimerService</entry> -->
-<!-- 					<entry>@Inject TimerService timerService;</entry> -->
-<!-- 				</row> -->
-<!-- 				<row> -->
-<!-- 					<entry>SipSessionUtils</entry> -->
-<!-- 					<entry>@Inject SipSessionsUtils sipSessionsUtils;</entry> -->
-<!-- 				</row> -->
-<!-- 				<row> -->
-<!-- 					<entry>SipApplicationSession</entry> -->
-<!-- 					<entry>@Inject SipApplicationSession sipApplicationSession;</entry> -->
-<!-- 				</row> -->
-<!-- 				<row> -->
-<!-- 					<entry>SipSession</entry> -->
-<!-- 					<entry>@Inject SipSession sipSession;</entry> -->
-<!-- 				</row> -->
-<!-- 			</tbody> -->
-<!-- 		</tgroup> -->
-<!-- 	</table> -->
-<!-- 	<para>You no longer need to retrieve SipFactory from JNDI (even though -->
-<!-- 		that was already made possible through the @Resource annotation) or -->
-<!-- 		SipSession from the request or the response. Just inject them in your -->
-<!-- 		application. -->
-<!-- 	</para> -->
 </chapter>

@@ -12,5 +12,6 @@
 <!ENTITY SSS_MSS4T_SIZE "${mss4t.release.size}">
 <!ENTITY SSS_MSS4T_ZIP "${mss4t.release.zip}">
 <!ENTITY VERSION "${version}">
+<!ENTITY PRODUCT_VERSION "${product.version}">
 <!ENTITY YEAR "${year}">
 <!ENTITY HOLDER "Telestax, Inc">

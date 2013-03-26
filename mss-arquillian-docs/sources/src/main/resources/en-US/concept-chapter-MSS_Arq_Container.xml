@@ -4,32 +4,13 @@
 %BOOK_ENTITIES;
 ]>
 <chapter id="MSS-Arquillian-Container">
-	<title>Mobicents Sip Servlets Arquillian Container</title>
-
-	<para>Arquillian is a container-oriented test framework and the MSS
-		Arquillian Framework provides an Arquillian container suitable to
-		deploy Sip Servlets applications.
-	</para>
-	<para>The Mobicents Arquillian container is based on Mobicents Sip
-		Servlets 1.7 - Tomcat 6.x
-		platform.
-	</para>
-
-	<note id="Container_Should_Be_In_Classpath_2">
-		<title>How Arquillian controls the container</title>
+	<title>Mobicents Sip Servlets Arquillian Containers</title>
+	
+	<section>
+		<title>MSS Arquillian Container configuration and mode selection</title>
 		<para>
-			In order for the Arquillian to pick up the container defined here
-			and
-			use it, start/deploy/test/undeploy/stop, the container have to
-			be in
-			the classpath of the test project (see
-			<xref linkend="MSS_Arquillian_Framework_AppendixA_Maven_Project_Setup">Appendix A - Maven project setup</xref>
-			)
+		A typical configuration for Mobicents Sip Servlets Arquillian container based on Tomcat 6, is:
 		</para>
-	</note>
-
-	<formalpara id="MSS_Arquillian_Framework_Container_Configuration">
-		<title>MSS Arquillian Container configuration</title>
 		<programlisting>
 		    <![CDATA[
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -50,13 +31,13 @@
 </arquillian>
 	]]>
 	</programlisting>
-		<para>The options that can be change in the configuration file are:
+		<para>A developer can change the following options in the configuration:
 		</para>
 		<itemizedlist>
 			<listitem>
 				<programlisting><![CDATA[ <container qualifier="mss-tomcat-embedded-6" default="true" mode="manual"> ]]></programlisting>
 				<para>Change
-					the container's mode to manual mode, that will instruct
+					the container's mode to manual mode. That will instruct
 					Arquillian that user is responsible for the
 					start/stop of the
 					container.
@@ -79,10 +60,10 @@
 				<programlisting> <![CDATA[ <property name="sipConnectors">:5070,:5070/TCP</property> ]]></programlisting>
 			</listitem>
 		</itemizedlist>
-	</formalpara>
-
-	<formalpara id="MSS_Arquillian_Framework_Container_Manual_Mode">
-		<title>MSS Arquillian Container in MANUAL mode</title>
+	</section>
+	
+	<section>
+		<title>Lifecycle extension</title>
 
 		<para>The framework provides an extension to control the lifecycle of
 			the container when in manual mode. The extension is registered by
@@ -92,20 +73,28 @@
 			extension makes sure to start and stop the container as
 			needed.
 		</para>
+		
+		<para>
+		In other words, if the user put the container in manual mode, the container will continue to behave as it was in auto mode, but the 
+		container in manual mode will permit user to 
+		</para>
+	</section>
 
-		<para>One important feature of the framework is that when the
+	<section>
+		<title>Passing context parameters to test methods</title>
+		<para>One important feature of this extension is that when the
 			container is in manual mode, the user can pass context parameters to
 			the container.
 			The context parameters are valid only for the running
 			test method and so
-			a test case can use the container using different
+			a test case can use the container having different
 			context parameters
 			for each
-			of the test methods it contains.
+			of the test methods that are contained.
 		</para>
 
 		<para>In order to pass context parameters to the container the
-			following annotations/tools can be used:
+			following annotations and tool can be used:
 		</para>
 		<itemizedlist>
 			<listitem>
@@ -124,12 +113,11 @@
 					of context parameters.
 				</para>
 				<para>In order to use this annotation you should have defined a Map
-					in the code and use the same annotation/name to annotate it.
-					For
-					this reason the framework already provides a tool to create Map of
+					previously and use the same annotation/name to annotate it.
+					The framework already provides a tool to create a Map of
 					context parameters.
 				</para>
-				<para>So you can use the ContextParamMapConstructTool to create a
+				<para>This is the ContextParamMapConstructTool to create a
 					new Map and annotate it with the same name as the one that will
 					be
 					used in the method. Example:
@@ -163,18 +151,19 @@
 	@ConcurrencyControlMode(org.mobicents.servlet.sip.annotation.ConcurrencyControlMode.SipApplicationSession)
 	public void testShootistCancelServletTimerCancelConcurrency() throws Exception  ]]></programlisting>
 
-	</formalpara>
+	</section>
 	
-	<formalpara id="MSS_Arquillian_Framework_Container_Manager_Tool">
-		<title>MSS Arquillian Container Manager Tool</title>
+	<section>
+		<title>Container Manager extension</title>
 	
-	<para>There are times where during a test you need to changes the container in order to test behavior in edge situations. For
+	<para>There are times when during a test you need to modify the container's configuration in order to test race conditions and edge situations. For
 	example, add/remove/change a sip connector, start/stop the container, change the SipStack properties and restart the container for them to
-	get effective, reload the context. </para>
+	get effective, reload the context etc. </para>
 	
-	<para>For this you will need to the ContainerManagerTool from an extension of the framework. Again no need to register the extension yourself.</para>
+	<para>For this you will need to the ContainerManagerTool, another extension of the framework. Again no need to register the 
+	extension yourself but the container needs to be in manual mode.</para>
 	
-	<para>For example: 
+	<para>An example of the extensions: 
 	<programlisting><![CDATA[ 	
 	@RunWith(Arquillian.class)
 	public class ShootistSipServletTest extends SipTestCase{
@@ -207,12 +196,12 @@
 	<warning id="Removing_SipConnectors">
 		<title>SipConnectors and container restart</title>
 		<para>
-		Remember that on startup the container is using the configuration to setup again, so that means that the 
-		SipConnectors will be created again. So if you removed any sip connector, then after restart of the container, you will need to remove them 
-		again and then add then one you wish.
+		Remember during startup, the container will use the same configuration file to setup, so that means that the 
+		Sip connectors will be created again. So if you removed any sip connector, then after a restart of the container, you will need to remove them 
+		again.
 		</para>
 	</warning>
 	
-	</formalpara>	
+	</section>	
 	
 </chapter>

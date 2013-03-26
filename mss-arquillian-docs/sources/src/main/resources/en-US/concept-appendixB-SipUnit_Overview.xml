@@ -6,16 +6,8 @@
 
 <chapter id="MSS_Arquillian_Framework_AppendixB_SipUnit_Overview">
 	<title>Appendix B - SipUnit Overview</title>
-	<para>
-		As we already said, the framework consists of two parts, the
-		container
-		and the sip client. For the sip client we are
-		collaborating with
-		CafeSip developers on the
-		<ulink url="http://www.cafesip.org/projects/sipunit/index.html">SipUnit</ulink>
-		project in order to provide new features, fix bugs etc.
-	</para>
-	<para>SipUnit provides a test environment geared toward unit testing
+	
+	<para><ulink url="https://code.google.com/p/commtesting/wiki/SipUnit">SipUnit</ulink> provides a test environment geared toward unit testing
 		SIP applications. It extends the JUnit test framework to incorporate
 		SIP-specific assertions, and it provides a high-level API for
 		performing the SIP operations needed to interact with or invoke a test
@@ -38,15 +30,15 @@
 	<itemizedlist>
 		<listitem>
 			<ulink
-				url="http://www.cafesip.org/projects/sipunit/javadocs/org/cafesip/sipunit/SipStack.html">SipUnit.SipStack</ulink>
+				url="https://mobicents.ci.cloudbees.com/job/SipUnit/lastSuccessfulBuild/artifact/sipunit/target/apidocs/org/cafesip/sipunit/SipStack.html">SipUnit.SipStack</ulink>
 		</listitem>
 		<listitem>
 			<ulink
-				url="http://www.cafesip.org/projects/sipunit/javadocs/org/cafesip/sipunit/SipPhone.html">SipUnit.SipPhone</ulink>
+				url="https://mobicents.ci.cloudbees.com/job/SipUnit/lastSuccessfulBuild/artifact/sipunit/target/apidocs/org/cafesip/sipunit/SipPhone.html">SipUnit.SipPhone</ulink>
 		</listitem>
 		<listitem>
 			<ulink
-				url="http://www.cafesip.org/projects/sipunit/javadocs/org/cafesip/sipunit/SipCall.html">SipUnit.SipCall</ulink>
+				url="https://mobicents.ci.cloudbees.com/job/SipUnit/lastSuccessfulBuild/artifact/sipunit/target/apidocs/org/cafesip/sipunit/SipCall.html">SipUnit.SipCall</ulink>
 		</listitem>
 	</itemizedlist>
 
