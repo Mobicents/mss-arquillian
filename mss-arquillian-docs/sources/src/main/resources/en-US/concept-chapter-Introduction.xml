@@ -5,14 +5,19 @@
 	<!-- Introduction to Arquillian -->
 
 	<para>
-		Mobicents Sip Servlets testing framework is based on the Arquillian framework.
-		The framework extends Arquillian by providing sip servlet enabled
+		Mobicents Sip Servlets testing framework is based on the
+		Arquillian framework.
+		The framework extends Arquillian by providing sip
+		servlet enabled
 		containers, extensions,
-		and tools, required for the Sip Servlet applications testing.
+		and tools, required for the Sip
+		Servlet applications testing.
 	</para>
 	<para>
-		Mobicents Sip Servlets testing framework together with SipUnit and MgcpUnit,
-		provides a complete testing solutions and makes integration testing a straight forward
+		Mobicents Sip Servlets testing framework together with SipUnit
+		and MgcpUnit,
+		provides a complete testing solutions and makes
+		integration testing a straight forward
 		task.
 	</para>
 
@@ -24,7 +29,8 @@
 			a SIP servlet container
 			and which performs SIP signaling.
 			Servlets interact with (SIP) clients by
-			exchanging request and response
+			exchanging request and
+			response
 			messages through the servlet container.
 		</para>
 
@@ -63,35 +69,39 @@
 					Sip Servlet container. We need a managed Sip Servlet container that
 					we will be able to control and deploy the application.
 					Mobicents Sip
-					Servlet enabled Arquillian containers will satisfy
+					Servlet Arquillian containers will satisfy
 					this requirement.
-					Also the tools that Arquillian and Shrinkwrap
-					ecosystem provides,
+					Also the
+					tools that Arquillian and Shrinkwrap
+					projects provide,
 					will
-					help us to create,
+					help
+					developer to create,
 					manage and enhance the test
-					archive, the
+					archive (the
 					Sip
 					Servlet application
-					to test.
+					to test).
 				</listitem>
 				<listitem>
-					The Mobicents Sip Servlet enabled Arquillian containers will also
-					provide
-					out of the box integration with JUnit or TestNG. So our
-					testsuite will be able for example to setup and tear down
-					the
-					required resources before the execution of a test method and to use
-					the assertion methods provided by each test framework.
+					Arquillian provides out of the box integration with JUnit or TestNG
+					testing frameworks, and since Mobicents Sip Servlet
+					testing framework is based on Arquillian, the same holds true here . So
+					our
+					test suite will be able to make use of all the provided
+					functionality and tools that come with these
+					two testing frameworks.
 				</listitem>
 				<listitem>
-					SipUnit will be the SIP client that will interact with the
-					application and will provide the assert methods for SIP Signalling.
+					SipUnit is the SIP client that will interact with the
+					application and enable us to test SIP Signalling.
 				</listitem>
 				<listitem>
 					Embedded MediaServer extension, provides an embedded version of the
-					Mobicents Media Server so the application will be able to interact
-					with a managed media gateway over MGCP.
+					<ulink url="https://code.google.com/p/mediaserver/">Mobicents Multimedia Server (MMS)</ulink>
+					so the application will be able to interact
+					with a managed media
+					gateway using MGCP.
 				</listitem>
 				<listitem>
 					The embedded MediaServer extension, provides a hook for listeners
@@ -99,7 +109,8 @@
 					register and
 					receive all the MGCP requests and responses, and
 					MgcpUnit is
-					the project that will register as a listener and will help us
+					the project that will register as a listener and will
+					help us
 					to assert all mgcp operations.
 				</listitem>
 			</orderedlist>
@@ -108,18 +119,20 @@
 				Arquillian container and the Embedded MediaServer extension.
 			</para>
 			<note>
-			<para>
-				SipUnit and MgcpUnit documentation project can be found here:
-				<itemizedlist>
-					<listitem>
-						<ulink url="https://mobicents.ci.cloudbees.com/job/SipUnit/lastSuccessfulBuild/artifact/sipunit/docs/jdocbook-mobicents/target/docbook/publish/en-US/html_single/index.html">
-						SipUnit documentation</ulink>
-					</listitem>
-					<listitem>
-						MgcpUnit:
-					</listitem>
-				</itemizedlist>
-			</para>
+				<para>
+					SipUnit and MgcpUnit documentation project can be found here:
+					<itemizedlist>
+						<listitem>
+							<ulink
+								url="https://mobicents.ci.cloudbees.com/job/SipUnit/lastSuccessfulBuild/artifact/sipunit/docs/jdocbook-mobicents/target/docbook/publish/en-US/html_single/index.html">
+								SipUnit documentation
+							</ulink>
+						</listitem>
+						<listitem>
+							MgcpUnit:
+						</listitem>
+					</itemizedlist>
+				</para>
 			</note>
 		</para>
 	</section>
@@ -183,70 +196,60 @@
 			Arquillian equips tests with container lifecycle management and
 			enrichment.
 		</para>
-		<para>
-			You can learn more on Arquillian here
-			<ulink url="http://arquillian.org/">Arquillian Home</ulink>
-		</para>
-		<para>
-			With the Mobicents Sip Servlets testing framework we bring the
-			benefits of the Arquillian framework to the
-			Sip Servlets world.
-		</para>
-		<para>
-			Integration testing for Sip Servlets applications now becomes
-			much more simple.
-			No need to extend and use complex
-			classes and
-			structures anymore in
-			order to test your Sip Servlets
-			application.
-		</para>
-		<para>
-			With the Mobicents Sip Servlets testing framework, you have the
-			choice to
-			work with a standard environment that will fit most of the
-			cases, or
-			go ahead and parameterize the testing environment as much
-			as
-			you wish
-			in order to meet your needs.
-		</para>
 
 		<para>
-			Using Arquillian, you write a basic test case and annotate it with
+			Using Arquillian, you write a basic test case and annotate it
+			with
 			declarative behavior that says, "@RunWith Arquillian".
-			This declaration tells Arquillian to take over execution of the test when
+			This
+			declaration tells Arquillian to take over execution of the test when
 			it's launched.
 
-			Launching an Arquillian test is as simple as right-clicking the test class in
-			the IDE and selecting Run As > * Test (e.g., JUnit, TestNG, etc) or
+			Launching an Arquillian test is as simple as
+			right-clicking the test class in
+			the IDE and selecting Run As > * Test
+			(e.g., JUnit, TestNG, etc) or
 			using Maven Surefire plugin "mvn test".
 		</para>
 		<para>
-			Based on the classpath configuration, Arquillian starts the target
-			container, either Tomcat 6 or Tomcat 7,
-			and deploys the test archive defined in the @Deployment method. The
-			archive includes the test case along with the specified classes,
+			Based on the classpath configuration, Arquillian starts the
+			target
+			container and deploys the test
+			archive defined in the @Deployment method. The
+			archive includes the
+			test case along with the specified classes,
 			resources and
-			libraries. Your test then executes inside the container and enjoys all the same
+			libraries.
+			Your test then executes inside the container and enjoys all the same
 			services as an application component.
-			That means you get dependency and resource injection into the test, you
+			That means you get dependency
+			and resource injection into the test, you
 			can load a persistence unit,
-			you can get a handle to a database connection, etc. (Arquillian also has
-			a client run mode, which only deploys the test archive, not the test
+			you can get a handle to a database connection, etc. (Arquillian also
+			has
+			a client run mode, which only deploys the test archive, not the
+			test
 			case).
-			Arquillian then captures the test results and transports them back to the test
+			Arquillian then captures the test results and transports
+			them back to the test
 			runner for reporting.
 
-			Aside from a few extra declarations (i.e., @RunWith and @Deployment), an
-			Arquillian test looks like any other unit test and launched like any
+			Aside from a few extra
+			declarations (i.e., @RunWith and @Deployment), an
+			Arquillian test
+			looks like any other unit test and launched like any
 			other unit test.
 		</para>
 
-		<para>
+		<note>
+			<para>
 			Since this document is not meant to replace Arquillian documentation,
 			you can find below useful Arquillian links on how to get started.
+			</para>
 			<itemizedlist>
+				<listitem>
+					<ulink url="http://arquillian.org/">Arquillian Home</ulink>
+				</listitem>
 				<listitem>
 					Arquillian Reference:
 					<ulink url="https://docs.jboss.org/author/display/ARQ/Reference+Guide"></ulink>
@@ -256,16 +259,36 @@
 					<ulink url="http://arquillian.org/guides/getting_started/"></ulink>
 				</listitem>
 			</itemizedlist>
-		</para>
+		</note>
 
 	</section>
 	<section>
-		<title>Benefits</title>
+		<title>Mobicents Sip Servlet testing framework and Arquillian</title>
+		<para>
+			Mobicents Sip Servlets testing framework brings the
+			benefits of the Arquillian framework to the
+			Sip Servlets.
+		</para>
+		<para>
+			Integration testing for Sip Servlets applications now becomes
+			much more simple.
+			No need to extend and use complex
+			classes and
+			structures anymore.
+		</para>
+		<para>
+			Mobicents Sip Servlets testing framework provides a standard
+			environment to test Sip Servlet applications
+			that will fit most of the
+			cases, but having extensibilty as a major concern, a developer can
+			extend the project and provide his own extensions to meet his needs.
+		</para>
+
 		<para>One of the most important benefit of the framework is the
 			clear
-			and concise model that the framework provides.
+			and concise model provided.
 		</para>
-		<para>The framework's parts, are individual and can be
+		<para>All the parts of the framework can be
 			replaced by
 			equivalent modules if needed. For example, a developer might provide
 			his own sip client
@@ -275,7 +298,8 @@
 		<para>Extensibility is a major advantage also. Since the framework is
 			based on Arquillian users can take advantages of other extensions
 			already provided by the Arquillian ecosystem,
-			or use Arquillian SPI to provide their own extension.
+			or use Arquillian SPI to
+			provide their own extension.
 		</para>
 	</section>
 	<section>

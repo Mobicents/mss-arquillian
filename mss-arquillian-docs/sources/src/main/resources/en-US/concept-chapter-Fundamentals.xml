@@ -9,14 +9,14 @@
 
 	<section>
 		<title>Test Suite Elements</title>
-		<para>The project we created in the previous chapter contains the
+		<para>The project we created in the previous chapter defines the
 			following elements:
 		</para>
 		<itemizedlist id="MSS_Arquillian_Framework_TestSuite_Elements">
 			<listitem>
-				<para>Defines the embedded container along
+				<para>The embedded container along
 					with the configuration and
-					resources it needs.
+					resources needed.
 				</para>
 			</listitem>
 			<listitem>
@@ -30,12 +30,11 @@
 			<listitem>
 				<para>Defines the SIP client, SipUnit, that will be used later to
 					interact with the deployed Sip Servlet application in order
-					to
-					provide the results of the test.
+					to test the SIP signaling.
 				</para>
 			</listitem>
 			<listitem>
-				<para>The test classes that contain one or more test methods that
+				<para>The test class that contain the test method that
 					will be run in order to verify our Sip Servlet application.
 				</para>
 			</listitem>
@@ -95,8 +94,7 @@
 					<para>
 						<command>arquillian.xml</command>
 						- Arquillian configuration file. This is where we will define the
-						container
-						and its parameters.
+						container's parameters.
 					</para>
 				</listitem>
 				<listitem>
@@ -108,13 +106,13 @@
 				<listitem>
 					<para>
 						<command>sip.xml</command>
-						- The required for the Sip Servlet application, sip.xml
+						- The sip.xml deployment descriptor file required for the Sip Servlet application
 					</para>
 				</listitem>
 				<listitem>
 					<para>
 						<command>test-dar.properties</command>
-						- Application Router properties for the Sip Servlet Application.
+						- Application Router properties.
 					</para>
 				</listitem>
 			</itemizedlist>
@@ -124,7 +122,7 @@
 			Container's configuration file,
 			<command>arquillian.xml</command>
 			, is where we will
-			define the properties for the container that our
+			define the properties for the container that the
 			test case will work
 			with.
 		</para>
@@ -169,7 +167,7 @@
 			<title>How Arquillian controls the container</title>
 			<para>
 				In order for the Arquillian to pick up the container defined here
-				and use it, the container artifact have to
+				and use it, the container's maven artifact have to
 				be in the classpath of the
 				project
 				(see
@@ -182,13 +180,13 @@
 			The
 			<command>test-dar.properties</command>
 			file will be picked up by the container in order to configure the
-			application router. So, for
-			example, the Sip Servlet application of our project, have to receive the
-			INVITE messages, so the file will contain:
+			application router. For the given project, the test-dar.properties file will contain:
 			<para>
-				<programlisting>
-				INVITE: ("SimpleSipServletApplication", "DAR:From", "ORIGINATING", "", "NO_ROUTE", "0");
-				</programlisting>
+<programlisting>
+<command>
+INVITE: ("SimpleSipServletApplication", "DAR:From", "ORIGINATING", "", "NO_ROUTE", "0");
+</command>
+</programlisting>
 			</para>
 		</para>
 
@@ -208,20 +206,20 @@
 
 		<para>
 			With this annotation in the test class, Arquillian will first
-			start the container, will create and deploy the test archive, will
-			execute the test and last will provide the results.
+			start the container, will create and deploy the test archive, next will
+			execute the test and finally will provide the results.
 		</para>
 
 		<para>
 			We can now initialise the required components needed and write
-			our test methods.
+			the test methods.
 		</para>
 	</section>
 
 	<section>
 		<title>SipUnit</title>
 		<para>
-			We will need to initialise SipUnit in order to use later in the test
+			We will need to initialise SipUnit in order to be used later in the test
 			methods.
 		</para>
 		<para>
@@ -237,19 +235,13 @@
 					SipCall
 				</listitem>
 			</itemizedlist>
-			Also, Mobicents testing framework provides a helper tool that can be
-			used to easily initialise the SipUnit SipStack and avoid all the
-			boiller
-			plate code.
-			<itemizedlist>
-				<listitem>
-					SipStackTool
-				</listitem>
-			</itemizedlist>
+			On top of them, Mobicents testing framework provides a helper tool, <emphasis>SipStackTool</emphasis> that can be
+			used to easily initialise the SipUnit SipStack component in order to avoid all the
+			boilerplate code otherwise needed.
 		</para>
 
 		<para>
-			The follow code snipet show what it needs to initialise the SipUnit
+			The follow code snipet shows the code to initialise SipUnit
 		</para>
 		<para>
 			<programlisting>
@@ -263,7 +255,7 @@
 	
 	@BeforeClass
 	public static void beforeClass(){
-		sipStackTool = new SipStackTool("receiver");
+		sipStackTool = new SipStackTool("mySipUnitStackTool");
 	}
 
 	@Before
@@ -310,10 +302,10 @@
 			Arquillian uses
 			<ulink url="http://www.jboss.org/shrinkwrap">Shrinkwrap</ulink>
 			project to assist developers in the creation of a test archive that
-			will be ready to get deployed to a container.
+			will be ready to get deployed to the container.
 		</para>
 
-		<para>The test archive in our project is defined using this method:
+		<para>The test archive in the example project is defined using this method:
 		</para>
 		<programlisting>
        <![CDATA[
@@ -348,9 +340,9 @@
 			in the src/test/resources directory as in-container-sip.xml.
 		</para>
 
-		<para>Arquillian after starting the container, will call the
-			createTestArchive() method of the test class to get the test archive
-			and deploy it in the container
+		<para>Arquillian after starting the container, will call the method annotated with @Deployment, the
+			createTestArchive() method, to get the test archive
+			and deploy it to the container
 		</para>
 
 	</section>
@@ -358,7 +350,7 @@
 	<section>
 			<title>Test Method</title>
 			<para>
-				The test methods should be annotated with @Test, since we are
+				The test methods should be annotated with @Test since we are
 				working with JUnit 4.
 			</para>
 
@@ -390,14 +382,6 @@
 	}
 			]]>
 		</programlisting>
-
-		<note>
-			<para>
-				See
-				<xref linkend="MSS_Arquillian_Framework_AppendixB_SipUnit_Overview">Appendix B - SipUnit overview</xref>
-				, provides an overview of SipUnit project.
-			</para>
-		</note>
 	</section>
 
 	<section>
@@ -408,7 +392,7 @@
 		<itemizedlist>
 			<listitem>
 				<para>
-					Create your maven project using the provided maven archetypes-
+					Create your maven project using one of the provided maven archetypes-
 					<xref linkend="Getting_Started">Getting Started</xref>
 				</para>
 			</listitem>
@@ -425,12 +409,11 @@
 			</listitem>
 			<listitem>
 				<para>
-					Write the actual test class in the src/test/java. Annotate it
+					Create test class in the src/test/java. Annotate it
 					with @RunWith(Arquillian.class), write
 					@Before/@After/@BeforeClass/@AfterClass methods if needed,
-					provide
-					the createTestArchive() method, and implement the test methods with
-					the logic you want.
+					provide a method annotated with @Deployment such as the
+					createTestArchive() method in the example project, and implement the test methods.
 				</para>
 			</listitem>
 		</itemizedlist>
@@ -477,7 +460,7 @@ public class SimpleSipServletTest {
 	
 	@BeforeClass
 	public static void beforeClass(){
-		sipStackTool = new SipStackTool("receiver");
+		sipStackTool = new SipStackTool("mySipUnitStackTool");
 	}
 
 	@Before

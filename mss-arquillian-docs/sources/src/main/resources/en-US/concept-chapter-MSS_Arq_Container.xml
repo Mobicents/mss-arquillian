@@ -5,11 +5,13 @@
 ]>
 <chapter id="MSS-Arquillian-Container">
 	<title>Mobicents Sip Servlets Arquillian Containers</title>
-	
+
 	<section>
-		<title>MSS Arquillian Container configuration and mode selection</title>
+		<title>MSS Arquillian Container configuration and mode selection
+		</title>
 		<para>
-		A typical configuration for Mobicents Sip Servlets Arquillian container based on Tomcat 6, is:
+			A typical configuration for Mobicents Sip Servlets Arquillian
+			container based on Tomcat 6, is:
 		</para>
 		<programlisting>
 		    <![CDATA[
@@ -31,37 +33,42 @@
 </arquillian>
 	]]>
 	</programlisting>
-		<para>A developer can change the following options in the configuration:
+		<para>A developer can change the following options in the
+			configuration:
 		</para>
 		<itemizedlist>
 			<listitem>
-				<programlisting><![CDATA[ <container qualifier="mss-tomcat-embedded-6" default="true" mode="manual"> ]]></programlisting>
 				<para>Change
 					the container's mode to manual mode. That will instruct
 					Arquillian that user is responsible for the
 					start/stop of the
 					container.
 				</para>
+				<programlisting><![CDATA[ <container qualifier="mss-tomcat-embedded-6" default="true" mode="manual"> ]]></programlisting>
 			</listitem>
 			<listitem>
-				<programlisting><![CDATA[ <property name="bindHttpPort">8888</property> ]]></programlisting>
 				<para>Change the HTTP bind address.
 				</para>
+				<programlisting><![CDATA[ <property name="bindHttpPort">8888</property> ]]></programlisting>
 			</listitem>
 			<listitem>
-				<programlisting><![CDATA[ <property name="sipConnectors">:5070</property> ]]></programlisting>
 				<para>Change the sip connectors. Here you can change the port and/or
 					provide more sip connectors.
 				</para>
-				<para>A sip connector can be defined as :PORT/TRANSPORT such as
-					:5070/TCP or :5070 (omitting transport means UDP). Multiple values
+				<programlisting><![CDATA[ <property name="sipConnectors">:5070</property> ]]></programlisting>
+				<para>
+					A sip connector can be defined with
+					<command>:PORT/TRANSPORT</command>
+					such as
+					:5070/TCP or :5070 (omitting transport means UDP). Multiple
+					values
 					are separated using comma. Example:
 				</para>
 				<programlisting> <![CDATA[ <property name="sipConnectors">:5070,:5070/TCP</property> ]]></programlisting>
 			</listitem>
 		</itemizedlist>
 	</section>
-	
+
 	<section>
 		<title>Lifecycle extension</title>
 
@@ -73,56 +80,68 @@
 			extension makes sure to start and stop the container as
 			needed.
 		</para>
-		
+
 		<para>
-		In other words, if the user put the container in manual mode, the container will continue to behave as it was in auto mode, but the 
-		container in manual mode will permit user to 
-		</para>
-	</section>
-
-	<section>
-		<title>Passing context parameters to test methods</title>
-		<para>One important feature of this extension is that when the
-			container is in manual mode, the user can pass context parameters to
-			the container.
-			The context parameters are valid only for the running
-			test method and so
-			a test case can use the container having different
-			context parameters
-			for each
-			of the test methods that are contained.
+			When the container is in manual mode,
+			the lifecycle extension
+			will make sure that
+			container will continue to behave as it was in auto mode, but the
+			container in
+			manual mode will permit user to pass context parameters and define
+			concurrency control mode into the test methods,
+			as we will see in the next section.
 		</para>
 
-		<para>In order to pass context parameters to the container the
-			following annotations and tool can be used:
-		</para>
-		<itemizedlist>
-			<listitem>
-				<para>@ContextParam(name,value) for passing a single context
-					parameter. Example:
-				</para>
-				<programlisting>
+
+		<section>
+			<title>Passing context parameters to test methods</title>
+			<para>One important feature of the Lifecycle extension is that when
+				the
+				container is in manual mode, the user can pass context parameters to
+				the container for a given test method.
+				The context parameters are valid only for the running
+				test method and so
+				a test case can use the container having different
+				context parameters
+				for each
+				of the test methods.
+			</para>
+
+			<para>To pass context parameters for a test method, the
+				following annotations and tool can be used:
+			</para>
+			<itemizedlist>
+				<listitem>
+					<para>@ContextParam(name,value) for passing a single context
+						parameter. Example:
+					</para>
+					<programlisting>
 		<![CDATA[ 	
 		@Test @ContextParam(name="cancel",value="true")
 		public void testShootistCancel() throws Exception 
 		]]>
 				</programlisting>
-			</listitem>
-			<listitem>
-				<para>@ContextParamMap("nameOfTheContextParamMap") for passing a Map
-					of context parameters.
-				</para>
-				<para>In order to use this annotation you should have defined a Map
-					previously and use the same annotation/name to annotate it.
-					The framework already provides a tool to create a Map of
-					context parameters.
-				</para>
-				<para>This is the ContextParamMapConstructTool to create a
-					new Map and annotate it with the same name as the one that will
-					be
-					used in the method. Example:
-				</para>
-				<programlisting>			
+				</listitem>
+				<listitem>
+					<para>@ContextParamMap("nameOfTheContextParamMap") for passing a
+						Map
+						of context parameters.
+					</para>
+					<para>In order to use this annotation you should have defined a Map
+						previously and use the same annotation/name to annotate it.
+						The
+						framework already provides a tool to create a Map of
+						context
+						parameters.
+					</para>
+					<para>This is the ContextParamMapConstructTool to create a
+						new Map
+						and annotate it with the same name as the one that will
+						be
+						used in
+						the method. Example:
+					</para>
+					<programlisting>			
 	<![CDATA[ 	
 	@ContextParamMap("testShootistCancelServletTimerCancelConcurrency")
 	private Map<String, String> contextMap1 = new ContextParamMapConstructTool()
@@ -133,15 +152,15 @@
 	@ConcurrencyControlMode(org.mobicents.servlet.sip.annotation.ConcurrencyControlMode.SipApplicationSession)
 	public void testShootistCancelServletTimerCancelConcurrency() throws Exception  ]]>
 				</programlisting>
-			</listitem>
-		</itemizedlist>
+				</listitem>
+			</itemizedlist>
 
-		<para>Also, when the container is in manual mode, the developer can
-			control the concurrency control mode. To do this one should use the
-			@ConcurrencyControlMode(org.mobicents.servlet.sip.annotation.ConcurrencyControlMode)
-			annotation. Example:
-		</para>
-		<programlisting><![CDATA[ 	
+			<para>Also, when the container is in manual mode, the developer can
+				control the concurrency control mode. To do this one should use the
+				@ConcurrencyControlMode(org.mobicents.servlet.sip.annotation.ConcurrencyControlMode)
+				annotation. Example:
+			</para>
+			<programlisting><![CDATA[ 	
 	@ContextParamMap("testShootistCancelServletTimerCancelConcurrency")
 	private Map<String, String> contextMap1 = new ContextParamMapConstructTool()
 	.put("cancel", "true")
@@ -151,20 +170,29 @@
 	@ConcurrencyControlMode(org.mobicents.servlet.sip.annotation.ConcurrencyControlMode.SipApplicationSession)
 	public void testShootistCancelServletTimerCancelConcurrency() throws Exception  ]]></programlisting>
 
+		</section>
 	</section>
-	
+
 	<section>
 		<title>Container Manager extension</title>
-	
-	<para>There are times when during a test you need to modify the container's configuration in order to test race conditions and edge situations. For
-	example, add/remove/change a sip connector, start/stop the container, change the SipStack properties and restart the container for them to
-	get effective, reload the context etc. </para>
-	
-	<para>For this you will need to the ContainerManagerTool, another extension of the framework. Again no need to register the 
-	extension yourself but the container needs to be in manual mode.</para>
-	
-	<para>An example of the extensions: 
-	<programlisting><![CDATA[ 	
+
+		<para>There are times when during a test you need to modify the
+			container's configuration in order to test race conditions and edge
+			situations. For
+			example during testing, add/remove/change a sip connector, start/stop
+			the container, change
+			the SipStack properties and restart the
+			container, reload the context etc.
+		</para>
+
+		<para>The framework provides the ContainerManagerTool, for this. Again no need to register the
+			extension
+			yourself but the container needs to be in manual mode.
+		</para>
+
+		<para>
+			An example of the extension:
+			<programlisting><![CDATA[ 	
 	@RunWith(Arquillian.class)
 	public class ShootistSipServletTest extends SipTestCase{
 	...
@@ -191,17 +219,20 @@
 	deployer.deploy(testArchive);	
 	]]>
 	</programlisting>
-	</para>
-	
-	<warning id="Removing_SipConnectors">
-		<title>SipConnectors and container restart</title>
-		<para>
-		Remember during startup, the container will use the same configuration file to setup, so that means that the 
-		Sip connectors will be created again. So if you removed any sip connector, then after a restart of the container, you will need to remove them 
-		again.
 		</para>
-	</warning>
-	
-	</section>	
-	
+
+		<warning id="Removing_SipConnectors">
+			<title>SipConnectors and container restart</title>
+			<para>
+				Remember that during startup, the container will use the same
+				configuration file
+				to setup, so that means that the
+				Sip connectors
+				will be created again. So any changes you did before restart, such as remove or modify a sip
+				connector, they will get lost and the container will be in the initial state.  
+			</para>
+		</warning>
+
+	</section>
+
 </chapter>

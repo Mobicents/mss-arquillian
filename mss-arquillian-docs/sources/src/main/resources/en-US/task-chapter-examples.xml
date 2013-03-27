@@ -18,9 +18,9 @@
 	<formalpara id="MSS_Arquillian_SimpleShootistTest">
 		<title>SimpleShootistTest</title>
 
-		<para>This example demonstrates to work with manually managed test archive and the use
-		of Arquillian Deployer tool. Also you will see how to work with manualy mode container and how to pass context parameters in some of the test
-			methods.
+		<para>This example demonstrates how to work with a manually managed test archive and the use
+		of Arquillian Deployer tool. Also you will see how to work with a container in manual mode and how to pass context parameters
+		 in the test methods.
 		</para>
 		
 		<para>
@@ -33,8 +33,8 @@
 		<title>SimpleShootmeTest</title>
 
 		<para>For this example the framework will manage the 
-		test archive and decide when to deploy/undeploy. Also the container can be left to auto mode, since we don't need
-		to manually control it (to pass context parameters or change any of the container's configuration for example).
+		test archive and decide when to deploy/undeploy. The container is in auto mode, since we don't need
+		to pass context parameters or change any of the container's configuration.
 		</para>
 
 		<para>
@@ -46,7 +46,7 @@
 		<formalpara id="MSS_Arquillian_LifecycleTest">
 		<title>LifecycleTest</title>
 
-		<para>This example demonstrates the use of the Lifecycle extension that the framework provides. Using
+		<para>This example demonstrates the use of the Lifecycle extension. Using
 		this extension you can execute a method in the following events:
 		</para>
 		<itemizedlist>

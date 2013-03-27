@@ -12,19 +12,22 @@
 	</para>
 
 	<para>
-	There are cases that we need to be able to control when the test archive will be deployed. For example, consider the case where a 
+	There are cases though, that we need to be able to control when the test archive will be deployed. 
+	</para>
+	<para>
+	For example, consider the case where a 
 	Sip Servlet during the servletInitialized(SipServletContextEvent ce) method, initiates a call. At this point there will be no sip client to 
 	receive this call since the sip client will run and accept calls when the test method will run.  
 	</para>
 
-	<para>
+	<para>The solution to this is:
+	<itemizedlist>
+		<listitem>Make the test archive manually managed</listitem>
+		<listitem>Provide a name for the test archive</listitem>
+		<listitem>Use Arquillian's Deployer tool to deploy/undeploy when SIP client is ready to receive a call</listitem>
+	</itemizedlist>
+	</para>
 	
-	</para>
-
-	<para>For this reason the developer should state that the test archive
-		is manually managed and provide a name for it, so later he can deploy
-		or undeploy manually using the Arquillian Deployer resource.
-	</para>
 	<para>
 		See below an example of a manually managed mode test archive:
 		<programlisting>

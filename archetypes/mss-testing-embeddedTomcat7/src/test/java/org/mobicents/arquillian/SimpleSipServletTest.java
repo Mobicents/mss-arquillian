@@ -39,7 +39,7 @@ public class SimpleSipServletTest {
 	
 	@BeforeClass
 	public static void beforeClass(){
-		sipStackTool = new SipStackTool("receiver");
+		sipStackTool = new SipStackTool("mySipUnitStackTool");
 	}
 
 	@Before
