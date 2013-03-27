@@ -1,0 +1,119 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+<!ENTITY % BOOK_ENTITIES SYSTEM "MSS_Arquillian_Framework_User_Guide.ent">
+%BOOK_ENTITIES;
+]>
+<chapter id="Getting_Started">
+	<title>Getting Started
+	</title>
+
+	<section>
+		<title>Create your first project</title>
+
+		<para>
+			First pick one on of the Mobicent Sip Servlet Arquillian containers
+			depending on your needs:
+			<itemizedlist>
+				<listitem>
+					For embedded Tomcat 6 container based on Mobicents Sip Servlets
+					1.7.0 (Java Servlets 2.5) create a maven project using the
+					following maven archetype:
+					<programlisting>
+<command>
+mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-sipapp-test -Dversion=1.0-SNAPSHOT -DarchetypeArtifactId=mss-testing-embeddedTomcat6-archetype -DarchetypeGroupId=org.mobicents.servlet.sip.archetypes -DarchetypeVersion=&PRODUCT_VERSION;
+</command>
+</programlisting>
+				</listitem>
+				<listitem>
+					For embedded Tomcat 7 container based on Mobicents Sip Servlets 2.0.0
+					(Java Servlets 3.0) create a maven project using the following
+					maven archetype:
+					<programlisting>
+<command>
+mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-sipapp-test -Dversion=1.0-SNAPSHOT -DarchetypeArtifactId=mss-testing-embeddedTomcat7-archetype -DarchetypeGroupId=org.mobicents.servlet.sip.archetypes  -DarchetypeVersion=&PRODUCT_VERSION;
+</command>
+</programlisting>
+				</listitem>
+			</itemizedlist>
+		</para>
+
+		<para>
+			Now independent of the container you picked up, you can use all
+			the extensions and tools that the framework
+			provides. Also your test
+			will run the same in both containers.
+		</para>
+
+		<note>
+			<para>
+				<emphasis>
+					<xref linkend="MSS_Arquillian_Framework_AppendixA_Maven_Project_Setup">Appendix A</xref>
+				</emphasis>
+				provides details for the various maven artifacts of the framework.
+			</para>
+		</note>
+
+		<para>
+			The created project contains everything you need to get started.
+			<itemizedlist>
+				<listitem>
+					The Mobicents Sip Servlet Arquillian container
+				</listitem>
+				<listitem>
+					Integration with Junit
+				</listitem>
+				<listitem>
+					SipUnit
+				</listitem>
+				<listitem>
+					A sample SipServlet class that
+					<ulink url="http://www.jboss.org/shrinkwrap">Shrinkwrap</ulink>
+					will pickup to create the test archive
+				</listitem>
+				<listitem>
+					A test class that initialise the required components and tests the
+					SipServlet class
+				</listitem>
+			</itemizedlist>
+		</para>
+
+		<important>
+			<para>
+				In order to import the project to Eclipse, you need first to create
+				the required files for Eclipse. To do this change to the project's
+				directory
+				and issue the following command:
+			</para>
+			<para>
+				<command>
+					mvn clean eclipse:clean eclipse:eclipse
+				</command>
+			</para>
+		</important>
+
+		<para>
+			Next open up Eclipse and import your project. Now you can run the
+			tests by running src/test/java/SimpleSipServletTest.java with "Run As
+			-> JUnit Test"
+			or from the command shell using Maven Surefire plugin with this
+			command:
+				<command>
+					mvn test
+				</command>
+		</para>
+
+		<para>
+			No matter which way you chose to run the test, you will see a lot of
+			messages in your console and at the the end the GREEN bar, meaning
+			that
+			your test passes.
+		</para>
+
+		<para>
+			Next chapter will provide some details about the test project and the
+			needed configuration.
+		</para>
+
+	</section>
+
+</chapter>

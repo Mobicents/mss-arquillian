@@ -1,0 +1,271 @@
+﻿<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+<!ENTITY % BOOK_ENTITIES SYSTEM "MSS_Arquillian_Framework_User_Guide.ent">
+%BOOK_ENTITIES;
+]>
+<chapter id="Embedded_MediaServer_Extension">
+	<title>Embedded MediaServer extension
+	</title>
+
+	<section>
+		<title>Overview</title>
+		<para>
+			<ulink url="https://code.google.com/p/mediaserver/">Mobicents Multimedia Server (MMS)</ulink>
+			is a Java based Real Time Media server that
+			offers streaming, conferencing, recording, playback, IVR, Text To Speech
+			and other rich media features. It can be accessed programmatically
+			via
+			MGCP or a Media Control (JSR 309) driver that runs in Java EE, SIP
+			Servlets and JSLEE containers.
+		</para>
+
+		<para>
+			Mobicents Sip Servlet testing framework provides an embedded version of MMS in
+			order to be used in test projects, it is provided as
+			an Arquillian extension, but it can also be used outside Arquillian.
+		</para>
+
+		<note>
+			<para>
+				MMS (Mobicents Multimedia Server) documentation can be found
+				<ulink
+					url="https://mobicents.ci.cloudbees.com/view/MediaServer/job/Mobicents-MediaServer-2.x/ws/media-server-docs/jdocbook-mobicents/target/docbook/publish/en-US/html_single/index.html">here</ulink>
+			</para>
+		</note>
+
+	</section>
+
+	<section>
+		<title>How to enable the embedded MediaServer</title>
+
+		<para>
+			In order to enable the embedded Mediaserver extension, a developer can
+			choose one of the following ways:
+		</para>
+		<itemizedlist>
+			<listitem>
+				Use the annotation
+				<command>@Mediaserver</command>
+			</listitem>
+			<listitem>
+				Use a class field of type
+				<command>EmbeddedMediaserver</command>
+			</listitem>
+		</itemizedlist>
+
+		<para>
+			It is important to clarify that the annotation will only work within an
+			Arquillian controlled test suite, while the class field can be
+			used
+			to any project.
+		</para>
+
+		<para>
+			The annotation
+			<command>@Mediaserver</command>
+			can be defined at:
+			<itemizedlist>
+				<listitem>
+					Class level
+				</listitem>
+				<listitem>
+					Field level.
+				</listitem>
+				<listitem>
+					Method level
+				</listitem>
+			</itemizedlist>
+		</para>
+
+		<para>
+			Where the annotation will be placed, defines also the available
+			options to the developer.
+			<itemizedlist>
+				<listitem>
+					Using a class level annotation, the
+					developer cannot access or controll the server.
+					The framework is responsible to configure and control the server. The
+					embedded Mediaserver will start when the test suite starts and will
+					end when the test suite finish.
+				</listitem>
+				<listitem>
+					Using a field level annotation, the developer can
+					 access and controll the server depending on the configuration.
+					This provides more options and flexibility. Developer can take over
+					the control of the server and start/stop as needed or leave the
+					framework
+					to control the server the same way as in the class level annotation.
+				</listitem>
+				<listitem>
+					Last, having a method level annotation, the developer cannot access or control the server.
+					The framework is responsible to configure and control the server. The
+					embedded Mediaserver will start before the method execution and
+					will stop
+					when the method finish.
+				</listitem>
+			</itemizedlist>
+		</para>
+
+		<note>
+			<para>
+				Check
+				<xref linkend="MSS_Arquillian_Framework_AppendixA_Maven_Project_Setup">Appendix A - Maven project setup</xref>
+				for the required maven dependencies to the Embedded Mediaserver
+				extension
+			</para>
+		</note>
+
+	</section>
+
+	<section>
+		<title>Embedded Mediaserver configuration</title>
+
+		<para>
+			When using the @Mediaserver annotation to enable the extension, configuration can be passed using the
+			following annotation parameters:
+		</para>
+		<itemizedlist>
+			<listitem>
+				<command>int IVR</command>
+				defines the number of IVR endpoints
+			</listitem>
+			<listitem>
+				<command>int CONF</command>
+				defines the number of CONF endpoints
+			</listitem>
+			<listitem>
+				<command>int RELAY</command>
+				defines the number of RELAY endpoints
+			</listitem>
+			<listitem>
+				<command>MediaserverConfMode ConfMode</command>
+				specifies the configuration mode of the server. Possible values are
+				AUTO and MANUAL. This
+				parameter is availlable only when annotation is defined at Field level and
+				the default value is AUTO.
+			</listitem>
+		</itemizedlist>
+
+		<para>
+			Class level definition example:
+			<programlisting>
+	@RunWith(Arquillian.class)
+	@Mediaserver(IVR=5,CONF=5,RELAY=5)
+	public class MediaTest {
+	....
+	}
+	</programlisting>
+		</para>
+
+		<para>
+			Field level definition example:
+			<programlisting>
+	...
+	@Mediaserver(IVR=10,CONF=10,RELAY=10)
+	private EmbeddedMediaserver mediaserver;
+	...
+	</programlisting>
+		</para>
+
+		<para>
+			Method level definition example:
+			<programlisting>
+	...
+	@Test @Mediaserver(IVR=10,CONF=10,RELAY=10)
+	public void dialClientTest(){
+	...
+	}
+	</programlisting>
+		</para>
+	</section>
+
+	<section>
+		<title>Using embedded Mediaserver outside Arquillian</title>
+
+		<para>
+		Embedded Mediaserver can be used outside Arquillian. Simply define a field of type EmbeddedMediaserver, configure it and control 
+		the lifecycle of the server as needed.
+		</para>
+
+		<para>
+		To manually configure and control an instance of embedded Mediaserver you can use the following methods: 
+		</para>
+		<itemizedlist>
+			<listitem>
+			To control the server:
+				<itemizedlist>
+					<listitem>
+					EmbeddedMediaserver.startServer()
+					</listitem>
+					<listitem>
+					EmbeddedMediaserver.stopServer()
+					</listitem>
+				</itemizedlist>
+			</listitem>
+			<listitem>
+			To configure the server:
+				<itemizedlist>
+					<listitem>
+					EmbeddedMediaserver.installEndpoint(EndpointType type, int count)
+					</listitem>
+					<listitem>
+					EmbeddedMediaserver.installEndpoint(Endpoint endpoint)
+					</listitem>
+					<listitem>
+					EmbeddedMediaserver.removeEndpoint(Endpoint endpoint)
+					</listitem>
+					<listitem>
+					EmbeddedMediaserver.removeAllEndpoints()
+					</listitem>
+				</itemizedlist>
+			</listitem>
+		</itemizedlist>
+
+	</section>
+	
+	<section>
+		<title>Embedded Mediaserver and MgcpUnit</title>
+	
+	<para>
+	When testing a Sip Servlet application that interacts with Mediaserver, we need to assert the requests and responses between the Sip Servlet 
+	application and the Mediaserver.
+	</para>	
+		
+	<para>
+	For this reason the embedded MediaServer extension, provides a hook for listeners to register and receive all the MGCP requests and responses, 
+	and MgcpUnit is the project that will register as a listener and will help us to assert all mgcp operations. 
+	</para>	
+	
+	<para>
+	You will need to define embedded Mediaserver as class field in order to be able to register MgcpUnit.
+	</para>
+	
+	<para>
+	Example when running with Arquillian:
+	<programlisting>
+	@RunWith(Arquillian.class)
+	public class DialClientVerbTest {
+	
+	@Mediaserver(IVR=10,CONF=10,RELAY=10)
+	private EmbeddedMediaserver mediaserver;
+	private MgcpUnit mgcpUnit;
+	
+	public void setUp() throws Exception
+	{
+		...
+		mgcpUnit = new MgcpUnit();
+		mgcpEventListener = mgcpUnit.getMgcpEventListener();
+		mediaserver.registerListener(mgcpEventListener);
+	}
+	...
+	}
+	</programlisting>
+	</para>
+	
+	<note>
+	<para>Check <ulink url="https://mobicents.ci.cloudbees.com/view/SIP%20Testing/job/MgcpUnit/lastSuccessfulBuild/artifact/docs/index.html">MgcpUnit documentation </ulink> for more information on the MgcpUnit project</para>
+	</note>
+	
+	</section>
+
+</chapter>
