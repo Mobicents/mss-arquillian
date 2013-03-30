@@ -5,12 +5,12 @@
 	<parent>
 		<groupId>org.mobicents.arquillian.container</groupId>
 		<artifactId>arquillian-parent-mobicents-sip-servlets</artifactId>
-		<version>1.0.0-CR1-SNAPSHOT</version>
+		<version>1.0.0-CR1</version>
 	</parent>
 
 	<groupId>org.mobicents.arquillian.container</groupId>
 	<artifactId>mss-arquillian-mediaserver-api</artifactId>
-	<version>1.0.0-CR1-SNAPSHOT</version>
+	<version>1.0.0-CR1</version>
 	<name>mss-arquillian-mediaserver-api</name>
 
 	<properties>
