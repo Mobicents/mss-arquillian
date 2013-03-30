@@ -87,12 +87,6 @@
 				</plugins>
 			</build>
 		</profile>
-		<profile>
-			<id>testing</id>
-			<modules>
-				<module>mss-arquillian-showcase</module>
-			</modules>
-		</profile>
 	</profiles>
 
 	<!-- Properties -->
@@ -101,8 +95,7 @@
 		<!-- Versioning -->
 		<version.arquillian_core>1.0.3.Final</version.arquillian_core>
 		<version.shrinkwrap_tomcat>1.0.0</version.shrinkwrap_tomcat>
-		<version.shrinkwrap_mobicents>1.0.0-ALPHA2
-		</version.shrinkwrap_mobicents>
+		<version.shrinkwrap_mobicents>1.0.0-CR1</version.shrinkwrap_mobicents>
 
 		<version.sipunit>2.0.0</version.sipunit>
 
