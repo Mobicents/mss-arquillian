@@ -5,13 +5,12 @@
 	<parent>
 		<groupId>org.mobicents.servlet.sip.arquillian.showcase</groupId>
 		<artifactId>Tomcat6</artifactId>
-		<version>1.0.0-ALPHA2-SNAPSHOT</version>
+		<version>1.0.0-CR1-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
 	<groupId>org.mobicents.servlet.sip.arquillian.showcase</groupId>
 	<artifactId>SimpleShootistTest</artifactId>
-	<version>1.0.0-ALPHA2-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>SimpleShootistTest</name>
@@ -107,14 +106,14 @@
 		<dependency>
 			<groupId>org.cafesip.sipunit</groupId>
 			<artifactId>sipunit</artifactId>
-			<version>2.0.0</version>
+			<version>${version.sipunit}</version>
 			<scope>test</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.mobicents.arquillian.container</groupId>
 			<artifactId>mss-tomcat-embedded-6</artifactId>
-			<version>1.0.0-ALPHA2-SNAPSHOT</version>
+			<version>${project.version}</version>
 		</dependency>
 
 		<dependency>
@@ -126,13 +125,13 @@
 		<dependency>
 			<groupId>org.mobicents.arquillian.container</groupId>
 			<artifactId>mss-arquillian-container-api</artifactId>
-			<version>1.0.0-ALPHA2-SNAPSHOT</version>
+			<version>${project.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.mobicents.arquillian.container</groupId>
 			<artifactId>mss-arquillian-utilities-extension</artifactId>
-			<version>1.0.0-ALPHA2-SNAPSHOT</version>
+			<version>${project.version}</version>
 		</dependency>
 
 	</dependencies>

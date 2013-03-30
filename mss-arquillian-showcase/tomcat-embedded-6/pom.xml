@@ -5,13 +5,13 @@
 	<parent>
 		<groupId>org.mobicents.servlet.sip.arquillian.showcase</groupId>
 		<artifactId>Showcase</artifactId>
-		<version>1.0.0-ALPHA2-SNAPSHOT</version>
+		<version>1.0.0-CR1-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
 	<groupId>org.mobicents.servlet.sip.arquillian.showcase</groupId>
 	<artifactId>Tomcat6</artifactId>
-	<version>1.0.0-ALPHA2-SNAPSHOT</version>
+	<version>1.0.0-CR1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<name>Tomcat-6-Showcase</name>
