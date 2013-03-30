@@ -15,7 +15,7 @@
 	<!-- Artifact Configuration -->
 	<groupId>org.mobicents.arquillian.container</groupId>
 	<artifactId>arquillian-parent-mobicents-sip-servlets</artifactId>
-	<version>1.0.0-CR1</version>
+	<version>1.0.0-Final-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Arquillian Mobicents Container Parent Tomcat</name>
 	<description>Mobicents Tomcat Container for the Arquillian Project
@@ -41,7 +41,7 @@
 		<developerConnection>scm:git:https://code.google.com/p/commtesting.mss-arquillian/
 		</developerConnection>
 		<url>http://code.google.com/p/commtesting/</url>
-		<tag>arquillian-parent-mobicents-sip-servlets-1.0.0-CR1</tag>
+		<tag>HEAD</tag>
 	</scm>
 
 	<distributionManagement>
