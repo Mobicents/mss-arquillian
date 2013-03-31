@@ -4,7 +4,7 @@
 
 	<groupId>org.mobicents.servlet.sip.archetypes</groupId>
 	<artifactId>mss-testing-embeddedTomcat7</artifactId>
-	<version>1.0.0-CR1</version>
+	<version>1.0.0-CR1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>My Mobicents Sip Servlet test project on embedded Tomcat7</name>
