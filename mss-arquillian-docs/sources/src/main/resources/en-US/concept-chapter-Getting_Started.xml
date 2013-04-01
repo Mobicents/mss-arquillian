@@ -20,7 +20,7 @@
 					following maven archetype:
 					<programlisting>
 <command>
-mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-sipapp-test -Dversion=1.0-SNAPSHOT -DarchetypeArtifactId=mss-testing-embeddedTomcat6-archetype -DarchetypeGroupId=org.mobicents.servlet.sip.archetypes -DarchetypeVersion=&PRODUCT_VERSION;
+mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-sipapp-test -Dversion=1.0-SNAPSHOT -DarchetypeArtifactId=mss-testing-embeddedTomcat6-archetype -DarchetypeGroupId=org.mobicents.servlet.sip.archetypes -DarchetypeVersion=&ARCHETYPE_VERSION;
 </command>
 </programlisting>
 				</listitem>
@@ -30,7 +30,7 @@ mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-sipapp-test -
 					maven archetype:
 					<programlisting>
 <command>
-mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-sipapp-test -Dversion=1.0-SNAPSHOT -DarchetypeArtifactId=mss-testing-embeddedTomcat7-archetype -DarchetypeGroupId=org.mobicents.servlet.sip.archetypes  -DarchetypeVersion=&PRODUCT_VERSION;
+mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-sipapp-test -Dversion=1.0-SNAPSHOT -DarchetypeArtifactId=mss-testing-embeddedTomcat7-archetype -DarchetypeGroupId=org.mobicents.servlet.sip.archetypes  -DarchetypeVersion=&ARCHETYPE_VERSION;
 </command>
 </programlisting>
 				</listitem>
