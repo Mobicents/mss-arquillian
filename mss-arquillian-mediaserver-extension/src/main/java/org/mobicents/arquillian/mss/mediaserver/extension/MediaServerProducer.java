@@ -52,7 +52,7 @@ public class MediaServerProducer {
 	private Boolean isMediaserverAnnotationPresentMethod = false;
 	private List<Field> deployableServerFields = new ArrayList<Field>();
 	private List<Method> deployableServerMethods = new ArrayList<Method>();
-	private Object testInstance;
+	private Object testInstance = null;
 	//This instance will be used for Class and Method level annotations
 	private EmbeddedMediaserver embeddedMediaserver;
 
@@ -150,6 +150,9 @@ public class MediaServerProducer {
 			} 
 		}
 		deployableServerFields.clear();
+		isMediaserverAnnotationPresentField = false;
+		isMediaserverAnnotationPresentClass = false;
+		isMediaserverAnnotationPresentMethod = false;
 	}
 
 	public void executeAfterTestMethod(@Observes After event, TestClass testClass) {
@@ -162,7 +165,7 @@ public class MediaServerProducer {
 				embeddedMediaserver.stopServer();
 				embeddedMediaserver = null;
 			}
-		}			
+		}
 	}
 
 	private void setMediaserver(Object testInstance, List<Field> fields) throws IllegalArgumentException, IllegalAccessException
