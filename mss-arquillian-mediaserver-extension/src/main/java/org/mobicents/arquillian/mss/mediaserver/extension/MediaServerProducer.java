@@ -215,6 +215,7 @@ public class MediaServerProducer {
 		mediaserver.installEndpoint(EndpointType.IVR, anno.IVR());
 		mediaserver.installEndpoint(EndpointType.CONFERENCE, anno.CONF());
 		mediaserver.installEndpoint(EndpointType.PACKETRELAY, anno.RELAY());
+		mediaserver.installEndpoint(EndpointType.BRIDGE, anno.BRIDGE());
 		
 		if(anno.ID() != null){
 			mediaserver.setId(anno.ID());
