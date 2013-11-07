@@ -30,6 +30,7 @@ public @interface Mediaserver {
 	int IVR() default 2;
 	int CONF() default 2;
 	int RELAY() default 2;
+	int BRIDGE() default 2;
 	
 	//Id of the server
 	String ID() default "Embedded Mediaserver";

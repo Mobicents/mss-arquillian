@@ -15,6 +15,7 @@ import org.mobicents.arquillian.mss.mediaserver.extension.mgcp.controller.ext.Mg
 import org.mobicents.arquillian.mss.mediaserver.extension.mgcp.controller.ext.MgcpProviderExt;
 import org.mobicents.media.core.ResourcesPool;
 import org.mobicents.media.core.Server;
+import org.mobicents.media.core.endpoints.impl.BridgeEndpoint;
 import org.mobicents.media.core.endpoints.impl.ConferenceEndpoint;
 import org.mobicents.media.core.endpoints.impl.IvrEndpoint;
 import org.mobicents.media.core.endpoints.impl.PacketRelayEndpoint;
@@ -69,6 +70,8 @@ public class EmbeddedMediaserverImpl implements EmbeddedMediaserver {
 	private int confCounter;
 
 	private int relayCounter;
+	
+	private int bridgeCounter;
 
 	private MediaserverStatus status;
 
@@ -243,6 +246,13 @@ public class EmbeddedMediaserverImpl implements EmbeddedMediaserver {
 				installEndpoint(relay);
 			}
 			status = MediaserverStatus.CONFIGURED;
+			break;
+		case BRIDGE:
+			for (int i = 0; i < count; i++) {
+				bridgeCounter++;
+				BridgeEndpoint bridge = new BridgeEndpoint("mobicents/bridge/"+relayCounter);
+				installEndpoint(bridge);
+			}
 			break;
 		default:
 			break;

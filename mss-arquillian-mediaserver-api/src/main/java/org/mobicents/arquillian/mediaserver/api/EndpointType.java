@@ -5,5 +5,5 @@ package org.mobicents.arquillian.mediaserver.api;
  */
 
 public enum EndpointType {
-	IVR, CONFERENCE, PACKETRELAY
+	IVR, CONFERENCE, PACKETRELAY, BRIDGE
 }

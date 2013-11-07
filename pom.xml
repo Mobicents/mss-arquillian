@@ -336,7 +336,6 @@
 		<module>mss-arquillian-container-extension</module>
 		<module>mss-arquillian-utilities-extension</module>
 		<module>mss-arquillian-showcase</module>
-		<module>mss-arquillian-docs</module> 
 		<module>mss-arquillian-mediaserver-api</module>
 		<module>mss-arquillian-mediaserver-extension</module>
 	</modules>
