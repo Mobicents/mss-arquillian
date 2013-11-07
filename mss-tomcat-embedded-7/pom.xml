@@ -166,10 +166,10 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<dependency>
+<!-- 		<dependency>
 			<groupId>org.mobicents.ha.javax.sip</groupId>
 			<artifactId>mobicents-jain-sip-jboss4</artifactId>
-		</dependency>
+		</dependency> -->
 
 		<dependency>
 			<groupId>org.mobicents.javax.sip</groupId>

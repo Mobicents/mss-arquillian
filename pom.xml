@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
 	<!-- JBoss Parent -->
 	<parent>
@@ -110,18 +111,17 @@
 		<maven.compiler.source>1.5</maven.compiler.source>
 
 		<!-- Mobicents -->
-		<version.org.mobicents.servlet.sip>1.7.0.FINAL
-		</version.org.mobicents.servlet.sip>
-		<version.mobicents.jain.sip.ext>1.1</version.mobicents.jain.sip.ext>
-		<version.mobicents.jain.sip.jboss4>1.2.0.FINAL
-		</version.mobicents.jain.sip.jboss4>
+		<version.telscale.servlet.sip>7.0.0.GA-TelScale</version.telscale.servlet.sip>
+		<version.telscale.jain.sip.ext>7.0.0.GA-TelScale</version.telscale.jain.sip.ext>
+
 
 		<!-- Mediaserver -->
 		<version.mediaserver>3.0.0.Final</version.mediaserver>
 
 		<!-- Jain SIP -->
 		<jain-sip-api.version>1.2</jain-sip-api.version>
-		<jain-sip-ri.version>1.2.167</jain-sip-ri.version>
+		<jain-sip-ri.version>7.0.0.GA-TelScale</jain-sip-ri.version>
+		<jain.sip.ha.version>7.0.0.GA-TelScale</jain.sip.ha.version>
 	</properties>
 
 	<dependencyManagement>
@@ -195,76 +195,63 @@
 			<dependency>
 				<groupId>org.mobicents.servlet.sip</groupId>
 				<artifactId>sip-servlets-impl</artifactId>
-				<version>${version.org.mobicents.servlet.sip}</version>
+				<version>${version.telscale.servlet.sip}</version>
 				<scope>provided</scope>
 			</dependency>
 
 			<dependency>
 				<groupId>org.mobicents.servlet.sip</groupId>
 				<artifactId>sip-servlets-client</artifactId>
-				<version>${version.org.mobicents.servlet.sip}</version>
+				<version>${version.telscale.servlet.sip}</version>
 				<scope>provided</scope>
 			</dependency>
 
 			<dependency>
 				<groupId>org.mobicents.servlet.sip</groupId>
 				<artifactId>sip-servlets-application-router</artifactId>
-				<version>${version.org.mobicents.servlet.sip}</version>
+				<version>${version.telscale.servlet.sip}</version>
 				<scope>provided</scope>
 			</dependency>
 
 			<dependency>
 				<groupId>org.mobicents.servlet.sip</groupId>
 				<artifactId>sip-servlets-core-api</artifactId>
-				<version>${version.org.mobicents.servlet.sip}</version>
+				<version>${version.telscale.servlet.sip}</version>
 				<scope>provided</scope>
 			</dependency>
 
 			<dependency>
 				<groupId>org.mobicents.servlet.sip</groupId>
 				<artifactId>sip-servlets-annotations</artifactId>
-				<version>${version.org.mobicents.servlet.sip}</version>
-				<scope>provided</scope>
-			</dependency>
-
-			<dependency>
-				<groupId>org.mobicents.servlet.sip.containers</groupId>
-				<artifactId>sip-servlets-catalina</artifactId>
-				<version>${version.org.mobicents.servlet.sip}</version>
+				<version>${version.telscale.servlet.sip}</version>
 				<scope>provided</scope>
 			</dependency>
 
 			<dependency>
 				<groupId>org.mobicents.servlet.sip.containers</groupId>
 				<artifactId>sip-servlets-catalina-7</artifactId>
-				<version>${version.org.mobicents.servlet.sip}</version>
+				<version>${version.telscale.servlet.sip}</version>
 				<scope>provided</scope>
 			</dependency>
 
 			<dependency>
 				<groupId>org.mobicents.servlet.sip.containers</groupId>
 				<artifactId>sip-servlets-tomcat-7</artifactId>
-				<version>${version.org.mobicents.servlet.sip}</version>
+				<version>${version.telscale.servlet.sip}</version>
 				<scope>provided</scope>
 			</dependency>
 
 			<dependency>
 				<groupId>org.mobicents.servlet.sip.containers</groupId>
 				<artifactId>sip-servlets-tomcat-jboss4</artifactId>
-				<version>${version.org.mobicents.servlet.sip}</version>
+				<version>${version.telscale.servlet.sip}</version>
 				<scope>provided</scope>
-			</dependency>
-
-			<dependency>
-				<groupId>org.mobicents.ha.javax.sip</groupId>
-				<artifactId>mobicents-jain-sip-jboss4</artifactId>
-				<version>${version.mobicents.jain.sip.jboss4}</version>
 			</dependency>
 
 			<dependency>
 				<groupId>org.mobicents.javax.sip</groupId>
 				<artifactId>mobicents-jain-sip-ext</artifactId>
-				<version>${version.mobicents.jain.sip.ext}</version>
+				<version>${version.telscale.jain.sip.ext}</version>
 			</dependency>
 
 			<dependency>
@@ -329,19 +316,44 @@
 	</build>
 
 	<modules>
-		<module>mss-tomcat-embedded-6</module>
 		<module>mss-tomcat-embedded-7</module>
 		<module>mss-arquillian-container-api</module>
 		<module>mss-arquillian-lifecycle-extension</module>
 		<module>mss-arquillian-container-extension</module>
 		<module>mss-arquillian-utilities-extension</module>
 		<module>mss-arquillian-showcase</module>
-		<module>mss-arquillian-docs</module> 
+		<module>mss-arquillian-docs</module>
 		<module>mss-arquillian-mediaserver-api</module>
 		<module>mss-arquillian-mediaserver-extension</module>
 	</modules>
 
 	<repositories>
+		<repository>
+			<id>telscale-releases-repository</id>
+			<name>TelScale Releases Repository</name>
+			<url>http://telestax.artifactoryonline.com/telestax/releases</url>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+				<updatePolicy>never</updatePolicy>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>telscale-snapshots-repository</id>
+			<name>TelScale Snapshots Repository</name>
+			<url>http://telestax.artifactoryonline.com/telestax/snapshots</url>
+			<releases>
+				<enabled>false</enabled>
+				<updatePolicy>never</updatePolicy>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+			</snapshots>
+		</repository>
 		<repository>
 			<id>jboss-public-repository</id>
 			<name>JBoss Public Repository</name>

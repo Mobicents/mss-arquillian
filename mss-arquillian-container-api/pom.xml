@@ -78,7 +78,7 @@
  -->
 		<dependency>
 			<groupId>org.mobicents.servlet.sip.containers</groupId>
-			<artifactId>sip-servlets-catalina</artifactId>
+			<artifactId>sip-servlets-catalina-7</artifactId>
 			<scope>provided</scope>
 <!-- 			<version>1.7.0-SNAPSHOT</version> -->
 		</dependency>

@@ -1,6 +1,6 @@
 <projectDescription>
-  <name>cdi-telco-framework-docs-jdocbook-mobicents</name>
-  <comment>Mobicents :: Parent pom for 2.x releases. NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
+  <name>mss-arquillian-docs-jdocbook-mobicents</name>
+  <comment>Mobicents Tomcat Container for the Arquillian Project. NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
   <projects/>
   <buildSpec/>
   <natures/>
