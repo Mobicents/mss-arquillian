@@ -250,7 +250,7 @@ public class EmbeddedMediaserverImpl implements EmbeddedMediaserver {
 		case BRIDGE:
 			for (int i = 0; i < count; i++) {
 				bridgeCounter++;
-				BridgeEndpoint bridge = new BridgeEndpoint("mobicents/bridge/"+relayCounter);
+				BridgeEndpoint bridge = new BridgeEndpoint("mobicents/bridge/"+bridgeCounter);
 				installEndpoint(bridge);
 			}
 			break;
