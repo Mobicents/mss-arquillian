@@ -23,7 +23,7 @@
 		<dependency>
 			<groupId>org.mobicents.media</groupId>
 			<artifactId>spi</artifactId>
-			<version>${version.mediaserver}</version>
+			<version>${version.telscale.mediaserver}</version>
 			<scope>provided</scope>
 			<exclusions>
 				<exclusion>

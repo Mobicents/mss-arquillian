@@ -4,7 +4,7 @@ bin
 .project
 .classpath
 *.txt
-.settings
+settings
 
 /*/*/*/*/logs/*
 **/logs/*

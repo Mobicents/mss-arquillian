@@ -126,7 +126,7 @@ public class MyTest2 {
 
 		logger.info("Message from the static file: "+body);
 		
-		Assert.assertEquals("Verify that the servlet was deployed and returns expected result", "It Works!", body);
+		Assert.assertEquals("Verify that the servlet was deployed and returns expected result, It Works!", body);
 	}
 
 }

@@ -54,6 +54,11 @@
       <attribute value="jar:file:/home/gvagenas/.m2/repository/org/mobicents/javax/sip/mobicents-jain-sip-ext/7.0.0.GA-TelScale/mobicents-jain-sip-ext-7.0.0.GA-TelScale-javadoc.jar!/" name="javadoc_location"/>
     </attributes>
   </classpathentry>
+  <classpathentry kind="var" path="M2_REPO/org/mobicents/ha/javax/sip/mobicents-jain-sip-ha-core/7.0.0.GA-TelScale/mobicents-jain-sip-ha-core-7.0.0.GA-TelScale.jar" sourcepath="M2_REPO/org/mobicents/ha/javax/sip/mobicents-jain-sip-ha-core/7.0.0.GA-TelScale/mobicents-jain-sip-ha-core-7.0.0.GA-TelScale-sources.jar">
+    <attributes>
+      <attribute value="jar:file:/home/gvagenas/.m2/repository/org/mobicents/ha/javax/sip/mobicents-jain-sip-ha-core/7.0.0.GA-TelScale/mobicents-jain-sip-ha-core-7.0.0.GA-TelScale-javadoc.jar!/" name="javadoc_location"/>
+    </attributes>
+  </classpathentry>
   <classpathentry kind="var" path="M2_REPO/org/mobicents/arquillian/container/mss-arquillian-container-api/1.0.0-Final-SNAPSHOT/mss-arquillian-container-api-1.0.0-Final-SNAPSHOT.jar" sourcepath="M2_REPO/org/mobicents/arquillian/container/mss-arquillian-container-api/1.0.0-Final-SNAPSHOT/mss-arquillian-container-api-1.0.0-Final-SNAPSHOT-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/mobicents/arquillian/container/mss-arquillian-container-extension/1.0.0-Final-SNAPSHOT/mss-arquillian-container-extension-1.0.0-Final-SNAPSHOT.jar" sourcepath="M2_REPO/org/mobicents/arquillian/container/mss-arquillian-container-extension/1.0.0-Final-SNAPSHOT/mss-arquillian-container-extension-1.0.0-Final-SNAPSHOT-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/mobicents/arquillian/container/mss-arquillian-lifecycle-extension/1.0.0-Final-SNAPSHOT/mss-arquillian-lifecycle-extension-1.0.0-Final-SNAPSHOT.jar" sourcepath="M2_REPO/org/mobicents/arquillian/container/mss-arquillian-lifecycle-extension/1.0.0-Final-SNAPSHOT/mss-arquillian-lifecycle-extension-1.0.0-Final-SNAPSHOT-sources.jar"/>

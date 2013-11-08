@@ -34,7 +34,7 @@
 		<dependency>
 			<groupId>org.mobicents.media</groupId>
 			<artifactId>core</artifactId>
-			<version>${version.mediaserver}</version>
+			<version>${version.telscale.mediaserver}</version>
 			<exclusions>
 				<exclusion>
 					<groupId>apache-xerces</groupId>
@@ -54,19 +54,19 @@
 		<dependency>
 			<groupId>org.mobicents.media</groupId>
 			<artifactId>components</artifactId>
-			<version>${version.mediaserver}</version>
+			<version>${version.telscale.mediaserver}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.mobicents.media.io</groupId>
 			<artifactId>rtp</artifactId>
-			<version>${version.mediaserver}</version>
+			<version>${version.telscale.mediaserver}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.mobicents.media.controls</groupId>
 			<artifactId>mgcp</artifactId>
-			<version>${version.mediaserver}</version>
+			<version>${version.telscale.mediaserver}</version>
 			<exclusions>
 				<exclusion>
 					<groupId>apache-xerces</groupId>

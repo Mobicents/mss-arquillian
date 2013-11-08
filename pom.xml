@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
 	<!-- JBoss Parent -->
 	<parent>
@@ -112,10 +113,11 @@
 		<!-- Mobicents -->
 		<version.telscale.servlet.sip>7.0.0.GA-TelScale</version.telscale.servlet.sip>
 		<version.telscale.jain.sip.ext>7.0.0.GA-TelScale</version.telscale.jain.sip.ext>
+		<version.telscale.jain.sip.ha>7.0.0.GA-TelScale</version.telscale.jain.sip.ha>
 
 
 		<!-- Mediaserver -->
-		<version.mediaserver>3.0.0.Final</version.mediaserver>
+		<version.telscale.mediaserver>6.1.2.GA-TelScale</version.telscale.mediaserver>
 
 		<!-- Jain SIP -->
 		<jain-sip-api.version>1.2</jain-sip-api.version>
@@ -251,6 +253,12 @@
 				<groupId>org.mobicents.javax.sip</groupId>
 				<artifactId>mobicents-jain-sip-ext</artifactId>
 				<version>${version.telscale.jain.sip.ext}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.mobicents.ha.javax.sip</groupId>
+				<artifactId>mobicents-jain-sip-ha-core</artifactId>
+				<version>${version.telscale.jain.sip.ha}</version>
 			</dependency>
 
 			<dependency>
