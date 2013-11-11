@@ -5,12 +5,11 @@
 	<parent>
 	<artifactId>arquillian-parent-mobicents-sip-servlets</artifactId>
 	<groupId>org.mobicents.arquillian.container</groupId>
-	<version>1.0.0-Final-SNAPSHOT</version>
+	<version>7.0.0-TelScale-SNAPSHOT</version>
 	</parent> 
 	
 	<groupId>org.mobicents.arquillian.container.mobicents</groupId>
 	<artifactId>mss-arquillian-docs</artifactId>
-	<version>1.0.0-Final-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>mss-arquillian-docs</name>
 

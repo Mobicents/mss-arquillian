@@ -6,14 +6,14 @@
 	<parent>
 		<groupId>org.mobicents.arquillian.container.mobicents</groupId>
 		<artifactId>mss-arquillian-docs</artifactId>
-		<version>1.0.0-Final-SNAPSHOT</version>
+		<version>7.0.0-TelScale-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>mss-arquillian-docs-sources</artifactId>
 
 	<properties>
 		<product.name>Mobicents Sip Servlets extension to Arquillian</product.name>
-		<product.version>1.0.0-CR1</product.version>
+		<product.version>7.0.0-TelScale-SNAPSHOT</product.version>
 		<archetype.version>1.0</archetype.version>
 		<year>2013</year>
 		<bookid>MSS_Arquillian_Framework_User_Guide</bookid>

@@ -6,7 +6,7 @@
 	<parent>
 		<artifactId>arquillian-parent-mobicents-sip-servlets</artifactId>
 		<groupId>org.mobicents.arquillian.container</groupId>
-		<version>1.0.0-Final-SNAPSHOT</version>
+		<version>7.0.0-TelScale-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>mss-tomcat-embedded-7</artifactId>
@@ -198,7 +198,7 @@
 		<dependency>
 			<groupId>org.mobicents.ha.javax.sip</groupId>
 			<artifactId>mobicents-jain-sip-ha-core</artifactId>
-			<version>7.0.0.GA-TelScale</version>
+			<version>${version.telscale.jain.sip.ha}</version>
 		</dependency>
 
 		<dependency>
