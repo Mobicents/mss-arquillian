@@ -37,25 +37,22 @@
 	</developers>
 
 	<scm>
-		<connection>scm:git:https://code.google.com/p/commtesting.mss-arquillian/
-		</connection>
-		<developerConnection>scm:git:https://code.google.com/p/commtesting.mss-arquillian/
-		</developerConnection>
-		<url>http://code.google.com/p/commtesting/</url>
+		<connection>scm:git:git@bitbucket.org:telestax/sip-arquillian.git</connection>
+		<developerConnection>scm:git:git@bitbucket.org:telestax/sip-arquillian.git</developerConnection>
+		<url>https://bitbucket.org/telestax/sip-arquillian</url>
 		<tag>HEAD</tag>
 	</scm>
 
 	<distributionManagement>
 		<repository>
-			<id>mobicents-releases-repository</id>
-			<name>Mobicents Releases Repository</name>
-			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2
-			</url>
+			<id>telscale-releases-repository</id>
+			<name>TelScale Releases Repository</name>
+			<url>http://telestax.artifactoryonline.com/telestax/releases</url>
 		</repository>
 		<snapshotRepository>
-			<id>mobicents-snapshots-repository</id>
-			<name>Mobicents Snapshots Repository</name>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+			<id>telscale-snapshots-repository</id>
+			<name>TelScale Snapshots Repository</name>
+			<url>http://telestax.artifactoryonline.com/telestax/snapshots</url>
 		</snapshotRepository>
 	</distributionManagement>
 
