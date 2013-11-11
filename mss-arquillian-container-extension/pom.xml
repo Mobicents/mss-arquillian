@@ -5,11 +5,10 @@
 	<parent>
 		<artifactId>arquillian-parent-mobicents-sip-servlets</artifactId>
 		<groupId>org.mobicents.arquillian.container</groupId>
-		<version>1.0.0-Final-SNAPSHOT</version>
+		<version>7.0.0-TelScale-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>mss-arquillian-container-extension</artifactId>
-	<version>1.0.0-Final-SNAPSHOT</version>
 	<name>mss-arquillian-container-extension</name>
 
 	<properties>
@@ -52,7 +51,7 @@
 		<dependency>
 			<groupId>org.mobicents.arquillian.container</groupId>
 			<artifactId>mss-arquillian-container-api</artifactId>
-			<version>1.0.0-Final-SNAPSHOT</version>
+			<version>${project.version}</version>
 		</dependency>
 <!-- 
 		<dependency>

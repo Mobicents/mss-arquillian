@@ -16,7 +16,7 @@
 	<!-- Artifact Configuration -->
 	<groupId>org.mobicents.arquillian.container</groupId>
 	<artifactId>arquillian-parent-mobicents-sip-servlets</artifactId>
-	<version>1.0.0-Final-SNAPSHOT</version>
+	<version>7.0.0-TelScale-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Arquillian Mobicents Container Parent Tomcat</name>
 	<description>Mobicents Tomcat Container for the Arquillian Project
@@ -95,7 +95,7 @@
 		<!-- Versioning -->
 		<version.arquillian_core>1.0.3.Final</version.arquillian_core>
 		<version.shrinkwrap_tomcat>1.0.0</version.shrinkwrap_tomcat>
-		<version.shrinkwrap_mobicents>1.0.0-CR1</version.shrinkwrap_mobicents>
+		<version.shrinkwrap_mobicents>7.0.0-TelScale-SNAPSHOT</version.shrinkwrap_mobicents>
 
 		<version.sipunit>2.0.0</version.sipunit>
 
@@ -323,15 +323,15 @@
 	</build>
 
 	<modules>
-		<module>mss-tomcat-embedded-7</module>
 		<module>mss-arquillian-container-api</module>
 		<module>mss-arquillian-lifecycle-extension</module>
 		<module>mss-arquillian-container-extension</module>
 		<module>mss-arquillian-utilities-extension</module>
-		<module>mss-arquillian-showcase</module>
 		<module>mss-arquillian-docs</module>
 		<module>mss-arquillian-mediaserver-api</module>
 		<module>mss-arquillian-mediaserver-extension</module>
+		<module>mss-tomcat-embedded-7</module>
+		<module>mss-arquillian-showcase</module>
 	</modules>
 
 	<repositories>

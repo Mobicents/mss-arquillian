@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
@@ -9,7 +10,7 @@
 	</parent>
 
 	<artifactId>mss-tomcat-embedded-7</artifactId>
-	<version>1.0.0-Final-SNAPSHOT</version>
+	<version>7.0.0-TelScale-SNAPSHOT</version>
 	<name>Arquillian Mobicents Container Tomcat Embedded 7.x</name>
 	<url>http://code.google.com/p/commtesting/</url>
 
@@ -52,7 +53,7 @@
 		<dependency>
 			<groupId>org.mobicents.arquillian.container</groupId>
 			<artifactId>mss-arquillian-container-api</artifactId>
-			<version>1.0.0-Final-SNAPSHOT</version>
+			<version>${project.version}</version>
 		</dependency>
 
 		<!-- Mobicents Arquillian Lifecycle Extension -->
@@ -60,21 +61,21 @@
 		<dependency>
 			<groupId>org.mobicents.arquillian.container</groupId>
 			<artifactId>mss-arquillian-lifecycle-extension</artifactId>
-			<version>1.0.0-Final-SNAPSHOT</version>
+			<version>${project.version}</version>
 		</dependency>
 
 		<!-- Mobicents Arquillian Container Extension -->
 		<dependency>
 			<groupId>org.mobicents.arquillian.container</groupId>
 			<artifactId>mss-arquillian-container-extension</artifactId>
-			<version>1.0.0-Final-SNAPSHOT</version>
+			<version>${project.version}</version>
 		</dependency>
 
 		<!-- Mobicents Arquillian Utilities Extension -->
 		<dependency>
 			<groupId>org.mobicents.arquillian.container</groupId>
 			<artifactId>mss-arquillian-utilities-extension</artifactId>
-			<version>1.0.0-Final-SNAPSHOT</version>
+			<version>${project.version}</version>
 			<!-- org.jboss.arquillian -->
 		</dependency>
 
@@ -126,7 +127,7 @@
 		<dependency>
 			<groupId>javax.sip</groupId>
 			<artifactId>jain-sip-api</artifactId>
-			<version>1.2</version>
+			<version>${jain-sip-api.version}</version>
 		</dependency>
 
 		<dependency>
@@ -166,10 +167,8 @@
 			<scope>provided</scope>
 		</dependency>
 
-<!-- 		<dependency>
-			<groupId>org.mobicents.ha.javax.sip</groupId>
-			<artifactId>mobicents-jain-sip-jboss4</artifactId>
-		</dependency> -->
+		<!-- <dependency> <groupId>org.mobicents.ha.javax.sip</groupId> <artifactId>mobicents-jain-sip-jboss4</artifactId> 
+			</dependency> -->
 
 		<dependency>
 			<groupId>org.mobicents.javax.sip</groupId>
@@ -179,7 +178,7 @@
 		<dependency>
 			<groupId>javax.sip</groupId>
 			<artifactId>jain-sip-ri</artifactId>
-			<version>1.2.163</version>
+			<version>${jain-sip-ri.version}</version>
 		</dependency>
 
 		<dependency>
@@ -199,7 +198,7 @@
 		<dependency>
 			<groupId>org.mobicents.ha.javax.sip</groupId>
 			<artifactId>mobicents-jain-sip-ha-core</artifactId>
-			<version>1.2.0.FINAL</version>
+			<version>${version.telscale.jain.sip.ha}</version>
 			<scope>test</scope>
 		</dependency>
 

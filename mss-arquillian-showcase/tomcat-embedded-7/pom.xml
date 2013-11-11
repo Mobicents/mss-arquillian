@@ -4,13 +4,12 @@
 	<parent>
 		<groupId>org.mobicents.servlet.sip.arquillian.showcase</groupId>
 		<artifactId>Showcase</artifactId>
-		<version>1.0.0-Final-SNAPSHOT</version>
+		<version>7.0.0-TelScale-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
 	<groupId>org.mobicents.servlet.sip.arquillian.showcase</groupId>
 	<artifactId>Tomcat7</artifactId>
-	<version>1.0.0-Final-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<name>Tomcat-7-Showcase</name>
