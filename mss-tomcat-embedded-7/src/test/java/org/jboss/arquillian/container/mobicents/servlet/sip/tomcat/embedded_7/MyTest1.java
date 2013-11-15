@@ -93,6 +93,7 @@ public class MyTest1 {
 		archive.addClass(EchoServlet.class);
 		archive.addAsWebInfResource("web.xml");
 		archive.addAsWebInfResource("sip.xml");
+//		archive.addAsResource("telestax-license.xml");
 		
 		//Issue 10: http://code.google.com/p/commtesting/issues/detail?id=10
 		archive.addAsWebResource("testWebResource.txt", "myWebResources/testWebResource.txt");
