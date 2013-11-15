@@ -5,7 +5,6 @@ bin
 .classpath
 *.txt
 settings
-
 /*/*/*/*/logs/*
 **/logs/*
 *.log
