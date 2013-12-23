@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.mobicents.arquillian.container.mobicents</groupId>
 		<artifactId>mss-arquillian-docs</artifactId>
-		<version>7.0.0-TelScale-SNAPSHOT</version>
+		<version>7.0.0.CR1-TelScale</version>
 	</parent>
 	
 	<artifactId>mss-arquillian-docs-jdocbook-telescale</artifactId>

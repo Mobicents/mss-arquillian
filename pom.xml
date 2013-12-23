@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
 	<!-- JBoss Parent -->
 	<parent>
@@ -16,7 +15,7 @@
 	<!-- Artifact Configuration -->
 	<groupId>org.mobicents.arquillian.container</groupId>
 	<artifactId>arquillian-parent-mobicents-sip-servlets</artifactId>
-	<version>7.0.0-TelScale-SNAPSHOT</version>
+	<version>7.0.0.CR1-TelScale</version>
 	<packaging>pom</packaging>
 	<name>Arquillian Mobicents Container Parent Tomcat</name>
 	<description>Mobicents Tomcat Container for the Arquillian Project
@@ -40,7 +39,7 @@
 		<connection>scm:git:git@bitbucket.org:telestax/sip-arquillian.git</connection>
 		<developerConnection>scm:git:git@bitbucket.org:telestax/sip-arquillian.git</developerConnection>
 		<url>https://bitbucket.org/telestax/sip-arquillian</url>
-		<tag>HEAD</tag>
+		<tag>arquillian-parent-mobicents-sip-servlets-7.0.0.CR1-TelScale</tag>
 	</scm>
 
 	<distributionManagement>
@@ -261,7 +260,7 @@
 			<dependency>
 				<groupId>org.mobicents.shrinkwrap.container</groupId>
 				<artifactId>shrinkwrap-container-mobicents</artifactId>
-				<version>${version.shrinkwrap_mobicents}</version>
+				<version>7.0.0.CR1-TelScale</version>
 			</dependency>
 
 			<dependency>
