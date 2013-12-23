@@ -15,7 +15,7 @@
 	<!-- Artifact Configuration -->
 	<groupId>org.mobicents.arquillian.container</groupId>
 	<artifactId>arquillian-parent-mobicents-sip-servlets</artifactId>
-	<version>7.0.0.CR1-TelScale</version>
+	<version>7.0.0.CR2-TelScale-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Arquillian Mobicents Container Parent Tomcat</name>
 	<description>Mobicents Tomcat Container for the Arquillian Project
@@ -39,7 +39,7 @@
 		<connection>scm:git:git@bitbucket.org:telestax/sip-arquillian.git</connection>
 		<developerConnection>scm:git:git@bitbucket.org:telestax/sip-arquillian.git</developerConnection>
 		<url>https://bitbucket.org/telestax/sip-arquillian</url>
-		<tag>arquillian-parent-mobicents-sip-servlets-7.0.0.CR1-TelScale</tag>
+		<tag>HEAD</tag>
 	</scm>
 
 	<distributionManagement>
