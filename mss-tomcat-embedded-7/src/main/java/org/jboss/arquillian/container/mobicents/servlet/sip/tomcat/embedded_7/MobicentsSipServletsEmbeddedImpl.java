@@ -609,6 +609,7 @@ public class MobicentsSipServletsEmbeddedImpl extends Tomcat implements SipServl
 		if(service != null) {			
 			try {
 				service.stop();
+				service.destroy();
 			} catch (LifecycleException e) {
 				log.error("service already stopped ", e);
 			}		
