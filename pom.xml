@@ -91,7 +91,7 @@
 		<!-- Versioning -->
 		<version.arquillian_core>1.0.3.Final</version.arquillian_core>
 		<version.shrinkwrap_tomcat>1.0.0</version.shrinkwrap_tomcat>
-		<version.shrinkwrap_mobicents>7.0.0-TelScale-SNAPSHOT</version.shrinkwrap_mobicents>
+		<version.shrinkwrap_mobicents>7.0.3.42</version.shrinkwrap_mobicents>
 
 		<version.sipunit>2.0.0</version.sipunit>
 
@@ -99,7 +99,7 @@
 		<version.weld_servlet>1.1.2.Final</version.weld_servlet>
 		<!-- <version.ctf.core>1.0.0-SNAPSHOT</version.ctf.core> -->
 		<version.org.apache.tomcat>6.0.35</version.org.apache.tomcat>
-		<version.org.apache.tomcat-7>7.0.27</version.org.apache.tomcat-7>
+		<version.org.apache.tomcat-7>7.0.50</version.org.apache.tomcat-7>
 
 		<!-- override from parent -->
 		<version.release.plugin>2.1</version.release.plugin>
@@ -107,18 +107,18 @@
 		<maven.compiler.source>1.5</maven.compiler.source>
 
 		<!-- Mobicents -->
-		<version.telscale.servlet.sip>7.0.0.GA-TelScale</version.telscale.servlet.sip>
-		<version.telscale.jain.sip.ext>7.0.0.GA-TelScale</version.telscale.jain.sip.ext>
-		<version.telscale.jain.sip.ha>7.0.0.GA-TelScale</version.telscale.jain.sip.ha>
+		<version.telscale.servlet.sip>7.0.3.258</version.telscale.servlet.sip>
+		<version.telscale.jain.sip.ext>7.0.3.7</version.telscale.jain.sip.ext>
+		<version.telscale.jain.sip.ha>7.0.3.7</version.telscale.jain.sip.ha>
 
 
 		<!-- Mediaserver -->
-		<version.telscale.mediaserver>6.1.2.GA-TelScale</version.telscale.mediaserver>
+		<version.telscale.mediaserver>6.1.3.436</version.telscale.mediaserver>
 
 		<!-- Jain SIP -->
 		<jain-sip-api.version>1.2</jain-sip-api.version>
-		<jain-sip-ri.version>7.0.0.GA-TelScale</jain-sip-ri.version>
-		<jain.sip.ha.version>7.0.0.GA-TelScale</jain.sip.ha.version>
+		<jain-sip-ri.version>7.0.3.194</jain-sip-ri.version>
+		<jain.sip.ha.version>7.0.3.7</jain.sip.ha.version>
 	</properties>
 
 	<dependencyManagement>
