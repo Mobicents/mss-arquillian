@@ -260,7 +260,7 @@
 			<dependency>
 				<groupId>org.mobicents.shrinkwrap.container</groupId>
 				<artifactId>shrinkwrap-container-mobicents</artifactId>
-				<version>7.0.0.CR1-TelScale</version>
+				<version>${version.shrinkwrap_mobicents}</version>
 			</dependency>
 
 			<dependency>
