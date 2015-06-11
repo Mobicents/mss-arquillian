@@ -13,9 +13,9 @@
 
 	<properties>
 		<product.name>Mobicents Sip Servlets extension to Arquillian</product.name>
-		<product.version>7.0.0-TelScale-SNAPSHOT</product.version>
+		<product.version>7.0.0.CR2-TelScale-SNAPSHOT</product.version>
 		<archetype.version>1.0</archetype.version>
-		<year>2013</year>
+		<year>2014</year>
 		<bookid>MSS_Arquillian_Framework_User_Guide</bookid>
 		<holder>Telestax Inc</holder>
 	</properties>

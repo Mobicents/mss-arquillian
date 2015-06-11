@@ -119,7 +119,7 @@ public class SimpleShootistTest extends SipTestCase{
 		assertTrue(sipCall.sendIncomingCallResponse(Response.TRYING,"Trying", TIMEOUT));
 		assertTrue(sipCall.sendIncomingCallResponse(Response.RINGING,"RINGING",TIMEOUT));	
 		assertTrue(sipCall.sendIncomingCallResponse(Response.OK, "OK", TIMEOUT));
-
+		
 		if (sipCall.getLastReceivedResponse() != null)
 			logger.info("sipCallB lastReceivedResponse: "+sipCall.getLastReceivedResponse().toString());
 
