@@ -193,11 +193,11 @@
 			<scope>test</scope>
 		</dependency>
 
-		<dependency>
+<!-- 		<dependency>
 			<groupId>org.mobicents.ha.javax.sip</groupId>
 			<artifactId>mobicents-jain-sip-ha-core</artifactId>
 			<version>${version.mobicents.jain.sip.ha}</version>
-		</dependency>
+		</dependency> -->
 
 		<dependency>
 			<groupId>javax.activation</groupId>
