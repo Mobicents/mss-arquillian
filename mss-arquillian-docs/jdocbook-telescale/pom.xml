@@ -1,18 +1,18 @@
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	
+
 	<parent>
 		<groupId>org.mobicents.arquillian.container.mobicents</groupId>
 		<artifactId>mss-arquillian-docs</artifactId>
-		<version>7.0.0.CR2-TelScale-SNAPSHOT</version>
+		<version>1.0.0.CR2-SNAPSHOT</version>
 	</parent>
-	
+
 	<artifactId>mss-arquillian-docs-jdocbook-telescale</artifactId>
-	
+
 	<modelVersion>4.0.0</modelVersion>
-		
+
 	<packaging>jdocbook</packaging>
-	
+
 	<build>
 		<plugins>
 			<plugin>
@@ -26,7 +26,7 @@
 							<goal>unpack</goal>
 						</goals>
 						<configuration>
-							<artifactItems>								
+							<artifactItems>
 								<artifactItem>
 									<groupId>${pom.groupId}</groupId>
 									<artifactId>mss-arquillian-docs-sources-telescale</artifactId>
@@ -35,7 +35,7 @@
 									<overWrite>true</overWrite>
 									<outputDirectory>${project.build.directory}/docbook/resources</outputDirectory>
 								</artifactItem>
-							</artifactItems>							
+							</artifactItems>
 						</configuration>
 					</execution>
 				</executions>
@@ -58,7 +58,7 @@
 						<version>1.2.0</version>
 					</dependency>
 				</dependencies>
-				<configuration>					
+				<configuration>
 					<sourceDocumentName>MSS_Arquillian_Framework_User_Guide.xml</sourceDocumentName>
 					<sourceDirectory>${project.build.directory}/docbook/resources</sourceDirectory>
 					<imageResource>
@@ -88,9 +88,9 @@
 						<xincludeSupported>true</xincludeSupported>
 						<!-- needed for uri-resolvers; can be ommitted if using 'current' uri scheme -->
 						<!-- could also locate the docbook dependency and inspect its version... -->
-						<docbookVersion>1.72.0</docbookVersion>					
-					</options>		
-				</configuration>			
+						<docbookVersion>1.72.0</docbookVersion>
+					</options>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

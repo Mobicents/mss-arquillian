@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.mobicents.arquillian.container</groupId>
 		<artifactId>arquillian-parent-mobicents-sip-servlets</artifactId>
-		<version>7.0.0.CR2-TelScale-SNAPSHOT</version>
+		<version>1.0.0.CR2-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>mss-arquillian-mediaserver-extension</artifactId>
@@ -31,7 +31,7 @@
 		<dependency>
 			<groupId>org.mobicents.media</groupId>
 			<artifactId>core</artifactId>
-			<version>${version.telscale.mediaserver}</version>
+			<version>${version.mobicents.mediaserver}</version>
 			<exclusions>
 				<exclusion>
 					<groupId>apache-xerces</groupId>
@@ -51,19 +51,19 @@
 		<dependency>
 			<groupId>org.mobicents.media</groupId>
 			<artifactId>components</artifactId>
-			<version>${version.telscale.mediaserver}</version>
+			<version>${version.mobicents.mediaserver}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.mobicents.media.io</groupId>
 			<artifactId>rtp</artifactId>
-			<version>${version.telscale.mediaserver}</version>
+			<version>${version.mobicents.mediaserver}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.mobicents.media.controls</groupId>
 			<artifactId>mgcp</artifactId>
-			<version>${version.telscale.mediaserver}</version>
+			<version>${version.mobicents.mediaserver}</version>
 			<exclusions>
 				<exclusion>
 					<groupId>apache-xerces</groupId>
@@ -124,7 +124,7 @@
 					</execution>
 				</executions>
 				<configuration>
-					<!-- This is the location which will be scanned for generating tattletale 
+					<!-- This is the location which will be scanned for generating tattletale
 						reports -->
 					<source>${project.build.directory}</source>
 					<!-- This is where the reports will be generated -->

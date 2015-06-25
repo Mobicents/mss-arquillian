@@ -5,11 +5,10 @@
 	<parent>
 		<artifactId>arquillian-parent-mobicents-sip-servlets</artifactId>
 		<groupId>org.mobicents.arquillian.container</groupId>
-		<version>7.0.0.CR2-TelScale-SNAPSHOT</version>
+		<version>1.0.0.CR2-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>mss-tomcat-embedded-7</artifactId>
-	<version>7.0.0.CR2-TelScale-SNAPSHOT</version>
 	<name>Arquillian Mobicents Container Tomcat Embedded 7.x</name>
 	<url>http://code.google.com/p/commtesting/</url>
 
@@ -166,7 +165,7 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- <dependency> <groupId>org.mobicents.ha.javax.sip</groupId> <artifactId>mobicents-jain-sip-jboss4</artifactId> 
+		<!-- <dependency> <groupId>org.mobicents.ha.javax.sip</groupId> <artifactId>mobicents-jain-sip-jboss4</artifactId>
 			</dependency> -->
 
 		<dependency>
@@ -197,7 +196,7 @@
 		<dependency>
 			<groupId>org.mobicents.ha.javax.sip</groupId>
 			<artifactId>mobicents-jain-sip-ha-core</artifactId>
-			<version>${version.telscale.jain.sip.ha}</version>
+			<version>${version.mobicents.jain.sip.ha}</version>
 		</dependency>
 
 		<dependency>

@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.mobicents.arquillian.container.mobicents</groupId>
 		<artifactId>mss-arquillian-docs</artifactId>
-		<version>7.0.0.CR2-TelScale-SNAPSHOT</version>
+		<version>1.0.0.CR2-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>mss-arquillian-docs-jdocbook-mobicents</artifactId>
@@ -86,7 +86,7 @@
 					</formats>
 					<options>
 						<xincludeSupported>true</xincludeSupported>
-						<!-- needed for uri-resolvers; can be ommitted if using 'current' uri 
+						<!-- needed for uri-resolvers; can be ommitted if using 'current' uri
 							scheme -->
 						<!-- could also locate the docbook dependency and inspect its version... -->
 						<docbookVersion>1.72.0</docbookVersion>

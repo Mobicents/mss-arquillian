@@ -5,7 +5,7 @@
 	<parent>
 		<artifactId>arquillian-parent-mobicents-sip-servlets</artifactId>
 		<groupId>org.mobicents.arquillian.container</groupId>
-		<version>7.0.0.CR2-TelScale-SNAPSHOT</version>
+		<version>1.0.0.CR2-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>mss-arquillian-lifecycle-extension</artifactId>
@@ -14,7 +14,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-	
+
 	<profiles>
 		<profile>
 			<id>release-sign-artifacts</id>
@@ -43,7 +43,7 @@
 			</build>
 		</profile>
 	</profiles>
-	
+
 	<dependencies>
 
 		<!-- Mobicents Arquillian Container API -->
@@ -53,7 +53,7 @@
 			<artifactId>mss-arquillian-container-api</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>javax.sip</groupId>
 			<artifactId>jain-sip-api</artifactId>

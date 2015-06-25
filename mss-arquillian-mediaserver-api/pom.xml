@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.mobicents.arquillian.container</groupId>
 		<artifactId>arquillian-parent-mobicents-sip-servlets</artifactId>
-		<version>7.0.0.CR2-TelScale-SNAPSHOT</version>
+		<version>1.0.0.CR2-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>mss-arquillian-mediaserver-api</artifactId>
@@ -20,7 +20,7 @@
 		<dependency>
 			<groupId>org.mobicents.media</groupId>
 			<artifactId>spi</artifactId>
-			<version>${version.telscale.mediaserver}</version>
+			<version>${version.mobicents.mediaserver}</version>
 			<scope>provided</scope>
 			<exclusions>
 				<exclusion>
