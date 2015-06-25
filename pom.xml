@@ -20,7 +20,7 @@
 	<name>Arquillian Mobicents Container Parent Tomcat</name>
 	<description>Mobicents Tomcat Container for the Arquillian Project
 	</description>
-	<url>http://code.google.com/p/commtesting/</url>
+	<url>https://github.com/Mobicents/mss-arquillian</url>
 
 	<developers>
 		<developer>
@@ -36,11 +36,11 @@
 	</developers>
 
 	<scm>
-		<connection>scm:git:https://code.google.com/p/commtesting.mss-arquillian/
+		<connection>scm:git:git@github.com:Mobicents/mss-arquillian.git
 		</connection>
-		<developerConnection>scm:git:https://code.google.com/p/commtesting.mss-arquillian/
+		<developerConnection>scm:git:git@github.com:Mobicents/mss-arquillian.git
 		</developerConnection>
-		<url>http://code.google.com/p/commtesting/</url>
+		<url>https://github.com/Mobicents/mss-arquillian</url>
 		<tag>HEAD</tag>
 	</scm>
 
