@@ -91,7 +91,7 @@
 		<!-- Versioning -->
 		<version.arquillian_core>1.0.3.Final</version.arquillian_core>
 		<version.shrinkwrap_tomcat>1.0.0</version.shrinkwrap_tomcat>
-		<version.shrinkwrap_mobicents>7.0.3.42</version.shrinkwrap_mobicents>
+		<version.shrinkwrap_mobicents>7.0.3.44</version.shrinkwrap_mobicents>
 
 		<version.sipunit>2.0.0</version.sipunit>
 
@@ -107,8 +107,8 @@
 		<maven.compiler.source>1.5</maven.compiler.source>
 
 		<!-- Mobicents -->
-		<version.telscale.servlet.sip>7.0.3.258</version.telscale.servlet.sip>
-		<version.telscale.jain.sip.ext>7.0.3.7</version.telscale.jain.sip.ext>
+		<version.telscale.servlet.sip>7.0.3.302</version.telscale.servlet.sip>
+		<version.telscale.jain.sip.ext>7.0.3.14</version.telscale.jain.sip.ext>
 		<version.telscale.jain.sip.ha>7.0.3.7</version.telscale.jain.sip.ha>
 
 
@@ -117,7 +117,7 @@
 
 		<!-- Jain SIP -->
 		<jain-sip-api.version>1.2</jain-sip-api.version>
-		<jain-sip-ri.version>7.0.3.194</jain-sip-ri.version>
+		<jain-sip-ri.version>7.0.3.222</jain-sip-ri.version>
 		<jain.sip.ha.version>7.0.3.7</jain.sip.ha.version>
 	</properties>
 
