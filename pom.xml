@@ -103,7 +103,7 @@
 		<!-- Versioning -->
 		<version.arquillian_core>1.0.3.Final</version.arquillian_core>
 		<version.shrinkwrap_tomcat>1.0.0</version.shrinkwrap_tomcat>
-		<version.shrinkwrap_mobicents>1.0.0-CR1</version.shrinkwrap_mobicents>
+		<version.shrinkwrap_mobicents>1.0.0-CR2</version.shrinkwrap_mobicents>
 
 		<version.sipunit>2.0.0</version.sipunit>
 
@@ -169,7 +169,7 @@
 			<!-- <artifactId>arquillian-container-test-spi</artifactId> -->
 			<!-- <version>${version.arquillian_core}</version> -->
 			<!-- </dependency> -->
-			<!-- <dependency> <groupId>org.jboss.shrinkwrap.container</groupId> <artifactId>shrinkwrap-container-tomcat-60</artifactId> 
+			<!-- <dependency> <groupId>org.jboss.shrinkwrap.container</groupId> <artifactId>shrinkwrap-container-tomcat-60</artifactId>
 				<version>${version.shrinkwrap_tomcat}</version> </dependency> -->
 			<dependency>
 				<groupId>org.jboss.weld.servlet</groupId>
