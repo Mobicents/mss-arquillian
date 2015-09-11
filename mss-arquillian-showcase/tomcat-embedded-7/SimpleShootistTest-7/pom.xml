@@ -103,7 +103,7 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.cafesip.sipunit</groupId>
+			<groupId>org.mobicents.sipunit</groupId>
 			<artifactId>sipunit</artifactId>
 			<version>${version.sipunit}</version>
 			<scope>test</scope>
