@@ -132,6 +132,12 @@
 			<version>${project.version}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.mobicents.ha.javax.sip</groupId>
+			<artifactId>restcomm-jain-sip-ha-core</artifactId>
+			<scope>test</scope>
+		</dependency>
+
 		<!-- <dependency>
 			<groupId>org.mobicents.ha.javax.sip</groupId>
 			<artifactId>mobicents-jain-sip-ha-core</artifactId>

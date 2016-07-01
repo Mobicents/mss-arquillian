@@ -84,7 +84,7 @@
 
 		<dependency>
 			<groupId>org.mobicents.shrinkwrap.container</groupId>
-			<artifactId>shrinkwrap-container-mobicents</artifactId>
+			<artifactId>shrinkwrap-container-restcomm</artifactId>
 		</dependency>
 
 		<!-- org.apache.tomcat -->
@@ -170,7 +170,7 @@
 
 		<dependency>
 			<groupId>org.mobicents.javax.sip</groupId>
-			<artifactId>mobicents-jain-sip-ext</artifactId>
+			<artifactId>restcomm-jain-sip-ext</artifactId>
 		</dependency>
 
 		<dependency>
@@ -230,6 +230,12 @@
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mobicents.ha.javax.sip</groupId>
+			<artifactId>restcomm-jain-sip-ha-core</artifactId>
+			<scope>test</scope>
 		</dependency>
 
 	</dependencies>
