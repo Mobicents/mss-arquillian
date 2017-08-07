@@ -110,11 +110,6 @@ public class SipStackTool {
 					reentrantListener, additionalProperties);
 			sipStack = new SipStack(myTransport, Integer.valueOf(myPort), myProperties);
 			logger.info("SipStack - "+sipStackName+" - created!");
-
-			SipStack.setTraceEnabled(myProperties.getProperty("sipunit.trace")
-					.equalsIgnoreCase("true")
-					|| myProperties.getProperty("sipunit.trace")
-					.equalsIgnoreCase("on"));
 		}
 		catch (Exception ex)
 		{
@@ -140,11 +135,6 @@ public class SipStackTool {
 		{
 			sipStack = new SipStack(transport, Integer.valueOf(myPort), myProperties);
 			logger.info("SipStack - "+sipStackName+" - created!");
-
-			SipStack.setTraceEnabled(myProperties.getProperty("sipunit.trace")
-					.equalsIgnoreCase("true")
-					|| myProperties.getProperty("sipunit.trace")
-					.equalsIgnoreCase("on"));
 		}
 		catch (Exception ex)
 		{
