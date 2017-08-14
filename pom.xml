@@ -105,7 +105,7 @@
 		<version.shrinkwrap_tomcat>1.0.0</version.shrinkwrap_tomcat>
 		<version.shrinkwrap_restcomm>1.0.2</version.shrinkwrap_restcomm>
 
-		<version.sipunit>2.0.1</version.sipunit>
+		<version.sipunit>2.0.2</version.sipunit>
 
 		<version.jboss_spec>1.0.0.Final</version.jboss_spec>
 		<version.weld_servlet>1.1.2.Final</version.weld_servlet>
