@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.mobicents.arquillian.container.mobicents</groupId>
 		<artifactId>mss-arquillian-docs</artifactId>
-		<version>1.0.2-SNAPSHOT</version>
+		<version>1.0.4-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>mss-arquillian-docs-jdocbook-mobicents</artifactId>
