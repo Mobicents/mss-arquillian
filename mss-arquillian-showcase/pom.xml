@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.mobicents.arquillian.container</groupId>
 		<artifactId>arquillian-parent-mobicents-sip-servlets</artifactId>
-		<version>1.0.4-134</version>
+		<version>1.0.4-SNAPSHOT</version>
 	</parent>
 
 	<groupId>org.mobicents.servlet.sip.arquillian.showcase</groupId>
