@@ -40,9 +40,9 @@
     </properties>
 
     <scm>
-        <connection>scm:git:git@github.com:RestComm/mss-arquillian.git
+        <connection>scm:git:https://github.com/RestComm/mss-arquillian.git
         </connection>
-        <developerConnection>scm:git:git@github.com:RestComm/mss-arquillian.git
+        <developerConnection>scm:git:https://github.com/RestComm/mss-arquillian.git
         </developerConnection>
         <url>https://github.com/RestComm/mss-arquillian</url>
         <tag>HEAD</tag>
