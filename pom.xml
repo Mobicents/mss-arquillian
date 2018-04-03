@@ -17,8 +17,8 @@
     <artifactId>arquillian-parent-mobicents-sip-servlets</artifactId>
     <version>1.0.4-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>Arquillian Mobicents Container Parent Tomcat</name>
-    <description>Mobicents Tomcat Container for the Arquillian Project
+    <name>Arquillian Mobicents Container Parent</name>
+    <description>Mobicents Container for the Arquillian Project
     </description>
     <url>https://github.com/Mobicents/mss-arquillian</url>
 
@@ -35,12 +35,16 @@
         </developer>
     </developers>
 
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
     <scm>
-        <connection>scm:git:git@github.com:Mobicents/mss-arquillian.git
+        <connection>scm:git:git@github.com:RestComm/mss-arquillian.git
         </connection>
-        <developerConnection>scm:git:git@github.com:Mobicents/mss-arquillian.git
+        <developerConnection>scm:git:git@github.com:RestComm/mss-arquillian.git
         </developerConnection>
-        <url>https://github.com/Mobicents/mss-arquillian</url>
+        <url>https://github.com/RestComm/mss-arquillian</url>
         <tag>HEAD</tag>
     </scm>
 
