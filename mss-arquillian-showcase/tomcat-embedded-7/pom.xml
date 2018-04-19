@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.mobicents.servlet.sip.arquillian.showcase</groupId>
 		<artifactId>Showcase</artifactId>
-		<version>1.0.4-SNAPSHOT</version>
+		<version>1.0.4-137</version>
 	</parent>
 
 	<groupId>org.mobicents.servlet.sip.arquillian.showcase</groupId>
