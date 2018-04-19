@@ -15,7 +15,7 @@
     <!-- Artifact Configuration -->
     <groupId>org.mobicents.arquillian.container</groupId>
     <artifactId>arquillian-parent-mobicents-sip-servlets</artifactId>
-    <version>1.0.4-137</version>
+    <version>1.0.4-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Arquillian Mobicents Container Parent</name>
     <description>Mobicents Container for the Arquillian Project
@@ -42,7 +42,7 @@
         <developerConnection>scm:git:https://github.com/RestComm/mss-arquillian.git
         </developerConnection>
         <url>https://github.com/RestComm/mss-arquillian</url>
-        <tag>1.0.4-137</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <distributionManagement>
