@@ -5,7 +5,7 @@
 	<parent>
 		<artifactId>arquillian-parent-mobicents-sip-servlets</artifactId>
 		<groupId>org.mobicents.arquillian.container</groupId>
-		<version>1.0.4-143</version>
+		<version>1.0.4-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>mss-arquillian-container-api</artifactId>
