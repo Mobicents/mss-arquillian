@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.InetAddress;
+import java.net.NetworkInterface;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
@@ -70,14 +71,14 @@ import org.mobicents.servlet.sip.startup.SipStandardContext;
  * will behave inconsistently. Though it goes without saying, the host
  * name (bindAddress) cannot have a trailing slash for the same
  * reason.</p>
- * 
+ *
  * @author <a href="mailto:jean.deruelle@gmail.com">Jean Deruelle</a>
  * @author Dan Allen
  * @version $Revision: $
  */
 public class MobicentsSipServletsContainer implements DeployableContainer<MobicentsSipServletsConfiguration>, MSSContainer
 {
-    private static final Logger log = Logger.getLogger(MobicentsSipServletsContainer.class.getName());   
+    private static final Logger log = Logger.getLogger(MobicentsSipServletsContainer.class.getName());
 
     private static final String ENV_VAR = "${env.";
 
@@ -85,7 +86,7 @@ public class MobicentsSipServletsContainer implements DeployableContainer<Mobice
 
     private static final String SIP_PROTOCOL = "sip";
 
-    protected List<SipConnector> sipConnectors;   
+    protected List<SipConnector> sipConnectors;
 
     /**
      * Tomcat embedded
@@ -124,7 +125,7 @@ public class MobicentsSipServletsContainer implements DeployableContainer<Mobice
 
     private boolean wasStarted;
 
-    @Inject @DeploymentScoped 
+    @Inject @DeploymentScoped
     private InstanceProducer<SipStandardContext> sipStandardContextProducer;
 
     private Archive<?> archive;
@@ -132,7 +133,7 @@ public class MobicentsSipServletsContainer implements DeployableContainer<Mobice
     private Manager sipStandardManager;
 
     @Override
-    public Class<MobicentsSipServletsConfiguration> getConfigurationClass() 
+    public Class<MobicentsSipServletsConfiguration> getConfigurationClass()
     {
         return MobicentsSipServletsConfiguration.class;
     }
@@ -155,44 +156,92 @@ public class MobicentsSipServletsContainer implements DeployableContainer<Mobice
 
     @Override
     public List<SipConnector> getSipConnectors(String sipConnectorString) {
-        List<SipConnector> connectors = new ArrayList<SipConnector>();
+        List<SipConnector> connectors = new ArrayList<>();
+
+        //SipConnector definition
+        // bind_address:port/transport-lb_address:sip_udp_port:rmi_port
+        // :5070/-127.0.0.1::2000 -> SipConnector: 127.0.0.1:5070/UDP LB: 127.0.0.1:5060 RMI 2000
 
         StringTokenizer tokenizer = new StringTokenizer(sipConnectorString, ",");
         while (tokenizer.hasMoreTokens()) {
             String connectorString = tokenizer.nextToken();
             String bindSipAddress;
-            int bindSipPort;
-            String bindSipTransport;
+            int bindSipPort = 0;
+            String bindSipTransport = null;
 
             int indexOfColumn = connectorString.indexOf(":");
             int indexOfSlash = connectorString.indexOf("/");
+            int indexOfDash = connectorString.indexOf("-");
+
             if(indexOfColumn == -1) {
                 throw new IllegalArgumentException("sipConnectors configuration should be a comma separated list of <ip_address>:<port>/<transport>");
             }
             if(indexOfColumn == 0) {
                 bindSipAddress = this.bindAddress;
+                if (bindSipAddress == null) {
+                    bindSipAddress = "127.0.0.1";
+                }
             } else {
                 bindSipAddress = connectorString.substring(0,indexOfColumn);
             }
             if(indexOfSlash != -1) {
                 bindSipPort = Integer.parseInt(connectorString.substring(indexOfColumn + 1, indexOfSlash));
-                bindSipTransport = connectorString.substring(indexOfSlash + 1);
-            } else {
-                bindSipPort = Integer.parseInt(connectorString.substring(indexOfColumn + 1));
+                if (indexOfDash == -1) {
+                    bindSipTransport = connectorString.substring(indexOfSlash + 1);
+                } else {
+                    bindSipTransport = connectorString.substring(indexOfSlash + 1, indexOfDash);
+                }
+            } else if (indexOfSlash == -1) {
                 bindSipTransport = "UDP";
+                if (indexOfDash == -1) {
+                    bindSipPort = Integer.parseInt(connectorString.substring(indexOfColumn + 1));
+                } else {
+                    bindSipPort = Integer.parseInt(connectorString.substring(indexOfColumn+1, indexOfDash));
+                }
+            }
+
+            boolean useLoadBalancer = false;
+            String loadBalancerAdress = null;
+            int lbRmiPort = -1;
+            int lbSipPort = -1;
+            String loadBalancerStr;
+
+            if (indexOfDash != -1) {
+                useLoadBalancer = true;
+                loadBalancerStr = connectorString.substring(indexOfDash+1);
+                String[] lbTokens = loadBalancerStr.split(":");
+                loadBalancerAdress = lbTokens[0];
+
+                if (lbTokens[1] != null && !lbTokens[1].isEmpty()) {
+                    lbSipPort = Integer.parseInt(lbTokens[1]);
+                } else {
+                    lbSipPort = 5060;
+                }
+
+                if (lbTokens[2] != null && !lbTokens[2].isEmpty()) {
+                    lbRmiPort = Integer.parseInt(lbTokens[2]);
+                } else {
+                    lbRmiPort = 2000;
+                }
             }
 
             SipConnector sipConnector = createSipConnector(bindSipAddress, bindSipPort, bindSipTransport);
+            if (useLoadBalancer) {
+                sipConnector.setUseLoadBalancer(useLoadBalancer);
+                sipConnector.setLoadBalancerAddress(loadBalancerAdress);
+                sipConnector.setLoadBalancerSipPort(lbSipPort);
+                sipConnector.setLoadBalancerRmiPort(lbRmiPort);
+            }
 
             connectors.add(sipConnector);
-        } 
+        }
 
         return connectors;
     }
 
 
     @Override
-    public void startTomcatEmbedded() throws UnknownHostException,org.apache.catalina.LifecycleException, LifecycleException 
+    public void startTomcatEmbedded() throws UnknownHostException,org.apache.catalina.LifecycleException, LifecycleException
     {
         startTomcatEmbedded(null);
     }
@@ -223,7 +272,7 @@ public class MobicentsSipServletsContainer implements DeployableContainer<Mobice
         sipStandardService.setSipApplicationDispatcherClassName(SipApplicationDispatcherImpl.class.getCanonicalName());
         sipStandardService.setCongestionControlCheckingInterval(-1);
         sipStandardService.setAdditionalParameterableHeaders("additionalParameterableHeader");
-        sipStandardService.setUsePrettyEncoding(true);      
+        sipStandardService.setUsePrettyEncoding(true);
         sipStandardService.setName(serverName);
         if (sipStackProperties != null)
             sipStandardService.setSipStackProperties(sipStackProperties);
@@ -295,16 +344,16 @@ public class MobicentsSipServletsContainer implements DeployableContainer<Mobice
             if (classLoader == null) {
                 classLoader = Class.class.getClassLoader();
             }
-            
+
             File license = FileUtils.toFile(classLoader.getResource("telestax-license.xml").toURI().toURL());
             if (license != null){
                 FileUtils.copyFileToDirectory(license, tomcatHomeFile, false);
             } else {
                 try {
                     InputStream is = classLoader.getResourceAsStream("telestax-license.xml");
-                    
+
                     OutputStream os = new FileOutputStream(tomcatHomeFile+File.separator+"telestax-license.xml");
-                    
+
                     byte[] buffer = new byte[1024];
                     int bytesRead;
                     //read from is to buffer
@@ -319,9 +368,9 @@ public class MobicentsSipServletsContainer implements DeployableContainer<Mobice
                     e.printStackTrace();
                 }
 
-                
+
             }
-            
+
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -335,7 +384,7 @@ public class MobicentsSipServletsContainer implements DeployableContainer<Mobice
 
         // Enable JNDI - it is disabled by default.
         embedded.enableNaming();
-        //	      
+        //
         // starts embedded Mobicents Sip Serlvets
         embedded.start();
         embedded.getService().start();
@@ -389,7 +438,7 @@ public class MobicentsSipServletsContainer implements DeployableContainer<Mobice
                 log.info("Setting contextParameters from configuration");
                 String paramSeparator = configuration.getParamSeparator();
                 String valueSeparator = configuration.getValueSeparator();
-                String contextParams = configuration.getContextParam(); 
+                String contextParams = configuration.getContextParam();
                 String[] params = contextParams.split(paramSeparator);
 
                 for (String param : params) {
@@ -407,7 +456,7 @@ public class MobicentsSipServletsContainer implements DeployableContainer<Mobice
                 sipStandardContext.setConcurrencyControlMode(ConcurrencyControlMode.valueOf(configuration.getConcurrencyControl()));
             }
 
-            // Need to tell TomCat to use TCCL as parent, else the WebContextClassloader will be looking in AppCL 
+            // Need to tell TomCat to use TCCL as parent, else the WebContextClassloader will be looking in AppCL
             sipStandardContext.setParentClassLoader(Thread.currentThread().getContextClassLoader());
 
             if (sipStandardContext.getUnpackWAR())
@@ -522,14 +571,14 @@ public class MobicentsSipServletsContainer implements DeployableContainer<Mobice
     }
 
     @Override
-    public SipConnector createSipConnector(String ipAddress, int port, String transport) 
+    public SipConnector createSipConnector(String ipAddress, int port, String transport)
     {
         SipConnector sipConnector = new SipConnector();
         sipConnector.setIpAddress(ipAddress);
         sipConnector.setPort(port);
         sipConnector.setTransport(transport);
 
-        return sipConnector;	
+        return sipConnector;
     }
 
     @Override
