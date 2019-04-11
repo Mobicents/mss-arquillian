@@ -15,7 +15,7 @@
     <!-- Artifact Configuration -->
     <groupId>org.mobicents.arquillian.container</groupId>
     <artifactId>arquillian-parent-mobicents-sip-servlets</artifactId>
-    <version>1.0.4-SNAPSHOT</version>
+    <version>1.0.5-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Arquillian Mobicents Container Parent</name>
     <description>Mobicents Container for the Arquillian Project
